@@ -212,6 +212,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -264,7 +274,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/webpack入坑与开发环境的使用/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/低版本IE支持HTML5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert">
@@ -283,7 +293,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/22/webpack入坑与开发环境的使用/" itemprop="url">webpack基础入坑</a></h1>
+                <a class="post-title-link" href="/2017/08/24/低版本IE支持HTML5/" itemprop="url">低版本IE支持HTML5</a></h1>
         
 
         <div class="post-meta">
@@ -295,7 +305,521 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:44:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T02:38:03+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/24/低版本IE支持HTML5/" class="leancloud_visitors" data-flag-title="低版本IE支持HTML5">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="如何让低版本的-IE-支持-HTML5新标签"><a href="#如何让低版本的-IE-支持-HTML5新标签" class="headerlink" title="如何让低版本的 IE 支持 HTML5新标签"></a>如何让低版本的 IE 支持 HTML5新标签</h1><h2 id="1-利用条件注释针对-IE-来调用这个-JS-文件。"><a href="#1-利用条件注释针对-IE-来调用这个-JS-文件。" class="headerlink" title="1. 利用条件注释针对 IE 来调用这个 JS 文件。"></a>1. 利用条件注释针对 <code>IE</code> 来调用这个 <code>JS</code> 文件。</h2><p><code>Opera</code>，<code>FireFox</code> 等其他非 <code>IE</code> 浏览器就会忽视这段代码，也不会存在 <code>http</code> 请求。<br>引用 <code>html5shiv.js</code> 文件，代码内容可以自己下载下来看。</p>
+<p><a href="http://www.bootcdn.cn/html5shiv/" target="_blank" rel="external">BootCDN-html5shiv</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;</div><div class="line">	&lt;script src=<span class="string">"bower_components/html5shiv/dist/html5shiv.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
+<p>将以上代码放到 <code>head</code> 标签区间，由于现在国内网络环境（你懂的QAQ），直接引入外部 <code>JS</code>会让网页打开非常慢，所以建议大家先下载到服务器上，再进行本地文件的引用。</p>
+<p><a href="https://github.com/aFarkas/html5shiv" target="_blank" rel="external">更多细节参考：The HTML5 Shiv</a></p>
+<h2 id="2-用JS创建元素，然后添加CSS属性："><a href="#2-用JS创建元素，然后添加CSS属性：" class="headerlink" title="2. 用JS创建元素，然后添加CSS属性："></a>2. 用JS创建元素，然后添加CSS属性：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 页面头部</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = [<span class="string">'article'</span>, <span class="string">'aside'</span>, <span class="string">'details'</span>, <span class="string">'figcaption'</span>, <span class="string">'figure'</span>, <span class="string">'footer'</span>, <span class="string">'header'</span>, <span class="string">'hgroup'</span>, <span class="string">'nav'</span>, <span class="string">'section'</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = a.length; i &lt; j; i++) &#123;</div><div class="line">        <span class="built_in">document</span>.createElement(a[i]);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>同理，可以用类数组转为数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 页面头部</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createHtml5Mark</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// arguments 序列化成数组</span></div><div class="line">    <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">0</span>);</div><div class="line">    argLen = args.length,</div><div class="line">        doc = <span class="built_in">document</span>;</div><div class="line">    <span class="comment">// 循环数据创建元素</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; argLen; i++) &#123;</div><div class="line">        doc.createElement(args[i]);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">createHtml5Mark(<span class="string">'article'</span>, <span class="string">'aside'</span>, <span class="string">'details'</span>, <span class="string">'figcaption'</span>, <span class="string">'figure'</span>, <span class="string">'footer'</span>, <span class="string">'header'</span>, <span class="string">'hgroup'</span>, <span class="string">'nav'</span>, <span class="string">'section'</span>);</div></pre></td></tr></table></figure>
+<p>最后，需要在CSS添加属性：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">section</span>,<span class="selector-tag">article</span>,<span class="selector-tag">nav</span>,<span class="selector-tag">header</span>,<span class="selector-tag">footer</span>&#123;<span class="attribute">display</span>:block;&#125;</div></pre></td></tr></table></figure>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/HTML5入坑简单概览/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/24/HTML5入坑简单概览/" itemprop="url">HTML5入坑简单概览</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T02:35:08+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/24/HTML5入坑简单概览/" class="leancloud_visitors" data-flag-title="HTML5入坑简单概览">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="HTML5-概览"><a href="#HTML5-概览" class="headerlink" title="HTML5 概览"></a>HTML5 概览</h1><blockquote>
+<p>本文概览：<br>HTML5 新特性；<br>标签的变化；<br>属性的变化；<br>新增的标签</p>
+</blockquote>
+<h2 id="HTML5是什么？"><a href="#HTML5是什么？" class="headerlink" title="HTML5是什么？"></a>HTML5是什么？</h2><blockquote>
+<p>HTML5是超文本标记语言的第五次重大修改，2014年10月29日标准规范制定完成。</p>
+</blockquote>
+<h3 id="设计目的"><a href="#设计目的" class="headerlink" title="设计目的"></a>设计目的</h3><ul>
+<li><code>HTML5</code> 的设计目的是为了在移动设备上支持多媒体。新的语法特征被引进以支持这一点，如 <code>video</code> 、<code>audio</code> 和 <code>canvas</code> 标记。</li>
+<li><code>HTML5</code> 还引进了新的功能，可以真正改变用户与文档的交互方式，包括：</li>
+</ul>
+<ol>
+<li>新的解析规则增强了灵活性</li>
+<li>新属性</li>
+<li>淘汰过时的或冗余的属性</li>
+<li>一个HTML5文档到另一个文档间的拖放功能</li>
+<li>离线编辑</li>
+<li>信息传递的增强</li>
+<li>详细的解析规则</li>
+<li>多用途互联网邮件扩展（MIME）和协议处理程序注册</li>
+<li>在SQL数据库中存储数据的通用标准（Web SQL）</li>
+</ol>
+<h2 id="有哪些新特性？"><a href="#有哪些新特性？" class="headerlink" title="有哪些新特性？"></a>有哪些新特性？</h2><h3 id="1-语义特性"><a href="#1-语义特性" class="headerlink" title="1. 语义特性"></a>1. 语义特性</h3><p><code>HTML5</code> 赋予网页更好的意义和结构。更加丰富的标签将随着对 <a href="https://baike.baidu.com/item/RDFa" target="_blank" rel="external">RDFa</a>，微数据与微格式等方面的支持，构建对程序、对用户都更有价值的数据驱动的Web。</p>
+<h3 id="2-本地存储特性"><a href="#2-本地存储特性" class="headerlink" title="2. 本地存储特性"></a>2. 本地存储特性</h3><p>基于 <code>HTML5</code> 开发的网页APP拥有更短的启动时间，更快的联网速度，这些全得益于 <code>HTML5 APP Cache</code> ，以及本地存储功能。<code>Indexed DB</code>（HTML5本地存储最重要的技术之一）和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API" target="_blank" rel="external">API 说明文档</a>。</p>
+<h3 id="3-设备兼容特性"><a href="#3-设备兼容特性" class="headerlink" title="3. 设备兼容特性"></a>3. 设备兼容特性</h3><p>从 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Geolocation" target="_blank" rel="external">Geolocation</a> 功能的API文档公开以来，<code>HTML5</code> 为网页应用开发者们提供了更多功能上的优化选择，带来了更多体验功能的优势。<br><code>HTML5</code> 提供了前所未有的数据与应用接入开放接口。使外部应用可以直接与浏览器内部的数据直接相连，例如视频影音可直接与microphones及摄像头相联。</p>
+<h3 id="4-连接特性"><a href="#4-连接特性" class="headerlink" title="4. 连接特性"></a>4. 连接特性</h3><p>更有效的连接工作效率，使得基于页面的实时聊天，更快速的网页游戏体验，更优化的在线交流得到了实现。<code>HTML5</code> 拥有更有效的服务器推送技术，<a href="https://developer.mozilla.org/zh-CN/docs/Server-sent_events/Using_server-sent_events" target="_blank" rel="external">Server-Sent Events</a> 和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebSocket" target="_blank" rel="external">WebSocket</a> 就是其中的两个特性，这两个特性能够帮助我们实现服务器将数据“推送”到客户端的功能。</p>
+<h3 id="5-网页多媒体特性"><a href="#5-网页多媒体特性" class="headerlink" title="5. 网页多媒体特性"></a>5. 网页多媒体特性</h3><ul>
+<li>支持网页端的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio" target="_blank" rel="external">audio</a> 、<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video" target="_blank" rel="external">video</a> 等多媒体功能。</li>
+<li>三维、图形及特效特性（Class: 3D, Graphics &amp; Effects）</li>
+<li>基于 <code>SVG</code>、<code>Canvas</code>、<code>WebGL</code> 及<code>CSS3</code> 的 <code>3D</code> 功能，用户会惊叹于在浏览器中，所呈现的惊人视觉效果。</li>
+</ul>
+<h3 id="6-性能与集成特性"><a href="#6-性能与集成特性" class="headerlink" title="6. 性能与集成特性"></a>6. 性能与集成特性</h3><p>没有用户会永远等待你的<code>Loading</code> —— <code>HTML5</code>会通过 <code>XMLHttpRequest2</code> 等技术，解决以前的跨域等问题，帮助您的Web应用和网站在多样化的环境中更快速的工作。</p>
+<h3 id="7-CSS3特性"><a href="#7-CSS3特性" class="headerlink" title="7. CSS3特性"></a>7. CSS3特性</h3><p>在不牺牲性能和语义结构的前提下，<code>CSS3</code> 中提供了更多的风格和更强的效果。此外，较之以前的Web排版，Web的开放字体格式（WOFF）也提供了更高的灵活性和控制性。</p>
+<h2 id="关于标签"><a href="#关于标签" class="headerlink" title="关于标签"></a>关于标签</h2><h3 id="1-标签变化"><a href="#1-标签变化" class="headerlink" title="1. 标签变化"></a>1. 标签变化</h3><ol>
+<li><p><code>DOCTYPE</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>文档编码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta charset=&quot;UTF-8&quot; /&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>标签结尾</p>
+</li>
+</ol>
+<ul>
+<li>在 <code>HTML5</code> 中对于一些标签不再是必要的：<br>（但是建议每个标签都要结束）<br><code>li</code> , <code>dt</code> , <code>dd</code> , <code>p</code> , <code>rt</code> , <code>rp</code> , <code>optgroup</code> , <code>option</code> , <code>colgroup</code> , <code>thead</code> , <code>tbody</code> , <code>tfoot</code> , <code>tr</code> , <code>td</code> , <code>th</code></li>
+<li>自结束的标签最后的 <code>/</code> 也不再必要<br><code>img</code> , <code>input</code> , <code>br</code> , <code>hr</code> 等</li>
+</ul>
+<h3 id="2-属性变化"><a href="#2-属性变化" class="headerlink" title="2. 属性变化"></a>2. 属性变化</h3><p><strong>2.1 具有 <code>boolean</code> 值的属性</strong><br>对于具有 <code>boolean</code> 值的属性，例如 <code>disable</code> 和 <code>readonly</code> 等，只写属性不写属性值时，其默认值为 <code>true</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 以下三条 checked 全部为选中状态 --&gt;</div><div class="line">&lt;input type=&quot;checkbox&quot; checked &gt;</div><div class="line">&lt;input type=&quot;checkbox&quot; checked=&quot;checked&quot; &gt;</div><div class="line">&lt;input type=&quot;checkbox&quot; checked=&quot;&quot; &gt;</div></pre></td></tr></table></figure></p>
+<p><strong>2.2 省略属性值的引号</strong><br>属性值可以用单引号或者双引号，在属性值不包括 <code>&lt;</code>、<code>&gt;</code>、<code>=</code>、<code>&#39;</code>、<code>&quot;</code>时可以忽略引号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 这里的text就省略了引号 --&gt;</div><div class="line">&lt;input type=text &gt;</div></pre></td></tr></table></figure></p>
+<p><strong>2.3 <code>input</code> 新增 <code>type</code></strong><br>注意：日期与时间相关的 <code>type</code> 目前均存在bug<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/Input" target="_blank" rel="external">MDN：HTML元素参考-input</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 提交表单会自动验证是否为邮箱、电话、URL --&gt;</div><div class="line">&lt;input type=&quot;email&quot;&gt;</div><div class="line">&lt;input type=&quot;tel&quot;&gt;</div><div class="line">&lt;input type=&quot;url&quot;&gt;</div><div class="line"></div><div class="line">&lt;!-- 非数字无法输入 --&gt;</div><div class="line">&lt;input type=&quot;number&quot;&gt;</div><div class="line"></div><div class="line">&lt;!-- 一个指示范围的横向滚动条 --&gt;</div><div class="line">&lt;input type=&quot;range&quot;&gt;</div><div class="line"></div><div class="line">&lt;!-- 搜索框 --&gt;</div><div class="line">&lt;input type=&quot;search&quot;&gt;</div><div class="line"></div><div class="line">&lt;!-- 日期与时间（不建议使用） --&gt;</div><div class="line">&lt;input type=&quot;date&quot;&gt;</div><div class="line">&lt;input type=&quot;month&quot;&gt;</div><div class="line">&lt;input type=&quot;week&quot;&gt;</div><div class="line">&lt;input type=&quot;time&quot;&gt;</div><div class="line">&lt;input type=&quot;datetime-local&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>2.4 移除的元素</strong></p>
+<ul>
+<li>能被CSS替代的元素<br><code>basefont</code> , <code>big</code> , <code>center</code> , <code>font</code> , <code>s</code> , <code>u</code> , <code>tt</code> ,<code>strike</code></li>
+<li>不再使用frame框架<br><code>frame</code> , <code>frameset</code> , <code>noframes</code></li>
+<li>其它<br><code>rb</code> =&gt; <code>ruby</code><br><code>acronym</code> =&gt; <code>abbr</code><br><code>dir</code> =&gt; <code>ul</code><br><code>isindex</code> =&gt; <code>input</code><br><code>listing</code> =&gt; <code>pre</code><br><code>xmp</code> =&gt; <code>code</code><br><code>nextid</code> =&gt; <code>CUIDS</code><br><code>plaintext</code> =&gt; <code>text/plain</code></li>
+</ul>
+<p><strong>2.5 新增属性</strong></p>
+<ul>
+<li>全局属性<br><code>contentEditable</code> , <code>designMode</code> , <code>hidden</code> , <code>spellcheck</code> , <code>tabindex</code></li>
+<li>表单相关<br><code>autofocus</code> , <code>placeholder</code> , <code>form</code> , <code>required</code> , <code>novalidate</code><br><code>formaction</code> , <code>formenctype</code> , <code>formmethod</code> , <code>formtarget</code> , <code>formnovalidate</code></li>
+<li>链接相关<br><code>a</code>和<code>area</code>新增<code>media</code><br><code>link</code>新增<code>sizes</code>属性<br><code>base</code>新增<code>target</code>属性<br><code>area</code>新增<code>hreflang</code>和<code>rel</code></li>
+<li>其它<br><code>ol</code>新增<code>reversed</code><br><code>meta</code>新增<code>charset</code><br><code>menu</code>新增<code>type和label</code><br><code>style</code>新增<code>scoped</code><br><code>script</code>新增<code>async</code><br><code>html</code>新增<code>manifest</code><br><code>iframe</code>新增<code>sandbox， seamless， srcdoc</code></li>
+</ul>
+<p><strong>2.6 废弃属性</strong><br><a href="http://www.cnblogs.com/TomXu/archive/2011/12/17/2269168.html" target="_blank" rel="external">废弃的元素和属性</a></p>
+<h3 id="3-新增标签"><a href="#3-新增标签" class="headerlink" title="3. 新增标签"></a>3. 新增标签</h3><table>
+<thead>
+<tr>
+<th>元素</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>canvas</td>
+<td>标签定义图形，比如图表和其他图像。该标签基于 JavaScript 的绘图 API</td>
+</tr>
+<tr>
+<td>audio</td>
+<td>定义音频内容</td>
+</tr>
+<tr>
+<td>video</td>
+<td>定义视频（video 或者 movie）</td>
+</tr>
+<tr>
+<td>source</td>
+<td>定义多媒体资源 <code>&lt;video&gt;</code> 和<code>&lt;audio&gt;</code></td>
+</tr>
+<tr>
+<td>embed</td>
+<td>定义嵌入的内容，比如插件</td>
+</tr>
+<tr>
+<td>track</td>
+<td>为诸如 <code>&lt;video&gt;</code> 和 <code>&lt;audio&gt;</code> 元素之类的媒介规定外部文本轨道</td>
+</tr>
+<tr>
+<td>datalist</td>
+<td>定义选项列表。与 input 元素配合使用该元素，来定义 input 可能的值</td>
+</tr>
+<tr>
+<td>keygen</td>
+<td>规定用于表单的密钥对生成器字段</td>
+</tr>
+<tr>
+<td>output</td>
+<td>定义不同类型的输出，比如脚本的输出</td>
+</tr>
+<tr>
+<td>article</td>
+<td>定义页面正文内容</td>
+</tr>
+<tr>
+<td>aside</td>
+<td>定义页面内容之外的内容</td>
+</tr>
+<tr>
+<td>bdi</td>
+<td>设置一段文本，使其脱离其父元素的文本方向设置</td>
+</tr>
+<tr>
+<td>command</td>
+<td>定义命令按钮，比如单选按钮、复选框或按钮</td>
+</tr>
+<tr>
+<td>details</td>
+<td>用于描述文档或文档某个部分的细节</td>
+</tr>
+<tr>
+<td>dialog</td>
+<td>定义对话框，比如提示框</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>标签包含 details 元素的标题</td>
+</tr>
+<tr>
+<td>figure</td>
+<td>规定独立的流内容（图像、图表、照片、代码等等）</td>
+</tr>
+<tr>
+<td>figcaption</td>
+<td>定义 <code>&lt;figure&gt;</code> 元素的标题</td>
+</tr>
+<tr>
+<td>footer</td>
+<td>定义 section 或 document 的页脚</td>
+</tr>
+<tr>
+<td>header</td>
+<td>定义了文档的头部区域</td>
+</tr>
+<tr>
+<td>mark</td>
+<td>定义带有记号的文本</td>
+</tr>
+<tr>
+<td>meter</td>
+<td>定义度量衡。仅用于已知最大和最小值的度量</td>
+</tr>
+<tr>
+<td>nav</td>
+<td>导航</td>
+</tr>
+<tr>
+<td>progress</td>
+<td>定义任何类型的任务的进度</td>
+</tr>
+<tr>
+<td>ruby</td>
+<td>定义 ruby 注释（中文注音或字符）</td>
+</tr>
+<tr>
+<td>rt</td>
+<td>定义字符（中文注音或字符）的解释或发音</td>
+</tr>
+<tr>
+<td>rp</td>
+<td>在 ruby 注释中使用，定义不支持 ruby 元素的浏览器所显示的内容</td>
+</tr>
+<tr>
+<td>section</td>
+<td>定义文档中的节（section、区段）</td>
+</tr>
+<tr>
+<td>time</td>
+<td>定义日期或时间</td>
+</tr>
+<tr>
+<td>wbr</td>
+<td>规定在文本中的何处适合添加换行符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://www.w3school.com.cn/tags/" target="_blank" rel="external">w3school：HTML 参考手册</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5" target="_blank" rel="external">MDN：HTML5</a></li>
+<li><a href="http://www.cnblogs.com/TomXu/archive/2011/12/17/2269168.html" target="_blank" rel="external">HTML5 学习笔记简明版</a></li>
+</ol>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/webpack：bundle-js解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/22/webpack：bundle-js解析/" itemprop="url">webpack：bundle.js解析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T21:06:30+08:00">
                 2017-08-22
               </time>
             
@@ -306,6 +830,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -313,7 +859,7 @@
 
           
           
-             <span id="/2017/08/22/webpack入坑与开发环境的使用/" class="leancloud_visitors" data-flag-title="webpack基础入坑">
+             <span id="/2017/08/22/webpack：bundle-js解析/" class="leancloud_visitors" data-flag-title="webpack：bundle.js解析">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -347,6 +893,372 @@
         
           
             
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/webpack基础入坑（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/22/webpack基础入坑（二）/" itemprop="url">webpack基础入坑（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T19:30:03+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/22/webpack基础入坑（二）/" class="leancloud_visitors" data-flag-title="webpack基础入坑（二）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/webpack基础入坑（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/22/webpack基础入坑（一）/" itemprop="url">webpack基础入坑（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:44:00+08:00">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/08/22/webpack基础入坑（一）/" class="leancloud_visitors" data-flag-title="webpack基础入坑（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fishfcjd85j21g30orwmv.jpg" alt=" webpack | center "></p>
+<h1 id="webpck-基础入坑（一）"><a href="#webpck-基础入坑（一）" class="headerlink" title="webpck 基础入坑（一）"></a>webpck 基础入坑（一）</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>这里有webpack发布的所有版本：<br><a href="https://github.com/webpack/webpack" target="_blank" rel="external">https://github.com/webpack/webpack/releases</a></p>
+<p>当然你也可以直接通过 <code>npm</code> 命令安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure></p>
+<p>如果你要体验最新版本的webpack请使用以下命令安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack@beta</div></pre></td></tr></table></figure></p>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p>Google 搜索 webpack 第一条结果：<br><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></p>
+<p>页面中指明了三个链接：</p>
+<ol>
+<li><a href="http://webpack.js.org/" target="_blank" rel="external">documentation - 文档</a><br>所有功能的罗列，文档一般<strong>不是</strong>按照从易到难的顺序给出，但是肯定包含的几乎所有功能的介绍。</li>
+<li><a href="http://webpack.js.org/concepts" target="_blank" rel="external">introducation - 介绍</a><br>简单说明了 webpack 的作用和基本概念。</li>
+<li><a href="http://webpack.js.org/get-started/" target="_blank" rel="external">tutorial - 教程</a><br>比较容易上手，教你一步一步自学 webpack</li>
+</ol>
+<p>需要中文的小伙伴请点这里：<br><a href="https://doc.webpack-china.org/" target="_blank" rel="external">https://doc.webpack-china.org/</a></p>
+<h2 id="实践（抄写）"><a href="#实践（抄写）" class="headerlink" title="实践（抄写）"></a>实践（抄写）</h2><p>点开 <a href="http://webpack.js.org/get-started/" target="_blank" rel="external">tutorial - 教程</a> ，然后一行一行地复制里面的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建并进入 webpack-demo 目录</span></div><div class="line">mkdir webpack-demo &amp;&amp; <span class="built_in">cd</span> webpack-demo</div><div class="line"><span class="comment"># npm 初始化一个 package.json</span></div><div class="line">npm init -y</div><div class="line"><span class="comment"># 安装 webpack 作为开发依赖</span></div><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure></p>
+<p>ps: 安装过慢请自行切换国内淘宝源</p>
+<hr>
+<p>按教程上说的做<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建一个index.hrml</span></div><div class="line">touch index.html</div><div class="line"><span class="comment"># 新建一个src文件夹</span></div><div class="line">mkdir src</div><div class="line"><span class="comment"># 在src文件夹内新建一个index.js</span></div><div class="line"><span class="built_in">cd</span> src &amp;&amp; touch index.js</div></pre></td></tr></table></figure></p>
+<p>现在你的目录结构是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">webpack-demo</div><div class="line">|- package.json</div><div class="line">|- index.html</div><div class="line">|- /src</div><div class="line">  |- index.js</div></pre></td></tr></table></figure></p>
+<hr>
+<p>ok，咱们继续抄<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">component</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line"></div><div class="line">  <span class="comment">// Lodash, currently included via a script, is required for this line to work</span></div><div class="line">  element.innerHTML = _.join([<span class="string">'Hello'</span>, <span class="string">'webpack'</span>], <span class="string">' '</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> element;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">document</span>.body.appendChild(component());</div></pre></td></tr></table></figure></p>
+<p>注意上面代码中的 <code>_.join</code> ，这个 <code>_</code> 实际上是 <code>lodash</code> 暴露的全局变量。</p>
+<hr>
+<p>编辑 <code>webpack-demo</code> 目录下的 <code>index.html</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;Getting Started&lt;/title&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/lodash@4.16.6&quot;&gt;&lt;/script&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;script src=&quot;./src/index.js&quot;&gt;&lt;/script&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>为了使用 <code>lodash</code>，<code>HTML</code> 使用 <code>script</code> 引入了 <code>lodash v4.16.6</code>。</p>
+<hr>
+<p>教程里说这样引用逼格太低，我们可以用更高端的方法引入<br>安装 <code>lodash</code> 为必要依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 请先确保命令行当前所在目录是 webpack-demo</span></div><div class="line">npm install --save lodash</div><div class="line"><span class="comment"># 上面命令可以简写成 npm i -S lodash</span></div></pre></td></tr></table></figure></p>
+<p>好了，<code>lodash</code> 的源代码已经下载到 <code>./node_modules/lodash/</code> 目录中。</p>
+<p>然后在 <code>src/index.js</code> 的第一行添加<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span>;</div><div class="line"><span class="comment">// 然后是function component () &#123;</span></div></pre></td></tr></table></figure></p>
+<p>意思是从 <code>lodash</code> 里得到默认导出，并将默认导出命名为 <code>_</code>，这个 <code>_</code> 可以换成任何一个其他的变量名。</p>
+<p>然后按照教程说的把 <code>index.html</code> 也改了<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  &lt;html&gt;</div><div class="line">   &lt;head&gt;</div><div class="line">     &lt;title&gt;Getting Started&lt;/title&gt;</div><div class="line"><span class="deletion">-    &lt;script src="https://unpkg.com/lodash@4.16.6"&gt;&lt;/script&gt;</span></div><div class="line">   &lt;/head&gt;</div><div class="line">   &lt;body&gt;</div><div class="line"><span class="deletion">-    &lt;script src="./src/index.js"&gt;&lt;/script&gt;</span></div><div class="line"><span class="addition">+    &lt;script src="./dist/bundle.js"&gt;&lt;/script&gt;</span></div><div class="line">   &lt;/body&gt;</div><div class="line">  &lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>然后命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack app/index.js dist/bundle.js</div></pre></td></tr></table></figure></p>
+<p>在浏览器中打开 <code>index.html</code>，如果你看到’Hello webpack’ 说明运行成功。</p>
+<hr>
+<p>这是目前的文件结构：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|- src</div><div class="line">  |- index.js</div><div class="line">|- dist</div><div class="line">  |- bundle.js</div><div class="line">|- index.html</div><div class="line">|- node_modules/</div><div class="line">|- package.json</div></pre></td></tr></table></figure></p>
+<ol>
+<li><code>./node_modules/.bin/webpack app/index.js dist/bundle.js</code> 将 <code>src/index.js</code> 转化成 <code>dist/bundle.js</code></li>
+<li><code>index.html</code> 引用的是 <code>dist/bundle.js</code></li>
+<li><code>lodash</code> 安装在 <code>node_modules</code> 里，在<code>index.js</code>中用<code>import</code>引用</li>
+<li><code>webpack</code> 也安装在 <code>node_modules</code>里，<code>./node_modules/.bin/webpack</code> 是一个可执行文件</li>
+<li><code>webpack</code>、<code>lodash</code> 的版本号都被写在 <code>package.json</code> 里</li>
+</ol>
+<hr>
+<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><h3 id="引入-jQuery"><a href="#引入-jQuery" class="headerlink" title="引入 jQuery"></a>引入 jQuery</h3><p>如果我们要在页面中引入 <code>jQuery</code>，先安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 确定你在 webpack-demo 目录</span></div><div class="line">npm i -S jquery</div></pre></td></tr></table></figure></p>
+<p>以上命令相当于：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save jquery</div></pre></td></tr></table></figure></p>
+<p>然后 <code>jquery</code> 模块就被下载到了 <code>node_modules</code> 中。</p>
+<p>然后我们继续在 <code>src./index.js</code> 中引入 <code>jquery</code><br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> import _ from 'lodash'</div><div class="line"><span class="addition">+import j from 'jquery'</span></div><div class="line"></div><div class="line"> function component () &#123;</div><div class="line"><span class="deletion">-  var element = document.createElement('div');</span></div><div class="line"><span class="addition">+  var element = j('&lt;div&gt;&lt;/div&gt;');</span></div><div class="line"></div><div class="line"><span class="deletion">-  element.innerHTML = _.join(['Hello','webpack'], ' ');</span></div><div class="line"><span class="addition">+  element.html(_.join(['Hello','webpack'], ' '))</span></div><div class="line"></div><div class="line"><span class="deletion">-  return element;</span></div><div class="line"><span class="addition">+  return element.get(0);</span></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> document.body.appendChild(component());</div></pre></td></tr></table></figure></p>
+<p>然后再次运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack app/index.js dist/bundle.js</div></pre></td></tr></table></figure></p>
+<p>打开 <code>index.html</code>。如果你看到 “Hello webpack”，那就说明 <code>jquery</code> 也成功引入，只不过我们把它命名为 <code>j</code>，显然命名为 <code>$</code> 更符合习惯，你可以自己改一下试试！</p>
+<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><p>上面每次都要运行 <code>./node_modules/.bin/webpack app/index.js dist/bundle.js</code> 实在是烦人，教程里给出了方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 确保你在项目根目录 webpack-demo</span></div><div class="line"><span class="comment"># 新建一个 webpack.config.js 文件</span></div><div class="line">touch webpack.config.js</div></pre></td></tr></table></figure></p>
+<p>然后编辑它：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: <span class="string">'./src/index.js'</span>,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span>,</div><div class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<ol>
+<li><code>output</code> 出口设置，必须是绝对路径，因此在第一行引入 <code>path</code> 模块，方便路径的设置；</li>
+<li><code>entry</code> 入口设置，可以是相对路径；</li>
+<li><code>filename</code> 输出的文件名；</li>
+</ol>
+<p>然后命令行运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack --config webpack.config.js</div></pre></td></tr></table></figure></p>
+<p>不过这句话依然很长，每次输入很麻烦，教程又教了一个办法：使用 <code>npm-scripts</code></p>
+<hr>
+<p>修改 <code>package.json</code><br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   "scripts": &#123;</div><div class="line">     "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</div><div class="line"><span class="addition">+    "build": "webpack"</span></div><div class="line">   &#125;,</div><div class="line">   "keywords": [],</div></pre></td></tr></table></figure></p>
+<p>然后命令行运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure></p>
+<p>说明运行 <code>npm run build</code> 就等于运行 <code>node_modules</code> 里的 <code>webpack</code> 可执行文件，这个可执行文件会找到项目根目录下的 <code>webpack.config.js</code> 并按照其中的设置执行对应的操作</p>
+<p>最后再看一下文件目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">webpack-demo</div><div class="line">|- /src</div><div class="line">  |- index.js</div><div class="line">|- /dist</div><div class="line">  |- bundle.js</div><div class="line">|- index.html</div><div class="line">|- webpack.config.js</div><div class="line">|- /node_modules</div><div class="line">|- package.json</div></pre></td></tr></table></figure></p>
+<p>（完）</p>
+
           
         
       
@@ -435,6 +1347,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -750,6 +1684,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/其他/" itemprop="url" rel="index">
+                    <span itemprop="name">其他</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -889,12 +1845,21 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           
@@ -902,7 +1867,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
