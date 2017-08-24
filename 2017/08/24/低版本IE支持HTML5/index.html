@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="如何让低版本的 IE 支持 HTML5新标签1. 利用条件注释针对 IE 来调用这个 JS 文件。Opera，FireFox 等其他非 IE 浏览器就会忽视这段代码，也不会存在 http 请求。引用 html5shiv.js 文件，代码内容可以自己下载下来看。 BootCDN-html5shiv 123&amp;lt;!--[if lt IE 9]&amp;gt;	&amp;lt;script src=&quot;bower_co">
+<meta name="description" content="如何让低版本的 IE 支持 HTML5新标签1. 利用条件注释针对 IE 来调用这个 JS 文件。Opera，FireFox 等其他非 IE 浏览器就会忽视这段代码，也不会存在 http 请求。引用 html5shiv.js 文件，代码内容可以自己下载下来看。 BootCDN-html5shiv 123&amp;lt;!--[if lt IE 9]&amp;gt;    &amp;lt;script src=&quot;bower">
 <meta name="keywords" content="HTML5,IE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="低版本IE支持HTML5">
 <meta property="og:url" content="http://yoursite.com/2017/08/24/低版本IE支持HTML5/index.html">
 <meta property="og:site_name" content="Albert&#39;s Blog">
-<meta property="og:description" content="如何让低版本的 IE 支持 HTML5新标签1. 利用条件注释针对 IE 来调用这个 JS 文件。Opera，FireFox 等其他非 IE 浏览器就会忽视这段代码，也不会存在 http 请求。引用 html5shiv.js 文件，代码内容可以自己下载下来看。 BootCDN-html5shiv 123&amp;lt;!--[if lt IE 9]&amp;gt;	&amp;lt;script src=&quot;bower_co">
+<meta property="og:description" content="如何让低版本的 IE 支持 HTML5新标签1. 利用条件注释针对 IE 来调用这个 JS 文件。Opera，FireFox 等其他非 IE 浏览器就会忽视这段代码，也不会存在 http 请求。引用 html5shiv.js 文件，代码内容可以自己下载下来看。 BootCDN-html5shiv 123&amp;lt;!--[if lt IE 9]&amp;gt;    &amp;lt;script src=&quot;bower">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-23T18:46:17.385Z">
+<meta property="og:updated_time" content="2017-08-23T19:23:22.728Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="低版本IE支持HTML5">
-<meta name="twitter:description" content="如何让低版本的 IE 支持 HTML5新标签1. 利用条件注释针对 IE 来调用这个 JS 文件。Opera，FireFox 等其他非 IE 浏览器就会忽视这段代码，也不会存在 http 请求。引用 html5shiv.js 文件，代码内容可以自己下载下来看。 BootCDN-html5shiv 123&amp;lt;!--[if lt IE 9]&amp;gt;	&amp;lt;script src=&quot;bower_co">
+<meta name="twitter:description" content="如何让低版本的 IE 支持 HTML5新标签1. 利用条件注释针对 IE 来调用这个 JS 文件。Opera，FireFox 等其他非 IE 浏览器就会忽视这段代码，也不会存在 http 请求。引用 html5shiv.js 文件，代码内容可以自己下载下来看。 BootCDN-html5shiv 123&amp;lt;!--[if lt IE 9]&amp;gt;    &amp;lt;script src=&quot;bower">
 
 
 
@@ -379,7 +379,7 @@
       
         <h1 id="如何让低版本的-IE-支持-HTML5新标签"><a href="#如何让低版本的-IE-支持-HTML5新标签" class="headerlink" title="如何让低版本的 IE 支持 HTML5新标签"></a>如何让低版本的 IE 支持 HTML5新标签</h1><h2 id="1-利用条件注释针对-IE-来调用这个-JS-文件。"><a href="#1-利用条件注释针对-IE-来调用这个-JS-文件。" class="headerlink" title="1. 利用条件注释针对 IE 来调用这个 JS 文件。"></a>1. 利用条件注释针对 <code>IE</code> 来调用这个 <code>JS</code> 文件。</h2><p><code>Opera</code>，<code>FireFox</code> 等其他非 <code>IE</code> 浏览器就会忽视这段代码，也不会存在 <code>http</code> 请求。<br>引用 <code>html5shiv.js</code> 文件，代码内容可以自己下载下来看。</p>
 <p><a href="http://www.bootcdn.cn/html5shiv/" target="_blank" rel="external">BootCDN-html5shiv</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;</div><div class="line">	&lt;script src=<span class="string">"bower_components/html5shiv/dist/html5shiv.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;!--[<span class="keyword">if</span> lt IE <span class="number">9</span>]&gt;</div><div class="line">    &lt;script src=<span class="string">"bower_components/html5shiv/dist/html5shiv.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;![endif]--&gt;</div></pre></td></tr></table></figure>
 <p>将以上代码放到 <code>head</code> 标签区间，由于现在国内网络环境（你懂的QAQ），直接引入外部 <code>JS</code>会让网页打开非常慢，所以建议大家先下载到服务器上，再进行本地文件的引用。</p>
 <p><a href="https://github.com/aFarkas/html5shiv" target="_blank" rel="external">更多细节参考：The HTML5 Shiv</a></p>
 <h2 id="2-用JS创建元素，然后添加CSS属性："><a href="#2-用JS创建元素，然后添加CSS属性：" class="headerlink" title="2. 用JS创建元素，然后添加CSS属性："></a>2. 用JS创建元素，然后添加CSS属性：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 页面头部</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = [<span class="string">'article'</span>, <span class="string">'aside'</span>, <span class="string">'details'</span>, <span class="string">'figcaption'</span>, <span class="string">'figure'</span>, <span class="string">'footer'</span>, <span class="string">'header'</span>, <span class="string">'hgroup'</span>, <span class="string">'nav'</span>, <span class="string">'section'</span>];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, j = a.length; i &lt; j; i++) &#123;</div><div class="line">        <span class="built_in">document</span>.createElement(a[i]);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
@@ -429,6 +429,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/24/详说-Cookie-LocalStorage-与-SessionStorage/" rel="prev" title="详说 Cookie, LocalStorage 与 SessionStorage">
+                详说 Cookie, LocalStorage 与 SessionStorage <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -505,7 +509,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -516,7 +520,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -527,7 +531,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
