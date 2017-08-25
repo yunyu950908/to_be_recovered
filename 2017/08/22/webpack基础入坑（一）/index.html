@@ -103,7 +103,7 @@
 <meta property="og:description" content="webpck 基础入坑（一）安装这里有webpack发布的所有版本：https://github.com/webpack/webpack/releases 当然你也可以直接通过 npm 命令安装：1npm install --save-dev webpack 如果你要体验最新版本的webpack请使用以下命令安装：1npm install webpack@beta 文档Google 搜索 web">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fishfcjd85j21g30orwmv.jpg">
-<meta property="og:updated_time" content="2017-08-22T11:41:52.174Z">
+<meta property="og:updated_time" content="2017-08-25T07:25:48.948Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack基础入坑（一）">
 <meta name="twitter:description" content="webpck 基础入坑（一）安装这里有webpack发布的所有版本：https://github.com/webpack/webpack/releases 当然你也可以直接通过 npm 命令安装：1npm install --save-dev webpack 如果你要体验最新版本的webpack请使用以下命令安装：1npm install webpack@beta 文档Google 搜索 web">
@@ -344,6 +344,18 @@
 
           
             
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/22/webpack基础入坑（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/webpack基础入坑（一）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
           
 
           
@@ -409,6 +421,7 @@
 <p>意思是从 <code>lodash</code> 里得到默认导出，并将默认导出命名为 <code>_</code>，这个 <code>_</code> 可以换成任何一个其他的变量名。</p>
 <p>然后按照教程说的把 <code>index.html</code> 也改了<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  &lt;html&gt;</div><div class="line">   &lt;head&gt;</div><div class="line">     &lt;title&gt;Getting Started&lt;/title&gt;</div><div class="line"><span class="deletion">-    &lt;script src="https://unpkg.com/lodash@4.16.6"&gt;&lt;/script&gt;</span></div><div class="line">   &lt;/head&gt;</div><div class="line">   &lt;body&gt;</div><div class="line"><span class="deletion">-    &lt;script src="./src/index.js"&gt;&lt;/script&gt;</span></div><div class="line"><span class="addition">+    &lt;script src="./dist/bundle.js"&gt;&lt;/script&gt;</span></div><div class="line">   &lt;/body&gt;</div><div class="line">  &lt;/html&gt;</div></pre></td></tr></table></figure></p>
 <p>然后命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack app/index.js dist/bundle.js</div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 如果你是全局安装的webpack直接运行以下代码</span></div><div class="line">webpack app/index.js dist/bundle.js</div></pre></td></tr></table></figure>
 <p>在浏览器中打开 <code>index.html</code>，如果你看到’Hello webpack’ 说明运行成功。</p>
 <hr>
 <p>这是目前的文件结构：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|- src</div><div class="line">  |- index.js</div><div class="line">|- dist</div><div class="line">  |- bundle.js</div><div class="line">|- index.html</div><div class="line">|- node_modules/</div><div class="line">|- package.json</div></pre></td></tr></table></figure></p>
@@ -513,6 +526,8 @@
           
   <div class="comments" id="comments">
     
+      <div id="hypercomments_widget"></div>
+    
   </div>
 
 
@@ -593,6 +608,19 @@
         
 
         <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yunyu950908" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
           
         </div>
 
@@ -780,17 +808,31 @@
 
 	
 
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 94839, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 94839, xid: "2017/08/22/webpack基础入坑（一）/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/94839/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
 
 
 
 
-  
-
-
-
-
-
-  
 
 
 
