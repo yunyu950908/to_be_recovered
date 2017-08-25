@@ -94,18 +94,21 @@
 
 
 
-<meta name="description" content="bundle.js接上文webpack基础入坑（一）">
+<meta name="description" content="webpack基础入坑（二 接上回  上回主要操作了指南的 Installation 与 GettingStarted 这两部分，这时候我们大概能猜出 webpack 的某些功能了：  使用各种 loader 加载不同的资源 把所有资源打包起来  bundle.js我们可以阅读一下最后生成的 bundle.js（可以写几个简单的JS文件打包，参数部分看起来会更方便一些）bundle.js 是一个并">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="webpack基础入坑（二）">
 <meta property="og:url" content="http://yoursite.com/2017/08/22/webpack基础入坑（二）/index.html">
 <meta property="og:site_name" content="Albert&#39;s Blog">
-<meta property="og:description" content="bundle.js接上文webpack基础入坑（一）">
+<meta property="og:description" content="webpack基础入坑（二 接上回  上回主要操作了指南的 Installation 与 GettingStarted 这两部分，这时候我们大概能猜出 webpack 的某些功能了：  使用各种 loader 加载不同的资源 把所有资源打包起来  bundle.js我们可以阅读一下最后生成的 bundle.js（可以写几个简单的JS文件打包，参数部分看起来会更方便一些）bundle.js 是一个并">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-25T03:29:50.150Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fivwqt4zttj20hz08vdgs.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fivxaa8w8yj20d2048dg4.jpg">
+<meta property="og:updated_time" content="2017-08-25T07:08:58.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack基础入坑（二）">
-<meta name="twitter:description" content="bundle.js接上文webpack基础入坑（一）">
+<meta name="twitter:description" content="webpack基础入坑（二 接上回  上回主要操作了指南的 Installation 与 GettingStarted 这两部分，这时候我们大概能猜出 webpack 的某些功能了：  使用各种 loader 加载不同的资源 把所有资源打包起来  bundle.js我们可以阅读一下最后生成的 bundle.js（可以写几个简单的JS文件打包，参数部分看起来会更方便一些）bundle.js 是一个并">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fivwqt4zttj20hz08vdgs.jpg">
 
 
 
@@ -377,7 +380,58 @@
       
 
       
-        <h2 id="bundle-js"><a href="#bundle-js" class="headerlink" title="bundle.js"></a>bundle.js</h2><p>接上文<a href="./webpack基础入坑（一）.md">webpack基础入坑（一）</a></p>
+        <h1 id="webpack基础入坑（二"><a href="#webpack基础入坑（二" class="headerlink" title="webpack基础入坑（二"></a>webpack基础入坑（二</h1><blockquote>
+<p>接上回</p>
+</blockquote>
+<p>上回主要操作了指南的 Installation 与 GettingStarted 这两部分，这时候我们大概能猜出 webpack 的某些功能了：</p>
+<ol>
+<li>使用各种 loader 加载不同的资源</li>
+<li>把所有资源打包起来</li>
+</ol>
+<h2 id="bundle-js"><a href="#bundle-js" class="headerlink" title="bundle.js"></a>bundle.js</h2><p>我们可以阅读一下最后生成的 <code>bundle.js</code><br>（可以写几个简单的JS文件打包，参数部分看起来会更方便一些）<br><code>bundle.js</code> 是一个并不复杂的自执行函数（每一行都有代码注释）容主要由两部分组成：</p>
+<ol>
+<li>webpackBootstrap 函数入口，主体部分<br>打包的功能就在这部分，有兴趣的话可以看一下每一行的功能，大致就是把每个模块call一下，然后把模块保存到 <code>installedModules</code> 里，然后需要用到的时候可以直接调用。</li>
+<li>参数部分<br>传入一个数组，数组的每一项都是一个模块，每个模块都有一个独立的模块ID，模块需要其他依赖时直接通过模块ID来调用。</li>
+</ol>
+<p>就此打住，这篇文章主题并不在讲 <code>bundle.js</code>。</p>
+<hr>
+<h2 id="JS-压缩"><a href="#JS-压缩" class="headerlink" title="JS 压缩"></a>JS 压缩</h2><p>webpack打包之后我们发现 <code>dist/bundle.js</code> 有800KB，因为我们引入了 <code>lodash</code> 和 <code>jQuery</code> 这两个库，但是并没有压缩代码，那么如何压缩呢？方法很多，其中最简单的一种就是使用 webpack 自带的压缩插件 UglifyJsPlugin：</p>
+<p>我们修改一下 <code>npm scripts</code> 的配置，添加一个字段启动webpack的压缩功能：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"build-p": "webpack -p"</div></pre></td></tr></table></figure></p>
+<p>重新运行命令打包文件，得到的 <code>bundle.js</code> 就是一个压缩过的文件。</p>
+<ul>
+<li>更多使用方法参考这里：<a href="https://github.com/mishoo/UglifyJS2#usage" target="_blank" rel="external">UglifyJS</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build-p</div></pre></td></tr></table></figure>
+<p>运行帮助命令查看 <code>-p</code> 参数的具体功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack --<span class="built_in">help</span></div><div class="line"></div><div class="line"><span class="comment"># 找到如下介绍</span></div><div class="line">-p        shortcut <span class="keyword">for</span> --optimize-minimize --define process.env.NODE_ENV=<span class="string">"production"</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">webpack -p</div><div class="line"><span class="comment"># 相当于以下命令</span></div><div class="line">webpack --optimize-minimize --define process.env.NODE_ENV=<span class="string">"'production'"</span></div></pre></td></tr></table></figure>
+<p>它会执行如下步骤：</p>
+<ol>
+<li>使用 UglifyJsPlugin 进行 JS 文件压缩</li>
+<li>运行 <a href="https://doc.webpack-china.org/plugins/loader-options-plugin/" target="_blank" rel="external">LoaderOptionsPlugin</a></li>
+<li>设置 NodeJS 环境变量，触发某些 package 包，以不同的方式进行编译。</li>
+</ol>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>每次改完代码都要运行一次打包命令是不是很烦人？没关系，webpack 肯定也考虑到了，于是乎我们就可以通过 webpack 自带的监听功能自动监听文件变动然后执行编译。</p>
+<p><a href="https://webpack.js.org/guides/development/" target="_blank" rel="external">Development</a> 这一章节就是专门介绍如何快速开发的。</p>
+<h3 id="1-调整编辑器"><a href="#1-调整编辑器" class="headerlink" title="1. 调整编辑器"></a>1. 调整编辑器</h3><p>首先，我们先拉到文章底部，按照它的要求调整我们的编辑器：<br><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fivwqt4zttj20hz08vdgs.jpg" alt="@调整编辑器 | center"></p>
+<h3 id="2-Source-Maps"><a href="#2-Source-Maps" class="headerlink" title="2. Source Maps"></a>2. Source Maps</h3><p>调整好编辑器后我们再返回页面顶部，找到Source Maps<br><strong>功能：</strong><br>将编译后的代码映射回原始源代码，如果某个源文件中存在错误，source map会追踪到错误和警告在源代码中的原始位置，方便代码调试。<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  var path = require('path');</div><div class="line">  module.exports = &#123;</div><div class="line">    entry: './src/index.js',</div><div class="line"><span class="addition">+   devtool: 'inline-source-map',</span></div><div class="line">    output: &#123;</div><div class="line">      filename: 'bundle.js',</div><div class="line">      path: path.resolve(__dirname, 'dist')</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
+<p>故意改错源文件中的代码，然后运行 <code>npm run build</code> 打包，然后在浏览器控制台你会发现 <code>bundle.js</code> 的报错会指向源文件。<br><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fivxaa8w8yj20d2048dg4.jpg" alt="@指向了源文件 foo.js | center"></p>
+<h3 id="3-Watch-Mode"><a href="#3-Watch-Mode" class="headerlink" title="3. Watch Mode"></a>3. Watch Mode</h3><p>再修改一下 <code>npm scripts</code> 的配置，添加一个字段以启动监听模式：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"watch": "webpack --watch"</div></pre></td></tr></table></figure></p>
+<p>运行 <code>npm run watch</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm run watch</div><div class="line"><span class="comment"># 运行成功直接编译然后光标继续闪动表示监听中...</span></div></pre></td></tr></table></figure></p>
+<p>如果你想要退出，请按 <code>Ctrl+c</code></p>
+<p>好了现在我们试一下这个监听功能，我们随便修改一个文件内容，按 <code>Ctrl+s</code> 保存。</p>
+<p>切换回命令行，你会发现 webpack 自动执行了编译操作。</p>
+<h3 id="4-webpack-dev-server"><a href="#4-webpack-dev-server" class="headerlink" title="4.  webpack-dev-server"></a>4.  webpack-dev-server</h3><p>此功能能够让你的浏览器自动刷新，是不是棒棒哒~（虽然很多编辑器也都有这个功能=。=）</p>
+<p>按照老规矩，第一步添加修改 <code>npm scripts</code> 的配置，添加一个字段以启动开发服务器：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"start": "webpack-dev-server --open"</div></pre></td></tr></table></figure></p>
+<p>修改 <code>webpack.config.js</code> ，在 <code>module.exports</code> 对象中添加一个字段 <code>devServer</code> ，告知 <code>webpack-dev-server</code> 将指定目录下的文件作为可访问文件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">devServer: &#123;</div><div class="line">    contentBase: <span class="string">'./'</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<p>运行 <code>npm run start</code> 启动服务器，然后浏览器就会自动打开 <a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a> ，你会看到 <code>index.html</code> 页面。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run start</div></pre></td></tr></table></figure></p>
+<p>接下来如果我们改一下 <code>src/index.js</code>，你就会发现</p>
+<ol>
+<li><code>bundle.js</code> 自动打包</li>
+<li><a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a> 自动刷新</li>
+</ol>
+<p>注意：期间 <code>dist/bundle.js</code> 不会自动变化，在部署代码之前，依然要运行 <code>npm run build</code> 才行。</p>
+<h3 id="5-webpack-dev-middleware"><a href="#5-webpack-dev-middleware" class="headerlink" title="5. webpack-dev-middleware"></a>5. webpack-dev-middleware</h3><p>功能与 <code>webpack-dev-server</code> 类似，新手入坑不建议使用 <code>webpack-dev-middleware</code></p>
+<p>（完）</p>
 
       
     </div>
@@ -554,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#bundle-js"><span class="nav-number">1.</span> <span class="nav-text">bundle.js</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack基础入坑（二"><span class="nav-number">1.</span> <span class="nav-text">webpack基础入坑（二</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bundle-js"><span class="nav-number">1.1.</span> <span class="nav-text">bundle.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS-压缩"><span class="nav-number">1.2.</span> <span class="nav-text">JS 压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发环境"><span class="nav-number">1.3.</span> <span class="nav-text">开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-调整编辑器"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 调整编辑器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Source-Maps"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. Source Maps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Watch-Mode"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. Watch Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-webpack-dev-server"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.  webpack-dev-server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-webpack-dev-middleware"><span class="nav-number">1.3.5.</span> <span class="nav-text">5. webpack-dev-middleware</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
