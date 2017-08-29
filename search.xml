@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[函数声明、函数表达式、匿名函数]]></title>
+    <url>%2F2017%2F08%2F29%2F%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E3%80%81%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%81%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[函数声明、函数表达式、匿名函数 本文内容为函数基础，欢迎全段位玩家划水吐槽(^▽^) 一、函数声明、函数表达式的区别 函数声明：function functionName(){} 函数表达式：var fn = function(){} 匿名函数：function(){} 区别：函数声明与函数表达式的区别主要表现在声明前置与函数标识符两部分。 :—: 声明前置 标识符（函数名） 函数声明 函数声明前置 不可省略 函数表达式 变量声明前置 可以省略 匿名函数 无 无 示例： 函数声明不可省略标识符，否则抛出 error SyntaxError 错误，通过 foo 调用； 函数表达式省略了函数标识符，通过 fn 调用 12345678910111213141516// 判断声明前置console.log(foo) // function foo()&#123;console.log('foo: "函数声明"')&#125;console.log(fn) // undefined// 函数声明function foo()&#123;console.log('foo: "函数声明"')&#125;// 函数表达式 var fn = function()&#123;console.log('fn: "函数表达式"')&#125;// 函数表达式声明后打印console.log(fn) // function ()&#123;console.log('fn: "函数表达式"')&#125;// 调用foo() // foo: "函数声明"fn() // fn: "函数表达式" 二、变量的声明前置、函数的声明前置变量的声明前置： 在一个作用域块中，所有的变量声明都会被JS引擎放在作用域块范围的顶部进行； 函数的声明前置： 和变量声明前置一样，执行代码之前会先读取函数声明，只要函数在代码中进行了声明，无论它在作用域块的哪个位置上进行声明，JS引擎都会将它的声明放在作用域块范围的顶部进行； 优先级： 函数声明的优先级高于变量声明的优先级（函数声明 &gt; 变量声明） 示例：利用同名 函数/变量 判断 声明前置的优先级123456789101112131415// 判断声明优先级console.log(foo) // function foo()&#123;console.log("foo")&#125;console.log(fn) // function fn()&#123;console.log("fn")&#125;// 声明：函数 ==&gt; 变量function foo()&#123;console.log("foo")&#125;var foo = 1;// 声明：变量 ==&gt; 函数var fn =2;function fn()&#123;console.log("fn")&#125;// 赋值后打印console.log(foo) // 1console.log(fn) // 2 以上代码正确的执行顺序是：12345678910111213// 因为函数声明优先提升，所以后提升的变量声明把函数声明挤到了后面var foo;var fn;function foo()&#123;console.log("foo")&#125;function fn()&#123;console.log("fn")&#125;// 然后JS引擎从上到下解释运行，后面的函数声明会覆盖掉前面的变量声明console.log(foo) // function foo()&#123;console.log("foo")&#125;console.log(fn) // function fn()&#123;console.log("fn")&#125;foo = 1;fn = 2;console.log(foo) // 1console.log(fn) // 2 三、匿名函数匿名函数在 javascript 中广泛用于赋值、传参、构建闭包等操作。 函数表达式啊咧咧？函数表达式怎么跑这里来了？？？ 没错，函数表达式就是匿名函数的一种应用。 不信你看函数表达式右边，这就是一个把匿名函数赋值给一个变量的过程。12var foo = function()&#123;console.log(1)&#125;foo() // 1 构建闭包闭包是 javascript 最强大的特性之一。它的最大用处有两个，一个是可以读取其他函数内部的变量，另一个就是让这些变量的值始终保持在内存中。 示例：这里只将闭包作为匿名函数的应用示例，并不展开讨论闭包。1234567891011var a = 1000;function foo()&#123; var a = 1; return function()&#123; //匿名函数 a = a + 1; console.log(a) &#125;&#125;var fn = foo()fn() // 2fn() // 3 立即执行函数表达式（IIFE）这是一个写在任何地方都不会抛出 Uncaught SyntaxError 错误的匿名函数 立即执行函数表达式（Immediately-Invoked Function Expression），简称IIFE。表示定义函数之后，立即调用该函数。 作用：隔离作用域，保护私有变量，防止污染全局变量 最常用的两种写法：1(function()&#123; /* code */ &#125;()); 1(function()&#123; /* code */ &#125;)(); 示例：定义之后立即调用1(function(a)&#123;console.log(a)&#125;)(10) // 10 参考：（译）详解javascript立即执行函数表达式（IIFE） ##抛出错误 如果匿名函数直接写成以下形式会抛出 Uncaught SyntaxError 错误，不过相信你也不会这样写，毕竟这样写的话你就没有办法调用它了QAQ1function（）&#123;/*code*/&#125; // Uncaught SyntaxError: （完）]]></content>
+      <categories>
+        <category>函数</category>
+      </categories>
+      <tags>
+        <tag>函数</tag>
+        <tag>闭包</tag>
+        <tag>声明前置</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[试题：作用域链+闭包]]></title>
+    <url>%2F2017%2F08%2F29%2F%E8%AF%95%E9%A2%98%EF%BC%9A%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE-%E9%97%AD%E5%8C%85%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leanCloud存储数据]]></title>
+    <url>%2F2017%2F08%2F29%2FleanCloud%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[React 生命周期初]]></title>
+    <url>%2F2017%2F08%2F27%2FReact-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%9D%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[React 基础入门实例]]></title>
+    <url>%2F2017%2F08%2F25%2FReact-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%AE%9E%E4%BE%8B%2F</url>
+    <content type="text"><![CDATA[react 基本语法一、ReactDOM.render()ReactDOM.render 是 React 的最基本方法，用于将模板转为 HTML 语言，并插入指定的 DOM 节点。 1234ReactDOM.render( &lt;h1&gt;Hello React&lt;/h1&gt;, document.getElementById("example")) 二、JSX 语法HTML 语言直接写在 JavaScript 语言之中，不加任何引号，这就是 JSX 的语法，它允许 HTML 与 JavaScript 的混写. JSX 的基本语法规则： 遇到 HTML 标签（以 &lt; 开头），就用 HTML 规则解析； 遇到 代码块 （以 { 开头），就用 JavaScript 规则解析。 1234567891011121314var names = ['傻龙', '大鳖', '大宝', '煜神'];ReactDOM.render( &lt;div&gt; &#123; // map会返回一个新数组，不对原数组产生影响,foreach不会产生新数组， // map因为返回数组所以可以链式操作，foreach不能 names.map(function (name, index) &#123; return &lt;div key=&#123;index&#125;&gt;Hello &#123;name&#125;&lt;/div&gt; &#125;) &#125; &lt;/div&gt;, document.getElementById('example')) JSX 允许直接在模板插入 JavaScript 变量。如果这个变量是一个数组，则会展开这个数组的所有成员，添加到模板， 123456789var arr = [ &lt;h1&gt;Hello world!&lt;/h1&gt;, &lt;h2&gt;React is awesome&lt;/h2&gt;,];ReactDOM.render( //如果这个变量是一个数组，JSX 会把它的所有成员，添加到模板 &lt;div&gt;&#123;arr&#125;&lt;/div&gt;, document.getElementById(&apos;example&apos;)); 三、组件React 允许将代码封装成组件（component），然后像插入普通 HTML 标签一样，在网页中插入这个组件。 React.createClass() 方法就用于生成一个组件类 123456789101112131415var HelloMessage = React.createClass(&#123; render: function () &#123; return ( //class 跟 for 是js的保留字，所以使用规则如下： &lt;div className="thisIsClass" htmlFor='thisIsFor'&gt; &lt;h1&gt;Hello &#123;this.props.name&#125;&lt;/h1&gt; &lt;/div&gt; ) &#125;&#125;)ReactDOM.render( &lt;HelloMessage name="Albert"/&gt;, document.getElementById("example")) 上面代码中，变量 HelloMessage 就是一个组件类。模板插入 &lt;HelloMessage /&gt; 时，会自动生生成 HelloMessage 的一个实例。 所有组件类都必须有自己的 render 方法，用于输出组件。 注意，组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。 另外，组件类只能包含一个顶层标签，否则也会报错。 组件的用法与原生的 HTML 标签完全一致，可以任意加入属性，比如 &lt;HelloMessage name=&quot;Albert&quot;&gt; ，就是 HelloMessage 组件加入一个 name 属性，值为 Albert。 组件的属性可以在组件类的 this.props 对象上获取，比如 name 属性就可以通过 this.props.name 读取。 因为 class 和 for 是 JavaScript 的保留字，所以添加组件属性时，有一个地方需要注意： class 属性需要写成 className ； for 属性需要写成 htmlFor ； 四、this.props.childrenthis.props 对象的属性与组件的属性一一对应，但是有一个例外，就是 this.props.children 属性。它表示组件的所有子节点。 1234567891011121314151617181920212223var NotesList = React.createClass(&#123; render: function () &#123; return ( &lt;ol&gt; &#123; //this.props.children 表示组件的所有子节点 React.Children.map(this.props.children, function (child) &#123; return &lt;li&gt;&#123;child&#125;&lt;/li&gt;; &#125;) &#125; &lt;/ol&gt; ); &#125;&#125;);ReactDOM.render( &lt;NotesList&gt; &#123;/*以下就是组件的两个子节点*/&#125; &lt;span&gt;hello&lt;/span&gt; &lt;span&gt;world&lt;/span&gt; &lt;/NotesList&gt;, document.getElementById('example')); 上面代码的 NoteList 组件有两个 span 子节点，它们都可以通过 this.props.children 读取 这里需要注意， this.props.children 的值有三种可能： 如果当前组件没有子节点，它就是 undefined ; 如果有一个子节点，数据类型是 object ； 如果有多个子节点，数据类型就是 array ； 但是 ，好在 React 提供一个工具方法 React.Children 来处理 this.props.children 。 我们可以用 React.Children.map 来遍历子节点，而不用担心 this.props.children 的数据类型是 undefined 还是 object。 更多的 React.Children 的方法，请参考官方文档。 五、PropTypes组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。 组件类的 PropTypes 属性，就是用来验证组件实例的属性是否符合要求。 12345678910111213141516171819202122232425// 如果把引号去掉就是数值类型，就会报错var data = "string!";var MyTitle = React.createClass(&#123; PropTypes: &#123; //通过 React.PropTypes 规定 title 接受值的类型 title: React.PropTypes.string.isRequired &#125;, //设置组件属性的默认值 getDefaultProps: function () &#123; return &#123; title: "hello world" &#125; &#125;, render: function () &#123; return &lt;h1&gt; &#123;this.props.title&#125; &lt;/h1&gt;; &#125;&#125;);ReactDOM.render( &lt;MyTitle title=&#123;data&#125;/&gt;, document.getElementById('example')); 上面的 Mytitle 组件有一个 title 属性。PropTypes 告诉 React，这个 title 属性是必须的，而且它的值必须是字符串。 此外，getDefaultProps 方法可以用来设置组件属性的默认值。 六、获取真实的DOM节点组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。 但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性 12345678910111213141516171819202122var Component = React.createClass(&#123; handleClick: function () &#123; //this.refs.[refName].[handler] this.refs.refName.focus() &#125;, render: function () &#123; return ( &lt;div&gt; &#123;/* ref：为了从组件获取真实 DOM 节点 */&#125; &lt;input type="text" ref="refName" /&gt; &lt;input type="button" value="focus the text input" onClick=&#123;this.handleClick&#125; /&gt; &lt;/div&gt; ) &#125;&#125;);ReactDOM.render( &lt;Component /&gt;, document.getElementById("example")) Component 组件中的输入框用于获取用户的输入，这时就必须获取真实的 DOM 节点，虚拟 DOM 是拿不到用户输入的。为了做到这一点，文本输入框必须有一个 ref 属性，然后 this.refs.[refName] 就会返回这个真实的 DOM 节点。 需要注意的是，由于 this.refs.[refName] 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。上面代码中，通过为组件指定 Click 事件的回调函数，确保了只有等到真实 DOM 发生 Click 事件之后，才会读取 this.refs.[refName] 属性。 七、this.state组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI 123456789101112131415161718192021var LikeButton = React.createClass(&#123; getInitialState: function () &#123; return &#123;liked: false&#125; &#125;, handleClick: function () &#123; this.setState(&#123;liked: !this.state.liked&#125;) &#125;, render: function () &#123; var text = this.state.liked ? "like" : "haven\'t liked"; return ( &lt;p onClick=&#123;this.handleClick&#125;&gt; You &#123;text&#125; this. Click to toggle. &lt;/p&gt; ) &#125;&#125;)ReactDOM.render( &lt;LikeButton/&gt;, document.getElementById('example')); 上面代码是一个 LikeButton 组件，它的 getInitialState 方法用于定义初始状态，也就是一个对象，这个对象可以通过 this.state 属性读取。 当用户点击组件，导致状态变化，this.setState 方法就修改状态值，每次修改以后，自动调用 this.render 方法，再次渲染组件。 由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，this.props 表示那些一旦定义，就不再改变的特性，而 this.state 是会随着用户互动而产生变化的特性。 八、表单用户在表单填入的内容，属于用户跟组件的互动，所以不能用 this.props 读取。 1234567891011121314151617181920212223242526var Input = React.createClass(&#123; //初始化 this.state getInitialState: function () &#123; return &#123;value: "init"&#125; &#125;, //setState 改变 this.state 的值 //event.target.value 读取表单值 handleChange: function (event) &#123; this.setState(&#123;value: event.target.value&#125;) &#125;, render: function () &#123; var value = this.state.value; return ( &lt;div&gt; &#123;/*回调函数触发*/&#125; &lt;input type="text" value=&#123;value&#125; onChange=&#123;this.handleChange&#125;/&gt; &lt;p&gt;&#123;value&#125;&lt;/p&gt; &lt;/div&gt; ) &#125;&#125;)ReactDOM.render( &lt;Input/&gt;, document.getElementById('example')); 上面代码中，文本输入框的值，不能用 this.props.value 读取，而要定义一个 onChange 事件的回调函数，通过 event.target.value 读取用户输入的值。 textarea 元素、select元素、radio元素都属于这种情况，更多介绍请参考官方文档。 九、组件的生命周期组件的生命周期分成三个状态：123- Mounting：已插入真实 DOM- Updating：正在被重新渲染- Unmounting：已移出真实 DOM React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。1234567- componentWillMount()- componentDidMount()- componentWillUpdate(object nextProps, object nextState)- componentDidUpdate(object prevProps, object prevState)- componentWillUnmount() 此外，React 还提供两种特殊状态的处理函数。 123- componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用- shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用 这些方法的详细说明，可以参[考官方文档]。(http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods) 123456789101112131415161718192021222324252627282930313233var Hello = React.createClass(&#123; getInitialState: function () &#123; return &#123; opacity: 1 &#125;; &#125;, //插入真实 DOM 之后调用 componentDidMount: function () &#123; this.timer = setInterval(function () &#123; var opacity = this.state.opacity; opacity -= .05; if (opacity &lt; .1) &#123; opacity = 1; &#125; this.setState(&#123; opacity: opacity &#125;); //bind(this) 绑定自定义函数的 this &#125;.bind(this), 100) &#125;, render: function () &#123; return ( &lt;div style=&#123;&#123;opacity: this.state.opacity&#125;&#125;&gt; Hello &#123;this.props.name&#125; &lt;/div&gt; ); &#125;,&#125;);ReactDOM.render( &lt;Hello name="World"/&gt;, document.getElementById("example")) 上面代码在Hello组件加载以后，通过 componentDidMount 方法设置一个定时器，每隔100毫秒，就重新设置组件的透明度，从而引发重新渲染。 另外，组件的style属性的设置方式也值得注意，不能写成1style="opacity:&#123;this.state.opacity&#125;;" 而要写成1style=&#123;&#123;opacity: this.state.opacity&#125;&#125; 这是因为 React 组件样式 一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样式对象。 十、Ajax组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 componentDidMount 方法设置 Ajax 请求，等到请求成功，再用 this.setState 方法重新渲染 UI 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162// 定义一个 RepoList 组件var RepoList = React.createClass(&#123; // 初始化 this.state getInitialState: function () &#123; return &#123; loading: true, error: null, data: null &#125;; &#125;, // 组件添加到真实 DOM 后调用 componentDidMount() &#123; // 定义一个 promise this.props.promise.then( // promise 延时成功 value =&gt; &#123; // 改变 loading 状态，data 数据 this.setState(&#123;loading: false, data: value&#125;) &#125;, // promise 延时失败 改变 loading 状态，error 数据 error =&gt; this.setState(&#123;loading: false, error: error&#125;)); &#125;, // 渲染函数 render: function () &#123; // promise pending ... if (this.state.loading) &#123; return &lt;span&gt;Loading...&lt;/span&gt;; &#125; // promise reject! else if (this.state.error !== null) &#123; return &lt;span&gt;Error: &#123;this.state.error.message&#125;&lt;/span&gt;; &#125; else &#123; // 成功请求到数据，添加到变量和标签中 var repos = this.state.data.items; // 遍历 ajax 请求存储好的数据 var repoList = repos.map(function (repo, index) &#123; // 循环创建jsx html 标签，返回保存到repoList return ( &lt;li key=&#123;index&#125;&gt;&lt;a href=&#123;repo.html_url&#125;&gt;&#123;repo.name&#125;&lt;/a&gt; (&#123;repo.stargazers_count&#125; stars) &lt;br/&gt; &#123;repo.description&#125;&lt;/li&gt; ); &#125;); // 返回 创建 jsx html 标签并将 repolist 添加进去 return ( &lt;main&gt; &lt;h1&gt;Most Popular JavaScript Projects in Github&lt;/h1&gt; &lt;ol&gt;&#123;repoList&#125;&lt;/ol&gt; &lt;/main&gt; ); &#125; &#125;&#125;);// 插入 DOMReactDOM.render( // AJAX 请求数据 &lt;RepoList promise=&#123;$.getJSON('https://api.github.com/search/repositories?q=javascript&amp;sort=stars')&#125;/&gt;, document.getElementById('example')); 如果Promise对象正在抓取数据（pending状态），组件显示”正在加载”；如果Promise对象报错（rejected状态），组件显示报错信息；如果Promise对象抓取数据成功（fulfilled状态），组件显示获取的数据。 参考：React 入门实例教程]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Albert's Favorites]]></title>
     <url>%2F2017%2F08%2F25%2FAlbert-s-Favorites%2F</url>
     <content type="text"></content>
@@ -10,10 +67,10 @@
     <url>%2F2017%2F08%2F25%2F%E7%94%A8CSS3%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AB%8B%E6%96%B9%E4%BD%93%2F</url>
     <content type="text"></content>
       <categories>
-        <category>webpack</category>
+        <category>CSS</category>
       </categories>
       <tags>
-        <tag>webpack</tag>
+        <tag>CSS3</tag>
       </tags>
   </entry>
   <entry>
