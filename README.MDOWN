@@ -1,0 +1,7 @@
+## blog backup
+
+- 主分支 `hexo` 为博客备份
+- 此分支不定期更新，主要更新都在 `master` 分支
+- `master` 分支展示页面资源
+- 恢复的时候记得修改 `gitignore` 文件名
+- 一共有4个 `gitignore` 文件
