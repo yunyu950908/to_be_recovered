@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[试题：数组、递归]]></title>
+    <url>%2F2017%2F08%2F30%2F%E8%AF%95%E9%A2%98%EF%BC%9A%E6%95%B0%E7%BB%84%E3%80%81%E9%80%92%E5%BD%92%2F</url>
+    <content type="text"><![CDATA[试题：数组、递归题干：实现一个 flatten 函数，将一个嵌套多层的数组 array (嵌套可以是任何层数) 转换为只有一层的数组。 1234567// 数组中元素仅基本类型的元素或数组，不存在循环引用的情况。var arr = [1, [2], [3, [[4]]]];/* 在这里定义你的 flatten 函数 */var _arr = flatten(arr);console.log(_arr); // 输出 [1,2,3,4] 审题：先看一眼题目给出的这个 arr ，按照题意的说法，这就是给你一个数组，数组内包含 基本类型元素 和 嵌套了任意层数的数组 ，然后注意这个数组 不存在循环引用的情况 也就是说嵌套数组中也只有基本类型元素或数组，这就简单多啦，我们只需要把所有数组中的基本类型元素提取出来，然后放进一个新数组就可以咯~ 首先，写代码遵循一个 DRY 的基本准则： Don&#39;t Repeat Yourself；然后，这种有规律、层级多、需要重复调用的，第一反应就是 递归 嘛，那接下来就用递归思想写一个 flatten 函数。 这是我们要操作的数组： 1arr = [1, [2], [3, [[4]]]] 然后这是 flatten 函数大概要做的事情： 次数 — — — 第一次 数字 1 数组 [2] 数组 [3,[[4]]] 第二次 数字 2 数字 3 数组 [[4]] 第三次 数组 [4] 第四次 数字 4 做题emmmmm . . . 下面是我能想到的方法，实现方式有很多，大家可以自由发挥。 方法一：Array.prototype.reduce() + Array.isArray() + Array.prototype.concat() 文档链接：Array.prototype.reduce() 文档链接：Array.isArray() 文档链接：Array.prototype.concat() 12345678910var arr = [1, [2], [3, [[4]]]];function flatten1(arr) &#123; return arr.reduce(function (initArr, currentArr) &#123; return initArr.concat(Array.isArray(currentArr) ? flatten1(currentArr) : currentArr); &#125;, [])&#125;var arr1 = flatten1(arr)console.log(arr1) // [1,2,3,4] 方法二：Array.prototype.forEach() + 闭包 + Array.prototype.push() 文档：Array.prototype.forEach() 文档：Array.prototype.push() 闭包：来自《JavaScript 标准参考教程（alpha）》，by 阮一峰 1234567891011121314151617var arr = [1, [2], [3, [[4]]]];var _arr = [];function flatten2(arr) &#123; arr.forEach(function (e, i) &#123; if (e instanceof Array) &#123; // 当然也可以写成其他形式，比如：if(typeof e === 'object') flatten2(e); &#125; else &#123; _arr.push(e); &#125; &#125;); return _arr;&#125;var arr2 = flatten2(arr);console.log(arr2); // [1,2,3,4] 总结好了，以上就是我大概的想法，希望大家思考更多其他的方法实现。 最后，要注意的是： 不要为了做题而做题！ 那么，做题能干嘛呢？ 做题能检查自己知识点的掌握情况； 做题能够快速学习不熟悉的 API ； 做题能够整理巩固已掌握的知识点； 不信？你看这篇文章，如果你把我列出的代码跟文档读过一遍，你可能学习/复习了以下知识点： 递归思想 Array.prototype.reduce() Array.isArray() Array.prototype.concat() Array.prototype.forEach() Array.prototype.push() instanceof 、typeof 闭包 （完）]]></content>
+      <categories>
+        <category>试题</category>
+      </categories>
+      <tags>
+        <tag>数组</tag>
+        <tag>递归</tag>
+        <tag>试题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[函数声明、函数表达式、匿名函数]]></title>
     <url>%2F2017%2F08%2F29%2F%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E3%80%81%E5%87%BD%E6%95%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E3%80%81%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[函数声明、函数表达式、匿名函数 本文内容为函数基础，欢迎全段位玩家划水吐槽(^▽^) 一、函数声明、函数表达式的区别 函数声明：function functionName(){} 函数表达式：var fn = function(){} 匿名函数：function(){} 区别：函数声明与函数表达式的区别主要表现在声明前置与函数标识符两部分。 :—: 声明前置 标识符（函数名） 函数声明 函数声明前置 不可省略 函数表达式 变量声明前置 可以省略 匿名函数 无 无 示例： 函数声明不可省略标识符，否则抛出 error SyntaxError 错误，通过 foo 调用； 函数表达式省略了函数标识符，通过 fn 调用 12345678910111213141516// 判断声明前置console.log(foo) // function foo()&#123;console.log('foo: "函数声明"')&#125;console.log(fn) // undefined// 函数声明function foo()&#123;console.log('foo: "函数声明"')&#125;// 函数表达式 var fn = function()&#123;console.log('fn: "函数表达式"')&#125;// 函数表达式声明后打印console.log(fn) // function ()&#123;console.log('fn: "函数表达式"')&#125;// 调用foo() // foo: "函数声明"fn() // fn: "函数表达式" 二、变量的声明前置、函数的声明前置变量的声明前置： 在一个作用域块中，所有的变量声明都会被JS引擎放在作用域块范围的顶部进行； 函数的声明前置： 和变量声明前置一样，执行代码之前会先读取函数声明，只要函数在代码中进行了声明，无论它在作用域块的哪个位置上进行声明，JS引擎都会将它的声明放在作用域块范围的顶部进行； 优先级： 函数声明的优先级高于变量声明的优先级（函数声明 &gt; 变量声明） 示例：利用同名 函数/变量 判断 声明前置的优先级123456789101112131415// 判断声明优先级console.log(foo) // function foo()&#123;console.log("foo")&#125;console.log(fn) // function fn()&#123;console.log("fn")&#125;// 声明：函数 ==&gt; 变量function foo()&#123;console.log("foo")&#125;var foo = 1;// 声明：变量 ==&gt; 函数var fn =2;function fn()&#123;console.log("fn")&#125;// 赋值后打印console.log(foo) // 1console.log(fn) // 2 以上代码正确的执行顺序是：12345678910111213// 因为函数声明优先提升，所以后提升的变量声明把函数声明挤到了后面var foo;var fn;function foo()&#123;console.log("foo")&#125;function fn()&#123;console.log("fn")&#125;// 然后JS引擎从上到下解释运行，后面的函数声明会覆盖掉前面的变量声明console.log(foo) // function foo()&#123;console.log("foo")&#125;console.log(fn) // function fn()&#123;console.log("fn")&#125;foo = 1;fn = 2;console.log(foo) // 1console.log(fn) // 2 三、匿名函数匿名函数在 javascript 中广泛用于赋值、传参、构建闭包等操作。 函数表达式啊咧咧？函数表达式怎么跑这里来了？？？ 没错，函数表达式就是匿名函数的一种应用。 不信你看函数表达式右边，这就是一个把匿名函数赋值给一个变量的过程。12var foo = function()&#123;console.log(1)&#125;foo() // 1 构建闭包闭包是 javascript 最强大的特性之一。它的最大用处有两个，一个是可以读取其他函数内部的变量，另一个就是让这些变量的值始终保持在内存中。 示例：这里只将闭包作为匿名函数的应用示例，并不展开讨论闭包。1234567891011var a = 1000;function foo()&#123; var a = 1; return function()&#123; //匿名函数 a = a + 1; console.log(a) &#125;&#125;var fn = foo()fn() // 2fn() // 3 立即执行函数表达式（IIFE）这是一个写在任何地方都不会抛出 Uncaught SyntaxError 错误的匿名函数 立即执行函数表达式（Immediately-Invoked Function Expression），简称IIFE。表示定义函数之后，立即调用该函数。 作用：隔离作用域，保护私有变量，防止污染全局变量 最常用的两种写法：1(function()&#123; /* code */ &#125;()); 1(function()&#123; /* code */ &#125;)(); 示例：定义之后立即调用1(function(a)&#123;console.log(a)&#125;)(10) // 10 参考：（译）详解javascript立即执行函数表达式（IIFE） ##抛出错误 如果匿名函数直接写成以下形式会抛出 Uncaught SyntaxError 错误，不过相信你也不会这样写，毕竟这样写的话你就没有办法调用它了QAQ1function（）&#123;/*code*/&#125; // Uncaught SyntaxError: （完）]]></content>
@@ -21,10 +34,10 @@
         <category>试题</category>
       </categories>
       <tags>
+        <tag>试题</tag>
         <tag>闭包</tag>
         <tag>作用域</tag>
         <tag>this</tag>
-        <tag>试题</tag>
       </tags>
   </entry>
   <entry>
@@ -39,14 +52,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[React 生命周期初]]></title>
+    <title><![CDATA[React 生命周期（Lifecycle）]]></title>
     <url>%2F2017%2F08%2F27%2FReact-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%9D%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[React 生命周期（Lifecycle）参考：The Component Lifecycle React 的生命周期包括三个阶段：1231. mount（挂载）2. update（更新）3. unmount（移除） mountmount 就是第一次让组件出现在页面中的过程。这个过程的关键就是 render 方法。React 会将 render 的返回值（一般是虚拟 DOM，也可以是 DOM 或者 null）插入到页面中。 这个过程会暴露几个钩子（hook）方便你往里面加代码： 12341. constructor()2. componentWillMount()3. render()4. componentDidMount() updatemount 之后，如果数据有任何变动，就会来到 update 过程，这个过程有 5 个钩子： 1234567891011121314// - 我要读取 props 啦！componentWillReceiveProps(nextProps)// - 请问要不要更新组件？true / falseshouldComponentUpdate(nextProps, nextState) // - 我要更新组件啦！componentWillUpdate() // - 更新！render() // - 更新完毕啦！componentDidUpdate() ##unmount 当一个组件将要从页面中移除时，会进入 unmount 过程，这个过程就一个钩子： 12// - 我要死啦！componentWillUnmount() 你可以在这个组件死之前做一些清理工作。 总结一般情况下只在这几个钩子里 setState：1234componentWillMount()componentDidMount()componentWillReceiveProps(nextProps, nextState) componentDidUpdate() 参考：React lifecycle cheatsheet]]></content>
       <categories>
-        <category>webpack</category>
+        <category>react</category>
       </categories>
       <tags>
-        <tag>webpack</tag>
+        <tag>react</tag>
+        <tag>生命周期</tag>
       </tags>
   </entry>
   <entry>
