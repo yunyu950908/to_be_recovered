@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="blog," />
+  <meta name="keywords" content="javascript,数组," />
 
 
 
@@ -94,20 +94,20 @@
 
 
 
-<meta name="description" content="一、为什么要写博客不知道大家写博客的理由都是什么，反正我的理由很简单，不外乎以下几点：  记录自己的学习笔记； 记录自己的生活动态； 分享一些有趣的东西； 一个全平台的收藏夹； 处女座来强行凑个数；  二、写博客的好处我的天！这个标题让我想起还在学校的时候，本宝宝是经管学院市场营销专业的QAQ，还记得网络营销的第一课就是经典的企业博客营销，所以你有事没事分享点有趣的东西骗骗粉也不错吖，指不定哪天">
-<meta name="keywords" content="blog">
+<meta name="description" content="map 与 forEach 简单比较 参考资料：MDN文档：Array.prototype.forEach()MDN文档：Array.prototype.map()  结论先写结论：  forEach 不会产生新数组，返回值 undefined map 会返回一个新数组，不对原数组产生影响 map 因为返回新数组，所以可以链式操作（可操作性强） 速度 forEach &amp;gt; map &amp;gt;">
+<meta name="keywords" content="javascript,数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Blog！">
-<meta property="og:url" content="http://yoursite.com/2017/08/19/Hello Blog！/index.html">
+<meta property="og:title" content="map 与 forEach 简单比较">
+<meta property="og:url" content="http://yoursite.com/2017/09/04/map-与-forEach-简单比较/index.html">
 <meta property="og:site_name" content="Albert&#39;s Blog">
-<meta property="og:description" content="一、为什么要写博客不知道大家写博客的理由都是什么，反正我的理由很简单，不外乎以下几点：  记录自己的学习笔记； 记录自己的生活动态； 分享一些有趣的东西； 一个全平台的收藏夹； 处女座来强行凑个数；  二、写博客的好处我的天！这个标题让我想起还在学校的时候，本宝宝是经管学院市场营销专业的QAQ，还记得网络营销的第一课就是经典的企业博客营销，所以你有事没事分享点有趣的东西骗骗粉也不错吖，指不定哪天">
+<meta property="og:description" content="map 与 forEach 简单比较 参考资料：MDN文档：Array.prototype.forEach()MDN文档：Array.prototype.map()  结论先写结论：  forEach 不会产生新数组，返回值 undefined map 会返回一个新数组，不对原数组产生影响 map 因为返回新数组，所以可以链式操作（可操作性强） 速度 forEach &amp;gt; map &amp;gt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fip3jpcdtsj20go0b4gto.jpg">
-<meta property="og:updated_time" content="2017-08-22T11:43:34.535Z">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7ayadcafj21hc0u0u0y.jpg">
+<meta property="og:updated_time" content="2017-09-04T02:16:20.589Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Blog！">
-<meta name="twitter:description" content="一、为什么要写博客不知道大家写博客的理由都是什么，反正我的理由很简单，不外乎以下几点：  记录自己的学习笔记； 记录自己的生活动态； 分享一些有趣的东西； 一个全平台的收藏夹； 处女座来强行凑个数；  二、写博客的好处我的天！这个标题让我想起还在学校的时候，本宝宝是经管学院市场营销专业的QAQ，还记得网络营销的第一课就是经典的企业博客营销，所以你有事没事分享点有趣的东西骗骗粉也不错吖，指不定哪天">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fip3jpcdtsj20go0b4gto.jpg">
+<meta name="twitter:title" content="map 与 forEach 简单比较">
+<meta name="twitter:description" content="map 与 forEach 简单比较 参考资料：MDN文档：Array.prototype.forEach()MDN文档：Array.prototype.map()  结论先写结论：  forEach 不会产生新数组，返回值 undefined map 会返回一个新数组，不对原数组产生影响 map 因为返回新数组，所以可以链式操作（可操作性强） 速度 forEach &amp;gt; map &amp;gt;">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7ayadcafj21hc0u0u0y.jpg">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/08/19/Hello Blog！/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/04/map-与-forEach-简单比较/"/>
 
 
 
 
 
-  <title>Hello Blog！ | Albert's Blog</title>
+  <title>map 与 forEach 简单比较 | Albert's Blog</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/19/Hello Blog！/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/map-与-forEach-简单比较/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello Blog！</h1>
+          <h1 class="post-title" itemprop="name headline">map 与 forEach 简单比较</h1>
         
 
         <div class="post-meta">
@@ -352,8 +352,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-19T21:36:03+08:00">
-                2017-08-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T09:57:20+08:00">
+                2017-09-04
               </time>
             
 
@@ -375,8 +375,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
+                  <a href="/categories/数组/" itemprop="url" rel="index">
+                    <span itemprop="name">数组</span>
                   </a>
                 </span>
 
@@ -394,8 +394,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/08/19/Hello Blog！/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/19/Hello Blog！/" itemprop="commentsCount"></span>
+                <a href="/2017/09/04/map-与-forEach-简单比较/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/04/map-与-forEach-简单比较/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -404,7 +404,7 @@
 
           
           
-             <span id="/2017/08/19/Hello Blog！/" class="leancloud_visitors" data-flag-title="Hello Blog！">
+             <span id="/2017/09/04/map-与-forEach-简单比较/" class="leancloud_visitors" data-flag-title="map 与 forEach 简单比较">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -435,23 +435,70 @@
       
 
       
-        <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fip3jpcdtsj20go0b4gto.jpg" alt="@麻辣兔丁 | center"></p>
-<h2 id="一、为什么要写博客"><a href="#一、为什么要写博客" class="headerlink" title="一、为什么要写博客"></a>一、为什么要写博客</h2><p>不知道大家写博客的理由都是什么，反正我的理由很简单，不外乎以下几点：</p>
+        <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7ayadcafj21hc0u0u0y.jpg" alt="@ | center "></p>
+<h2 id="map-与-forEach-简单比较"><a href="#map-与-forEach-简单比较" class="headerlink" title="map 与 forEach 简单比较"></a>map 与 forEach 简单比较</h2><blockquote>
+<p>参考资料：<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" target="_blank" rel="external">MDN文档：Array.prototype.forEach()</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="external">MDN文档：Array.prototype.map()</a></p>
+</blockquote>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>先写结论：</p>
 <ol>
-<li>记录自己的学习笔记；</li>
-<li>记录自己的生活动态；</li>
-<li>分享一些有趣的东西；</li>
-<li>一个全平台的收藏夹；</li>
-<li>处女座来强行凑个数；</li>
+<li><code>forEach</code> 不会产生新数组，返回值 <code>undefined</code></li>
+<li><code>map</code> 会返回一个新数组，不对原数组产生影响</li>
+<li><code>map</code> 因为返回新数组，所以可以链式操作（可操作性强）</li>
+<li>速度 <code>forEach</code> &gt; <code>map</code> &gt; <code>for</code><br>（网上有说<code>map</code> &gt; <code>forEach</code> 然而测试结果并不是）</li>
 </ol>
-<h2 id="二、写博客的好处"><a href="#二、写博客的好处" class="headerlink" title="二、写博客的好处"></a>二、写博客的好处</h2><p>我的天！这个标题让我想起还在学校的时候，本宝宝是经管学院市场营销专业的QAQ，还记得网络营销的第一课就是经典的企业博客营销，所以你有事没事分享点有趣的东西骗骗粉也不错吖，指不定哪天就火了呢~尤其是在目前这个粉丝经济尤为突出的市场环境下，万一你一不小心火了，博客就是你的招牌，你说是不咯？</p>
-<p>当然本宝宝并不是冲着营销号方向走的=。=<br>纯粹是为了记录自己的进步与二逼的想法QAQ</p>
-<h3 id="强化记忆！"><a href="#强化记忆！" class="headerlink" title="强化记忆！"></a>强化记忆！</h3><p>个人觉得这是写博客对自己最大的好处了。</p>
+<h2 id="一、Array-prototype-forEach"><a href="#一、Array-prototype-forEach" class="headerlink" title="一、Array.prototype.forEach()"></a>一、Array.prototype.forEach()</h2><p><code>forEach()</code> 方法对数组的每个元素执行一次提供的函数。</p>
+<h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">array.forEach(callback(currentValue, index, array)&#123;</div><div class="line">    <span class="comment">//do something</span></div><div class="line">&#125;, <span class="keyword">this</span>)</div><div class="line"></div><div class="line">array.forEach(callback[, thisArg])</div></pre></td></tr></table></figure>
+<p><strong>参数：</strong></p>
+<ul>
+<li><p><code>callback</code><br>为数组中每个元素执行的函数，该函数接收三个参数：</p>
+<ul>
+<li><p><code>currentValue(当前值)</code><br>数组中正在处理的当前元素。</p>
+</li>
+<li><p><code>index(索引)</code><br>数组中正在处理的当前元素的索引。</p>
+</li>
+<li><p><code>array</code><br>forEach()方法正在操作的数组。</p>
+</li>
+</ul>
+</li>
+<li><p><code>thisArg可选</code><br>可选参数。当执行回调 函数时用作this的值(参考对象)。</p>
+</li>
+<li><p><code>返回值</code><br>undefined.</p>
+</li>
+</ul>
+<p><strong>使用：</strong></p>
+<p>示例1：注意 <code>callback</code> 和 <code>返回值</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>]</div><div class="line"><span class="keyword">let</span> _arr = arr.forEach(<span class="function">(<span class="params">e,i,arr</span>)=&gt;</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(e) <span class="comment">// 1, 2, 3, "a","b","c"</span></div><div class="line">	<span class="built_in">console</span>.log(i) <span class="comment">// 0, 1, 2, 3, 4, 5</span></div><div class="line">	<span class="built_in">console</span>.log(arr) <span class="comment">// 输出6次 [1, 2, 3, "a", "b", "c"]</span></div><div class="line">&#125;)</div><div class="line"><span class="built_in">console</span>.log(_arr) <span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
+<p>1、对数组的每一项都调用一次 <code>callback</code> 回调函数；<br>2、总是返回值 <code>undefined</code></p>
+<p>示例2：可选参数 <code>thisArg</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Calculate</span></span>&#123;</div><div class="line">	<span class="keyword">constructor</span>(x,y)&#123;</div><div class="line">		<span class="keyword">this</span>.x = <span class="number">0</span>;</div><div class="line">		<span class="keyword">this</span>.y = <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	sum(array)&#123;</div><div class="line">		array.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">			<span class="keyword">this</span>.x += e;</div><div class="line">			++<span class="keyword">this</span>.y;</div><div class="line">		&#125;,<span class="keyword">this</span>)</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>); <span class="comment">// 指向该构造函数</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> obj = <span class="keyword">new</span> Calculate();</div><div class="line">obj.sum([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(obj.x) <span class="comment">// 10</span></div><div class="line"><span class="built_in">console</span>.log(obj.y) <span class="comment">// 4</span></div></pre></td></tr></table></figure></p>
+<p>1、<code>thisArg</code> 参数 (this) 传给了<code>forEach()</code><br>2、每次调用时，它都被传给 <code>callback</code> 函数，作为它的<code>this</code>值</p>
+<p>示例3：<code>forEach()</code> 不会在迭代之前创建数组的副本<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> words = [<span class="string">"one"</span>,<span class="string">"two"</span>,<span class="string">"three"</span>,<span class="string">"four"</span>];</div><div class="line">words.forEach(<span class="function">(<span class="params">word</span>)=&gt;</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(word); <span class="comment">// "one","two","four"</span></div><div class="line">	<span class="keyword">if</span>(word === <span class="string">"two"</span>)&#123;</div><div class="line">		words.shift(); <span class="comment">// "two"输出完后删除了第一项，索引改变</span></div><div class="line">	&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>遍历 <code>two</code> 后，整个数组的第一个项被移除了，导致所有剩余项索引 <code>-1</code>，而下一次执行回调遍历的那一项索引依旧 <code>+1</code>，所以<code>three</code>被跳过了。</p>
+<h2 id="Array-prototype-map"><a href="#Array-prototype-map" class="headerlink" title="Array.prototype.map()"></a>Array.prototype.map()</h2><p><code>map()</code> 方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后返回的结果。</p>
+<h3 id="语法：-1"><a href="#语法：-1" class="headerlink" title="语法："></a>语法：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> array = arr.map(<span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">currentValue, index, array</span>) </span>&#123;</div><div class="line">    <span class="comment">// Return element for new_array</span></div><div class="line">&#125;[, thisArg])</div></pre></td></tr></table></figure>
+<p><strong>参数：</strong></p>
+<ul>
+<li><code>callback</code><br>生成新数组元素的函数，使用三个参数：<ul>
+<li><code>currentValue</code><br>callback 的第一个参数，数组中正在处理的当前元素。</li>
+<li><code>index</code><br>callback 的第二个参数，数组中正在处理的当前元素的索引。</li>
+<li><code>array</code><br>callback 的第三个参数，map 方法被调用的数组。</li>
+</ul>
+</li>
+<li><code>thisArg</code><br>可选的。执行 callback 函数时 使用的this 值。</li>
+<li><code>返回值</code>（与 <code>forEach</code> 最大的不同点）<br>一个新数组，每个元素都是回调函数的结果。</li>
+</ul>
+<p><strong>使用：</strong></p>
+<p>示例1：<code>map</code> 方法返回处理后的数组，不修改原数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>];</div><div class="line"><span class="keyword">let</span> roots = numbers.map(<span class="built_in">Math</span>.sqrt);</div><div class="line"><span class="comment">// roots的值为[1, 2, 3], numbers的值仍为[1, 4, 9]</span></div></pre></td></tr></table></figure></p>
+<p>示例2：格式化数组中的对象<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> kvArray = [&#123;<span class="attr">key</span>: <span class="number">1</span>, <span class="attr">value</span>: <span class="number">10</span>&#125;,</div><div class="line">               &#123;<span class="attr">key</span>: <span class="number">2</span>, <span class="attr">value</span>: <span class="number">20</span>&#125;,</div><div class="line">               &#123;<span class="attr">key</span>: <span class="number">3</span>, <span class="attr">value</span>: <span class="number">30</span>&#125;];</div><div class="line"></div><div class="line"><span class="keyword">let</span> reformattedArray = kvArray.map(<span class="function"><span class="keyword">function</span>(<span class="params">obj</span>) </span>&#123;</div><div class="line">   <span class="keyword">let</span> rObj = &#123;&#125;;</div><div class="line">   rObj[obj.key] = obj.value;</div><div class="line">   <span class="keyword">return</span> rObj;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// reformattedArray = [&#123;key: 1, value: 10&#125;, &#123;key: 2, value: 20&#125;, &#123;key: 3, value: 30&#125;];</span></div></pre></td></tr></table></figure></p>
+<p>示例3：在类数组集合上调用，利用 <code>call</code> 改变 <code>this</code> 指向<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> oLis = <span class="built_in">document</span>.querySelectorAll(<span class="string">"ul li"</span>);</div><div class="line"><span class="keyword">let</span> arrOlis = <span class="built_in">Array</span>.prototype.map.call(oLis，<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> e.value;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>示例4：反转字符串，原理同上（示例3）；链式调用（返回新数组）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> str = <span class="string">"12345"</span>;</div><div class="line"><span class="keyword">let</span> _str = <span class="built_in">Array</span>.prototype.map.call(str,x=&gt;&#123;</div><div class="line">	<span class="keyword">return</span> x;</div><div class="line">&#125;).reverse().join(<span class="string">""</span>);</div><div class="line"><span class="comment">// _str = "54321";</span></div><div class="line"><span class="comment">// str = "12345";</span></div></pre></td></tr></table></figure></p>
+<h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> arr1 = [];</div><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i&lt;<span class="number">50000</span>; i++)&#123;</div><div class="line">  arr1.push(i)</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> start = <span class="built_in">Date</span>.now()</div><div class="line"></div><div class="line"><span class="comment">// forEach ==&gt; 2ms ~ 3ms</span></div><div class="line"><span class="comment">// let arr2 = [];</span></div><div class="line"><span class="comment">// arr1.forEach((e)=&gt;arr2.push(e*2))</span></div><div class="line"></div><div class="line"><span class="comment">// map ==&gt; 10ms ~ 13ms</span></div><div class="line"><span class="comment">// let arr2 = arr1.map(e=&gt;return e*2)</span></div><div class="line"></div><div class="line"><span class="comment">// for ==&gt; 20ms ~ 26ms</span></div><div class="line"><span class="comment">// let arr2 = [];</span></div><div class="line"><span class="comment">// for(let i = 0;i&lt;arr1.length;i++)&#123;</span></div><div class="line"><span class="comment">//   arr2[i] = arr1[1]</span></div><div class="line"><span class="comment">// &#125;</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> end = <span class="built_in">Date</span>.now()</div><div class="line"><span class="built_in">console</span>.log(end-start)</div></pre></td></tr></table></figure>
+<p>通过以上的代码测试，速度方面 <code>forEach</code> &gt; <code>map</code> &gt; <code>for</code></p>
+<p><strong>但是</strong> 由于前端处理数据的局限性，速度并不是我们实际使用考虑的因素，实际情况是：</p>
 <ol>
-<li>学习上<br>以前没有记笔记的习惯，但是现在要转行做码农辣，学习了一段时候后才发现，<strong>不记笔记是硬伤！不记笔记是硬伤！不记笔记是硬伤！</strong> 重要的事情说三遍。不知道其他的圈子是什么样的 ，至少以我目前浅薄的目光来看前端圈，琳（luan）琅（qi）满（ba）目（zao）的API，除非有着超超超超一流的记忆能力，否则你很难记住一些奇奇怪怪的东西。</li>
-<li>生活上<br>可以记录一些有意思的生活动态，比如说游记、菜谱、随笔、灵感等。指不定某天冒出个想法改变了自己的未来呢，哈哈。</li>
+<li>代码量：<code>map</code> &gt; <code>forEach</code> &gt; <code>for</code></li>
+<li>代码量：<code>map</code> &gt; <code>forEach</code> &gt; <code>for</code></li>
+<li>代码量：<code>map</code> &gt; <code>forEach</code> &gt; <code>for</code></li>
 </ol>
-<h2 id="三、写好博客的秘诀"><a href="#三、写好博客的秘诀" class="headerlink" title="三、写好博客的秘诀"></a>三、写好博客的秘诀</h2><h3 id="贵在坚持，仅此而已。"><a href="#贵在坚持，仅此而已。" class="headerlink" title="贵在坚持，仅此而已。"></a>贵在坚持，仅此而已。</h3><p>自己也是第一次开始尝试写个人博客，就先这样吧=。=</p>
+<p>综上，如果出于 <code>代码量</code> 和 <code>链式调用</code> 的需求，用 <code>map</code> 可能会更好一些。</p>
 <p>（完）</p>
 
       
@@ -470,7 +517,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/blog/" rel="tag"># blog</a>
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
           
         </div>
       
@@ -483,15 +532,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/30/试题：数组、递归/" rel="next" title="试题：数组、递归">
+                <i class="fa fa-chevron-left"></i> 试题：数组、递归
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/21/一篇文章彻底入门 SCSS/" rel="prev" title="一篇文章彻底入门 SCSS">
-                一篇文章彻底入门 SCSS <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -666,7 +715,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、为什么要写博客"><span class="nav-number">1.</span> <span class="nav-text">一、为什么要写博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、写博客的好处"><span class="nav-number">2.</span> <span class="nav-text">二、写博客的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强化记忆！"><span class="nav-number">2.1.</span> <span class="nav-text">强化记忆！</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、写好博客的秘诀"><span class="nav-number">3.</span> <span class="nav-text">三、写好博客的秘诀</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贵在坚持，仅此而已。"><span class="nav-number">3.1.</span> <span class="nav-text">贵在坚持，仅此而已。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#map-与-forEach-简单比较"><span class="nav-number">1.</span> <span class="nav-text">map 与 forEach 简单比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">2.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、Array-prototype-forEach"><span class="nav-number">3.</span> <span class="nav-text">一、Array.prototype.forEach()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法："><span class="nav-number">3.1.</span> <span class="nav-text">语法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-prototype-map"><span class="nav-number">4.</span> <span class="nav-text">Array.prototype.map()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法：-1"><span class="nav-number">4.1.</span> <span class="nav-text">语法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能对比"><span class="nav-number">5.</span> <span class="nav-text">性能对比</span></a></li></ol></div>
             
 
           </div>
@@ -864,7 +913,7 @@ var jiathis_config={
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94839, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
 		
-		_hcwp.push({widget:"Stream", widget_id: 94839, xid: "2017/08/19/Hello Blog！/"});
+		_hcwp.push({widget:"Stream", widget_id: 94839, xid: "2017/09/04/map-与-forEach-简单比较/"});
 		
 
 		(function() {
