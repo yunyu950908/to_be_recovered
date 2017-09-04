@@ -6,6 +6,9 @@ categories:
   - react
 date: 2017-08-25 23:24:03
 ---
+
+![@|center](https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bfuhin3j21hc0u0gud.jpg)
+
 # react 基本语法
 
 ## 一、ReactDOM.render()

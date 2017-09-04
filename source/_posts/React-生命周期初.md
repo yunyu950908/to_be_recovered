@@ -7,6 +7,9 @@ categories:
   - react
 date: 2017-08-27 14:54:52
 ---
+
+![@ | center](https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bcj3yudj21hc0u0thp.jpg)
+
 # React 生命周期（Lifecycle）
 
 [参考：The Component Lifecycle](https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle)

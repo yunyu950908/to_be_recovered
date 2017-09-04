@@ -6,6 +6,9 @@ tags:
 categories:
   - webpack
 ---
+
+![ webpack | center ](https://ws1.sinaimg.cn/large/889b2f7fgy1fishfcjd85j21g30orwmv.jpg)
+
 # webpack基础入坑（二
 >接上回
 

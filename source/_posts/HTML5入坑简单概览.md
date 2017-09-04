@@ -6,6 +6,9 @@ categories:
   - HTML
 date: 2017-08-24 02:35:08
 ---
+
+![@|center](https://ws1.sinaimg.cn/large/889b2f7fgy1fj7beqzyc1j21hc0u0aid.jpg)
+
 # HTML5 概览
 >本文概览：
 >HTML5 新特性；

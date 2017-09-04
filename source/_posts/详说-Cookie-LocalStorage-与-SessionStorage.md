@@ -6,6 +6,9 @@ categories:
   - 缓存
 date: 2017-08-24 14:43:17
 ---
+
+![@|center](https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bdcmg88j21hc0u0gta.jpg)
+
 # Cookie, LocalStorage 与 SessionStorage
 具体 Web Storage API 的使用可以参考 [MDN的文档](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
 

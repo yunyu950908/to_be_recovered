@@ -7,6 +7,9 @@ categories:
   - HTML
 date: 2017-08-24 02:38:03
 ---
+
+![@|center](https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bdywogtj21hc0u0aj2.jpg)
+
 # 如何让低版本的 IE 支持 HTML5新标签
 
 ## 1. 利用条件注释针对 `IE` 来调用这个 `JS` 文件。
