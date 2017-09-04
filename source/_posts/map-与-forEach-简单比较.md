@@ -4,7 +4,7 @@ tags:
   - javascript
   - 数组
 categories:
-  - 数组
+  - javascript
 date: 2017-09-04 09:57:20
 ---
 
