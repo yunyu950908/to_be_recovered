@@ -318,6 +318,485 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/试题：-数组-火锅/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/06/试题：-数组-火锅/" itemprop="url">试题：[数组,火锅]</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T12:32:51+08:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/试题/" itemprop="url" rel="index">
+                    <span itemprop="name">试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/06/试题：-数组-火锅/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/06/试题：-数组-火锅/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/06/试题：-数组-火锅/" class="leancloud_visitors" data-flag-title="试题：[数组,火锅]">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj9qlttdpbj20rs0i2e81.jpg" alt="@ | center"></p>
+<h2 id="试题：-数组-火锅"><a href="#试题：-数组-火锅" class="headerlink" title="试题：[数组,火锅]"></a>试题：[数组,火锅]</h2><blockquote>
+<p>试题来源：<a href="https://www.nowcoder.com/" target="_blank" rel="external">https://www.nowcoder.com/</a><br>注意：答题器不支持ES6语法</p>
+</blockquote>
+<h2 id="前排提示"><a href="#前排提示" class="headerlink" title="前排提示"></a>前排提示</h2><p>尽量用不同的 API 去实现题目需求，这样才能更快掌握更多的 API<br>参考 API 都在这里：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="external">JavaScript 标准库：Array</a></p>
+<p><strong>前排提示x2：一定要注意 API 的返回值！</strong></p>
+<h2 id="1-查找数组元素位置"><a href="#1-查找数组元素位置" class="headerlink" title="1. 查找数组元素位置"></a>1. 查找数组元素位置</h2><p>找出元素 item 在给定数组 arr 中的位置<br>如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">arr, item</span>)</span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[ 1, 2, 3, 4 ], 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>indexOf + map<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">Array</span>.prototype.indexOf)&#123;</div><div class="line">        <span class="keyword">return</span> arr.indexOf(item)</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">var</span> index;</div><div class="line">        arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">e,i</span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span>(e === item)&#123;</div><div class="line">                index = i;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">return</span> index;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-数组求和"><a href="#2-数组求和" class="headerlink" title="2. 数组求和"></a>2. 数组求和</h2><p>计算给定数组 arr 中所有元素的总和<br>数组中的元素均为 Number 类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[ 1, 2, 3, 4 ]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>递归 + slice</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> len = arr.length;</div><div class="line">    <span class="keyword">if</span>(len === <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(len === <span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>];</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>] + sum(arr.slice(<span class="number">1</span>))</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>reduce</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev,curr,idx,arr</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> prev + curr;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-移除数组中的元素"><a href="#3-移除数组中的元素" class="headerlink" title="3. 移除数组中的元素"></a>3. 移除数组中的元素</h2><p>移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4, 2], 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>filter</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">arr,item</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> e !== item;</div><div class="line">	&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice + splice</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">arr,item</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,len=newArr.length; i&lt;len; i++)&#123;</div><div class="line">        <span class="keyword">if</span>(newArr[i]===item)&#123;</div><div class="line">			newArr.splice(i,<span class="number">1</span>) <span class="comment">// PS：这样会改变后面每一项的索引，当然有更好的写法</span></div><div class="line">            i--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4-移除数组中的元素"><a href="#4-移除数组中的元素" class="headerlink" title="4. 移除数组中的元素"></a>4. 移除数组中的元素</h2><p>移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeWithoutCopy</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 2, 3, 4, 2, 2], 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>while<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeWithoutCopy</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="keyword">while</span>(arr.indexOf(item)!==<span class="number">-1</span>)&#123;</div><div class="line">        arr.splice(arr.indexOf(item),<span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="5-添加元素"><a href="#5-添加元素" class="headerlink" title="5. 添加元素"></a>5. 添加元素</h2><p>在数组 arr 末尾添加元素 item。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">append</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4],  10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3, 4, 10]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>concat<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">append</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.concat(item)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="6-删除数组最后一个元素"><a href="#6-删除数组最后一个元素" class="headerlink" title="6. 删除数组最后一个元素"></a>6. 删除数组最后一个元素</h2><p>删除数组 arr 最后一个元素。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>pop + slice<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>);</div><div class="line">    newArr.pop();</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="7-在数组开头添加元素"><a href="#7-在数组开头添加元素" class="headerlink" title="7. 在数组开头添加元素"></a>7. 在数组开头添加元素</h2><p>在数组 arr 开头添加元素 item。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">prepend</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4], 10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3, 4], 10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>slice + unshift<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">prepend</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>)</div><div class="line">    newArr.unshift(item)</div><div class="line">    <span class="keyword">return</span> newArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="8-删除数组第一个元素"><a href="#8-删除数组第一个元素" class="headerlink" title="8. 删除数组第一个元素"></a>8. 删除数组第一个元素</h2><p>删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curtail</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[2, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>concat + shift<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curtail</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.concat()</div><div class="line">    newArr.shift()</div><div class="line">    <span class="keyword">return</span> newArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="9-数组合并"><a href="#9-数组合并" class="headerlink" title="9. 数组合并"></a>9. 数组合并</h2><p>合并数组 arr1 和数组 arr2。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1, arr2</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4], [‘a’, ‘b’, ‘c’, 1]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3, 4, ‘a’, ‘b’, ‘c’, 1]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>slice + push +apply<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1, arr2</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr1.slice(<span class="number">0</span>);</div><div class="line">    <span class="built_in">Array</span>.prototype.push.apply(newArr,arr2);</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="10-在数组中间添加元素"><a href="#10-在数组中间添加元素" class="headerlink" title="10. 在数组中间添加元素"></a>10. 在数组中间添加元素</h2><p>在数组 arr 的 index 处添加元素 item。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">arr, item, index</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4], ‘z’, 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, ‘z’, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>slice + splice<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">arr, item, index</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>);</div><div class="line">    newArr.splice(index,<span class="number">0</span>,item);</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="11-计数"><a href="#11-计数" class="headerlink" title="11. 计数"></a>11. 计数</h2><p>统计数组 arr 中值等于 item 的元素出现的次数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 4, 4, 3, 4, 3], 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>filter<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> e === item;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> newArr.length;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="12-查找重复元素"><a href="#12-查找重复元素" class="headerlink" title="12. 查找重复元素"></a>12. 查找重复元素</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicates</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 4, 4, 3, 3, 1, 5, 3]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>indexOf + lastIndexOf<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicates</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = [];</div><div class="line">    arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">e,i</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(newArr.indexOf(e)===<span class="number">-1</span> &amp;&amp; arr.indexOf(e)!==<span class="number">-1</span> &amp;&amp; arr.indexOf(e)!== arr.lastIndexOf(e))&#123;</div><div class="line">            newArr.push(e);</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="13-求二次方"><a href="#13-求二次方" class="headerlink" title="13. 求二次方"></a>13. 求二次方</h2><p>为数组 arr 中的每个元素求二次方。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 4, 9, 16]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>map<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> e*e</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="14-查找元素位置"><a href="#14-查找元素位置" class="headerlink" title="14. 查找元素位置"></a>14. 查找元素位置</h2><p>在数组 arr 中，查找值与 item 相等的元素出现的所有位置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findAllOccurrences</span>(<span class="params">arr, target</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>‘abcdefabc’,’a’</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[0,6]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>forEach + || + push<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findAllOccurrences</span>(<span class="params">arr, target</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> temp = [];</div><div class="line">    arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">e,i</span>)</span>&#123;</div><div class="line">        e !== target || temp.push(i);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上 14 道数组类型的题目，按照本文的解题思路走下来，通过参考 <a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="external">MDN 文档</a>，你可能学习掌握了以下 API ：</p>
+<ul>
+<li>以下所有数组 API 你都可以在这里找到：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="external">JavaScript 标准库：Array</a></li>
+</ul>
+<ol>
+<li>Array.length</li>
+<li>Array.prototype.concat()</li>
+<li>Array.prototype.filter()</li>
+<li>Array.prototype.forEach()</li>
+<li>Array.prototype.indexOf()</li>
+<li>Array.prototype.lastIndexOf()</li>
+<li>Array.prototype.map()</li>
+<li>Array.prototype.pop()</li>
+<li>Array.prototype.push()</li>
+<li>Array.prototype.reduce()</li>
+<li>Array.prototype.shift()</li>
+<li>Array.prototype.slice()</li>
+<li>Array.prototype.splice()</li>
+<li>Array.prototype.unshift()</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="external">Function.prototype.apply()</a></li>
+</ol>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/map-与-forEach-简单比较/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2138,255 +2617,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/24/详说-Cookie-LocalStorage-与-SessionStorage/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/24/详说-Cookie-LocalStorage-与-SessionStorage/" itemprop="url">详说 Cookie, LocalStorage 与 SessionStorage</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T14:43:17+08:00">
-                2017-08-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/缓存/" itemprop="url" rel="index">
-                    <span itemprop="name">缓存</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/24/详说-Cookie-LocalStorage-与-SessionStorage/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/24/详说-Cookie-LocalStorage-与-SessionStorage/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/24/详说-Cookie-LocalStorage-与-SessionStorage/" class="leancloud_visitors" data-flag-title="详说 Cookie, LocalStorage 与 SessionStorage">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bdcmg88j21hc0u0gta.jpg" alt="@|center"></p>
-<h1 id="Cookie-LocalStorage-与-SessionStorage"><a href="#Cookie-LocalStorage-与-SessionStorage" class="headerlink" title="Cookie, LocalStorage 与 SessionStorage"></a>Cookie, LocalStorage 与 SessionStorage</h1><p>具体 Web Storage API 的使用可以参考 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API" target="_blank" rel="external">MDN的文档</a></p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>Cookie 是小甜饼的意思。顾名思义，cookie 确实非常小，它的大小限制为4KB左右，是网景公司的前雇员 Lou Montulli 在1993年3月的发明。它的主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”，这通常就是通过在 Cookie 中存入一段辨别用户身份的数据来实现的。</p>
-<h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><p>localStorage 是 HTML5 标准中新加入的技术，它并不是什么划时代的新东西。早在 IE 6 时代，就有一个叫 userData 的东西用于本地存储，而当时考虑到浏览器兼容性，更通用的方案是使用 Flash。而如今，localStorage 被大多数浏览器所支持，如果你的网站需要支持 IE6+，那以 userData 作为你的 polyfill 的方案是种不错的选择。</p>
-<table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Chrome</th>
-<th>Firefox (Gecko)</th>
-<th>Internet Explorer</th>
-<th>Opera</th>
-<th>Safari (WebKit)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>localStorage</td>
-<td>4</td>
-<td>3.5</td>
-<td>8</td>
-<td>10.50</td>
-<td>4</td>
-</tr>
-<tr>
-<td>sessionStorage</td>
-<td>5</td>
-<td>2</td>
-<td>8</td>
-<td>10.50</td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>sessionStorage 与 localStorage 的接口类似，但保存数据的生命周期与 localStorage 不同。做过后端开发的同学应该知道 Session 这个词的意思，直译过来是“会话”。而 sessionStorage 是一个前端的概念，它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在。但当页面关闭后，sessionStorage 中的数据就会被清空。</p>
-<h2 id="三者的异同"><a href="#三者的异同" class="headerlink" title="三者的异同"></a>三者的异同</h2><table>
-<thead>
-<tr>
-<th>特性</th>
-<th>Cookie</th>
-<th>localStorage</th>
-<th>sessionStorage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>数据的生命期</td>
-<td>一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效</td>
-<td>除非被清除，否则永久保存</td>
-<td>仅在当前会话下有效，关闭页面或浏览器后被清除</td>
-</tr>
-<tr>
-<td>存放数据大小</td>
-<td>4K左右</td>
-<td>一般为5MB</td>
-<td>&lt;= 同localStorage</td>
-</tr>
-<tr>
-<td>与服务器端通信</td>
-<td>每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题</td>
-<td>仅在客户端（即浏览器）中保存，不参与和服务器的通信</td>
-<td>&lt;= 同localStorage</td>
-</tr>
-<tr>
-<td>易用性</td>
-<td>需要程序员自己封装，源生的Cookie接口不友好</td>
-<td>源生接口可以接受，亦可再次封装来对Object和Array有更好的支持</td>
-<td>&lt;= 同localStorage</td>
-</tr>
-</tbody>
-</table>
-<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><p>有了对上面这些差别的直观理解，我们就可以讨论三者的应用场景了。</p>
-<p>因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。针对登录过的用户，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，似乎在这个方面也可以给 Cookie 放个假了~</p>
-<p>而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。</p>
-<h2 id="安全性的考虑"><a href="#安全性的考虑" class="headerlink" title="安全性的考虑"></a>安全性的考虑</h2><p>需要注意的是，不是什么数据都适合放在 Cookie、localStorage 和 sessionStorage 中的。使用它们的时候，需要时刻注意是否有代码存在 XSS 注入的风险。因为只要打开控制台，你就随意修改它们的值，也就是说如果你的网站中有 XSS 的风险，它们就能对你的 localStorage 肆意妄为。所以千万不要用它们存储你系统中的敏感数据。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="http://stackoverflow.com/questions/19867599/what-is-the-difference-between-localstorage-sessionstorage-session-and-cookie" target="_blank" rel="external">what is the difference between localStorage, sessionStorage, session and cookie?</a></li>
-<li><a href="http://stackoverflow.com/questions/3718349/html5-localstorage-security" target="_blank" rel="external">HTML5 localStorage security</a></li>
-<li><a href="http://zh.wikipedia.org/wiki/Cookie" target="_blank" rel="external">维基百科 - Cookie</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API" target="_blank" rel="external">Web Storage API</a></li>
-<li><a href="http://han.guokai.blog.163.com/blog/static/13671827120112694851799/" target="_blank" rel="external">浏览器本地数据（sessionStorage、localStorage、cookie）与server端数据</a></li>
-<li><a href="http://www.cnblogs.com/yuzhongwusan/archive/2011/12/19/2293347.html" target="_blank" rel="external">HTMl5的sessionStorage和localStorage</a></li>
-<li><a href="http://www.cnblogs.com/xiaowei0705/archive/2011/04/19/2021372.html" target="_blank" rel="external">HTML5 LocalStorage 本地存储</a></li>
-</ul>
-<p>转自：<a href="http://jerryzou.com/posts/cookie-and-web-storage/" target="_blank" rel="external">详说 Cookie, LocalStorage 与 SessionStorage</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2437,7 +2667,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
