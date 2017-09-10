@@ -1,5 +1,5 @@
 ---
-title: '试题：[数组,火锅]'
+title: '试题：数组、API'
 tags:
   - 数组
   - 试题
@@ -9,9 +9,9 @@ categories:
 date: 2017-09-06 12:32:51
 ---
 
-![@ | center](https://ws1.sinaimg.cn/large/889b2f7fgy1fj9qlttdpbj20rs0i2e81.jpg)
+![@ | center](https://ws1.sinaimg.cn/large/889b2f7fgy1fjek1gv39wj20sg0iy131.jpg)
 
-## 试题：[数组,火锅]
+## 试题：数组、API
 
 >试题来源：https://www.nowcoder.com/
 >注意：答题器不支持ES6语法
