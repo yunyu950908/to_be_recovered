@@ -318,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/试题：-数组-火锅/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/浏览器爸爸之页面渲染/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Albert">
@@ -337,7 +337,388 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/06/试题：-数组-火锅/" itemprop="url">试题：[数组,火锅]</a></h1>
+                <a class="post-title-link" href="/2017/09/10/浏览器爸爸之页面渲染/" itemprop="url">浏览器爸爸之页面渲染</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T06:45:42+08:00">
+                2017-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/浏览器/" itemprop="url" rel="index">
+                    <span itemprop="name">浏览器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/10/浏览器爸爸之页面渲染/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/10/浏览器爸爸之页面渲染/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/10/浏览器爸爸之页面渲染/" class="leancloud_visitors" data-flag-title="浏览器爸爸之页面渲染">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://oux9sg1nc.bkt.clouddn.com/17-9-10/67527068.jpg" alt="@浏览器爸爸 | center"></p>
+<h1 id="浏览器爸爸之页面渲染"><a href="#浏览器爸爸之页面渲染" class="headerlink" title="浏览器爸爸之页面渲染"></a>浏览器爸爸之页面渲染</h1><h2 id="一、CSS-和-JS-在网页中的放置顺序"><a href="#一、CSS-和-JS-在网页中的放置顺序" class="headerlink" title="一、CSS 和 JS 在网页中的放置顺序"></a>一、CSS 和 JS 在网页中的放置顺序</h2><ul>
+<li><p><code>CSS</code>最好放置在<code>&lt;head&gt;</code>标签中<br>如果将<code>css</code>样式放在底部，会造成浏览器先加载<code>html</code>然后再加载<code>css</code>，重绘页面，造成 <strong>闪屏</strong> 现象。</p>
+</li>
+<li><p><code>JS</code>最好放置在<code>body</code>标签内的最后面</p>
+</li>
+</ul>
+<p><strong>JavaScript的加载：</strong></p>
+<ol>
+<li>加载脚本会阻塞后面内容的呈现</li>
+<li>加载脚本会阻塞其后组件的下载</li>
+</ol>
+<ul>
+<li>原因：<br>对于图片和 <code>CSS</code>，在加载时会并发加载，而 <code>JS</code> 在加载的时候会阻止并发，并禁止其他资源加载，所以如果将<code>JS</code>放入页面顶部会导致白屏现象。（在 <code>CSS</code> 中使用 <code>@import</code> 或将样式表放在页面底部也可能导致白屏）</li>
+</ul>
+<h2 id="二、白屏-和-FOUC"><a href="#二、白屏-和-FOUC" class="headerlink" title="二、白屏 和 FOUC"></a>二、白屏 和 FOUC</h2><p><strong>原理：</strong></p>
+<p>主要是由于浏览器在处理 <code>HTML</code> 和 <code>CSS</code> 的方式有些不同：</p>
+<ol>
+<li>一类是等 <code>HTML</code> 和 <code>CSS</code> 都加载完了，再展示到页面上，等待时间就是白屏。</li>
+<li>另一类先展示 <code>HTML</code> ，等 <code>CSS</code> 加载完之后再展示样式，出现 <code>FOUC</code> （无样式内容闪烁）。</li>
+<li>还有一些其他原因也会造成白屏和 <code>FOUC</code> 。</li>
+</ol>
+<p><strong>白屏：</strong></p>
+<ol>
+<li>如果把样式放在底部,对于IE浏览器,在某些场景下（新窗口打开,刷新等）页面会出现白屏，而不是内容逐步展现；</li>
+<li>如果使用 <code>@import</code> 标签，即使是在头部的 <code>&lt;head&gt;</code> 标签内 使用 <code>link</code> 引入 <code>CSS</code>，也可能出现白屏；</li>
+<li><code>JS</code> 加载会阻塞后面内容的呈现，如果将 <code>JS</code> 放到 <code>head</code> 标签中并且加载时间很长，页面也有可能出现白屏；</li>
+</ol>
+<p><strong>FOUC：Flash Of Unstyled Content （文档无样式闪烁）</strong></p>
+<p>原因：浏览器先逐步加载无样式的内容，等 <code>CSS</code>加载后页面突然展现样式。</p>
+<ol>
+<li>对于 <code>Firefox</code>，渲染机制与 <code>Chrome</code> 略有不同，因此会出现 <code>FOUC</code>;</li>
+<li>在底部引入 <code>CSS</code> 样式；</li>
+<li>对于<code>IE</code>，在某些场景下（点击链接，输入URL，使用书签进入等），也会出现 <code>FOUC</code> 现象</li>
+</ol>
+<h2 id="三、async-和-defer-的作用与区别"><a href="#三、async-和-defer-的作用与区别" class="headerlink" title="三、async 和 defer 的作用与区别"></a>三、async 和 defer 的作用与区别</h2><p><strong>1. 没有 <code>defer</code> 或 <code>async</code></strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>浏览器会立即加载并执行指定的脚本，” 立即 “的是在渲染该 <code>script</code> 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</p>
+<p><strong>2. 有 <code>async</code></strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>加载和渲染后续文档元素的过程将和 <code>script.js</code> 的加载与执行并行进行（异步）。</p>
+<p><strong>3. 有 <code>defer</code></strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"myscript.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>加载后续文档元素的过程将和 <code>script.js</code> 的加载并行进行（异步），但是 <code>script.js</code> 的执行要在所有元素解析完成之后，<code>DOMContentLoaded</code> 事件触发之前完成。</p>
+<p>实用角度来说，把所有脚本都丢到 <code>&lt;/body&gt;</code> 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析。</p>
+<h2 id="四、网页的渲染机制（简版）"><a href="#四、网页的渲染机制（简版）" class="headerlink" title="四、网页的渲染机制（简版）"></a>四、网页的渲染机制（简版）</h2><ol>
+<li>解析 <code>HTML</code> 标签，生成 <code>DOM</code> 树</li>
+<li>解析 <code>CSS</code> 元素，生成 <code>CSSOM</code> 树</li>
+<li>把 <code>DOM</code> 和 <code>CSSOM</code> 组合成渲染树</li>
+<li>在渲染树的基础上进行布局，计算每个节点的几何结构</li>
+<li>把每个节点绘制到屏幕上</li>
+</ol>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=en" target="_blank" rel="external">Render-tree construction, layout, and paint</a></li>
+<li><a href="http://taligarsiel.com/Projects/howbrowserswork1.htm" target="_blank" rel="external">How browsers work</a></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/09/事件代理（事件委托）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/09/事件代理（事件委托）/" itemprop="url">事件代理（事件委托）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-09T19:38:21+08:00">
+                2017-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/09/事件代理（事件委托）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/09/事件代理（事件委托）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/09/事件代理（事件委托）/" class="leancloud_visitors" data-flag-title="事件代理（事件委托）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/试题：数组、API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/06/试题：数组、API/" itemprop="url">试题：数组、API</a></h1>
         
 
         <div class="post-meta">
@@ -391,8 +772,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/06/试题：-数组-火锅/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/06/试题：-数组-火锅/" itemprop="commentsCount"></span>
+                <a href="/2017/09/06/试题：数组、API/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/06/试题：数组、API/" itemprop="commentsCount"></span>
                 </a>
               </span>
               <!--/noindex-->
@@ -401,7 +782,7 @@
 
           
           
-             <span id="/2017/09/06/试题：-数组-火锅/" class="leancloud_visitors" data-flag-title="试题：[数组,火锅]">
+             <span id="/2017/09/06/试题：数组、API/" class="leancloud_visitors" data-flag-title="试题：数组、API">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -434,8 +815,8 @@
       
         
           
-            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj9qlttdpbj20rs0i2e81.jpg" alt="@ | center"></p>
-<h2 id="试题：-数组-火锅"><a href="#试题：-数组-火锅" class="headerlink" title="试题：[数组,火锅]"></a>试题：[数组,火锅]</h2><blockquote>
+            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjek1gv39wj20sg0iy131.jpg" alt="@ | center"></p>
+<h2 id="试题：数组、API"><a href="#试题：数组、API" class="headerlink" title="试题：数组、API"></a>试题：数组、API</h2><blockquote>
 <p>试题来源：<a href="https://www.nowcoder.com/" target="_blank" rel="external">https://www.nowcoder.com/</a><br>注意：答题器不支持ES6语法</p>
 </blockquote>
 <h2 id="前排提示"><a href="#前排提示" class="headerlink" title="前排提示"></a>前排提示</h2><p>尽量用不同的 API 去实现题目需求，这样才能更快掌握更多的 API<br>参考 API 都在这里：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="external">JavaScript 标准库：Array</a></p>
@@ -2265,358 +2646,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/Albert-s-Favorites/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/Albert-s-Favorites/" itemprop="url">Albert's Favorites</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T10:01:41+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/收藏夹/" itemprop="url" rel="index">
-                    <span itemprop="name">收藏夹</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/25/Albert-s-Favorites/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/25/Albert-s-Favorites/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/25/Albert-s-Favorites/" class="leancloud_visitors" data-flag-title="Albert's Favorites">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><ol>
-<li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="external">Flex 布局教程：语法篇-阮一峰</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">Flex 布局教程：实例篇-阮一峰</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/" target="_blank" rel="external">张鑫旭的个人博客</a></li>
-<li><a href="http://www.w3cplus.com/" target="_blank" rel="external">大漠的个人博客w3cplus</a></li>
-</ol>
-<h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><ol>
-<li><a href="http://javascript.ruanyifeng.com/" target="_blank" rel="external">JavaScript 标准参考教程（alpha）-阮一峰</a></li>
-<li><a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ECMAScript 6 入门-阮一峰</a></li>
-<li><a href="http://bonsaiden.github.io/JavaScript-Garden/zh/" target="_blank" rel="external">JavaScript秘密花园</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/24336831" target="_blank" rel="external">ES 5 新增特性汇总</a></li>
-<li><a href="http://liubin.org/promises-book/" target="_blank" rel="external">JavaScript Promise迷你书（中文版）</a></li>
-<li><a href="http://www.ituring.com.cn/article/66566" target="_blank" rel="external">【翻译】Promises/A+规范</a></li>
-</ol>
-<h2 id="React"><a href="#React" class="headerlink" title="React"></a>React</h2><ol>
-<li><a href="https://facebook.github.io/react/" target="_blank" rel="external">facebook：官方文档</a></li>
-<li><a href="https://discountry.github.io/react/" target="_blank" rel="external">FCC：中文翻译</a></li>
-<li><a href="http://wiki.jikexueyuan.com/project/react/" target="_blank" rel="external">极客学院：中文翻译</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/25954470" target="_blank" rel="external">知乎：setState：这个API设计到底怎么样</a></li>
-<li><a href="http://www.ruanyifeng.com/blog/2016/09/react-technology-stack.html" target="_blank" rel="external">阮一峰：React 技术栈系列教程</a></li>
-<li><a href="https://zhuanlan.zhihu.com/reactjs" target="_blank" rel="external">知乎：从零学习React技术栈</a></li>
-<li><a href="http://react-china.org/" target="_blank" rel="external">React China</a></li>
-<li><a href="https://juejin.im/entry/5819987ca22b9d0067a32ab4" target="_blank" rel="external">掘金：React 开源项目合集整理</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/用CSS3实现一个立方体/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/用CSS3实现一个立方体/" itemprop="url">用CSS3实现一个立方体</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T01:00:27+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/25/用CSS3实现一个立方体/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/25/用CSS3实现一个立方体/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/25/用CSS3实现一个立方体/" class="leancloud_visitors" data-flag-title="用CSS3实现一个立方体">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2667,7 +2696,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2678,7 +2707,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2689,7 +2718,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

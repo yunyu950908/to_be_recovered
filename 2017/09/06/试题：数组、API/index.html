@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数组,试题,javascript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="试题：数组、API 试题来源：https://www.nowcoder.com/注意：答题器不支持ES6语法  前排提示尽量用不同的 API 去实现题目需求，这样才能更快掌握更多的 API参考 API 都在这里：JavaScript 标准库：Array 前排提示x2：一定要注意 API 的返回值！ 1. 查找数组元素位置找出元素 item 在给定数组 arr 中的位置如果数组中存在 item，则">
+<meta name="keywords" content="数组,试题,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="试题：数组、API">
+<meta property="og:url" content="http://yoursite.com/2017/09/06/试题：数组、API/index.html">
+<meta property="og:site_name" content="Albert&#39;s Blog">
+<meta property="og:description" content="试题：数组、API 试题来源：https://www.nowcoder.com/注意：答题器不支持ES6语法  前排提示尽量用不同的 API 去实现题目需求，这样才能更快掌握更多的 API参考 API 都在这里：JavaScript 标准库：Array 前排提示x2：一定要注意 API 的返回值！ 1. 查找数组元素位置找出元素 item 在给定数组 arr 中的位置如果数组中存在 item，则">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fjek1gv39wj20sg0iy131.jpg">
+<meta property="og:updated_time" content="2017-09-10T08:49:39.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="试题：数组、API">
+<meta name="twitter:description" content="试题：数组、API 试题来源：https://www.nowcoder.com/注意：答题器不支持ES6语法  前排提示尽量用不同的 API 去实现题目需求，这样才能更快掌握更多的 API参考 API 都在这里：JavaScript 标准库：Array 前排提示x2：一定要注意 API 的返回值！ 1. 查找数组元素位置找出元素 item 在给定数组 arr 中的位置如果数组中存在 item，则">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fjek1gv39wj20sg0iy131.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/06/试题：数组、API/"/>
+
+
+
+
+
+  <title>试题：数组、API | Albert's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c93972adbe6cc2843d70d40b401f0706";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Albert's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">致良知，知行合一。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/试题：数组、API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">试题：数组、API</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T12:32:51+08:00">
+                2017-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/试题/" itemprop="url" rel="index">
+                    <span itemprop="name">试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/06/试题：数组、API/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/06/试题：数组、API/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/06/试题：数组、API/" class="leancloud_visitors" data-flag-title="试题：数组、API">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjek1gv39wj20sg0iy131.jpg" alt="@ | center"></p>
+<h2 id="试题：数组、API"><a href="#试题：数组、API" class="headerlink" title="试题：数组、API"></a>试题：数组、API</h2><blockquote>
+<p>试题来源：<a href="https://www.nowcoder.com/" target="_blank" rel="external">https://www.nowcoder.com/</a><br>注意：答题器不支持ES6语法</p>
+</blockquote>
+<h2 id="前排提示"><a href="#前排提示" class="headerlink" title="前排提示"></a>前排提示</h2><p>尽量用不同的 API 去实现题目需求，这样才能更快掌握更多的 API<br>参考 API 都在这里：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="external">JavaScript 标准库：Array</a></p>
+<p><strong>前排提示x2：一定要注意 API 的返回值！</strong></p>
+<h2 id="1-查找数组元素位置"><a href="#1-查找数组元素位置" class="headerlink" title="1. 查找数组元素位置"></a>1. 查找数组元素位置</h2><p>找出元素 item 在给定数组 arr 中的位置<br>如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">arr, item</span>)</span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[ 1, 2, 3, 4 ], 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>indexOf + map<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">indexOf</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">Array</span>.prototype.indexOf)&#123;</div><div class="line">        <span class="keyword">return</span> arr.indexOf(item)</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">var</span> index;</div><div class="line">        arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">e,i</span>)</span>&#123;</div><div class="line">            <span class="keyword">if</span>(e === item)&#123;</div><div class="line">                index = i;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="keyword">return</span> index;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2-数组求和"><a href="#2-数组求和" class="headerlink" title="2. 数组求和"></a>2. 数组求和</h2><p>计算给定数组 arr 中所有元素的总和<br>数组中的元素均为 Number 类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[ 1, 2, 3, 4 ]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>递归 + slice</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> len = arr.length;</div><div class="line">    <span class="keyword">if</span>(len === <span class="number">0</span>)&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(len === <span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>];</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">return</span> arr[<span class="number">0</span>] + sum(arr.slice(<span class="number">1</span>))</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>reduce</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">prev,curr,idx,arr</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> prev + curr;</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3-移除数组中的元素"><a href="#3-移除数组中的元素" class="headerlink" title="3. 移除数组中的元素"></a>3. 移除数组中的元素</h2><p>移除数组 arr 中的所有值与 item 相等的元素。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4, 2], 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>filter</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">arr,item</span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> e !== item;</div><div class="line">	&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>slice + splice</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params">arr,item</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>);</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,len=newArr.length; i&lt;len; i++)&#123;</div><div class="line">        <span class="keyword">if</span>(newArr[i]===item)&#123;</div><div class="line">			newArr.splice(i,<span class="number">1</span>) <span class="comment">// PS：这样会改变后面每一项的索引，当然有更好的写法</span></div><div class="line">            i--;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4-移除数组中的元素"><a href="#4-移除数组中的元素" class="headerlink" title="4. 移除数组中的元素"></a>4. 移除数组中的元素</h2><p>移除数组 arr 中的所有值与 item 相等的元素，直接在给定的 arr 数组上进行操作，并将结果返回</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeWithoutCopy</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 2, 3, 4, 2, 2], 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>while<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeWithoutCopy</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="keyword">while</span>(arr.indexOf(item)!==<span class="number">-1</span>)&#123;</div><div class="line">        arr.splice(arr.indexOf(item),<span class="number">1</span>)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="5-添加元素"><a href="#5-添加元素" class="headerlink" title="5. 添加元素"></a>5. 添加元素</h2><p>在数组 arr 末尾添加元素 item。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">append</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4],  10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3, 4, 10]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>concat<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">append</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.concat(item)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="6-删除数组最后一个元素"><a href="#6-删除数组最后一个元素" class="headerlink" title="6. 删除数组最后一个元素"></a>6. 删除数组最后一个元素</h2><p>删除数组 arr 最后一个元素。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>pop + slice<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">truncate</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>);</div><div class="line">    newArr.pop();</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="7-在数组开头添加元素"><a href="#7-在数组开头添加元素" class="headerlink" title="7. 在数组开头添加元素"></a>7. 在数组开头添加元素</h2><p>在数组 arr 开头添加元素 item。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">prepend</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4], 10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3, 4], 10</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>slice + unshift<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">prepend</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>)</div><div class="line">    newArr.unshift(item)</div><div class="line">    <span class="keyword">return</span> newArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="8-删除数组第一个元素"><a href="#8-删除数组第一个元素" class="headerlink" title="8. 删除数组第一个元素"></a>8. 删除数组第一个元素</h2><p>删除数组 arr 第一个元素。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curtail</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[2, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>concat + shift<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curtail</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.concat()</div><div class="line">    newArr.shift()</div><div class="line">    <span class="keyword">return</span> newArr</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="9-数组合并"><a href="#9-数组合并" class="headerlink" title="9. 数组合并"></a>9. 数组合并</h2><p>合并数组 arr1 和数组 arr2。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1, arr2</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4], [‘a’, ‘b’, ‘c’, 1]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, 3, 4, ‘a’, ‘b’, ‘c’, 1]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>slice + push +apply<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">arr1, arr2</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr1.slice(<span class="number">0</span>);</div><div class="line">    <span class="built_in">Array</span>.prototype.push.apply(newArr,arr2);</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="10-在数组中间添加元素"><a href="#10-在数组中间添加元素" class="headerlink" title="10. 在数组中间添加元素"></a>10. 在数组中间添加元素</h2><p>在数组 arr 的 index 处添加元素 item。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">arr, item, index</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4], ‘z’, 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 2, ‘z’, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>slice + splice<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insert</span>(<span class="params">arr, item, index</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> newArr = arr.slice(<span class="number">0</span>);</div><div class="line">    newArr.splice(index,<span class="number">0</span>,item);</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="11-计数"><a href="#11-计数" class="headerlink" title="11. 计数"></a>11. 计数</h2><p>统计数组 arr 中值等于 item 的元素出现的次数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 4, 4, 3, 4, 3], 4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>filter<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params">arr, item</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> e === item;</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> newArr.length;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="12-查找重复元素"><a href="#12-查找重复元素" class="headerlink" title="12. 查找重复元素"></a>12. 查找重复元素</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicates</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 4, 4, 3, 3, 1, 5, 3]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 3, 4]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>indexOf + lastIndexOf<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">duplicates</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> newArr = [];</div><div class="line">    arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">e,i</span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(newArr.indexOf(e)===<span class="number">-1</span> &amp;&amp; arr.indexOf(e)!==<span class="number">-1</span> &amp;&amp; arr.indexOf(e)!== arr.lastIndexOf(e))&#123;</div><div class="line">            newArr.push(e);</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> newArr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="13-求二次方"><a href="#13-求二次方" class="headerlink" title="13. 求二次方"></a>13. 求二次方</h2><p>为数组 arr 中的每个元素求二次方。不要直接修改数组 arr，结果返回新的数组</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>[1, 2, 3, 4]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[1, 4, 9, 16]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>map<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> arr.map(<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> e*e</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="14-查找元素位置"><a href="#14-查找元素位置" class="headerlink" title="14. 查找元素位置"></a>14. 查找元素位置</h2><p>在数组 arr 中，查找值与 item 相等的元素出现的所有位置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findAllOccurrences</span>(<span class="params">arr, target</span>) </span>&#123;</div><div class="line">	<span class="comment">/* your code here */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>输入</th>
+<th>‘abcdefabc’,’a’</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输出</td>
+<td>[0,6]</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>forEach + || + push<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findAllOccurrences</span>(<span class="params">arr, target</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> temp = [];</div><div class="line">    arr.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">e,i</span>)</span>&#123;</div><div class="line">        e !== target || temp.push(i);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上 14 道数组类型的题目，按照本文的解题思路走下来，通过参考 <a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="external">MDN 文档</a>，你可能学习掌握了以下 API ：</p>
+<ul>
+<li>以下所有数组 API 你都可以在这里找到：<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="external">JavaScript 标准库：Array</a></li>
+</ul>
+<ol>
+<li>Array.length</li>
+<li>Array.prototype.concat()</li>
+<li>Array.prototype.filter()</li>
+<li>Array.prototype.forEach()</li>
+<li>Array.prototype.indexOf()</li>
+<li>Array.prototype.lastIndexOf()</li>
+<li>Array.prototype.map()</li>
+<li>Array.prototype.pop()</li>
+<li>Array.prototype.push()</li>
+<li>Array.prototype.reduce()</li>
+<li>Array.prototype.shift()</li>
+<li>Array.prototype.slice()</li>
+<li>Array.prototype.splice()</li>
+<li>Array.prototype.unshift()</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="external">Function.prototype.apply()</a></li>
+</ol>
+<p>（完）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数组/" rel="tag"># 数组</a>
+          
+            <a href="/tags/试题/" rel="tag"># 试题</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/04/map-与-forEach-简单比较/" rel="next" title="map 与 forEach 简单比较">
+                <i class="fa fa-chevron-left"></i> map 与 forEach 简单比较
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/09/事件代理（事件委托）/" rel="prev" title="事件代理（事件委托）">
+                事件代理（事件委托） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微薄</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpeg"
+               alt="Albert" />
+          <p class="site-author-name" itemprop="name">Albert</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yunyu950908" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#试题：数组、API"><span class="nav-number">1.</span> <span class="nav-text">试题：数组、API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前排提示"><span class="nav-number">2.</span> <span class="nav-text">前排提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-查找数组元素位置"><span class="nav-number">3.</span> <span class="nav-text">1. 查找数组元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-数组求和"><span class="nav-number">4.</span> <span class="nav-text">2. 数组求和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-移除数组中的元素"><span class="nav-number">5.</span> <span class="nav-text">3. 移除数组中的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-移除数组中的元素"><span class="nav-number">6.</span> <span class="nav-text">4. 移除数组中的元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-添加元素"><span class="nav-number">7.</span> <span class="nav-text">5. 添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-删除数组最后一个元素"><span class="nav-number">8.</span> <span class="nav-text">6. 删除数组最后一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-在数组开头添加元素"><span class="nav-number">9.</span> <span class="nav-text">7. 在数组开头添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-删除数组第一个元素"><span class="nav-number">10.</span> <span class="nav-text">8. 删除数组第一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-数组合并"><span class="nav-number">11.</span> <span class="nav-text">9. 数组合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-在数组中间添加元素"><span class="nav-number">12.</span> <span class="nav-text">10. 在数组中间添加元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-计数"><span class="nav-number">13.</span> <span class="nav-text">11. 计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-查找重复元素"><span class="nav-number">14.</span> <span class="nav-text">12. 查找重复元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-求二次方"><span class="nav-number">15.</span> <span class="nav-text">13. 求二次方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-查找元素位置"><span class="nav-number">16.</span> <span class="nav-text">14. 查找元素位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">17.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Albert</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Pisces
+    </a>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=63529715";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 94839, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 94839, xid: "2017/09/06/试题：数组、API/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/94839/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("tQA4GKghKV0qv77K9gdIrQGf-gzGzoHsz", "CP0ldcnXx0z33b9wvN6Dsc9N");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
