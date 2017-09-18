@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[nrm ---- npm registry 管理工具]]></title>
+    <url>%2F2017%2F09%2F18%2Fnrm-npm-registry-%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[一、什么是 nrm一个 npm registry 管理工具。 二、nrm 干嘛用可以快速切换至其他 npm 源下载你需要的包 三、为什么要用 当前源不稳定，安装某些包时经常卡住不动 npm 官方源上不去了（国内互联网不可描述的原因） 你不会手动切换 npm 其他源，或者你不知道还有哪些源 四、如何使用 install 1npm install -g nrm show registry list 123456789nrm ls* npm ---- https://registry.npmjs.org/ cnpm --- http://r.cnpmjs.org/ taobao - https://registry.npm.taobao.org/ nj ----- https://registry.nodejitsu.com/ rednpm - http://registry.mirror.cqupt.edu.cn/ npmMirror https://skimdb.npmjs.com/registry/ edunpm - http://registry.enpmjs.org/ change target registry 1234# switch registry to cnpmnrm use cnpm Registry has been set to: http://r.cnpmjs.org/ show help 123nrm help# here to show all of the nrm cmmands 五、注意事项当你使用其他源的时候，你无法使用 npm 的 publish 命令发布你的 npm 包，需要切换回官方源。 参考资料 nrm – NPM registry manager - Github]]></content>
+      <categories>
+        <category>npm</category>
+      </categories>
+      <tags>
+        <tag>nrm</tag>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[AJAX 与 XMLHttpRequest 入门]]></title>
+    <url>%2F2017%2F09%2F14%2FAJAX-%E4%B8%8E-XMLHttpRequest%2F</url>
+    <content type="text"><![CDATA[一、 AJAX 简介 AJAX 全称 AsynchronousJavascript+XML ==&gt; 异步传输 + js + xml。 所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果我们可以再来处理这个事。这个很重要，如果不是这样的话，我们点完按钮，页面就会死在那里，其他的数据请求不会往下走了。这样比等待刷新似乎更加讨厌。 虽然提供异步通讯功能的组件默认情况下都是异步的，但它们也提供了同步选项，如果你好奇把那个默认参数为 true 的选项改为 false ，你的页面就会死在那里，等待请求结果返回之后再执行下一步操作。 xml 只是一种数据格式，在这件事里并不重要，我们在更新一行字的时候理论上说不需要这个格式，但如果我们更新很多内容，那么格式化的数据可以使我们有条理地去实现更新。 目前大部分都是在用 JSON 这种格式来代替 XML 的，因为前者更加简洁，据说目前的解析速度也更快。 总结：只要是 JS 调用异步通讯组件并使用格式化的数据来更新 web 页面上的内容或操作过程，那么我们用的方法就可算是 AJAX 二、使用 AJAXok 看了上面的简介部分，是时候实际运用一波了，来来，把手伸出来 这里是一个简单的例子：12345678910111213141516171819202122232425262728293031// 定义一个存储请求 URL 地址的变量var getWeather = "https://jirenguapi.applinzi.com/weather.php";// 定义一个发送 AJAX 请求的函数function sendAJAX(url)&#123; // 构造一个 XMLHttpRequest 实例 var xhr = new XMLHttpRequest(); // 调用open 方法创建一个新的 HTTP 请求，并指定此请求的方法、URL 等信息 xhr.open("GET", url, true) // 调用 send 方法发送请求 xhr.send() // 追踪 AJAX 请求状态 xhr.onreadystatechange = function()&#123; // 对应 readyState 值为4 表示请求完成 if(xhr.readyState === 4)&#123; // 判断返回的 HTTP 状态码 if(xhr.status === 200 || xhr === 304 )&#123; // 把请求到的 JSON 格式字符串转换为 JSON 格式对象 var yunyu = JSON.parse(xhr.responseText) // 控制台答应请求到的 JSON 对象 console.log(yunyu) &#125;else&#123; console.log("没有拿到数据哦") &#125; &#125; xhr.onerror = function()&#123; console.log("异常！异常！") &#125; &#125;&#125;// 调用 sendAJAX 参数是最初定义的 URLsendAJAX(getWeather) 请求成功后你的控制台可能会出现一个这样子的打印 如果跟以上截图一样的，说明你请求成功了，怎么样 484很简单 (*^▽^*) emmmm，当然也可能出现其他打印，比如请求不成功的时候,或者是一些其他问题，同时会返回其他对应的状态码。 关于状态码的问题，可以移步这里 HTTP 状态码详解 当然，上面的例子还有其他写法，比如这样：123456789101112131415function sendAJAX(url)&#123; var xhr = new XMLHttpRequest() xhr.open("GET", url, true) xhr.send() xhr.onload = function () &#123; if ((xhr.status ===200 ) || xhr.status === 304) &#123; console.log(JSON.parse(xhr.responseText)) &#125; else &#123; console.log("服务器异常") &#125; &#125; xhr.onerror = function () &#123; console.log("服务器异常") &#125;&#125; ok，简单了解了 AJAX 的写法之后我们来看一下它的核心部分 XMLHttpRequest 三、XMLHttpRequest XMLHttpRequest 是 AJAX 的核心部分，上面所说的 AJAX 其实只是一种技术方案，并不是一种新技术。通常所说的 AJAX 请求，实际上是使用 XMLHttpRequest 对象来发送一个 AJAX 请求。 现在我们看另一种发送请求的方法 POST 1234567891011121314151617181920212223242526function sendAJAX() &#123; var xhr = new XMLHttpRequest()// 可选，设置xhr请求的超时时间 xhr.timeout = 3000; xhr.open('POST', '/register', true) xhr.send('username=yunyu&amp;password=123456') xhr.onload = function (e) &#123; if ((xhr.status === 200 ) || xhr.status === 304) &#123; console.log(this.responseText) &#125; &#125;// 可选 xhr.ontimeout = function (e) &#123; console.log('请求超时') &#125;// 可选 xhr.onerror = function (e) &#123; console.log('连接失败') &#125;// 可选 xhr.upload.onprogress = function (e) &#123; //如果是上传文件，可以获取上传进度 &#125;&#125; 当然，以上内容还只是 xhr 对象的冰山一角，有兴趣的同学可以看文末的参考资料，里面有详细的 XMLHttpRequest 描述。 1、获取 response 数据xhr 提供了3个属性来获取请求返回的数据，分别是：xhr.response、xhr.responseText、xhr.responseXML xhr.response 默认值：空字符串”” 当请求完成时，此属性才有正确的值 请求未完成时，此属性的值可能是 &quot;&quot; 或者 null ，具体与 xhr.responseType 有关：当 responseType 为 &quot;&quot; 或 &quot;text&quot; 时，值为 &quot;&quot; ；responseType 为其他值时，值为 null 2、追踪请求当前的状态xhr 对象有个只读属性 readyState , 这个属性可追踪到共 5 种可能值，分别对应 xhr 状态的不同阶段。每次 xhr.readyState 的值发生变化时，都会触发 xhr.onreadystatechange 事件，我们可以在这个事件中进行相关状态判断。 值 状态 描述 0 UNSENT (初始状态，未打开) 此时 xhr 对象被成功构造，open() 方法还未被调用 1 OPENED (已打开，未发送) open() 方法已被成功调用，send() 方法还未被调用。注意：只有 xhr 处于 OPENED 状态，才能调用 xhr.setRequestHeader() 和 xhr.send(),否则会报错 2 HEADERS_RECEIVED (已获取响应头) send() 方法已经被调用, 响应头和响应状态已经返回 3 LOADING (正在下载响应体) 响应体(response entity body)正在下载中，此状态下通过 xhr.response 可能已经有了响应数据 4 DONE (整个数据传输过程结束) 整个数据传输过程结束，不管本次请求是成功还是失败 3、通过控制台调试 通过打断点的方式，在 Source 观察源文件的数据变动。 最右边有个 watch ， readyState 状态变更时候， 会显示 xhr 对象相应的数据和状态的变动。 4、发一个同步请求xhr 默认发的是异步请求，但也支持发同步请求（当然实际开发中应该尽量避免使用）。到底是异步还是同步请求，由 xhr.open() 传入的 async 参数决定。 12// open 语法 参数open(method, url [, async = true [, username = null [, password = null]]]) method: 请求的方式，如GET/POST/HEADER等，这个参数不区分大小写 12xhr.open("GET", url)xhr.open("POST", url) url: 请求的地址，可以是相对地址如example.php，这个相对是相对于当前网页的url路径；也可以是绝对地址如 http://www.example.com/example.php 12xhr.open("GET", "../../example.php")xhr.open("GET", "http://www.example.com/example.php") async: 默认值为 true，即为异步请求，若设置为 false，则为同步请求 12xhr.open("GET", "../../example.php", true)xhr.open("GET", "http://www.example.com/example.php", false) 5、实际使用实际上以上内容已经包含了大部分的使用情况，你可以根据自己的需求进一步封装成一个 AJAX 组件，或者也可以使用现成的 jQuery 封装的 AJAX 组件 （jQuery.ajax()），两者功能是一样的。 当然，如果你对这方面比较感兴趣的话，我想你一定不想错过 fetch API ，它简化了 AJAX 的操作代码，但能够一丝不苟的做着同样的工作。但是，它目前依然只是一个实验中的功能，目前在浏览器的兼容方面还不是特别理想。 Fetch API - MDN 以上，就是 AJAX 和 XMLHttpRequest 的常用玩法，其他更具体更细节的玩法可以在以下的参考资料中学习了解。 参考资料XMLHttpRequest Level 2 使用指南 - 阮一峰 XMLHttpRequest - MDN Using XMLHttpRequest - MDN AJAX tutorial 你真的会使用XMLHttpRequest吗？ - ruoyiqing]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>AJAX</tag>
+        <tag>XMLHttpRequest</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[JS判断数据类型]]></title>
+    <url>%2F2017%2F09%2F10%2FJS%E5%88%A4%E6%96%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[JS判断数据类型 本文摘要：列举了常用的数据类型检查方法、应用场景及使用技巧。 1、JavaScript 数据类型最新的 ECMAScript 标准定义了 7 种数据类型，主要分类两大类： 第一类：Primitive ( 原始类型 ) boolean null undefined number string symbol ( ES6 ) 第二类：Object ( 对象类型 ) Object ( Object , Array , RegExp , Function , etc.) 类型区分 原始类型：直接将值传递给变量 对象类型：将一个堆内存中的引用( 如 0xFFFF ) 传给变量 ( 如果正在看文章的你对类型区分不太了解，请自行查阅补充 ) 2、判断数据类型的方法方法一：typeof 操作符typeof 是一个最简单的判断数据类型的操作符。 语法：typeof() 在 () 中填入你想判断类型的数据。返回值：”boolean” , “string” , “number” , “undefined” , “symbol” , “object” 示例：1234typeof(123) // "number"typeof("string") // "string"typeof(true) // "boolean"typeof(Symbol()) // "symbol" emmmmm…如果你只看这几个示例好像 typeof 并没有什么问题，但实际上typeof 这货比较 呆萌 ，实际使用中往往得不到你想要的结果。示例请看下表：( 如果你对此表抱有疑问，请自行前往控制台输入 ) 注：JavaScript 标准文档中定义: [[Class]] 的值只可能是下面字符串中的一个： Arguments, Array, Boolean, Date, Error, Function, JSON, Math, Number, Object, RegExp, String. Value : typeof 操作符运算的值 Type : typeof 操作符运算的结果 Class : 对象内部属性 [[Class]] 的值 Value Class Type “foo” String string new String(“foo”) String object 1.2 Number number new Number(1.2) Number object true Boolean boolean new Boolean(true) Boolean object new Date() Date object new Error() Error object [1,2,3] Array object new Array(1, 2, 3) Array object new Function(“”) Function function /abc/g RegExp object new RegExp(“meow”) RegExp object {} Object object new Object() Object object 通过以上测试可以发现，用 typeof 操作符判断数据类型的时候，在大多数情况下都返回 “object”，所以呆萌的 typeof 或许不是你想要的那种精明能干的操作符。 方法二：instanceof 操作符instanceof 操作符用来比较两个操作数据的构造函数。 语法：&lt;case&gt; instanceof &lt;Constructor&gt;返回值：true / false instanceof 操作符只有在比较自定义的对象时才有意义。 如果用来比较内置类型，将会和 typeof 操作符 一样用处不大 比较自定义对象12345678910function Foo() &#123;&#125;function Bar() &#123;&#125;Bar.prototype = new Foo();new Bar() instanceof Bar; // truenew Bar() instanceof Foo; // true// 如果仅仅设置 Bar.prototype 为函数 Foo 本身，而不是 Foo 构造函数的一个实例Bar.prototype = Foo;new Bar() instanceof Foo; // false 比较内置类型12345new String('foo') instanceof String; // truenew String('foo') instanceof Object; // true'foo' instanceof String; // false'foo' instanceof Object; // false 注意：instanceof 用来比较属于不同 JavaScript 上下文的对象（比如，浏览器中不同的文档结构）时将会出错， 因为它们的构造函数不会是同一个对象。 方法三：终极必杀技 Object.prototype.toString对象的类定义：JavaScript 标准文档只给出了一种获取 [[Class]] 值的方法，那就是使用 Object.prototype.toString 同样使用上面 typeof 判断类型表中 Value 字段的值，这次我们使用 Object.prototype.toString 12345678910111213141516171819function checkDataType(val)&#123; return Object.prototype.toString.call(val)&#125;checkDataType("foo") // =&gt; "[object String]"checkDataType(new String("foo") ) // =&gt; "[object String]"checkDataType(1.2) // =&gt; "[object Number]"checkDataType(new Number(1.2) ) // =&gt; "[object Number]"checkDataType(true) // =&gt; "[object Boolean]"checkDataType(new Boolean(true) ) // =&gt; "[object Boolean]"checkDataType(new Date()) // =&gt; "[object Date]"checkDataType(new Error() ) // =&gt; "[object Error]"checkDataType([1,2,3] ) // =&gt; "[object Array]"checkDataType(new Array(1, 2, 3)) // =&gt; "[object Array]"checkDataType(new Function("")) // =&gt; "[object Function]"checkDataType(/abc/g) // =&gt; "[object RegExp]"checkDataType(new RegExp("meow")) // =&gt; "[object RegExp]"checkDataType(&#123;&#125;) // =&gt; "[object Object]"checkDataType(new Object()) // =&gt; "[object Object]" 当然，如果你可以通过 slice 让返回值变得简短一点，通过 toLowerCase 变成我们熟悉的小写类型。12345function checkDataType(val)&#123; return Object.prototype.toString.call(val).slice(8,-1).toLowerCase()&#125;checkDataType("foo") // =&gt; "string" 3、结论当检测一个对象类型的时候，建议使用 Object.prototype.toString 方法；通过以上对比可以发现，这是唯一一个靠谱的判断数据类型的方法。正如上面表格所示，typeof 的一些返回值在标准文档中并未定义，所以它可能会给你一个意料之外的答案。而 instanceof 操作符应仅用来比较同一个 JavaScript 上下文 ( 文档 ) 中的自定义对象。 参考资料 JavaScript 数据类型和数据结构 JavaScript-Garden 表达式和运算符 - typeof 表达式和运算符 - instanceof Object.prototype.toString()]]></content>
+      <categories>
+        <category>javascript</category>
+      </categories>
+      <tags>
+        <tag>javascript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[浏览器爸爸之页面渲染]]></title>
     <url>%2F2017%2F09%2F10%2F%E6%B5%8F%E8%A7%88%E5%99%A8%E7%88%B8%E7%88%B8%E4%B9%8B%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%2F</url>
     <content type="text"><![CDATA[浏览器爸爸之页面渲染一、CSS 和 JS 在网页中的放置顺序 CSS最好放置在&lt;head&gt;标签中如果将css样式放在底部，会造成浏览器先加载html然后再加载css，重绘页面，造成 闪屏 现象。 JS最好放置在body标签内的最后面 JavaScript的加载： 加载脚本会阻塞后面内容的呈现 加载脚本会阻塞其后组件的下载 原因：对于图片和 CSS，在加载时会并发加载，而 JS 在加载的时候会阻止并发，并禁止其他资源加载，所以如果将JS放入页面顶部会导致白屏现象。（在 CSS 中使用 @import 或将样式表放在页面底部也可能导致白屏） 二、白屏 和 FOUC原理： 主要是由于浏览器在处理 HTML 和 CSS 的方式有些不同： 一类是等 HTML 和 CSS 都加载完了，再展示到页面上，等待时间就是白屏。 另一类先展示 HTML ，等 CSS 加载完之后再展示样式，出现 FOUC （无样式内容闪烁）。 还有一些其他原因也会造成白屏和 FOUC 。 白屏： 如果把样式放在底部,对于IE浏览器,在某些场景下（新窗口打开,刷新等）页面会出现白屏，而不是内容逐步展现； 如果使用 @import 标签，即使是在头部的 &lt;head&gt; 标签内 使用 link 引入 CSS，也可能出现白屏； JS 加载会阻塞后面内容的呈现，如果将 JS 放到 head 标签中并且加载时间很长，页面也有可能出现白屏； FOUC：Flash Of Unstyled Content （文档无样式闪烁） 原因：浏览器先逐步加载无样式的内容，等 CSS加载后页面突然展现样式。 对于 Firefox，渲染机制与 Chrome 略有不同，因此会出现 FOUC; 在底部引入 CSS 样式； 对于IE，在某些场景下（点击链接，输入URL，使用书签进入等），也会出现 FOUC 现象 三、async 和 defer 的作用与区别1. 没有 defer 或 async1&lt;script src="script.js"&gt;&lt;/script&gt; 浏览器会立即加载并执行指定的脚本，” 立即 “的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。 2. 有 async1&lt;script async src="script.js"&gt;&lt;/script&gt; 加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。 3. 有 defer1&lt;script defer src="myscript.js"&gt;&lt;/script&gt; 加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded 事件触发之前完成。 实用角度来说，把所有脚本都丢到 &lt;/body&gt; 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析。 四、网页的渲染机制（简版） 解析 HTML 标签，生成 DOM 树 解析 CSS 元素，生成 CSSOM 树 把 DOM 和 CSSOM 组合成渲染树 在渲染树的基础上进行布局，计算每个节点的几何结构 把每个节点绘制到屏幕上 参考资料 Render-tree construction, layout, and paint How browsers work]]></content>
@@ -30,9 +65,9 @@
         <category>试题</category>
       </categories>
       <tags>
+        <tag>javascript</tag>
         <tag>数组</tag>
         <tag>试题</tag>
-        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -43,8 +78,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>数组</tag>
         <tag>javascript</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -55,9 +90,9 @@
         <category>试题</category>
       </categories>
       <tags>
+        <tag>javascript</tag>
         <tag>数组</tag>
         <tag>试题</tag>
-        <tag>javascript</tag>
         <tag>递归</tag>
       </tags>
   </entry>
@@ -82,9 +117,9 @@
         <category>试题</category>
       </categories>
       <tags>
+        <tag>javascript</tag>
         <tag>闭包</tag>
         <tag>试题</tag>
-        <tag>javascript</tag>
         <tag>作用域</tag>
         <tag>this</tag>
       </tags>
@@ -126,7 +161,7 @@
   <entry>
     <title><![CDATA[Albert's Favorites]]></title>
     <url>%2F2017%2F08%2F25%2FAlbert-s-Favorites%2F</url>
-    <content type="text"><![CDATA[CSS Flex 布局教程：语法篇-阮一峰 Flex 布局教程：实例篇-阮一峰 张鑫旭的个人博客 大漠的个人博客w3cplus JS JavaScript 标准参考教程（alpha）-阮一峰 ECMAScript 6 入门-阮一峰 JavaScript秘密花园 ES 5 新增特性汇总 JavaScript Promise迷你书（中文版） 【翻译】Promises/A+规范 React facebook：官方文档 FCC：中文翻译 极客学院：中文翻译 知乎：setState：这个API设计到底怎么样 阮一峰：React 技术栈系列教程 知乎：从零学习React技术栈 React China 掘金：React 开源项目合集整理]]></content>
+    <content type="text"><![CDATA[CSS Flex 布局教程：语法篇-阮一峰 Flex 布局教程：实例篇-阮一峰 张鑫旭的个人博客 大漠的个人博客w3cplus JS JavaScript 标准参考教程（alpha）-阮一峰 ECMAScript 6 入门-阮一峰 JavaScript秘密花园 ES 5 新增特性汇总 JavaScript Promise迷你书（中文版） 【翻译】Promises/A+规范 React facebook：官方文档 FCC：中文翻译 极客学院：中文翻译 知乎：setState：这个API设计到底怎么样 阮一峰：React 技术栈系列教程 知乎：从零学习React技术栈 React China 掘金：React 开源项目合集整理 博文你真的会使用XMLHttpRequest吗？ webpack：从入门到真实项目配置]]></content>
       <categories>
         <category>收藏夹</category>
       </categories>
@@ -180,14 +215,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[webpack：bundle.js解析]]></title>
-    <url>%2F2017%2F08%2F22%2Fwebpack%EF%BC%9Abundle-js%E8%A7%A3%E6%9E%90%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[vim常用基础命令整理]]></title>
+    <url>%2F2017%2F08%2F22%2Fvim%E5%B8%B8%E7%94%A8%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4%E6%95%B4%E7%90%86%2F</url>
+    <content type="text"><![CDATA[@vim | center #vim常用基础命令整理 1.进入Vim 编辑器1vim 文件名 &lt;回车&gt; 2.退出 Vim 编辑器 放弃所有改动 1&lt;ESC&gt; :q! &lt;回车&gt; //q=Quit ; !=强制执行 ； 保存改动 1&lt;ESC&gt; :wq &lt;回车&gt; //w=Write ; q=Quit ; 3.删除光标所在位置的字符1x 4.在光标前插入文本1i 输入欲插入文本 &lt;ESC&gt; 5.在一行后插入文本1A 输入欲添加文本 &lt;ESC&gt; 6.从当前光标删除至下一个单词1dw //d=Delete ; w=Word ; 7.从当前光标删除至当前行末尾1d$ 8.删除整行1dd 9.重复一个动作1operator [number] motion 123operator - 操作符，代表要做的事情，比如 d 代表删除[number] - 可以附加的数字，代表动作重复的次数motion - 动作，代表在所操作的文本上的移动 1234例如 ：2w //从光标开始偏移2个单词d2w //从光标开始删除2个单词w 代表单词(word)，$ 代表行末等等。 10.移动光标到行首10 //数字0键 11.撤销相关123u //小写的u，撤消以前的操作U //大写的U，撤消在一行中所做的所有改动CTRL-R //撤消以前的撤消命令 12.要重新置入已经删除的文本内容1p //删除的内容留在寄存器中，把p想成paste 12该操作可以将已删除的文本内容置于光标之后。如删除的是一个整行，操作将置于当前光标所在行的下一行。 13.要替换光标所在位置的字符12r 新字符 // 替换单个字符R 新字符 &lt;ESC&gt; // 替换多个字符 14.更改命令c1c [number] motion // 参数同9. 15.定位及文件状态1234CTRL-G //显示当前光标所在行的位置以及文件状态信息数字 G //（这里G大写）直接跳转到文件中的某一指定行G //当前光标直接跳转到文件最后一行gg //当前光标直接跳转到文件第一行 16.搜索类命令1/ 要搜索的字符 &lt;回车&gt; //在当前文件中查找该字符串 12n //正向查找同上一次的字符N //向相反方向查找同上一次的字符 1? 要搜索的字符 &lt;回车&gt; //同N，反向查找字符 12:set ic //忽略大小写ignorecase:set noic //禁用忽略大小写 12:set hls is //设置 高亮显示所有的匹配短语hlsearch 和 查找短语时显示部分匹配incsearch 这两个选项，:nohlsearch //移除匹配项的高亮显示 12CTRL-O //字母o，回到之前的位置，重复可回退多步CTRL-I //跳转到较新的位置 17.配对括号的查找1% //在第一个括号处按下%，光标将跳转到闭合处，再次按下将回跳 18.替换命令1:s/字符1/字符2/g //将光标所在行中所有的 字符1 替换为 字符2 1:#,#s/old/new/g // #,# 代表的是替换操作的若干行中首尾两行的行号 1:%s/old/new/g //替换整个文件中的每个匹配字符old替换为字符new 1:%s/old/new/gc //找到整个文件中的每个匹配字符，并且对每个匹配字符提示是否进行替换 19.在VIM内执行外部命令1:!command //执行一个外部命令command 123例如:!ls //显示当前目录内容:!rm FILENAME //删除名为FILENAME的文件 20.保存命令12:w TEST //以 TEST 为文件名保存整个文件v motion :w FILENAME //选择性保存文件的部分内容，按v并移动光标以选择 21.提取与合并12:r FILENAME //将FILENAME内容提取并插入到光标后:r !ls //读取 ls 命令的输出结果，并将其插入在光标后 22.打开新的一行 12o //小写字母o，在光标下方打开新的一行,并进入插入模式O //大写字母O，在光标上方打开新的一行,并进入插入模式 23.插入文本12a 要插入的文本 //在光标后插入文本A 要插入的文本 //在光标所在行的行末插入文本 24.复制粘贴1v 光标移动选择内容 y 移动光标到要粘贴的位置 p //v选择，y复制，p粘贴 25.获取帮助信息123- 按下 &lt;HELP&gt; 键 (如果键盘上有的话)- 按下 &lt;F1&gt; 键 (如果键盘上有的话)- 输入 :help &lt;回车&gt; 12CTRL-W //使光标在窗口之间跳转:q &lt;回车&gt; //关闭帮助窗口 26.创建启动脚本及vimrc配置123:edit ~/.vimrc //Unix所使用的命令:edit $VIM/_vimrc //MS-Windows所使用的命令:write //保存文件 12:r $VIMRUNTIME/vimrc_example.vim //读取vimrc 示例文件的内容:help vimrc-intro //获取vimrc配置帮助 27.命令补全1:e CTRL-D &lt;TAB&gt; //Vim 会显示以 e 开始的命令的列表，TAB选择补全]]></content>
       <categories>
-        <category>webpack</category>
+        <category>linux</category>
       </categories>
       <tags>
-        <tag>webpack</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>

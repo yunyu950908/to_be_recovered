@@ -318,6 +318,764 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/nrm-npm-registry-管理工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/18/nrm-npm-registry-管理工具/" itemprop="url">nrm ---- npm registry 管理工具</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T21:51:38+08:00">
+                2017-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/npm/" itemprop="url" rel="index">
+                    <span itemprop="name">npm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/18/nrm-npm-registry-管理工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/18/nrm-npm-registry-管理工具/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/18/nrm-npm-registry-管理工具/" class="leancloud_visitors" data-flag-title="nrm ---- npm registry 管理工具">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、什么是-nrm"><a href="#一、什么是-nrm" class="headerlink" title="一、什么是 nrm"></a>一、什么是 nrm</h2><p>一个 npm registry 管理工具。</p>
+<h2 id="二、nrm-干嘛用"><a href="#二、nrm-干嘛用" class="headerlink" title="二、nrm 干嘛用"></a>二、nrm 干嘛用</h2><p>可以快速切换至其他 npm 源下载你需要的包</p>
+<h2 id="三、为什么要用"><a href="#三、为什么要用" class="headerlink" title="三、为什么要用"></a>三、为什么要用</h2><ol>
+<li>当前源不稳定，安装某些包时经常卡住不动</li>
+<li>npm 官方源上不去了（国内互联网不可描述的原因）</li>
+<li>你不会手动切换 npm 其他源，或者你不知道还有哪些源</li>
+</ol>
+<h2 id="四、如何使用"><a href="#四、如何使用" class="headerlink" title="四、如何使用"></a>四、如何使用</h2><ol>
+<li><p>install</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g nrm</div></pre></td></tr></table></figure>
+</li>
+<li><p>show registry list</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">nrm ls</div><div class="line"></div><div class="line">* npm ---- https://registry.npmjs.org/</div><div class="line">  cnpm --- http://r.cnpmjs.org/</div><div class="line">  taobao - https://registry.npm.taobao.org/</div><div class="line">  nj ----- https://registry.nodejitsu.com/</div><div class="line">  rednpm - http://registry.mirror.cqupt.edu.cn/</div><div class="line">  npmMirror  https://skimdb.npmjs.com/registry/</div><div class="line">  edunpm - http://registry.enpmjs.org/</div></pre></td></tr></table></figure>
+</li>
+<li><p>change target registry</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># switch registry to cnpm</span></div><div class="line">nrm use cnpm</div><div class="line"></div><div class="line">    Registry has been <span class="built_in">set</span> to: http://r.cnpmjs.org/</div></pre></td></tr></table></figure>
+</li>
+<li><p>show help</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nrm <span class="built_in">help</span></div><div class="line"></div><div class="line"><span class="comment"># here to show all of the nrm cmmands</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="五、注意事项"><a href="#五、注意事项" class="headerlink" title="五、注意事项"></a>五、注意事项</h2><p>当你使用其他源的时候，你无法使用 npm 的 publish 命令发布你的 npm 包，需要切换回官方源。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/Pana/nrm" target="_blank" rel="external"> nrm – NPM registry manager - Github </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/14/AJAX-与-XMLHttpRequest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/14/AJAX-与-XMLHttpRequest/" itemprop="url">AJAX 与 XMLHttpRequest 入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-14T01:13:03+08:00">
+                2017-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/14/AJAX-与-XMLHttpRequest/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/14/AJAX-与-XMLHttpRequest/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/14/AJAX-与-XMLHttpRequest/" class="leancloud_visitors" data-flag-title="AJAX 与 XMLHttpRequest 入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、-AJAX-简介"><a href="#一、-AJAX-简介" class="headerlink" title="一、 AJAX 简介"></a>一、 AJAX 简介</h2><ul>
+<li><p>AJAX 全称 AsynchronousJavascript+XML ==&gt; 异步传输 + js + xml。</p>
+</li>
+<li><p>所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果我们可以再来处理这个事。这个很重要，如果不是这样的话，我们点完按钮，页面就会死在那里，其他的数据请求不会往下走了。这样比等待刷新似乎更加讨厌。</p>
+</li>
+<li><p>虽然提供异步通讯功能的组件默认情况下都是异步的，但它们也提供了同步选项，如果你好奇把那个默认参数为 <code>true</code> 的选项改为 <code>false</code> ，你的页面就会死在那里，等待请求结果返回之后再执行下一步操作。</p>
+</li>
+<li><p><code>xml</code> 只是一种数据格式，在这件事里并不重要，我们在更新一行字的时候理论上说不需要这个格式，但如果我们更新很多内容，那么格式化的数据可以使我们有条理地去实现更新。</p>
+</li>
+<li><p>目前大部分都是在用 <code>JSON</code> 这种格式来代替 <code>XML</code> 的，因为前者更加简洁，据说目前的解析速度也更快。</p>
+</li>
+</ul>
+<p><strong>总结：只要是 JS 调用异步通讯组件并使用格式化的数据来更新 web 页面上的内容或操作过程，那么我们用的方法就可算是 AJAX</strong></p>
+<h2 id="二、使用-AJAX"><a href="#二、使用-AJAX" class="headerlink" title="二、使用 AJAX"></a>二、使用 AJAX</h2><p>ok 看了上面的简介部分，是时候实际运用一波了，来来，把手伸出来</p>
+<p>这里是一个简单的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个存储请求 URL 地址的变量</span></div><div class="line"><span class="keyword">var</span> getWeather = <span class="string">"https://jirenguapi.applinzi.com/weather.php"</span>;</div><div class="line"><span class="comment">// 定义一个发送 AJAX 请求的函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendAJAX</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    <span class="comment">// 构造一个 XMLHttpRequest 实例</span></div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    <span class="comment">// 调用open 方法创建一个新的 HTTP 请求，并指定此请求的方法、URL 等信息</span></div><div class="line">    xhr.open(<span class="string">"GET"</span>, url, <span class="literal">true</span>)</div><div class="line">    <span class="comment">// 调用 send 方法发送请求</span></div><div class="line">    xhr.send()</div><div class="line">    <span class="comment">// 追踪 AJAX 请求状态</span></div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">// 对应 readyState 值为4 表示请求完成</span></div><div class="line">        <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</div><div class="line">            <span class="comment">// 判断返回的 HTTP 状态码</span></div><div class="line">            <span class="keyword">if</span>(xhr.status === <span class="number">200</span> || xhr === <span class="number">304</span> )&#123;</div><div class="line">                <span class="comment">// 把请求到的 JSON 格式字符串转换为 JSON 格式对象</span></div><div class="line">                <span class="keyword">var</span> yunyu = <span class="built_in">JSON</span>.parse(xhr.responseText)</div><div class="line">                <span class="comment">// 控制台答应请求到的 JSON 对象</span></div><div class="line">                <span class="built_in">console</span>.log(yunyu)</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"没有拿到数据哦"</span>)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"异常！异常！"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 调用 sendAJAX 参数是最初定义的 URL</span></div><div class="line">sendAJAX(getWeather)</div></pre></td></tr></table></figure></p>
+<p>请求成功后你的控制台可能会出现一个这样子的打印</p>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjnstxewlmj20fx03waa9.jpg" alt=" @初尝 AJAX | center "></p>
+<p>如果跟以上截图一样的，说明你请求成功了，怎么样 484很简单 <code>(*^▽^*)</code></p>
+<p>emmmm，当然也可能出现其他打印，比如请求不成功的时候,或者是一些其他问题，同时会返回其他对应的状态码。</p>
+<ul>
+<li>关于状态码的问题，可以移步这里 <a href="http://tool.oschina.net/commons?type=5" target="_blank" rel="external"> HTTP 状态码详解 </a></li>
+</ul>
+<p>当然，上面的例子还有其他写法，比如这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendAJAX</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</div><div class="line">    xhr.open(<span class="string">"GET"</span>, url, <span class="literal">true</span>)</div><div class="line">    xhr.send()</div><div class="line">    xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> ((xhr.status ===<span class="number">200</span> ) || xhr.status === <span class="number">304</span>) &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.parse(xhr.responseText))</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"服务器异常"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    xhr.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"服务器异常"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>ok，简单了解了 AJAX 的写法之后我们来看一下它的核心部分 XMLHttpRequest</p>
+<h2 id="三、XMLHttpRequest"><a href="#三、XMLHttpRequest" class="headerlink" title="三、XMLHttpRequest"></a>三、XMLHttpRequest</h2><blockquote>
+<p>XMLHttpRequest 是 AJAX 的核心部分，上面所说的 AJAX 其实只是一种技术方案，并不是一种新技术。通常所说的 AJAX 请求，实际上是使用 XMLHttpRequest 对象来发送一个 AJAX 请求。</p>
+</blockquote>
+<p>现在我们看另一种发送请求的方法 <code>POST</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendAJAX</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</div><div class="line"><span class="comment">// 可选，设置xhr请求的超时时间</span></div><div class="line">    xhr.timeout = <span class="number">3000</span>;</div><div class="line">    xhr.open(<span class="string">'POST'</span>, <span class="string">'/register'</span>, <span class="literal">true</span>)</div><div class="line">    xhr.send(<span class="string">'username=yunyu&amp;password=123456'</span>)</div><div class="line"></div><div class="line">    xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> ((xhr.status === <span class="number">200</span> ) || xhr.status === <span class="number">304</span>) &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="comment">// 可选</span></div><div class="line">    xhr.ontimeout = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'请求超时'</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">// 可选</span></div><div class="line">    xhr.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'连接失败'</span>)</div><div class="line">    &#125;</div><div class="line"><span class="comment">// 可选</span></div><div class="line">    xhr.upload.onprogress = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="comment">//如果是上传文件，可以获取上传进度</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然，以上内容还只是 <code>xhr</code> 对象的冰山一角，有兴趣的同学可以看文末的参考资料，里面有详细的 <code>XMLHttpRequest</code> 描述。</p>
+<h3 id="1、获取-response-数据"><a href="#1、获取-response-数据" class="headerlink" title="1、获取 response 数据"></a>1、获取 response 数据</h3><p><code>xhr</code> 提供了3个属性来获取请求返回的数据，分别是：<code>xhr.response</code>、<code>xhr.responseText</code>、<code>xhr.responseXML</code></p>
+<p><strong>xhr.response</strong></p>
+<ul>
+<li>默认值：空字符串””</li>
+<li>当请求完成时，此属性才有正确的值</li>
+<li>请求未完成时，此属性的值可能是 <code>&quot;&quot;</code> 或者 <code>null</code> ，具体与 <code>xhr.responseType</code> 有关：<br>当 <code>responseType</code> 为 <code>&quot;&quot;</code> 或 <code>&quot;text&quot;</code> 时，值为 <code>&quot;&quot;</code> ；<code>responseType</code> 为其他值时，值为 <code>null</code></li>
+</ul>
+<h3 id="2、追踪请求当前的状态"><a href="#2、追踪请求当前的状态" class="headerlink" title="2、追踪请求当前的状态"></a>2、追踪请求当前的状态</h3><p><code>xhr</code> 对象有个只读属性 <code>readyState</code> , 这个属性可追踪到共 5 种可能值，分别对应 <code>xhr</code> 状态的不同阶段。每次 <code>xhr.readyState</code> 的值发生变化时，都会触发 <code>xhr.onreadystatechange</code> 事件，我们可以在这个事件中进行相关状态判断。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">值</th>
+<th style="text-align:center">状态</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>0</code></td>
+<td style="text-align:center"><code>UNSENT</code> (初始状态，未打开)</td>
+<td style="text-align:center">此时 <code>xhr</code> 对象被成功构造，<code>open()</code> 方法还未被调用</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>1</code></td>
+<td style="text-align:center"><code>OPENED</code> (已打开，未发送)</td>
+<td style="text-align:center"><code>open()</code> 方法已被成功调用，<code>send()</code> 方法还未被调用。注意：只有 <code>xhr</code> 处于 <code>OPENED</code> 状态，才能调用 <code>xhr.setRequestHeader()</code> 和 <code>xhr.send()</code>,否则会报错</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>2</code></td>
+<td style="text-align:center"><code>HEADERS_RECEIVED</code> (已获取响应头)</td>
+<td style="text-align:center"><code>send()</code> 方法已经被调用, 响应头和响应状态已经返回</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>3</code></td>
+<td style="text-align:center"><code>LOADING</code> (正在下载响应体)</td>
+<td style="text-align:center">响应体(<code>response entity body</code>)正在下载中，此状态下通过 <code>xhr.response</code> 可能已经有了响应数据</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>4</code></td>
+<td style="text-align:center"><code>DONE</code>  (整个数据传输过程结束)</td>
+<td style="text-align:center">整个数据传输过程结束，不管本次请求是成功还是失败</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3、通过控制台调试"><a href="#3、通过控制台调试" class="headerlink" title="3、通过控制台调试"></a>3、通过控制台调试</h3><ul>
+<li><p>通过打断点的方式，在 <code>Source</code> 观察源文件的数据变动。</p>
+</li>
+<li><p>最右边有个 <code>watch</code> ， <code>readyState</code> 状态变更时候， 会显示 <code>xhr</code> 对象相应的数据和状态的变动。</p>
+</li>
+</ul>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjo19spvnlj20qh098ta8.jpg" alt="@控制台调试 | center"></p>
+<h3 id="4、发一个同步请求"><a href="#4、发一个同步请求" class="headerlink" title="4、发一个同步请求"></a>4、发一个同步请求</h3><p><code>xhr</code> 默认发的是异步请求，但也支持发同步请求（当然实际开发中应该尽量避免使用）。到底是异步还是同步请求，由 <code>xhr.open()</code> 传入的 async 参数决定。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// open 语法 参数</span></div><div class="line">open(method, url [, <span class="keyword">async</span> = <span class="literal">true</span> [, username = <span class="literal">null</span> [, password = <span class="literal">null</span>]]])</div></pre></td></tr></table></figure>
+<ul>
+<li><p>method: 请求的方式，如GET/POST/HEADER等，这个参数不区分大小写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xhr.open(<span class="string">"GET"</span>, url)</div><div class="line">xhr.open(<span class="string">"POST"</span>, url)</div></pre></td></tr></table></figure>
+</li>
+<li><p>url: 请求的地址，可以是相对地址如example.php，这个相对是相对于当前网页的url路径；也可以是绝对地址如 <a href="http://www.example.com/example.php" target="_blank" rel="external">http://www.example.com/example.php</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"../../example.php"</span>)</div><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"http://www.example.com/example.php"</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>async: 默认值为 true，即为异步请求，若设置为 false，则为同步请求</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"../../example.php"</span>, <span class="literal">true</span>)</div><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"http://www.example.com/example.php"</span>, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="5、实际使用"><a href="#5、实际使用" class="headerlink" title="5、实际使用"></a>5、实际使用</h3><p>实际上以上内容已经包含了大部分的使用情况，你可以根据自己的需求进一步封装成一个 AJAX 组件，或者也可以使用现成的 jQuery 封装的 AJAX 组件 （jQuery.ajax()），两者功能是一样的。</p>
+<p>当然，如果你对这方面比较感兴趣的话，我想你一定不想错过 <code>fetch</code> API ，它简化了 AJAX 的操作代码，但能够一丝不苟的做着同样的工作。但是，它目前依然只是一个实验中的功能，目前在浏览器的兼容方面还不是特别理想。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API" target="_blank" rel="external"> Fetch API - MDN </a></p>
+<p>以上，就是 AJAX 和 XMLHttpRequest 的常用玩法，其他更具体更细节的玩法可以在以下的参考资料中学习了解。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html" target="_blank" rel="external">XMLHttpRequest Level 2 使用指南 - 阮一峰</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="external"> XMLHttpRequest - MDN </a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest" target="_blank" rel="external"> Using XMLHttpRequest - MDN </a></p>
+<p><a href="http://www.tutorialspoint.com/ajax/index.htm" target="_blank" rel="external"> AJAX tutorial </a></p>
+<p><a href="https://segmentfault.com/a/1190000004322487" target="_blank" rel="external"> 你真的会使用XMLHttpRequest吗？ - ruoyiqing </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/JS判断数据类型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/10/JS判断数据类型/" itemprop="url">JS判断数据类型</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T17:17:15+08:00">
+                2017-09-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/10/JS判断数据类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/10/JS判断数据类型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/10/JS判断数据类型/" class="leancloud_visitors" data-flag-title="JS判断数据类型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JS判断数据类型"><a href="#JS判断数据类型" class="headerlink" title="JS判断数据类型"></a>JS判断数据类型</h1><blockquote>
+<p>本文摘要：<br>列举了常用的数据类型检查方法、应用场景及使用技巧。</p>
+</blockquote>
+<h2 id="1、JavaScript-数据类型"><a href="#1、JavaScript-数据类型" class="headerlink" title="1、JavaScript 数据类型"></a>1、JavaScript 数据类型</h2><p>最新的 ECMAScript 标准定义了 7 种数据类型，主要分类两大类：</p>
+<ul>
+<li><p>第一类：Primitive ( 原始类型 )</p>
+<ul>
+<li>boolean</li>
+<li>null</li>
+<li>undefined</li>
+<li>number</li>
+<li>string</li>
+<li>symbol ( ES6 )</li>
+</ul>
+</li>
+<li><p>第二类：Object ( 对象类型 )</p>
+<ul>
+<li>Object ( Object , Array , RegExp , Function , etc.)</li>
+</ul>
+</li>
+</ul>
+<p><strong>类型区分</strong></p>
+<ul>
+<li>原始类型：直接将值传递给变量</li>
+<li>对象类型：将一个堆内存中的引用( 如 0xFFFF ) 传给变量</li>
+</ul>
+<p>( 如果正在看文章的你对类型区分不太了解，请自行查阅补充 )</p>
+<h2 id="2、判断数据类型的方法"><a href="#2、判断数据类型的方法" class="headerlink" title="2、判断数据类型的方法"></a>2、判断数据类型的方法</h2><h3 id="方法一：typeof-操作符"><a href="#方法一：typeof-操作符" class="headerlink" title="方法一：typeof 操作符"></a>方法一：<code>typeof</code> 操作符</h3><p><code>typeof</code> 是一个最简单的判断数据类型的操作符。</p>
+<p>语法：<code>typeof()</code> 在 <code>()</code> 中填入你想判断类型的数据。<br>返回值：”boolean” , “string” , “number” , “undefined” , “symbol” , “object”</p>
+<p>示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span>(<span class="number">123</span>) <span class="comment">// "number"</span></div><div class="line"><span class="keyword">typeof</span>(<span class="string">"string"</span>) <span class="comment">// "string"</span></div><div class="line"><span class="keyword">typeof</span>(<span class="literal">true</span>) <span class="comment">// "boolean"</span></div><div class="line"><span class="keyword">typeof</span>(<span class="built_in">Symbol</span>()) <span class="comment">// "symbol"</span></div></pre></td></tr></table></figure></p>
+<p>emmmmm…如果你只看这几个示例好像 <code>typeof</code> 并没有什么问题，但实际上<code>typeof</code> 这货比较 <code>呆萌</code> ，实际使用中往往得不到你想要的结果。示例请看下表：<br>( 如果你对此表抱有疑问，请自行前往控制台输入 )</p>
+<p><strong>注：<br>JavaScript 标准文档中定义: <code>[[Class]]</code> 的值只可能是下面字符串中的一个： <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</strong></p>
+<ul>
+<li>Value : typeof 操作符运算的值</li>
+<li>Type : typeof 操作符运算的结果</li>
+<li>Class : 对象内部属性 <code>[[Class]]</code> 的值</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Class</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“foo”</td>
+<td>String</td>
+<td>string</td>
+</tr>
+<tr>
+<td>new String(“foo”)</td>
+<td>String</td>
+<td>object</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>Number</td>
+<td>number</td>
+</tr>
+<tr>
+<td>new Number(1.2)</td>
+<td>Number</td>
+<td>object</td>
+</tr>
+<tr>
+<td>true</td>
+<td>Boolean</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>new Boolean(true)</td>
+<td>Boolean</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Date()</td>
+<td>Date</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Error()</td>
+<td>Error</td>
+<td>object</td>
+</tr>
+<tr>
+<td>[1,2,3]</td>
+<td>Array</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Array(1, 2, 3)</td>
+<td>Array</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Function(“”)</td>
+<td>Function</td>
+<td>function</td>
+</tr>
+<tr>
+<td>/abc/g</td>
+<td>RegExp</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new RegExp(“meow”)</td>
+<td>RegExp</td>
+<td>object</td>
+</tr>
+<tr>
+<td>{}</td>
+<td>Object</td>
+<td>object</td>
+</tr>
+<tr>
+<td>new Object()</td>
+<td>Object</td>
+<td>object</td>
+</tr>
+</tbody>
+</table>
+<p>通过以上测试可以发现，用 <code>typeof</code> 操作符判断数据类型的时候，在大多数情况下都返回 “object”，所以呆萌的 <code>typeof</code> 或许不是你想要的那种精明能干的操作符。</p>
+<h3 id="方法二：instanceof-操作符"><a href="#方法二：instanceof-操作符" class="headerlink" title="方法二：instanceof 操作符"></a>方法二：<code>instanceof</code> 操作符</h3><p><code>instanceof</code> 操作符用来比较两个操作数据的构造函数。</p>
+<p>语法：<code>&lt;case&gt; instanceof &lt;Constructor&gt;</code><br>返回值：<code>true</code> / <code>false</code></p>
+<p><code>instanceof</code> 操作符只有在比较自定义的对象时才有意义。 如果用来比较内置类型，将会和 typeof 操作符 一样用处不大</p>
+<p><strong>比较自定义对象</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">Bar.prototype = <span class="keyword">new</span> Foo();</div><div class="line"></div><div class="line"><span class="keyword">new</span> Bar() <span class="keyword">instanceof</span> Bar; <span class="comment">// true</span></div><div class="line"><span class="keyword">new</span> Bar() <span class="keyword">instanceof</span> Foo; <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 如果仅仅设置 Bar.prototype 为函数 Foo 本身，而不是 Foo 构造函数的一个实例</span></div><div class="line">Bar.prototype = Foo;</div><div class="line"><span class="keyword">new</span> Bar() <span class="keyword">instanceof</span> Foo; <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p><strong>比较内置类型</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'foo'</span>) <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// true</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'foo'</span>) <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="string">'foo'</span> <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// false</span></div><div class="line"><span class="string">'foo'</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
+<p><strong>注意：</strong><br><code>instanceof</code> 用来比较属于不同 JavaScript 上下文的对象（比如，浏览器中不同的文档结构）时将会出错， 因为它们的构造函数不会是同一个对象。</p>
+<h3 id="方法三：终极必杀技-Object-prototype-toString"><a href="#方法三：终极必杀技-Object-prototype-toString" class="headerlink" title="方法三：终极必杀技 Object.prototype.toString"></a>方法三：终极必杀技 <code>Object.prototype.toString</code></h3><p>对象的类定义：<br>JavaScript 标准文档只给出了一种获取 <code>[[Class]]</code> 值的方法，那就是使用 <code>Object.prototype.toString</code></p>
+<p>同样使用上面 <code>typeof</code> 判断类型表中 <code>Value</code> 字段的值，这次我们使用 <code>Object.prototype.toString</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkDataType</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(val)</div><div class="line">&#125;</div><div class="line"></div><div class="line">checkDataType(<span class="string">"foo"</span>) <span class="comment">// =&gt; "[object String]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"foo"</span>) ) <span class="comment">// =&gt; "[object String]"</span></div><div class="line">checkDataType(<span class="number">1.2</span>) <span class="comment">// =&gt; "[object Number]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1.2</span>) ) <span class="comment">// =&gt; "[object Number]"</span></div><div class="line">checkDataType(<span class="literal">true</span>) <span class="comment">// =&gt; "[object Boolean]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>) ) <span class="comment">// =&gt; "[object Boolean]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Date</span>()) <span class="comment">// =&gt; "[object Date]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Error</span>() ) <span class="comment">// =&gt; "[object Error]"</span></div><div class="line">checkDataType([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] ) <span class="comment">// =&gt; "[object Array]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// =&gt; "[object Array]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">""</span>)) <span class="comment">// =&gt; "[object Function]"</span></div><div class="line">checkDataType(<span class="regexp">/abc/g</span>) <span class="comment">// =&gt; "[object RegExp]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"meow"</span>)) <span class="comment">// =&gt; "[object RegExp]"</span></div><div class="line">checkDataType(&#123;&#125;) <span class="comment">// =&gt; "[object Object]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Object</span>()) <span class="comment">// =&gt; "[object Object]"</span></div></pre></td></tr></table></figure>
+<p>当然，如果你可以通过 <code>slice</code> 让返回值变得简短一点，通过 <code>toLowerCase</code> 变成我们熟悉的小写类型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkDataType</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(val).slice(<span class="number">8</span>,<span class="number">-1</span>).toLowerCase()</div><div class="line">&#125;</div><div class="line"></div><div class="line">checkDataType(<span class="string">"foo"</span>) <span class="comment">// =&gt; "string"</span></div></pre></td></tr></table></figure></p>
+<h2 id="3、结论"><a href="#3、结论" class="headerlink" title="3、结论"></a>3、结论</h2><p>当检测一个对象类型的时候，建议使用 <code>Object.prototype.toString</code> 方法；通过以上对比可以发现，这是唯一一个靠谱的判断数据类型的方法。<br>正如上面表格所示，<code>typeof</code> 的一些返回值在标准文档中并未定义，所以它可能会给你一个意料之外的答案。而 <code>instanceof</code> 操作符应仅用来比较同一个 JavaScript 上下文 ( 文档 ) 中的自定义对象。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures" target="_blank" rel="external"> JavaScript 数据类型和数据结构 </a></p>
+<p><a href="http://bonsaiden.github.io/JavaScript-Garden" target="_blank" rel="external"> JavaScript-Garden </a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof" target="_blank" rel="external"> 表达式和运算符 - typeof </a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="external"> 表达式和运算符 - instanceof </a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString" target="_blank" rel="external"> Object.prototype.toString() </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/浏览器爸爸之页面渲染/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2066,591 +2824,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/leanCloud存储数据/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/29/leanCloud存储数据/" itemprop="url">leanCloud存储数据</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T00:48:44+08:00">
-                2017-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据存储/" itemprop="url" rel="index">
-                    <span itemprop="name">数据存储</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/29/leanCloud存储数据/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/29/leanCloud存储数据/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/29/leanCloud存储数据/" class="leancloud_visitors" data-flag-title="leanCloud存储数据">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/27/React-生命周期初/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/27/React-生命周期初/" itemprop="url">React 生命周期（Lifecycle）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T14:54:52+08:00">
-                2017-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/27/React-生命周期初/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/27/React-生命周期初/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/27/React-生命周期初/" class="leancloud_visitors" data-flag-title="React 生命周期（Lifecycle）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bcj3yudj21hc0u0thp.jpg" alt="@ | center"></p>
-<h1 id="React-生命周期（Lifecycle）"><a href="#React-生命周期（Lifecycle）" class="headerlink" title="React 生命周期（Lifecycle）"></a>React 生命周期（Lifecycle）</h1><p><a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle" target="_blank" rel="external">参考：The Component Lifecycle</a></p>
-<p>React 的生命周期包括三个阶段：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. mount（挂载）</div><div class="line">2. update（更新）</div><div class="line">3. unmount（移除）</div></pre></td></tr></table></figure></p>
-<h2 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h2><p><code>mount</code> 就是第一次让组件出现在页面中的过程。这个过程的关键就是 render 方法。React 会将 render 的返回值（一般是虚拟 DOM，也可以是 DOM 或者 null）插入到页面中。</p>
-<p>这个过程会暴露几个钩子（hook）方便你往里面加代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> <span class="keyword">constructor</span>()</div><div class="line">2. componentWillMount()</div><div class="line">3. render()</div><div class="line">4. componentDidMount()</div></pre></td></tr></table></figure>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fix4zaxn30j21v0110hci.jpg" alt="@mount | center"></p>
-<h2 id="update"><a href="#update" class="headerlink" title="update"></a>update</h2><p><code>mount</code> 之后，如果数据有任何变动，就会来到 <code>update</code> 过程，这个过程有 5 个钩子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// - 我要读取 props 啦！</span></div><div class="line">componentWillReceiveProps(nextProps)</div><div class="line"></div><div class="line"><span class="comment">// - 请问要不要更新组件？true / false</span></div><div class="line">shouldComponentUpdate(nextProps, nextState) </div><div class="line"></div><div class="line"><span class="comment">// - 我要更新组件啦！</span></div><div class="line">componentWillUpdate() </div><div class="line"></div><div class="line"><span class="comment">// - 更新！</span></div><div class="line">render() </div><div class="line"></div><div class="line"><span class="comment">// - 更新完毕啦！</span></div><div class="line">componentDidUpdate()</div></pre></td></tr></table></figure>
-<p>##unmount</p>
-<p>当一个组件将要从页面中移除时，会进入 <code>unmount</code> 过程，这个过程就一个钩子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// - 我要死啦！</span></div><div class="line">componentWillUnmount()</div></pre></td></tr></table></figure>
-<p>你可以在这个组件死之前做一些清理工作。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一般情况下只在这几个钩子里 <code>setState</code>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">componentWillMount()</div><div class="line">componentDidMount()</div><div class="line">componentWillReceiveProps(nextProps, nextState) </div><div class="line">componentDidUpdate()</div></pre></td></tr></table></figure></p>
-<p><a href="https://gist.github.com/bvaughn/923dffb2cd9504ee440791fade8db5f9" target="_blank" rel="external">参考：React lifecycle cheatsheet</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/React-基础入门实例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/25/React-基础入门实例/" itemprop="url">React 基础入门实例</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T23:24:03+08:00">
-                2017-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/25/React-基础入门实例/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/25/React-基础入门实例/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/25/React-基础入门实例/" class="leancloud_visitors" data-flag-title="React 基础入门实例">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bfuhin3j21hc0u0gud.jpg" alt="@|center"></p>
-<h1 id="react-基本语法"><a href="#react-基本语法" class="headerlink" title="react 基本语法"></a>react 基本语法</h1><h2 id="一、ReactDOM-render"><a href="#一、ReactDOM-render" class="headerlink" title="一、ReactDOM.render()"></a>一、ReactDOM.render()</h2><p><code>ReactDOM.render</code> 是 <code>React</code> 的最基本方法，用于将模板转为 <code>HTML</code> 语言，并插入指定的 <code>DOM</code> 节点。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ReactDOM.render(</div><div class="line">    &lt;h1&gt;Hello React&lt;<span class="regexp">/h1&gt;,</span></div><div class="line"><span class="regexp">    document.getElementById("example")</span></div><div class="line"><span class="regexp">)</span></div></pre></td></tr></table></figure>
-<h2 id="二、JSX-语法"><a href="#二、JSX-语法" class="headerlink" title="二、JSX 语法"></a>二、JSX 语法</h2><p><code>HTML</code> 语言直接写在 <code>JavaScript</code> 语言之中，不加任何引号，这就是 <code>JSX</code> 的语法，它允许 <code>HTML</code> 与 <code>JavaScript</code> 的混写.</p>
-<p><code>JSX</code> 的基本语法规则：</p>
-<ul>
-<li>遇到 <code>HTML</code> 标签（以 <code>&lt;</code> 开头），就用 <code>HTML</code> 规则解析；</li>
-<li>遇到 <code>代码块</code> （以 <code>{</code> 开头），就用 <code>JavaScript</code> 规则解析。</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> names = [<span class="string">'傻龙'</span>, <span class="string">'大鳖'</span>, <span class="string">'大宝'</span>, <span class="string">'煜神'</span>];</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;div&gt;</div><div class="line">        &#123;</div><div class="line">            <span class="comment">// map会返回一个新数组，不对原数组产生影响,foreach不会产生新数组，</span></div><div class="line">            <span class="comment">// map因为返回数组所以可以链式操作，foreach不能</span></div><div class="line">            names.map(<span class="function"><span class="keyword">function</span> (<span class="params">name, index</span>) </span>&#123;</div><div class="line">                <span class="keyword">return</span> &lt;div key=&#123;index&#125;&gt;Hello &#123;name&#125;&lt;/div&gt;</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">    &lt;<span class="regexp">/div&gt;,</span></div><div class="line"><span class="regexp">    document.getElementById('example')</span></div><div class="line"><span class="regexp">)</span></div></pre></td></tr></table></figure>
-<p><code>JSX</code> 允许直接在模板插入 <code>JavaScript</code> 变量。如果这个变量是一个数组，则会展开这个数组的所有成员，添加到模板，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var arr = [</div><div class="line">    &lt;h1&gt;Hello world!&lt;/h1&gt;,</div><div class="line">    &lt;h2&gt;React is awesome&lt;/h2&gt;,</div><div class="line">];</div><div class="line">ReactDOM.render(</div><div class="line">    //如果这个变量是一个数组，JSX 会把它的所有成员，添加到模板</div><div class="line">    &lt;div&gt;&#123;arr&#125;&lt;/div&gt;,</div><div class="line">    document.getElementById(&apos;example&apos;)</div><div class="line">);</div></pre></td></tr></table></figure>
-<h2 id="三、组件"><a href="#三、组件" class="headerlink" title="三、组件"></a>三、组件</h2><p><code>React</code> 允许将代码封装成组件（component），然后像插入普通 <code>HTML</code> 标签一样，在网页中插入这个组件。</p>
-<p><code>React.createClass()</code> 方法就用于生成一个组件类</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> HelloMessage = React.createClass(&#123;</div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="comment">//class 跟 for 是js的保留字，所以使用规则如下：</span></div><div class="line">            &lt;div className=<span class="string">"thisIsClass"</span> htmlFor=<span class="string">'thisIsFor'</span>&gt;</div><div class="line">                &lt;h1&gt;Hello &#123;<span class="keyword">this</span>.props.name&#125;&lt;<span class="regexp">/h1&gt;</span></div><div class="line"><span class="regexp">            &lt;/</span>div&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;HelloMessage name=<span class="string">"Albert"</span>/&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"example"</span>)</div><div class="line">)</div></pre></td></tr></table></figure>
-<p>上面代码中，变量 <code>HelloMessage</code> 就是一个组件类。<br>模板插入 <code>&lt;HelloMessage /&gt;</code> 时，会自动生生成 <code>HelloMessage</code> 的一个实例。</p>
-<ul>
-<li>所有组件类都必须有自己的 <code>render</code> 方法，用于输出组件。</li>
-<li>注意，组件类的<strong>第一个字母必须大写</strong>，否则会报错，比如<code>HelloMessage</code>不能写成<code>helloMessage</code>。</li>
-<li>另外，组件类<strong>只能包含一个顶层标签</strong>，否则也会报错。</li>
-</ul>
-<p>组件的用法与原生的 <code>HTML</code> 标签完全一致，可以任意加入属性，比如 <code>&lt;HelloMessage name=&quot;Albert&quot;&gt;</code> ，就是 <code>HelloMessage</code> 组件加入一个 <code>name</code> 属性，值为 <code>Albert</code>。</p>
-<p>组件的属性可以在组件类的 <code>this.props</code> 对象上获取，比如 <code>name</code> 属性就可以通过 <code>this.props.name</code> 读取。</p>
-<p>因为 <code>class</code> 和 <code>for</code> 是 <code>JavaScript</code> 的保留字，所以添加组件属性时，有一个地方需要注意：</p>
-<ul>
-<li><code>class</code> 属性需要写成 <code>className</code> ；</li>
-<li><code>for</code> 属性需要写成 <code>htmlFor</code> ；</li>
-</ul>
-<h2 id="四、this-props-children"><a href="#四、this-props-children" class="headerlink" title="四、this.props.children"></a>四、this.props.children</h2><p><code>this.props</code> 对象的属性与组件的属性一一对应，但是有一个例外，就是 <code>this.props.children</code> 属性。它表示组件的所有子节点。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> NotesList = React.createClass(&#123;</div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;ol&gt;</div><div class="line">                &#123;</div><div class="line">                    <span class="comment">//this.props.children 表示组件的所有子节点</span></div><div class="line">                    React.Children.map(<span class="keyword">this</span>.props.children, <span class="function"><span class="keyword">function</span> (<span class="params">child</span>) </span>&#123;</div><div class="line">                        <span class="keyword">return</span> &lt;li&gt;&#123;child&#125;&lt;/li&gt;;</div><div class="line">                    &#125;)</div><div class="line">                &#125;</div><div class="line">            &lt;<span class="regexp">/ol&gt;</span></div><div class="line"><span class="regexp">        );</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">&#125;);</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">ReactDOM.render(</span></div><div class="line"><span class="regexp">    &lt;NotesList&gt;</span></div><div class="line"><span class="regexp">        &#123;/</span>*以下就是组件的两个子节点*<span class="regexp">/&#125;</span></div><div class="line"><span class="regexp">        &lt;span&gt;hello&lt;/</span>span&gt;</div><div class="line">        &lt;span&gt;world&lt;<span class="regexp">/span&gt;</span></div><div class="line"><span class="regexp">    &lt;/</span>NotesList&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>上面代码的 <code>NoteList</code> 组件有两个 <code>span</code> 子节点，它们都可以通过 <code>this.props.children</code> 读取</p>
-<p>这里需要<strong>注意</strong>， <code>this.props.children</code> 的值有三种可能：</p>
-<ul>
-<li>如果当前组件没有子节点，它就是 <code>undefined</code> ;</li>
-<li>如果有一个子节点，数据类型是 <code>object</code> ；</li>
-<li>如果有多个子节点，数据类型就是 <code>array</code> ；</li>
-</ul>
-<p><strong>但是</strong> ，好在 <code>React</code> 提供一个工具方法 <code>React.Children</code> 来处理 <code>this.props.children</code> 。</p>
-<p>我们可以用 <code>React.Children.map</code> 来遍历子节点，而不用担心 <code>this.props.children</code> 的数据类型是 <code>undefined</code> 还是 <code>object</code>。</p>
-<p>更多的 <code>React.Children</code> 的方法，请参考<a href="https://facebook.github.io/react/docs/react-api.html" target="_blank" rel="external">官方文档</a>。</p>
-<h2 id="五、PropTypes"><a href="#五、PropTypes" class="headerlink" title="五、PropTypes"></a>五、PropTypes</h2><p>组件的属性可以接受任意值，字符串、对象、函数等等都可以。有时，我们需要一种机制，验证别人使用组件时，提供的参数是否符合要求。</p>
-<p>组件类的 <code>PropTypes</code> 属性，就是用来验证组件实例的属性是否符合要求。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 如果把引号去掉就是数值类型，就会报错</span></div><div class="line"><span class="keyword">var</span> data = <span class="string">"string!"</span>;</div><div class="line"></div><div class="line"><span class="keyword">var</span> MyTitle = React.createClass(&#123;</div><div class="line">    PropTypes: &#123;</div><div class="line">        <span class="comment">//通过 React.PropTypes 规定 title 接受值的类型</span></div><div class="line">        title: React.PropTypes.string.isRequired</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    <span class="comment">//设置组件属性的默认值</span></div><div class="line">    getDefaultProps: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            title: <span class="string">"hello world"</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &lt;h1&gt; &#123;this.props.title&#125; &lt;/h1&gt;;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;MyTitle title=&#123;data&#125;/&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>上面的 <code>Mytitle</code> 组件有一个 <code>title</code> 属性。<code>PropTypes</code> 告诉 <code>React</code>，这个 <code>title</code> 属性是必须的，而且它的值<strong>必须是字符串</strong>。</p>
-<p>此外，<code>getDefaultProps</code> 方法可以用来设置组件属性的默认值。</p>
-<h2 id="六、获取真实的DOM节点"><a href="#六、获取真实的DOM节点" class="headerlink" title="六、获取真实的DOM节点"></a>六、获取真实的DOM节点</h2><p>组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。</p>
-<p>但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 <code>ref</code> 属性</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Component = React.createClass(&#123;</div><div class="line">    handleClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">//this.refs.[refName].[handler]</span></div><div class="line">        <span class="keyword">this</span>.refs.refName.focus()</div><div class="line">    &#125;,</div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;div&gt;</div><div class="line">                &#123;<span class="comment">/* ref：为了从组件获取真实 DOM 节点 */</span>&#125;</div><div class="line">                &lt;input type=<span class="string">"text"</span> ref=<span class="string">"refName"</span> /&gt;</div><div class="line">                &lt;input type=<span class="string">"button"</span></div><div class="line">                       value=<span class="string">"focus the text input"</span></div><div class="line">                       onClick=&#123;<span class="keyword">this</span>.handleClick&#125; /&gt;</div><div class="line">            &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">        )</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">&#125;);</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">ReactDOM.render(</span></div><div class="line"><span class="regexp">    &lt;Component /</span>&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"example"</span>)</div><div class="line">)</div></pre></td></tr></table></figure>
-<p><code>Component</code> 组件中的输入框用于获取用户的输入，这时就必须获取真实的 DOM 节点，虚拟 DOM 是拿不到用户输入的。为了做到这一点，文本输入框必须有一个 <code>ref</code> 属性，然后 <code>this.refs.[refName]</code> 就会返回这个真实的 DOM 节点。</p>
-<p>需要注意的是，由于 <code>this.refs.[refName]</code> 属性获取的是真实 DOM ，所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。上面代码中，通过为组件指定 <code>Click</code> 事件的回调函数，确保了只有等到真实 DOM 发生 <code>Click</code> 事件之后，才会读取 <code>this.refs.[refName]</code> 属性。</p>
-<h2 id="七、this-state"><a href="#七、this-state" class="headerlink" title="七、this.state"></a>七、this.state</h2><p>组件免不了要与用户互动，React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> LikeButton = React.createClass(&#123;</div><div class="line">    getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;<span class="attr">liked</span>: <span class="literal">false</span>&#125;</div><div class="line">    &#125;,</div><div class="line">    handleClick: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.setState(&#123;<span class="attr">liked</span>: !<span class="keyword">this</span>.state.liked&#125;)</div><div class="line">    &#125;,</div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> text = <span class="keyword">this</span>.state.liked ? <span class="string">"like"</span> : <span class="string">"haven\'t liked"</span>;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;p onClick=&#123;<span class="keyword">this</span>.handleClick&#125;&gt;</div><div class="line">                You &#123;text&#125; <span class="keyword">this</span>. Click to toggle.</div><div class="line">            &lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">        )</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">&#125;)</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">ReactDOM.render(</span></div><div class="line"><span class="regexp">    &lt;LikeButton/</span>&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>上面代码是一个 <code>LikeButton</code> 组件，它的 <code>getInitialState</code> 方法用于定义初始状态，也就是一个对象，这个对象可以通过 <code>this.state</code> 属性读取。</p>
-<p>当用户点击组件，导致状态变化，<code>this.setState</code> 方法就修改状态值，每次修改以后，自动调用 <code>this.render</code> 方法，再次渲染组件。</p>
-<p>由于 <code>this.props</code> 和 <code>this.state</code> 都用于描述组件的特性，可能会产生混淆。一个简单的区分方法是，<code>this.props</code> 表示那些一旦定义，就不再改变的特性，而 <code>this.state</code> 是会随着用户互动而产生变化的特性。</p>
-<h2 id="八、表单"><a href="#八、表单" class="headerlink" title="八、表单"></a>八、表单</h2><p>用户在表单填入的内容，属于用户跟组件的互动，所以<strong>不能</strong>用 <code>this.props</code> 读取。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Input = React.createClass(&#123;</div><div class="line">    <span class="comment">//初始化 this.state</span></div><div class="line">    getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;<span class="attr">value</span>: <span class="string">"init"</span>&#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">//setState 改变 this.state 的值</span></div><div class="line">    <span class="comment">//event.target.value 读取表单值</span></div><div class="line">    handleChange: <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.setState(&#123;<span class="attr">value</span>: event.target.value&#125;)</div><div class="line">    &#125;,</div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> value = <span class="keyword">this</span>.state.value;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;div&gt;</div><div class="line">                &#123;<span class="comment">/*回调函数触发*/</span>&#125;</div><div class="line">                &lt;input type=<span class="string">"text"</span> value=&#123;value&#125; onChange=&#123;<span class="keyword">this</span>.handleChange&#125;/&gt;</div><div class="line">                &lt;p&gt;&#123;value&#125;&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">            &lt;/</span>div&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">    &lt;Input/&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>上面代码中，文本输入框的值，不能用 <code>this.props.value</code> 读取，而要定义一个 <code>onChange</code> 事件的回调函数，通过 <code>event.target.value</code> 读取用户输入的值。</p>
-<p><code>textarea</code> 元素、<code>select</code>元素、<code>radio</code>元素都属于这种情况，更多介绍请参考<a href="http://facebook.github.io/react/docs/forms.html" target="_blank" rel="external">官方文档</a>。</p>
-<h2 id="九、组件的生命周期"><a href="#九、组件的生命周期" class="headerlink" title="九、组件的生命周期"></a>九、组件的生命周期</h2><p>组件的<a href="https://facebook.github.io/react/docs/working-with-the-browser.html#component-lifecycle" target="_blank" rel="external">生命周期</a>分成三个状态：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- Mounting：已插入真实 DOM</div><div class="line">- Updating：正在被重新渲染</div><div class="line">- Unmounting：已移出真实 DOM</div></pre></td></tr></table></figure></p>
-<p>React 为每个状态都提供了两种处理函数，<code>will</code> 函数在进入状态之前调用，<code>did</code> 函数在进入状态之后调用，三种状态共计五种处理函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- componentWillMount()</div><div class="line">- componentDidMount()</div><div class="line"></div><div class="line">- componentWillUpdate(object nextProps, object nextState)</div><div class="line">- componentDidUpdate(object prevProps, object prevState)</div><div class="line"></div><div class="line">- componentWillUnmount()</div></pre></td></tr></table></figure></p>
-<p>此外，React 还提供两种特殊状态的处理函数。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用</div><div class="line"></div><div class="line">- shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用</div></pre></td></tr></table></figure>
-<p>这些方法的详细说明，可以参[考官方文档]。(<a href="http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods" target="_blank" rel="external">http://facebook.github.io/react/docs/component-specs.html#lifecycle-methods</a>)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Hello = React.createClass(&#123;</div><div class="line">    getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            opacity: <span class="number">1</span></div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">//插入真实 DOM 之后调用</span></div><div class="line">    componentDidMount: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.timer = setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> opacity = <span class="keyword">this</span>.state.opacity;</div><div class="line">            opacity -= <span class="number">.05</span>;</div><div class="line">            <span class="keyword">if</span> (opacity &lt; <span class="number">.1</span>) &#123;</div><div class="line">                opacity = <span class="number">1</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">this</span>.setState(&#123;</div><div class="line">                opacity: opacity</div><div class="line">            &#125;);</div><div class="line">            <span class="comment">//bind(this) 绑定自定义函数的 this</span></div><div class="line">        &#125;.bind(<span class="keyword">this</span>), <span class="number">100</span>)</div><div class="line">    &#125;,</div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;div style=&#123;&#123;<span class="attr">opacity</span>: <span class="keyword">this</span>.state.opacity&#125;&#125;&gt;</div><div class="line">                Hello &#123;<span class="keyword">this</span>.props.name&#125;</div><div class="line">            &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">        );</span></div><div class="line"><span class="regexp">    &#125;,</span></div><div class="line"><span class="regexp">&#125;);</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">ReactDOM.render(</span></div><div class="line"><span class="regexp">    &lt;Hello name="World"/</span>&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">"example"</span>)</div><div class="line">)</div></pre></td></tr></table></figure>
-<p>上面代码在<code>Hello</code>组件加载以后，通过 <code>componentDidMount</code> 方法设置一个定时器，每隔100毫秒，就重新设置组件的透明度，从而引发重新渲染。</p>
-<p>另外，组件的<code>style</code>属性的设置方式也值得注意，不能写成<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">style=<span class="string">"opacity:&#123;this.state.opacity&#125;;"</span></div></pre></td></tr></table></figure></p>
-<p>而要写成<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">style=&#123;&#123;<span class="attr">opacity</span>: <span class="keyword">this</span>.state.opacity&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>这是因为 <a href="https://facebook.github.io/react/tips/inline-styles.html" target="_blank" rel="external">React 组件样式</a> 一个对象，所以第一重大括号表示这是 JavaScript 语法，第二重大括号表示样式对象。</p>
-<h2 id="十、Ajax"><a href="#十、Ajax" class="headerlink" title="十、Ajax"></a>十、Ajax</h2><p>组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 <code>componentDidMount</code> 方法设置 Ajax 请求，等到请求成功，再用 <code>this.setState</code> 方法重新渲染 UI</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个 RepoList 组件</span></div><div class="line"><span class="keyword">var</span> RepoList = React.createClass(&#123;</div><div class="line">	<span class="comment">// 初始化 this.state</span></div><div class="line">    getInitialState: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            loading: <span class="literal">true</span>,</div><div class="line">            error: <span class="literal">null</span>,</div><div class="line">            data: <span class="literal">null</span></div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">	<span class="comment">// 组件添加到真实 DOM 后调用</span></div><div class="line">    componentDidMount() &#123;</div><div class="line">	    <span class="comment">// 定义一个 promise</span></div><div class="line">        <span class="keyword">this</span>.props.promise.then(</div><div class="line">	        <span class="comment">// promise 延时成功</span></div><div class="line">            value =&gt; &#123;</div><div class="line">	            <span class="comment">// 改变 loading 状态，data 数据</span></div><div class="line">                <span class="keyword">this</span>.setState(&#123;<span class="attr">loading</span>: <span class="literal">false</span>, <span class="attr">data</span>: value&#125;)</div><div class="line">            &#125;,</div><div class="line">            <span class="comment">// promise 延时失败 改变 loading 状态，error 数据</span></div><div class="line">            error =&gt; <span class="keyword">this</span>.setState(&#123;<span class="attr">loading</span>: <span class="literal">false</span>, <span class="attr">error</span>: error&#125;));</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">	<span class="comment">// 渲染函数</span></div><div class="line">    render: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	    <span class="comment">// promise pending ...</span></div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.state.loading) &#123;</div><div class="line">            <span class="keyword">return</span> &lt;span&gt;Loading...&lt;/span&gt;;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// promise reject!</span></div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.state.error !== <span class="literal">null</span>) &#123;</div><div class="line">            <span class="keyword">return</span> &lt;span&gt;Error: &#123;this.state.error.message&#125;&lt;/span&gt;;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">	        <span class="comment">// 成功请求到数据，添加到变量和标签中</span></div><div class="line">            <span class="keyword">var</span> repos = <span class="keyword">this</span>.state.data.items;</div><div class="line">            <span class="comment">// 遍历 ajax 请求存储好的数据</span></div><div class="line">            <span class="keyword">var</span> repoList = repos.map(<span class="function"><span class="keyword">function</span> (<span class="params">repo, index</span>) </span>&#123;</div><div class="line">	            <span class="comment">// 循环创建jsx html 标签，返回保存到repoList</span></div><div class="line">                <span class="keyword">return</span> (</div><div class="line">                    &lt;li key=&#123;index&#125;&gt;&lt;a href=&#123;repo.html_url&#125;&gt;&#123;repo.name&#125;&lt;/a&gt; (&#123;repo.stargazers_count&#125; stars)</div><div class="line">                        &lt;br/&gt; &#123;repo.description&#125;&lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">                );</span></div><div class="line"><span class="regexp">            &#125;);</span></div><div class="line"><span class="regexp">            /</span><span class="regexp">/ 返回 创建 jsx html 标签并将 repolist 添加进去</span></div><div class="line"><span class="regexp">            return (</span></div><div class="line"><span class="regexp">                &lt;main&gt;</span></div><div class="line"><span class="regexp">                    &lt;h1&gt;Most Popular JavaScript Projects in Github&lt;/</span>h1&gt;</div><div class="line">                    &lt;ol&gt;&#123;repoList&#125;&lt;<span class="regexp">/ol&gt;</span></div><div class="line"><span class="regexp">                &lt;/m</span>ain&gt;</div><div class="line">            );</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 插入 DOM</span></div><div class="line">ReactDOM.render(</div><div class="line">	<span class="comment">// AJAX 请求数据</span></div><div class="line">    &lt;RepoList promise=&#123;$.getJSON(<span class="string">'https://api.github.com/search/repositories?q=javascript&amp;sort=stars'</span>)&#125;/&gt;,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
-<p>如果Promise对象正在抓取数据（pending状态），组件显示”正在加载”；如果Promise对象报错（rejected状态），组件显示报错信息；如果Promise对象抓取数据成功（fulfilled状态），组件显示获取的数据。</p>
-<p><a href="http://www.ruanyifeng.com/blog/2015/03/react.html" target="_blank" rel="external">参考：React 入门实例教程</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2696,7 +2874,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2707,7 +2885,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2718,7 +2896,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
