@@ -65,3 +65,4 @@ nrm help
 
 [ nrm -- NPM registry manager - Github ](https://github.com/Pana/nrm)
 
+（完）
