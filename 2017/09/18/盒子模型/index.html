@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="盒子模型,CSS," />
 
 
 
@@ -94,13 +94,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Albert&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2017/08/index.html">
+<meta name="description" content="梳理基础知识，从 CSS 盒模型开始！  一、什么是盒子模型我们先看一张图：  @盒子模型 | center  最开始看着这张图的时候，觉得与其说是盒模型，倒不如说是张画布( 不是 canvas svg 的意思 )，直到我遇上了外边距合并 (ｷ｀ﾟДﾟ´)!! 下面，请听我娓娓道来。 首先，这货规定了哪些地方你可以画上哪些东西： 如图所示，由内而外依次是 content , padding ,">
+<meta name="keywords" content="盒子模型,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="盒子模型">
+<meta property="og:url" content="http://yoursite.com/2017/09/18/盒子模型/index.html">
 <meta property="og:site_name" content="Albert&#39;s Blog">
+<meta property="og:description" content="梳理基础知识，从 CSS 盒模型开始！  一、什么是盒子模型我们先看一张图：  @盒子模型 | center  最开始看着这张图的时候，觉得与其说是盒模型，倒不如说是张画布( 不是 canvas svg 的意思 )，直到我遇上了外边距合并 (ｷ｀ﾟДﾟ´)!! 下面，请听我娓娓道来。 首先，这货规定了哪些地方你可以画上哪些东西： 如图所示，由内而外依次是 content , padding ,">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9ye8lqsj207t0840sw.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9zqaz90j20qi093abt.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fjpa9rz9h5j20qg09975w.jpg">
+<meta property="og:updated_time" content="2017-09-19T16:39:44.826Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Albert&#39;s Blog">
+<meta name="twitter:title" content="盒子模型">
+<meta name="twitter:description" content="梳理基础知识，从 CSS 盒模型开始！  一、什么是盒子模型我们先看一张图：  @盒子模型 | center  最开始看着这张图的时候，觉得与其说是盒模型，倒不如说是张画布( 不是 canvas svg 的意思 )，直到我遇上了外边距合并 (ｷ｀ﾟДﾟ´)!! 下面，请听我娓娓道来。 首先，这货规定了哪些地方你可以画上哪些东西： 如图所示，由内而外依次是 content , padding ,">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9ye8lqsj207t0840sw.jpg">
 
 
 
@@ -129,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/08/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/18/盒子模型/"/>
 
 
 
 
 
-  <title>归档 | Albert's Blog</title>
+  <title>盒子模型 | Albert's Blog</title>
   
 
 
@@ -164,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,411 +311,252 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/盒子模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">盒子模型</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T23:26:45+08:00">
+                2017-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 25 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
-          </div>
-        
-        
 
-        
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/18/盒子模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/18/盒子模型/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/2017/09/18/盒子模型/" class="leancloud_visitors" data-flag-title="盒子模型">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/30/试题：数组、递归/" itemprop="url">
-              
-                <span itemprop="name">试题：数组、递归</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-30T22:19:59+08:00"
-              content="2017-08-30" >
-          08-30
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+          
 
+        </div>
+      </header>
+    
 
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/29/函数声明、函数表达式、匿名函数/" itemprop="url">
-              
-                <span itemprop="name">函数声明、函数表达式、匿名函数</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-29T19:06:23+08:00"
-              content="2017-08-29" >
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/29/试题：作用域链-闭包/" itemprop="url">
-              
-                <span itemprop="name">试题：作用域链+闭包</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-29T14:40:33+08:00"
-              content="2017-08-29" >
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/29/leanCloud存储数据/" itemprop="url">
-              
-                <span itemprop="name">leanCloud存储数据</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-29T00:48:44+08:00"
-              content="2017-08-29" >
-          08-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <blockquote>
+<p>梳理基础知识，从 CSS 盒模型开始！</p>
+</blockquote>
+<h2 id="一、什么是盒子模型"><a href="#一、什么是盒子模型" class="headerlink" title="一、什么是盒子模型"></a>一、什么是盒子模型</h2><p>我们先看一张图：</p>
+<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-18/80360528.jpg" target="_blank" rel="external"> @盒子模型 | center </a></p>
+<p>最开始看着这张图的时候，觉得与其说是盒模型，倒不如说是张画布( 不是 canvas svg 的意思 )，直到我遇上了外边距合并 <code>(ｷ｀ﾟДﾟ´)!!</code> 下面，请听我娓娓道来。</p>
+<p>首先，这货规定了哪些地方你可以画上哪些东西：</p>
+<p>如图所示，由内而外依次是 <code>content</code> , <code>padding</code> , <code>bording</code> , <code>margin</code></p>
+<ol>
+<li><p>content : 真正容纳东西的区域，在 content 中你可以画上 其他元素、文本 等任意内容。</p>
+</li>
+<li><p>padding : 盒子的内边距，包裹在 content 之外，可以想象成快递中的空气气囊，夹在 border 和 content 之间。</p>
+</li>
+<li><p>border : 盒子的边框，相当于你在 padding 外镶了一层。border 可以指定 颜色、粗细、样式等。（相当于一个阉割版的 content）</p>
+</li>
+<li><p>margin : 盒子的外边距外边距，这个盒子周围空置的安全区域（在不发生外边距折叠的情况下）</p>
+</li>
+</ol>
+<h2 id="二、使用开发者工具查看盒模型"><a href="#二、使用开发者工具查看盒模型" class="headerlink" title="二、使用开发者工具查看盒模型"></a>二、使用开发者工具查看盒模型</h2><p>emmmmm，个人觉得先学会使用开发者工具的部分功能后，会对学习盒子模型降低很大的时间成本。</p>
+<p>话不多说，直接看图：</p>
+<p>不对不对，你打开 Chrome 浏览器先 =。=</p>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9ye8lqsj207t0840sw.jpg" alt="@右键菜单 | center"></p>
+<p>这时候你可以单击检查，然后会弹出控制台（开发者工具）。当然你也可以按 F12</p>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9zqaz90j20qi093abt.jpg" alt="@开发者工具 | center"></p>
+<p>Elements : 网页中的各个元素，你可以尝试着移动鼠标到某个元素后，单机选中元素，然后会得到类似如下图一样结果，注意红线选中部分。</p>
+<p>（当然一般都是单击左上角的一个小鼠标箭头的图标，然后直接单击网页呈现的内容选择）</p>
+<ol>
+<li>右上角的箭头，单击后可以直接单击选择页面呈现的元素，并在控制台中定位</li>
+<li>DOM 文档中蓝色背景标签 p，我刚刚选中的那个元素</li>
+<li>下面有个类似导航条一样的东西，是当前选中元素所在的层级</li>
+<li>右边 styles 是当前元素的 CSS 样式，点击 computed 可以查看最终计算后的样式</li>
+<li>styles 一栏滚动到底部有这么一个花里胡哨的框框，就是盒子模型，从内到外依次和上面介绍的那个一样，而且有文字注明</li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjpa9rz9h5j20qg09975w.jpg" alt="@选中元素 | center"></p>
+<p>ok,知道了这些基本使用后，我们来了解一下盒子模型的尺寸</p>
+<h2 id="三、盒模型的尺寸"><a href="#三、盒模型的尺寸" class="headerlink" title="三、盒模型的尺寸"></a>三、盒模型的尺寸</h2><p>慢着，在讲盒模型尺寸前，最好先简单了解一个可以帮助你解决很多问题的属性： <code>box-sizing</code></p>
+<p><code>box-sizing</code> 属性可以帮助我们在 <code>标准盒模型</code> 与 <code>IE 盒模型</code> 中自由切换（为什么这么称呼请自行 Google）</p>
+<p>需要注意的是：这两个盒子模型的尺寸的计算方法是不一样的！</p>
+<h3 id="box-sizing-border-box-（IE-盒模型）"><a href="#box-sizing-border-box-（IE-盒模型）" class="headerlink" title="box-sizing : border-box; （IE 盒模型）"></a>box-sizing : border-box; （IE 盒模型）</h3><p>观察下图，明显表示了，在 IE 盒模型中</p>
+<ul>
+<li>width = content 宽度 + 左右 padding 宽度 + 左右 border 宽度</li>
+<li>height = content 高度 + 左右 padding 高度 + 左右 border 高度</li>
+</ul>
+<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-19/63380423.jpg" target="_blank" rel="external">@IE盒模型 | center</a></p>
+<h3 id="box-sizing-content-box-（标准盒模型）"><a href="#box-sizing-content-box-（标准盒模型）" class="headerlink" title="box-sizing : content-box; （标准盒模型）"></a>box-sizing : content-box; （标准盒模型）</h3><p>标准盒模型是默认值，现在看一下与 IE 盒模型有什么不同</p>
+<ul>
+<li>width = content 宽度</li>
+<li>height = content 高度</li>
+</ul>
+<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-19/5178800.jpg" target="_blank" rel="external">@标准盒模型 | center</a></p>
+<h3 id="box-sizing-inherit"><a href="#box-sizing-inherit" class="headerlink" title="box-sizing : inherit;"></a>box-sizing : inherit;</h3><p>继承父元素的盒模型样式。</p>
+<p>以上就是 box-sizing 的简介，很简单，但很实用。</p>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>关于兼容性的问题，请移步 <a href="https://caniuse.com/#search=box-sizing" target="_blank" rel="external"> caniuse.com </a></p>
+<p>关于盒子模型的介绍基本就到这里。</p>
+<p>（完）</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/27/React-生命周期/" itemprop="url">
-              
-                <span itemprop="name">React 生命周期（Lifecycle）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-27T14:54:52+08:00"
-              content="2017-08-27" >
-          08-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/25/React-基础入门实例/" itemprop="url">
-              
-                <span itemprop="name">React 基础入门实例</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-25T23:24:03+08:00"
-              content="2017-08-25" >
-          08-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/25/Albert-s-Favorites/" itemprop="url">
-              
-                <span itemprop="name">Albert's Favorites</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-25T10:01:41+08:00"
-              content="2017-08-25" >
-          08-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/25/用CSS3实现一个立方体/" itemprop="url">
-              
-                <span itemprop="name">用CSS3实现一个立方体</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-25T01:00:27+08:00"
-              content="2017-08-25" >
-          08-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/24/详说-Cookie-LocalStorage-与-SessionStorage/" itemprop="url">
-              
-                <span itemprop="name">详说 Cookie, LocalStorage 与 SessionStorage</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-24T14:43:17+08:00"
-              content="2017-08-24" >
-          08-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/24/低版本IE支持HTML5/" itemprop="url">
-              
-                <span itemprop="name">低版本IE支持HTML5</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-24T02:38:03+08:00"
-              content="2017-08-24" >
-          08-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/盒子模型/" rel="tag"># 盒子模型</a>
+          
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/18/nrm-npm-registry-管理工具/" rel="next" title="nrm ---- npm registry 管理工具">
+                <i class="fa fa-chevron-left"></i> nrm ---- npm registry 管理工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/19/从-0-1-的学习书单/" rel="prev" title="从 0 - 1 的学习书单">
+                从 0 - 1 的学习书单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/08/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/08/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -714,6 +564,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
 
         </div>
         
@@ -734,8 +590,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpeg"
@@ -810,6 +675,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、什么是盒子模型"><span class="nav-number">1.</span> <span class="nav-text">一、什么是盒子模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、使用开发者工具查看盒模型"><span class="nav-number">2.</span> <span class="nav-text">二、使用开发者工具查看盒模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、盒模型的尺寸"><span class="nav-number">3.</span> <span class="nav-text">三、盒模型的尺寸</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#box-sizing-border-box-（IE-盒模型）"><span class="nav-number">3.1.</span> <span class="nav-text">box-sizing : border-box; （IE 盒模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#box-sizing-content-box-（标准盒模型）"><span class="nav-number">3.2.</span> <span class="nav-text">box-sizing : content-box; （标准盒模型）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#box-sizing-inherit"><span class="nav-number">3.3.</span> <span class="nav-text">box-sizing : inherit;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兼容性"><span class="nav-number">3.4.</span> <span class="nav-text">兼容性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -974,11 +855,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
 
 
   
@@ -1003,6 +882,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94839, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 94839, xid: "2017/09/18/盒子模型/"});
 		
 
 		(function() {

@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fiq4cu6ug8j20lo0dgt95.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fiq5fcodndj20ex07c79c.jpg">
-<meta property="og:updated_time" content="2017-08-25T03:09:20.516Z">
+<meta property="og:updated_time" content="2017-09-19T17:44:16.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一篇文章彻底入门 SCSS">
 <meta name="twitter:description" content="SCSS 起飞指南  写在前面：本文看起来比较长，其实是罗列了比较多的示例代码，如果你能坚持看完，对照学习，相信两个小时后你就能自己起飞愉快地去写scss了。  （一）Sass 与SCSS的区别1.1 什么是Sass Sass 是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。  1.2 Sass 与SCSS有什么区别 Sass 和 SCSS">
@@ -543,10 +543,10 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="comment">/*标准的CSS注释*/</span></div><div class="line"><span class="comment">/*!重要注释*/</span></div></pre></td></tr></table></figure>
 <h3 id="3-2-计算规则"><a href="#3-2-计算规则" class="headerlink" title="3.2 计算规则"></a>3.2 计算规则</h3><h4 id="1-定义变量-var"><a href="#1-定义变量-var" class="headerlink" title="1. 定义变量 $var"></a>1. 定义变量 <code>$var</code></h4><p>SCSS中所有的变量由一个 <code>$</code> 符号定义<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</div><div class="line"><span class="selector-id">#main</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-id">#main</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">10px</span>; &#125;</div></pre></td></tr></table></figure>
-<h4 id="2-插值"><a href="#2-插值" class="headerlink" title="2. 插值: #{}"></a>2. 插值: <code>#{}</code></h4><p>将 <code>#{里面的值}</code>当做字符串插入<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$name</span>: foo;</div><div class="line"><span class="variable">$attr</span>: border;</div><div class="line"><span class="selector-tag">p</span>.#&#123;<span class="variable">$name</span>&#125; &#123;</div><div class="line">  #&#123;<span class="variable">$attr</span>&#125;-<span class="attribute">color</span>: blue;</div><div class="line">  : <span class="string">"hello world #&#123;$name&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-class">.foo</span> &#123;</div><div class="line">  <span class="attribute">border-color</span>: blue;</div><div class="line">  : "hello world foo"; &#125;</div></pre></td></tr></table></figure>
-<p>在文本字符串中，<code>#{}</code> 形式的表达式可以被用来在字符串中添加动态值，空值会被视作空字符串：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-tag">p</span>:before &#123;</div><div class="line">  : <span class="string">"I ate #&#123;5 + 10&#125; pies!"</span>;</div><div class="line">&#125;</div><div class="line"><span class="variable">$value</span>: null;</div><div class="line"><span class="selector-tag">p</span>:before &#123;</div><div class="line">  : <span class="string">"I ate #&#123;$value&#125; pies!"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  : "I ate 15 pies!"; &#125;</div><div class="line"></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  : "I ate  pies!"; &#125;</div></pre></td></tr></table></figure>
+<h4 id="2-插值"><a href="#2-插值" class="headerlink" title="2. 插值: #{}"></a>2. 插值: <code>#{}</code></h4><p>将 <code>#{里面的值}</code>当做字符串插入<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$name</span>: foo;</div><div class="line"><span class="variable">$attr</span>: border;</div><div class="line"><span class="selector-tag">p</span>.#&#123;<span class="variable">$name</span>&#125; &#123;</div><div class="line">  #&#123;<span class="variable">$attr</span>&#125;-<span class="attribute">color</span>: blue;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"hello world #&#123;$name&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-class">.foo</span> &#123;</div><div class="line">  <span class="attribute">border-color</span>: blue;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"hello world foo"</span>; &#125;</div></pre></td></tr></table></figure>
+<p>在文本字符串中，<code>#{}</code> 形式的表达式可以被用来在字符串中添加动态值，空值会被视作空字符串：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-tag">p</span>:before &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate #&#123;5 + 10&#125; pies!"</span>;</div><div class="line">&#125;</div><div class="line"><span class="variable">$value</span>: null;</div><div class="line"><span class="selector-tag">p</span>:before &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate #&#123;$value&#125; pies!"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate 15 pies!"</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate  pies!"</span>; &#125;</div></pre></td></tr></table></figure>
 <h4 id="3-、-、-、-的运算"><a href="#3-、-、-、-的运算" class="headerlink" title="3. +、-、*、/ 的运算"></a>3. <code>+</code>、<code>-</code>、<code>*</code>、<code>/</code> 的运算</h4><ul>
 <li>在SCSS中<code>+</code> 、<code>-</code> 、<code>*</code> 的运算方法与日常使用相同，需要单位的还请都带上你的单位；</li>
 <li><code>/</code> 除法运算比较特殊，直接使用最后编译出来的结果可能并不是你日常所想的那样，其特殊性大致分为三种情况，下面的代码演示中已一一说明；</li>
@@ -681,32 +681,6 @@
 
     <div class="post-spread">
       
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-<span class="jiathis_txt">分享到：</span>
-<a class="jiathis_button_fav">收藏夹</a>
-<a class="jiathis_button_copy">复制网址</a>
-<a class="jiathis_button_email">邮件</a>
-<a class="jiathis_button_weixin">微信</a>
-<a class="jiathis_button_qzone">QQ空间</a>
-<a class="jiathis_button_tqq">腾讯微薄</a>
-<a class="jiathis_button_douban">豆瓣</a>
-<a class="jiathis_button_share">一键分享</a>
-
-<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-<a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" >
-var jiathis_config={
-  data_track_clickback:true,
-  summary:"",
-  shortUrl:false,
-  hideMore:false
-}
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-      
     </div>
   </div>
 
@@ -767,7 +741,7 @@ var jiathis_config={
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -778,7 +752,7 @@ var jiathis_config={
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -789,7 +763,7 @@ var jiathis_config={
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
