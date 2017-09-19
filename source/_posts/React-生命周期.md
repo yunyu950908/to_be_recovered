@@ -57,7 +57,7 @@ render()
 componentDidUpdate() 
 ```
 
-##unmount
+## unmount
 
 当一个组件将要从页面中移除时，会进入 `unmount` 过程，这个过程就一个钩子：
 
