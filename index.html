@@ -607,14 +607,8 @@
 <p>我们站在前端的角度, 都可以做哪些优化呢?</p>
 <h3 id="来自谷歌的-Web-优化实践"><a href="#来自谷歌的-Web-优化实践" class="headerlink" title="来自谷歌的 Web 优化实践"></a>来自谷歌的 Web 优化实践</h3><ol>
 <li>避免资源 404 请求</li>
-<li>避免CSS @import</li>
-</ol>
-<p>import 依赖关系, 加载完一个再加载另一个</p>
-<ol>
-<li>避免使用document.write</li>
-</ol>
-<p>都用 HTML 来调用, 使用 document.write 浏览器还需要运行 JS 解析器分析下面要做什么</p>
-<ol>
+<li>避免CSS @import<br>import 依赖关系, 加载完一个再加载另一个</li>
+<li>避免使用document.write<br>都用 HTML 来调用, 使用 document.write 浏览器还需要运行 JS 解析器分析下面要做什么</li>
 <li>合并、压缩 CSS, JS文件</li>
 <li>精灵图整合图像, 字体图标代替部分图片</li>
 <li>延迟 JavaScript 加载</li>
