@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[读书笔记：图解HTTP（一）]]></title>
+    <url>%2F2017%2F09%2F20%2F%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%9A%E5%9B%BE%E8%A7%A3HTTP%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[SVG 地址：https://github.com/yunyu950908/readingNotes]]></content>
+      <categories>
+        <category>读书笔记</category>
+      </categories>
+      <tags>
+        <tag>读书笔记</tag>
+        <tag>图解 HTTP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[前端页面优化]]></title>
+    <url>%2F2017%2F09%2F20%2F%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[原文地址：前端可以做哪些优化 前端可以做哪些优化网页打开的延时, 页面操作的流畅度, 就是一个网站的生命. 我们站在前端的角度, 都可以做哪些优化呢? 来自谷歌的 Web 优化实践 避免资源 404 请求 避免CSS @import import 依赖关系, 加载完一个再加载另一个 避免使用document.write 都用 HTML 来调用, 使用 document.write 浏览器还需要运行 JS 解析器分析下面要做什么 合并、压缩 CSS, JS文件 精灵图整合图像, 字体图标代替部分图片 延迟 JavaScript 加载 启用Keep-Alive 将小的CSS和JavaScript代码内嵌到HTML中 利用浏览器缓存不长变更的资源 尽量减少DNS查询次数 尽量减少重定向 优化样式表和脚本的顺序 避免JavaScripts阻塞渲染 缩小原始图像 指定图像尺寸 来自雅虎的 Web 优化实践 内容优化 避免资源 404 请求 减少 HTTP 请求 减少 DNS 查找 减少重定向 预加载组件 延迟加载脚本和内容 Ajax 缓存文件资源 减少 DOM 元素数量 根据域名划分页面内容 最小化 iframe 数量 服务器优化 使用 CDN 内容分发网络 添加Expires或Cache-Control信息头 Gzip 压缩 设置 Etag , 判断服务器与浏览器缓存中内容的一致性 提前刷新缓冲区 对Ajax请求使用GET方法 避免空的 src cookie 的优化 减少 cookie 的大小 针对Web组件使用域名无关的Cookie ( 突破 cookie 大小的限制 ) CSS 优化 将CSS代码放在HTML页面的顶部 避免使用CSS表达式 使用&lt;link&gt;来代替@import 避免使用Filters JavaScript 优化 将JavaScript脚本放在页面的底部 将JavaScript和CSS作为外部文件来引用 缩小JavaScript和CSS 删除重复的脚本 最小化DOM的访问 开发智能的事件处理程序 图像优化 优化图片大小 指定图片大小 使用精灵图 favicon 尽量小, 可缓存 针对移动优化 保持组件大小在 25KB 以下, iPhone 不能缓存 25KB 以上文件 打包组件]]></content>
+      <categories>
+        <category>浏览器</category>
+      </categories>
+      <tags>
+        <tag>优化</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[从 0 - 1 的学习书单]]></title>
     <url>%2F2017%2F09%2F19%2F%E4%BB%8E-0-1-%E7%9A%84%E5%AD%A6%E4%B9%A0%E4%B9%A6%E5%8D%95%2F</url>
     <content type="text"><![CDATA[其中部分书籍是开源作品，能在网上免费浏览。如您喜欢，可以购买实体书支持一下出版商。 零、添加收藏夹 (*^▽^*)开源书籍： 《JavaScript 标准参考教程（alpha）》 http://javascript.ruanyifeng.com/ 《ES6 标准入门》 http://es6.ruanyifeng.com/豆瓣读书：ES6 标准入门 《javascript 秘密花园》http://bonsaiden.github.io/JavaScript-Garden/zh/ 《Promise迷你书》 http://liubin.org/promises-book/ 一、阶段一（切静态页面） CSS 那三本书都是经典中的经典，按年代顺序列出，入门阶段只需通读其中一本基本能写出一个 “ 不是太丑 “ 的静态页面。 《 Head First HTML与CSS（第2版）》豆瓣读书：Head First HTML与CSS（第2版） 《CSS权威指南（第三版）》豆瓣读书：CSS权威指南（第三版） 《精通CSS：高级Web标准解决方案（第2版）》豆瓣读书：精通CSS（第2版） 《CSS揭秘》豆瓣读书：CSS揭秘 二、阶段二（简单交互） 《JavaScript DOM编程艺术（第2版）》豆瓣读书：JavaScript DOM编程艺术（第2版） 三、阶段三（能力养成） JavaScript高级程序设计 与 JavaScript权威指南 二选一即可，内容大同小异。但无疑是一本好书，每个阶段翻看都会有不懂的感悟。 《JavaScript高级程序设计（第3版）》豆瓣读书：JavaScript高级程序设计（第3版） 《JavaScript语言精粹》豆瓣读书：JavaScript语言精粹 《JavaScript权威指南(第四版)》豆瓣读书：JAVASCRIPT权威指南(第四版) 《你不知道的JavaScript（上卷）》豆瓣读书：你不知道的JavaScript（上卷） 《你不知道的JavaScript（中卷）》豆瓣读书：你不知道的JavaScript（中卷） 《JavaScript设计模式与开发实践》豆瓣读书：JavaScript设计模式与开发实践 四、最终阶段多逛一些优质社区，向别人学习！ 社区推荐：（不区分顺序，想到什么写什么） 知乎 https://www.zhihu.com/ 掘金 https://juejin.im/ segmentfault https://segmentfault.com/ StackOverflow https://stackoverflow.com/ 简书 http://www.jianshu.com/ freeCodeCamp https://www.freecodecamp.cn/ 各种框架社区 =。= 结语虽然列了很多书，但事实上是，入门阶段看博客与翻文档更多，当你感觉需要提高，补充基础的时候，看书有奇效。 最后，上面列出的那么多东西，我也只看了其中的一小部分，正在慢慢补充中。。。 （完）]]></content>
@@ -142,9 +165,9 @@
       <tags>
         <tag>javascript</tag>
         <tag>闭包</tag>
-        <tag>试题</tag>
         <tag>作用域</tag>
         <tag>this</tag>
+        <tag>试题</tag>
       </tags>
   </entry>
   <entry>
