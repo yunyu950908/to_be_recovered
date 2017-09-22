@@ -328,7 +328,7 @@ $name: foo;
 $attr: border;
 p.#{$name} {
   #{$attr}-color: blue;
-  : "hello world #{$name}"
+  content: "hello world #{$name}"
 }
 ```
 
@@ -336,27 +336,27 @@ p.#{$name} {
 /*css*/
 p.foo {
   border-color: blue;
-  : "hello world foo"; }
+  content: "hello world foo"; }
 ```
 在文本字符串中，`#{}` 形式的表达式可以被用来在字符串中添加动态值，空值会被视作空字符串：
 ```scss
 /*scss*/
 p:before {
-  : "I ate #{5 + 10} pies!";
+  content: "I ate #{5 + 10} pies!";
 }
 $value: null;
 p:before {
-  : "I ate #{$value} pies!";
+  content: "I ate #{$value} pies!";
 }
 ```
 
 ```css
 /*css*/
 p:before {
-  : "I ate 15 pies!"; }
+  content: "I ate 15 pies!"; }
 
 p:before {
-  : "I ate  pies!"; }
+  content: "I ate  pies!"; }
 ```
 
 
