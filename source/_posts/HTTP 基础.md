@@ -287,8 +287,6 @@ videoId=2257
 
 ## 五、URI 与 URL
 
-看清楚啦，是 `
-
 - **URI：**统一资源标识符（Uniform Resource Identifier)，表示某一具体的互联网资源。
 
 - **URL：**统一资源定位符( Uniform Resource Locator )，URI 的子集，表示资源的地点（通过位置描述资源）。

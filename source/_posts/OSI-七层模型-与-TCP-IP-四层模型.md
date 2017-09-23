@@ -123,45 +123,7 @@ UDP: 只负责发包
 
 ## 3、OSI 七层模型 与 TCP/IP 四层模型的对应关系
 
-<table style="vertical-align: middle;margin:0 auto;">
-<tr>
-    <th>OSI 七层网络模型</th>
-    <th>TCP/IP 四层模型</th>
-    <th>对应网络协议</th>
-</tr>
-<tr>
-    <td>应用层（Application）</td>
-    <td rowspan="3" style="vertical-align: middle;text-align: center;">应用层</td>
-    <td>TFTP, FTP, NFS, WAIS</td>
-</tr>
-<tr>
-    <td>表示层（Presentation）</td>
-    <td>Telnet, Rlogin, SNMP, Gopher</td>
-</tr>
-<tr>
-    <td>会话层（Session）</td>
-    <td>SMTP, DNS</td>
-</tr>
-<tr>
-    <td>传输层（Transport）</td>
-    <td style="vertical-align: middle;text-align: center;">传输层</td>
-    <td>TCP, UDP</td>
-</tr>
-<tr>
-    <td>网络层（Network）</td>
-    <td style="vertical-align: middle;text-align: center;">网络层</td>
-    <td>IP, ICMP, ARP, RARP, AKP, UUCP</td>
-</tr>
-<tr>
-    <td>数据链路层（Data Link）</td>
-    <td rowspan="2" style="vertical-align: middle;text-align: center;">网络接口</td>
-    <td>FDDI, Ethernet, Arpanet, PDN, SLIP, PPP</td>
-</tr>
-<tr>
-    <td>物理层（Physical）</td>
-    <td>IEEE 802.1A, IEEE 802.2到IEEE 802.11</td>
-</tr>
-</table>
+<table style="vertical-align: middle;margin:0 auto;"><tr><th>OSI 七层网络模型</th><th>TCP/IP 四层模型</th><th>对应网络协议</th></tr><tr><td>应用层（Application）</td><td rowspan="3" style="vertical-align: middle;text-align: center;">应用层</td><td>TFTP, FTP, NFS, WAIS</td></tr><tr><td>表示层（Presentation）</td><td>Telnet, Rlogin, SNMP, Gopher</td></tr><tr><td>会话层（Session）</td><td>SMTP, DNS</td></tr><tr><td>传输层（Transport）</td><td style="vertical-align: middle;text-align: center;">传输层</td><td>TCP, UDP</td></tr><tr><td>网络层（Network）</td><td style="vertical-align: middle;text-align: center;">网络层</td><td>IP, ICMP, ARP, RARP, AKP, UUCP</td></tr><tr><td>数据链路层（Data Link）</td><td rowspan="2" style="vertical-align: middle;text-align: center;">网络接口</td><td>FDDI, Ethernet, Arpanet, PDN, SLIP, PPP</td></tr><tr><td>物理层（Physical）</td><td>IEEE 802.1A, IEEE 802.2到IEEE 802.11</td></tr></table>
 
 ---
 
