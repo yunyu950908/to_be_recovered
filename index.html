@@ -318,6 +318,467 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/23/CSRF-跨站请求伪造/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/23/CSRF-跨站请求伪造/" itemprop="url">CSRF 跨站请求伪造</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-23T18:36:37+08:00">
+                2017-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/23/CSRF-跨站请求伪造/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/23/CSRF-跨站请求伪造/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/23/CSRF-跨站请求伪造/" class="leancloud_visitors" data-flag-title="CSRF 跨站请求伪造">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="CSRF-跨站请求伪造"><a href="#CSRF-跨站请求伪造" class="headerlink" title="CSRF 跨站请求伪造"></a>CSRF 跨站请求伪造</h1><h2 id="一、什么是-CSRF"><a href="#一、什么是-CSRF" class="headerlink" title="一、什么是 CSRF"></a>一、什么是 CSRF</h2><p>引自维基百科：<a href="https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" target="_blank" rel="external">跨站请求伪造</a></p>
+<blockquote>
+<p>跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者 session riding，通常缩写为 CSRF 或者 XSRF， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，XSS 利用的是用户对指定网站的信任，CSRF 利用的是网站对用户网页浏览器的信任。</p>
+</blockquote>
+<h2 id="二、发起-CSRF-攻击"><a href="#二、发起-CSRF-攻击" class="headerlink" title="二、发起 CSRF 攻击"></a>二、发起 CSRF 攻击</h2><p>一个防御薄弱的站点，发起 CSRF 攻击特别容易，多数情况下利用浏览器自动加载某些资源的机制发起一个 CSRF 攻击。我们直接举个例子形象地说明 CSRF 攻击原理。</p>
+<h4 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h4><p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjtn77s5amj207106twfg.jpg" alt="@检查 Referer 字段 | center"></p>
+<ol>
+<li><p>比如你访问了一个银行网站 A，此时浏览器就有了你在此银行网站上登录的 cookie 记录。</p>
+</li>
+<li><p>然后你因为某些不可描述的原因访问了某危险网站 B，这个网站有个 <code>&lt;img&gt;</code> 标签：( 浏览器加载资源的时候 <code>img</code> 标签中 <code>src</code> 记录的资源会自动加载 )<br><code>&lt;img src=&quot;http://www.examplebank.com/account=youraccount&amp;amount=1000&amp;payfor=Badman&quot; &gt;</code></p>
+</li>
+<li><p>但是，这个 <code>&lt;img&gt;</code> 标签的 <code>src</code> 属性不是一个图片资源的请求，而是向银行网站A 发起一个转账请求（上面 <code>&lt;img&gt;</code> 标签中 <code>src</code> 的意思是在银行 A 网站上从你的账户中转账 1000 给账户 Badman），恰好你的浏览器里保留了你登录银行网站 A 的 cookie，这样 <code>src</code> 内发起的请求就会得到响应，然后你的钱就没了 QAQ</p>
+</li>
+<li><p>更可怕的是请求响应后可能继续触发某个 <code>delete</code> 转账记录的请求，这样你自己都不知道钱跑哪儿去了。</p>
+</li>
+</ol>
+<h2 id="三、防御-CSRF"><a href="#三、防御-CSRF" class="headerlink" title="三、防御 CSRF"></a>三、防御 CSRF</h2><h3 id="1、验证码机制"><a href="#1、验证码机制" class="headerlink" title="1、验证码机制"></a>1、验证码机制</h3><p>限制用户的某些敏感操作，通过添加验证码来识别是不是用户主动去发起这个请求，由于一定强度的验证码机器无法识别，因此危险网站不能伪造一个完整的请求。</p>
+<p>优点：简单粗暴，低成本，可靠，能防范99.99%的攻击者。</p>
+<p>缺点：对用户不友好。</p>
+<h3 id="2、检查-Referer-字段"><a href="#2、检查-Referer-字段" class="headerlink" title="2、检查  Referer 字段"></a>2、检查  Referer 字段</h3><p><code>HTTP</code> 头中有一个 <code>Referer</code> 字段，这个字段用以标明请求来源于哪个地址。在处理敏感数据请求时，通常来说，<code>Referer</code> 字段应和请求的地址位于 [ 同一域名 ] 下。而如果是 <code>CSRF</code> 攻击传来的请求，<code>Referer</code> 字段会是包含恶意网址的地址，而不是 [ 同一域名 ] 之下，这时候服务器就能识别出恶意的访问。</p>
+<p>这种办法简单易行，工作量低，仅需要在关键访问处增加一步校验。但这种办法也有其局限性，因其完全依赖浏览器发送正确的 <code>Referer</code> 字段。虽然 <code>http</code> 协议对此字段的内容有明确的规定，但并无法保证来访的浏览器的具体实现，亦无法保证浏览器没有安全漏洞影响到此字段。并且也存在攻击者攻击某些浏览器，篡改其<code>Referer</code> 字段的可能。</p>
+<h4 id="举个栗子-1"><a href="#举个栗子-1" class="headerlink" title="举个栗子"></a>举个栗子</h4><p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjtn77s5amj207106twfg.jpg" alt="@检查 Referer 字段 | center"></p>
+<p>比如当你使用支付宝转账的时候，用户必须先登录支付宝网站，然后通过点击页面的的按钮来触发转账事件。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://zhifubao.com/withdraw?account=lyq&amp;amount=10000&amp;for=xxx</div></pre></td></tr></table></figure>
+<p>此时，转账请求的 <code>Referer</code> 值就是转账页面所在的 <code>URL</code>，通常是以 <code>zhifubao.com</code> 域名开头的地址，如果不是，服务器则拒绝请求。</p>
+<p>此方法看似挺完美，实际上是这样的：</p>
+<ol>
+<li>兼容性不好：每个浏览器对于 <code>Referer</code> 的具体实现可能有差别。</li>
+<li>并不一定可靠：在一些古老的垃圾浏览器中， <code>Referer</code> 可以被篡改。</li>
+<li>对用户不友好：<code>Referer</code> 值会记录下用户的访问来源，有些用户认为这样会侵犯到他们自己的隐私权。因此有些用户可能会开启浏览器防止跟踪功能，不提供 <code>Referer</code> ，从而导致正常用户请求被拒绝。</li>
+</ol>
+<p>所以，更多情况下我们都使用下面介绍的第三种方法：添加校验 <code>_csrf_token</code></p>
+<h3 id="3、-添加校验-token"><a href="#3、-添加校验-token" class="headerlink" title="3、 添加校验 token"></a>3、 添加校验 <code>token</code></h3><p>由于 <code>CSRF</code> 的本质在于攻击者欺骗用户去访问自己设置的地址，所以如果要求在访问敏感数据请求时，要求用户浏览器提供不保存在 <code>cookie</code> 中，并且攻击者无法伪造的数据作为校验，那么攻击者就无法再执行 <code>CSRF</code> 攻击。</p>
+<p>这种数据通常是表单中的一个数据项。服务器将其生成并附加在表单中，其内容是一个伪乱数。</p>
+<p>当客户端通过表单提交请求时，这个伪乱数也一并提交上去以供校验。</p>
+<p>正常的访问时，客户端浏览器能够正确得到并传回这个伪乱数，而通过<code>CSRF</code> 传来的欺骗性攻击中，攻击者无从事先得知这个伪乱数的值，服务器端就会因为校验 <code>token</code> 的值为空或者错误，拒绝这个可疑请求。</p>
+<h4 id="再举栗子"><a href="#再举栗子" class="headerlink" title="再举栗子"></a>再举栗子</h4><p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjtn77s5amj207106twfg.jpg" alt="@添加 _csrf_token | center"></p>
+<p>有一个 <code>anti-csrf-token</code> 方案， 具体过程如下：</p>
+<p>服务端在收到路由请求时，生成一个随机数，在渲染请求页面时把随机数埋入页面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 一般埋入 form 表单内</span></div><div class="line">&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"_csrf_token"</span> value=<span class="string">"xxxx"</span>&gt;</div></pre></td></tr></table></figure>
+<p>服务端设置 <code>setCookie</code> ，把该随机数作为 <code>cookie</code> 或者 <code>session</code> 种入用户浏览器<br>当用户发送 <code>GET</code> 或者 <code>POST</code> 请求时带上 <code>_csrf_token</code> 参数（对于 <code>Form</code> 表单直接提交即可，因为会自动把当前表单内所有的 <code>input</code> 提交给后台，包括 <code>_csrf_token</code>）</p>
+<p>后台在接受到请求后解析请求的 <code>cookie</code> 获取<code>_csrf_token</code> 的值，然后和用户请求提交的<code>_csrf_token</code> 做个比较，如果相等表示请求是合法的。</p>
+<p><img src="http://oux9sg1nc.bkt.clouddn.com/17-9-23/56417055.jpg" alt="@1688 网的 _csrf_token 设置 | center"></p>
+<p><img src="http://oux9sg1nc.bkt.clouddn.com/17-9-23/86150019.jpg" alt="@控制台查看 session | center"></p>
+<p>PS：注意这里页面上设置的 <code>token</code> 和 <code>session</code> 里设置的 <code>token</code>  不直接相等，实际上是用了 MD5 包了一层，发送到后台后还是很容易计算的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">md5(<span class="string">'1474357164624'</span>) === <span class="string">'4bd4e512b0fbd9357150649adadedd4e'</span></div></pre></td></tr></table></figure>
+<h4 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a>注意事项：</h4><p>使用 [ 校验 token ] 需要注意以下两点：</p>
+<ol>
+<li>先写结论：<code>Token 保存在 Session 中</code></li>
+</ol>
+<p>做个假设：<code>token 保存在 cookie 中</code></p>
+<p> 假如<code>Token</code> 保存在 <code>Cookie</code> 中，用户浏览器开了很多页面。在一些页面 <code>Token</code> 被使用消耗掉后新的 <code>Token</code> 会被重新种入，但那些老的 <code>Tab</code> 页面对应的 <code>HTML</code> 里还是老 <code>Token</code>。这会让用户觉得为啥几分钟前打开的页面不能正常提交？</p>
+<ol>
+<li>先写结论：尽量少用 <code>GET</code></li>
+</ol>
+<p>做个假设： <code>GET</code> 请求中携带 <code>token</code></p>
+<p>假如攻击者在我们的网站上传了一张图片，用户在加载图片的时候实际上是向攻击者的服务器发送了请求，这个请求会带有 <code>referer</code> 表示当前图片所在的页面的 url。 而如果使用 <code>GET</code> 方式接口的话这个 URL 就形如：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://xxxx.com/gift?giftId=aabbcc&amp;_csrf_token=xxxxx</div></pre></td></tr></table></figure>
+<p>观察上面的 <code>GET</code> 请求，攻击者很容易就获取到用户的 <code>_csrf_token</code>，至少可以在短时间内使用这个 <code>token</code> 来操作其他 <code>GET</code> 接口。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.imooc.com/article/13552" target="_blank" rel="external">慕课网：对于跨站伪造请求（CSRF）的理解和总结</a><br><a href="https://zh.wikipedia.org/zh/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0" target="_blank" rel="external">维基百科：跨站请求伪造</a><br><a href="https://www.zhihu.com/question/19786827" target="_blank" rel="external">知乎：COOKIE和SESSION有什么区别？</a><br><a href="https://zhuanlan.zhihu.com/p/22521378" target="_blank" rel="external">知乎：CSRF 是什么？ </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/23/XSS-漏洞/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/23/XSS-漏洞/" itemprop="url">XSS 跨站脚本攻击</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-23T15:19:21+08:00">
+                2017-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/23/XSS-漏洞/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/23/XSS-漏洞/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/23/XSS-漏洞/" class="leancloud_visitors" data-flag-title="XSS 跨站脚本攻击">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="XSS-漏洞"><a href="#XSS-漏洞" class="headerlink" title="XSS 漏洞"></a>XSS 漏洞</h1><h2 id="1、什么是-XSS"><a href="#1、什么是-XSS" class="headerlink" title="1、什么是 XSS"></a>1、什么是 XSS</h2><p>XSS（ Cross-Site Scripting）跨站脚本攻击</p>
+<ul>
+<li>简单来说</li>
+</ul>
+<ol>
+<li><p>正常用户 A 提交正常内容，显示在另一个用户 B 的网页上，没有问题。</p>
+</li>
+<li><p>恶意用户 H 提交恶意内容，显示在另一个用户 B 的网页上，对 B 的网页随意篡改。</p>
+</li>
+</ol>
+<ul>
+<li>造成 XSS 有几个要点：</li>
+</ul>
+<ol>
+<li><p>恶意用户可以提交内容</p>
+</li>
+<li><p>提交的内容可以显示在另一个用户的页面上</p>
+</li>
+<li><p>这些内容未经过滤，直接运行在另一个用户的页面上</p>
+</li>
+</ol>
+<ul>
+<li>举个栗子<br>假设我们有一个评论系统，恶意用户 H 提交评论<code>&lt;script&gt;console.log(document.cookie)&lt;/script&gt;</code>，而服务器没有对这段代码进行过滤，直接放行。然后用户 B 来访问网站，这段脚本在 B 的浏览器直接执行，恶意用户 H 的脚本就可以任意操作 B 的 cookie，而 B 对此毫无察觉。有了 cookie，恶意用户 H 就可以伪造 B 的登录信息，随意访问 B 的隐私了。而 B 始终被蒙在鼓里。</li>
+</ul>
+<h2 id="2、XSS-成因"><a href="#2、XSS-成因" class="headerlink" title="2、XSS 成因"></a>2、XSS 成因</h2><p>形成 XSS 漏洞的主要成因有以下两个：</p>
+<ul>
+<li><p>后台模板问题<br>后台输出代码的时候没有将可疑的符号（如 <code>&lt;,&gt;,&amp;</code>等）转换成 HTML 编码，没有任何过滤而直接输出，形成 XSS 漏洞。</p>
+</li>
+<li><p>前端代码问题<br>前端使用 <code>innerHtml</code>  等方式插入字符，如果插入的是 HTML 标签，客户端会直接执行。当然 <code>eval</code> 也可能导致同样的问题，也是我们需要避免使用的。</p>
+</li>
+</ul>
+<h2 id="3、XSS-防御"><a href="#3、XSS-防御" class="headerlink" title="3、XSS 防御"></a>3、XSS 防御</h2><p>通过以上介绍我们了解了 XSS 攻击的基本原理，下面介绍如何做 XSS 防御：</p>
+<ul>
+<li>后台模板<br>过滤所有可疑字符，将其转换成 HTML 编码再输出。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>可疑字符</th>
+<th>HTML 编码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td><code>&amp;lt;</code></td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td><code>&amp;gt;</code></td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td><code>&amp;amp;</code></td>
+</tr>
+<tr>
+<td>“</td>
+<td><code>&amp;quot;</code></td>
+</tr>
+<tr>
+<td>（此处空格）</td>
+<td><code>&amp;nbsp;</code></td>
+</tr>
+<tr>
+<td>其他可疑字符</td>
+<td><code>&amp;#ASCII码</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>前端代码<br>尽量避免使用 <code>innerHtml</code> 或 <code>eval</code> 这种危险的方式运行代码，没准你的用户就会利用这些 JS 方法的特殊性，在你的网站上嵌入一些恶意的脚本，从而对你的网站及你的客户造成不利影响。</li>
+</ul>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/22/HTTP 基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2390,532 +2851,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/JS判断数据类型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/10/JS判断数据类型/" itemprop="url">JS判断数据类型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T17:17:15+08:00">
-                2017-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/10/JS判断数据类型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/10/JS判断数据类型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/10/JS判断数据类型/" class="leancloud_visitors" data-flag-title="JS判断数据类型">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JS判断数据类型"><a href="#JS判断数据类型" class="headerlink" title="JS判断数据类型"></a>JS判断数据类型</h1><blockquote>
-<p>本文摘要：<br>列举了常用的数据类型检查方法、应用场景及使用技巧。</p>
-</blockquote>
-<h2 id="1、JavaScript-数据类型"><a href="#1、JavaScript-数据类型" class="headerlink" title="1、JavaScript 数据类型"></a>1、JavaScript 数据类型</h2><p>最新的 ECMAScript 标准定义了 7 种数据类型，主要分类两大类：</p>
-<ul>
-<li><p>第一类：Primitive ( 原始类型 )</p>
-<ul>
-<li>boolean</li>
-<li>null</li>
-<li>undefined</li>
-<li>number</li>
-<li>string</li>
-<li>symbol ( ES6 )</li>
-</ul>
-</li>
-<li><p>第二类：Object ( 对象类型 )</p>
-<ul>
-<li>Object ( Object , Array , RegExp , Function , etc.)</li>
-</ul>
-</li>
-</ul>
-<p><strong>类型区分</strong></p>
-<ul>
-<li>原始类型：直接将值传递给变量</li>
-<li>对象类型：将一个堆内存中的引用( 如 0xFFFF ) 传给变量</li>
-</ul>
-<p>( 如果正在看文章的你对类型区分不太了解，请自行查阅补充 )</p>
-<h2 id="2、判断数据类型的方法"><a href="#2、判断数据类型的方法" class="headerlink" title="2、判断数据类型的方法"></a>2、判断数据类型的方法</h2><h3 id="方法一：typeof-操作符"><a href="#方法一：typeof-操作符" class="headerlink" title="方法一：typeof 操作符"></a>方法一：<code>typeof</code> 操作符</h3><p><code>typeof</code> 是一个最简单的判断数据类型的操作符。</p>
-<p>语法：<code>typeof()</code> 在 <code>()</code> 中填入你想判断类型的数据。<br>返回值：”boolean” , “string” , “number” , “undefined” , “symbol” , “object”</p>
-<p>示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span>(<span class="number">123</span>) <span class="comment">// "number"</span></div><div class="line"><span class="keyword">typeof</span>(<span class="string">"string"</span>) <span class="comment">// "string"</span></div><div class="line"><span class="keyword">typeof</span>(<span class="literal">true</span>) <span class="comment">// "boolean"</span></div><div class="line"><span class="keyword">typeof</span>(<span class="built_in">Symbol</span>()) <span class="comment">// "symbol"</span></div></pre></td></tr></table></figure></p>
-<p>emmmmm…如果你只看这几个示例好像 <code>typeof</code> 并没有什么问题，但实际上<code>typeof</code> 这货比较 <code>呆萌</code> ，实际使用中往往得不到你想要的结果。示例请看下表：<br>( 如果你对此表抱有疑问，请自行前往控制台输入 )</p>
-<p><strong>注：<br>JavaScript 标准文档中定义: <code>[[Class]]</code> 的值只可能是下面字符串中的一个： <code>Arguments</code>, <code>Array</code>, <code>Boolean</code>, <code>Date</code>, <code>Error</code>, <code>Function</code>, <code>JSON</code>, <code>Math</code>, <code>Number</code>, <code>Object</code>, <code>RegExp</code>, <code>String</code>.</strong></p>
-<ul>
-<li>Value : typeof 操作符运算的值</li>
-<li>Type : typeof 操作符运算的结果</li>
-<li>Class : 对象内部属性 <code>[[Class]]</code> 的值</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Class</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>“foo”</td>
-<td>String</td>
-<td>string</td>
-</tr>
-<tr>
-<td>new String(“foo”)</td>
-<td>String</td>
-<td>object</td>
-</tr>
-<tr>
-<td>1.2</td>
-<td>Number</td>
-<td>number</td>
-</tr>
-<tr>
-<td>new Number(1.2)</td>
-<td>Number</td>
-<td>object</td>
-</tr>
-<tr>
-<td>true</td>
-<td>Boolean</td>
-<td>boolean</td>
-</tr>
-<tr>
-<td>new Boolean(true)</td>
-<td>Boolean</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Date()</td>
-<td>Date</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Error()</td>
-<td>Error</td>
-<td>object</td>
-</tr>
-<tr>
-<td>[1,2,3]</td>
-<td>Array</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Array(1, 2, 3)</td>
-<td>Array</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Function(“”)</td>
-<td>Function</td>
-<td>function</td>
-</tr>
-<tr>
-<td>/abc/g</td>
-<td>RegExp</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new RegExp(“meow”)</td>
-<td>RegExp</td>
-<td>object</td>
-</tr>
-<tr>
-<td>{}</td>
-<td>Object</td>
-<td>object</td>
-</tr>
-<tr>
-<td>new Object()</td>
-<td>Object</td>
-<td>object</td>
-</tr>
-</tbody>
-</table>
-<p>通过以上测试可以发现，用 <code>typeof</code> 操作符判断数据类型的时候，在大多数情况下都返回 “object”，所以呆萌的 <code>typeof</code> 或许不是你想要的那种精明能干的操作符。</p>
-<h3 id="方法二：instanceof-操作符"><a href="#方法二：instanceof-操作符" class="headerlink" title="方法二：instanceof 操作符"></a>方法二：<code>instanceof</code> 操作符</h3><p><code>instanceof</code> 操作符用来比较两个操作数据的构造函数。</p>
-<p>语法：<code>&lt;case&gt; instanceof &lt;Constructor&gt;</code><br>返回值：<code>true</code> / <code>false</code></p>
-<p><code>instanceof</code> 操作符只有在比较自定义的对象时才有意义。 如果用来比较内置类型，将会和 typeof 操作符 一样用处不大</p>
-<p><strong>比较自定义对象</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Bar</span>(<span class="params"></span>) </span>&#123;&#125;</div><div class="line">Bar.prototype = <span class="keyword">new</span> Foo();</div><div class="line"></div><div class="line"><span class="keyword">new</span> Bar() <span class="keyword">instanceof</span> Bar; <span class="comment">// true</span></div><div class="line"><span class="keyword">new</span> Bar() <span class="keyword">instanceof</span> Foo; <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 如果仅仅设置 Bar.prototype 为函数 Foo 本身，而不是 Foo 构造函数的一个实例</span></div><div class="line">Bar.prototype = Foo;</div><div class="line"><span class="keyword">new</span> Bar() <span class="keyword">instanceof</span> Foo; <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
-<p><strong>比较内置类型</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'foo'</span>) <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// true</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'foo'</span>) <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="string">'foo'</span> <span class="keyword">instanceof</span> <span class="built_in">String</span>; <span class="comment">// false</span></div><div class="line"><span class="string">'foo'</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>; <span class="comment">// false</span></div></pre></td></tr></table></figure></p>
-<p><strong>注意：</strong><br><code>instanceof</code> 用来比较属于不同 JavaScript 上下文的对象（比如，浏览器中不同的文档结构）时将会出错， 因为它们的构造函数不会是同一个对象。</p>
-<h3 id="方法三：终极必杀技-Object-prototype-toString"><a href="#方法三：终极必杀技-Object-prototype-toString" class="headerlink" title="方法三：终极必杀技 Object.prototype.toString"></a>方法三：终极必杀技 <code>Object.prototype.toString</code></h3><p>对象的类定义：<br>JavaScript 标准文档只给出了一种获取 <code>[[Class]]</code> 值的方法，那就是使用 <code>Object.prototype.toString</code></p>
-<p>同样使用上面 <code>typeof</code> 判断类型表中 <code>Value</code> 字段的值，这次我们使用 <code>Object.prototype.toString</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkDataType</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(val)</div><div class="line">&#125;</div><div class="line"></div><div class="line">checkDataType(<span class="string">"foo"</span>) <span class="comment">// =&gt; "[object String]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"foo"</span>) ) <span class="comment">// =&gt; "[object String]"</span></div><div class="line">checkDataType(<span class="number">1.2</span>) <span class="comment">// =&gt; "[object Number]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1.2</span>) ) <span class="comment">// =&gt; "[object Number]"</span></div><div class="line">checkDataType(<span class="literal">true</span>) <span class="comment">// =&gt; "[object Boolean]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="literal">true</span>) ) <span class="comment">// =&gt; "[object Boolean]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Date</span>()) <span class="comment">// =&gt; "[object Date]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Error</span>() ) <span class="comment">// =&gt; "[object Error]"</span></div><div class="line">checkDataType([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] ) <span class="comment">// =&gt; "[object Array]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// =&gt; "[object Array]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">""</span>)) <span class="comment">// =&gt; "[object Function]"</span></div><div class="line">checkDataType(<span class="regexp">/abc/g</span>) <span class="comment">// =&gt; "[object RegExp]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"meow"</span>)) <span class="comment">// =&gt; "[object RegExp]"</span></div><div class="line">checkDataType(&#123;&#125;) <span class="comment">// =&gt; "[object Object]"</span></div><div class="line">checkDataType(<span class="keyword">new</span> <span class="built_in">Object</span>()) <span class="comment">// =&gt; "[object Object]"</span></div></pre></td></tr></table></figure>
-<p>当然，如果你可以通过 <code>slice</code> 让返回值变得简短一点，通过 <code>toLowerCase</code> 变成我们熟悉的小写类型。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkDataType</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.prototype.toString.call(val).slice(<span class="number">8</span>,<span class="number">-1</span>).toLowerCase()</div><div class="line">&#125;</div><div class="line"></div><div class="line">checkDataType(<span class="string">"foo"</span>) <span class="comment">// =&gt; "string"</span></div></pre></td></tr></table></figure></p>
-<h2 id="3、结论"><a href="#3、结论" class="headerlink" title="3、结论"></a>3、结论</h2><p>当检测一个对象类型的时候，建议使用 <code>Object.prototype.toString</code> 方法；通过以上对比可以发现，这是唯一一个靠谱的判断数据类型的方法。<br>正如上面表格所示，<code>typeof</code> 的一些返回值在标准文档中并未定义，所以它可能会给你一个意料之外的答案。而 <code>instanceof</code> 操作符应仅用来比较同一个 JavaScript 上下文 ( 文档 ) 中的自定义对象。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures" target="_blank" rel="external"> JavaScript 数据类型和数据结构 </a></p>
-<p><a href="http://bonsaiden.github.io/JavaScript-Garden" target="_blank" rel="external"> JavaScript-Garden </a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof" target="_blank" rel="external"> 表达式和运算符 - typeof </a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="external"> 表达式和运算符 - instanceof </a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString" target="_blank" rel="external"> Object.prototype.toString() </a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/10/浏览器爸爸之页面渲染/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/10/浏览器爸爸之页面渲染/" itemprop="url">浏览器爸爸之页面渲染</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-10T06:45:42+08:00">
-                2017-09-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/浏览器/" itemprop="url" rel="index">
-                    <span itemprop="name">浏览器</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/10/浏览器爸爸之页面渲染/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/10/浏览器爸爸之页面渲染/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/10/浏览器爸爸之页面渲染/" class="leancloud_visitors" data-flag-title="浏览器爸爸之页面渲染">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="http://oux9sg1nc.bkt.clouddn.com/17-9-10/67527068.jpg" alt="@浏览器爸爸 | center"></p>
-<h1 id="浏览器爸爸之页面渲染"><a href="#浏览器爸爸之页面渲染" class="headerlink" title="浏览器爸爸之页面渲染"></a>浏览器爸爸之页面渲染</h1><h2 id="一、CSS-和-JS-在网页中的放置顺序"><a href="#一、CSS-和-JS-在网页中的放置顺序" class="headerlink" title="一、CSS 和 JS 在网页中的放置顺序"></a>一、CSS 和 JS 在网页中的放置顺序</h2><ul>
-<li><p><code>CSS</code>最好放置在<code>&lt;head&gt;</code>标签中<br>如果将<code>css</code>样式放在底部，会造成浏览器先加载<code>html</code>然后再加载<code>css</code>，重绘页面，造成 <strong>闪屏</strong> 现象。</p>
-</li>
-<li><p><code>JS</code>最好放置在<code>body</code>标签内的最后面</p>
-</li>
-</ul>
-<p><strong>JavaScript的加载：</strong></p>
-<ol>
-<li>加载脚本会阻塞后面内容的呈现</li>
-<li>加载脚本会阻塞其后组件的下载</li>
-</ol>
-<ul>
-<li>原因：<br>对于图片和 <code>CSS</code>，在加载时会并发加载，而 <code>JS</code> 在加载的时候会阻止并发，并禁止其他资源加载，所以如果将<code>JS</code>放入页面顶部会导致白屏现象。（在 <code>CSS</code> 中使用 <code>@import</code> 或将样式表放在页面底部也可能导致白屏）</li>
-</ul>
-<h2 id="二、白屏-和-FOUC"><a href="#二、白屏-和-FOUC" class="headerlink" title="二、白屏 和 FOUC"></a>二、白屏 和 FOUC</h2><p><strong>原理：</strong></p>
-<p>主要是由于浏览器在处理 <code>HTML</code> 和 <code>CSS</code> 的方式有些不同：</p>
-<ol>
-<li>一类是等 <code>HTML</code> 和 <code>CSS</code> 都加载完了，再展示到页面上，等待时间就是白屏。</li>
-<li>另一类先展示 <code>HTML</code> ，等 <code>CSS</code> 加载完之后再展示样式，出现 <code>FOUC</code> （无样式内容闪烁）。</li>
-<li>还有一些其他原因也会造成白屏和 <code>FOUC</code> 。</li>
-</ol>
-<p><strong>白屏：</strong></p>
-<ol>
-<li>如果把样式放在底部,对于IE浏览器,在某些场景下（新窗口打开,刷新等）页面会出现白屏，而不是内容逐步展现；</li>
-<li>如果使用 <code>@import</code> 标签，即使是在头部的 <code>&lt;head&gt;</code> 标签内 使用 <code>link</code> 引入 <code>CSS</code>，也可能出现白屏；</li>
-<li><code>JS</code> 加载会阻塞后面内容的呈现，如果将 <code>JS</code> 放到 <code>head</code> 标签中并且加载时间很长，页面也有可能出现白屏；</li>
-</ol>
-<p><strong>FOUC：Flash Of Unstyled Content （文档无样式闪烁）</strong></p>
-<p>原因：浏览器先逐步加载无样式的内容，等 <code>CSS</code>加载后页面突然展现样式。</p>
-<ol>
-<li>对于 <code>Firefox</code>，渲染机制与 <code>Chrome</code> 略有不同，因此会出现 <code>FOUC</code>;</li>
-<li>在底部引入 <code>CSS</code> 样式；</li>
-<li>对于<code>IE</code>，在某些场景下（点击链接，输入URL，使用书签进入等），也会出现 <code>FOUC</code> 现象</li>
-</ol>
-<h2 id="三、async-和-defer-的作用与区别"><a href="#三、async-和-defer-的作用与区别" class="headerlink" title="三、async 和 defer 的作用与区别"></a>三、async 和 defer 的作用与区别</h2><p><strong>1. 没有 <code>defer</code> 或 <code>async</code></strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>浏览器会立即加载并执行指定的脚本，” 立即 “的是在渲染该 <code>script</code> 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</p>
-<p><strong>2. 有 <code>async</code></strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>加载和渲染后续文档元素的过程将和 <code>script.js</code> 的加载与执行并行进行（异步）。</p>
-<p><strong>3. 有 <code>defer</code></strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">defer</span> <span class="attr">src</span>=<span class="string">"myscript.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>加载后续文档元素的过程将和 <code>script.js</code> 的加载并行进行（异步），但是 <code>script.js</code> 的执行要在所有元素解析完成之后，<code>DOMContentLoaded</code> 事件触发之前完成。</p>
-<p>实用角度来说，把所有脚本都丢到 <code>&lt;/body&gt;</code> 之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析。</p>
-<h2 id="四、网页的渲染机制（简版）"><a href="#四、网页的渲染机制（简版）" class="headerlink" title="四、网页的渲染机制（简版）"></a>四、网页的渲染机制（简版）</h2><ol>
-<li>解析 <code>HTML</code> 标签，生成 <code>DOM</code> 树</li>
-<li>解析 <code>CSS</code> 元素，生成 <code>CSSOM</code> 树</li>
-<li>把 <code>DOM</code> 和 <code>CSSOM</code> 组合成渲染树</li>
-<li>在渲染树的基础上进行布局，计算每个节点的几何结构</li>
-<li>把每个节点绘制到屏幕上</li>
-</ol>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
-<li><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=en" target="_blank" rel="external">Render-tree construction, layout, and paint</a></li>
-<li><a href="http://taligarsiel.com/Projects/howbrowserswork1.htm" target="_blank" rel="external">How browsers work</a></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2961,7 +2901,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2983,7 +2923,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
