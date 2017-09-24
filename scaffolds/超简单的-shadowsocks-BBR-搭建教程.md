@@ -10,8 +10,13 @@ date: 2017-09-25 00:50:10
 # 超简单的 shadowsocks + BBR 搭建教程
 
 >最近撸了一年份的服务器 :  8.75刀 `(*^▽^*)`
+
 >这里是官网 ：[ VirMach VPS Hosting ](https://billing.virmach.com/aff.php?aff=2540)
+
+>近几年用过 vultr bandwagonhost vps77 还有其他一些服务器做梯子，目前来看 [ virmach ](https://billing.virmach.com/aff.php?aff=2540) 性价比最高
+
 >注意：**是 KVM 架构** 简直**便宜**到没朋友！！！正常 openVZ 包年价格至少是这个的两倍啊！！！
+
 >openVZ 与 KVM 的区别请自行 google，下面教程开始。
 
 本文所有马赛克都是博主的命名怪癖 和 IP 信息，不影响食用。
