@@ -1,7 +1,7 @@
 ---
 title: 读书笔记：图解HTTP（一）
 tags:
-  - 读书笔记
+  - 笔记
   - 图解 HTTP
 categories:
   - 读书笔记

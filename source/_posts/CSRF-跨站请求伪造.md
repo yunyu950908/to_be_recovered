@@ -1,7 +1,7 @@
 ---
 title: CSRF 跨站请求伪造
 tags:
-  - CSRF 攻击
+  - CSRF
   - HTTP
 categories:
   - HTTP

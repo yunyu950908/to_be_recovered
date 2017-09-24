@@ -1,9 +1,11 @@
 ---
 title: '详说 Cookie, LocalStorage 与 SessionStorage'
 tags:
-  - 缓存
+  - cookie
+  - session
+  - HTTP
 categories:
-  - 缓存
+  - HTTP
 date: 2017-08-24 14:43:17
 ---
 
