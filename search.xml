@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[React 入门笔记（二）]]></title>
+    <url>%2F2017%2F09%2F24%2FReact-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[React 入门笔记（二） 笔记概要： CND 引用跑起一个 hello world react 实例； webpack 搭建一个撸React 的开发环境； 基础模块： babel-cli babel-preset-react react react-dom babel-preset-es2015 babel-loader 开发模块： html-webpack-plugin webpack-dev-server HMR 热替换 + react-hot-loader 其他模块：根据自己需求添加 如 devtool : “source-map” 等 零、初探新建一个入口文件 新建一个js ==&gt; hello world 引入 CDN 12&lt;script src=&quot;https://unpkg.com/react@15/dist/react.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://unpkg.com/react-dom@15/dist/react-dom.min.js&quot;&gt;&lt;/script&gt; npm 安装 babel ==&gt; babel-cli babel-preset-react npm script ==&gt; ./node_modules/.bin/babel –presets react src –out-dir build –watch 一、webpack 构建开发环境1. 安装基础模块已有模块：babel-clibabel-preset-react 1"build": "./node_modules/.bin/babel --presets react src --out-dir build --watch" 继续安装：reactreact-dombabel-preset-es2015babel-loader .babelrc 配置，管理 babel123456&#123; "presets":[ ["es2015",&#123;"modules":false&#125;], "react" ]&#125; npm script ==&gt; “dev”:”webpack –config webpack.dev.js” webpack.dev.js12345678910111213141516171819202122const path = require("path");const root = __dirname;module.exports = &#123; // 入口文件 entry: path.resolve(root, "src/main.js"), // 出口文件 output: &#123; filename: "bundle.js", path: path.resolve(root, "dist") &#125;, // loaders module: &#123; rules: [ &#123; test: /\.js[x]?$/, use: ["babel-loader"], exclude: /node_modules/ &#125;, ] &#125;&#125; 这个时候已经能跑起来了，但是不够自动化，下面再给 webpack 新增一些配置 2. html-webpack-plugin说明书：https://doc.webpack-china.org/plugins/html-webpack-plugin1234567891011121314// 引入html-webpack-pluginconst HtmlWebpackPlugin = require('html-webpack-plugin')module.exports = &#123; // ... // 其他配置保持不变 // ... plugins: [ new HtmlWebpackPlugin(&#123; title: 'React Demo', template: path.resolve(root, 'template.html') &#125;) ]&#125; 3. webpack-dev-server说明书：https://doc.webpack-china.org/guides/development/#-webpack-dev-server123456789101112131415161718module.exports = &#123; // 入口文件 entry: [ "webpack-dev-server/client", path.resolve(root, "src/main.js") ], // 出口文件 output: &#123; filename: "bundle.js", path: path.resolve(root, "dist"), publicPath: "/" &#125;, devServer: &#123; contentBase: path.resolve(root, "dist"), publicPath: "/", port: "3030", historyApiFallback: true &#125;, package.json1"dev": "webpack-dev-server --config webpack.dev.js" HMR 热替换说明书：https://doc.webpack-china.org/guides/hot-module-replacement .babelrc123456789&#123; "presets":[ ["es2015",&#123;"modules":false&#125;], "react" ], "plugins":[ "react-hot-loader/babel" ]&#125; react-hot-loader安装模块 ==&gt; npm i -D react-hot-loader 说明书：https://github.com/gaearon/react-hot-loader 修改 webpack.dev.js123456789101112131415161718192021222324252627entry: [ "react-hot-loader/patch", "webpack-dev-server/client", "webpack/hot/only-dev-server", path.resolve(root, "src/main.js")],//// 其他没变//devServer: &#123; hot: true, contentBase: path.resolve(root, "dist"), publicPath: "/", port: "3030", historyApiFallback: true&#125;,//// 其他没变//plugins: [ new HtmlWebpackPlugin(&#123; title: "React Demo", template: path.resolve(root, "template.html") &#125;), new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()] main.js12345678910111213141516171819import React from 'react'import ReactDOM from 'react-dom'import &#123;AppContainer&#125; from 'react-hot-loader'import App from './App'const render = (App) =&gt; &#123; ReactDOM.render( &lt;AppContainer&gt; &lt;App/&gt; &lt;/AppContainer&gt;, document.getElementById('app') )&#125;;render(App);if (module.hot) &#123; module.hot.accept('./App', () =&gt; render(App))&#125; 然后修改 App.js 里的内容自己调试 （完）]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一个模拟 XSS 攻击的小游戏]]></title>
+    <url>%2F2017%2F09%2F24%2F%E4%B8%80%E4%B8%AA%E6%A8%A1%E6%8B%9F-XSS-%E6%94%BB%E5%87%BB%E7%9A%84%E5%B0%8F%E6%B8%B8%E6%88%8F%2F</url>
+    <content type="text"><![CDATA[一个模拟 XSS 攻击的小游戏 游戏地址 xss-game : https://xss-game.appspot.com/ 由简到难一共六关，覆盖了绝大多数的 XSS 攻击方法，挺有意思的，玩游戏的同时帮助你学习了解 XSS 攻击原理 1. 直接写 script 标签1&lt;script&gt;alert(&quot;xss&quot;)&lt;script&gt; 2. 图片加载失败触发 onerror 方法12// XSS 注入&lt;img src = &quot;asd&quot; onerror=&quot;alert(1)&quot; &gt; 3. 强行闭合标签123456// 在地址栏会显示图片锚点（用拼接 html 方式组合图片）&lt;img src=&apos;123.jpg&apos;&gt;// http://xxx.xxx.xxx#123// XSS 强行闭合标签&apos;&gt;&lt;script&gt;alert(1)&lt;/script&gt; 4. 找到页面中 submit 方法触发 onload 方法的地方12345// submit 3onload="startTimer('3');"// xss 强行闭合3');alert('1 5. 寻找 a 标签跳转 观察地址栏 串改 href 触发 javascript12345678// normal// https://xss-game.appspot.com/level5/frame/signup?next=confirm&lt;a href = &quot;confirm&quot; &gt;// xss// 修改 ==&gt; https://xss-game.appspot.com/level5/frame/signup?next=javascript:alert(1) ==&gt; 转到// 然后 a 标签自动串改&lt;a href = &quot;javascript:alert(1)&quot; &gt; 6. 修改 query 参数 查看 query string 参数 分析 html 中的 javascript 代码 自己做一个 js xss 攻击文件，放在自己服务器 替换 query 参数指向自己的攻击文件 123456789101112// https://xss-game.appspot.com/level6/frame#/static/gadget.js// 下面是当前页面中的某条源码if (url.match(/^https?:\/\//)) &#123;// xss// 查看提示 google 提供一个 api // google.com/jsapi?callback=foo// 拉到最后发现执行了一个 foo() // 替换成 xss 攻击函数// google.com/jsapi?callback=alert("xss")// 替换原始 url // https://xss-game.appspot.com/level6/frame#//google.com/jsapi?callback=alert("xss") 最后是通关奖励]]></content>
+      <categories>
+        <category>HTTP</category>
+      </categories>
+      <tags>
+        <tag>HTTP</tag>
+        <tag>XSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[React 入门笔记（一）]]></title>
+    <url>%2F2017%2F09%2F24%2FReact-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[React 入门笔记（一） 入门笔记，没有排版格式。 jsx 数组 插入 1234567let jsx3 = ['i','love','react'].map((name) =&gt; &#123; return &lt;div&gt;&#123;name&#125;&lt;/div&gt;&#125;);render( &lt;div&gt;&#123;jsx3&#125;&lt;/div&gt;, RootDom); component pure functional component 从不修改它的 props 12345// * pure functional components const A = (props)=&gt;&#123; return &lt;div&gt;&#123;props.gender &#125; + &#123;props.name&#125;&lt;/div&gt;&#125;;render(&lt;A gender='male' name='slashhuang'/&gt;,RootDom); class component 必须有 render 方法 123456789101112131415161718// CALSS COMPONENTclass FirstComponent extends Component&#123; constructor()&#123; super(); this.state = &#123; b: 1 &#125; &#125; render()&#123; return ( &lt;div&gt; I am a component &#123;this.state.b&#125; &lt;/div&gt;); &#125; &#125;;render(&lt;FirstComponent /&gt;,RootDom); 组件的生命周期： componentWillMount render componentDidMount shouldComponentUpdate componentWillUpdate render componentDidUpdate 常用的生命周期： componentDidMount componentWillReceiveProps shouldComponentUpdate props children {/*&lt;A a=&#39;1&#39;&gt; ==&gt; props = {a:&#39;1&#39;}*/} 12345678910111213141516class Welcome extends Component &#123; render() &#123; return &lt;div&gt;&#123;this.props.gender &#125; + &#123;this.props.name&#125;&lt;/div&gt; &#125;&#125;class ChildComponent extends Component&#123; render()&#123; return ( &lt;div&gt; &#123;this.props.children&#125; &lt;Welcome gender='male' name='slashhuang' /&gt; &lt;/div&gt;); &#125; &#125;;render(&lt;ChildComponent&gt;我是个孩子&lt;/ChildComponent&gt;,RootDom); state + props setState 异步操作，setState后会自动做一些优化操作 然后进入队列 更新状态 123456789101112131415161718192021222324class PropState extends Component&#123; constructor()&#123; super(); this.state=&#123;a:'I am state'&#125; &#125; click()&#123; /** * setState ==&gt; 本组件重新render */ this.setState(&#123; a:'我更新啦 哈哈哈' &#125;) &#125; render()&#123; return &lt;div onClick=&#123;()=&gt;this.click()&#125;&gt; &#123;this.state.a&#125; &lt;A name= &#123;this.state.a&#125; /&gt; &lt;/div&gt; &#125; &#125;;const A = (props) =&gt; &#123; return &lt;div&gt;&#123;props.name&#125;&lt;/div&gt;&#125;render(&lt;PropState/&gt;,RootDom); 总结：1234JSX： xml in javascript1. tagName2. attributes(props)3. children 123组件化：1. 函数式组建: props ==&gt; JSX ; 2. 类组件：class A extendx Component 121. 数据源： state + props2. 更新数据：setState ( 完 )]]></content>
+      <categories>
+        <category>react</category>
+      </categories>
+      <tags>
+        <tag>react</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[CSRF 跨站请求伪造]]></title>
     <url>%2F2017%2F09%2F23%2FCSRF-%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%2F</url>
     <content type="text"><![CDATA[CSRF 跨站请求伪造一、什么是 CSRF引自维基百科：跨站请求伪造 跨站请求伪造（英语：Cross-site request forgery），也被称为 one-click attack 或者 session riding，通常缩写为 CSRF 或者 XSRF， 是一种挟制用户在当前已登录的Web应用程序上执行非本意的操作的攻击方法。跟跨网站脚本（XSS）相比，XSS 利用的是用户对指定网站的信任，CSRF 利用的是网站对用户网页浏览器的信任。 二、发起 CSRF 攻击一个防御薄弱的站点，发起 CSRF 攻击特别容易，多数情况下利用浏览器自动加载某些资源的机制发起一个 CSRF 攻击。我们直接举个例子形象地说明 CSRF 攻击原理。 举个栗子 比如你访问了一个银行网站 A，此时浏览器就有了你在此银行网站上登录的 cookie 记录。 然后你因为某些不可描述的原因访问了某危险网站 B，这个网站有个 &lt;img&gt; 标签：( 浏览器加载资源的时候 img 标签中 src 记录的资源会自动加载 )&lt;img src=&quot;http://www.examplebank.com/account=youraccount&amp;amount=1000&amp;payfor=Badman&quot; &gt; 但是，这个 &lt;img&gt; 标签的 src 属性不是一个图片资源的请求，而是向银行网站A 发起一个转账请求（上面 &lt;img&gt; 标签中 src 的意思是在银行 A 网站上从你的账户中转账 1000 给账户 Badman），恰好你的浏览器里保留了你登录银行网站 A 的 cookie，这样 src 内发起的请求就会得到响应，然后你的钱就没了 QAQ 更可怕的是请求响应后可能继续触发某个 delete 转账记录的请求，这样你自己都不知道钱跑哪儿去了。 三、防御 CSRF1、验证码机制限制用户的某些敏感操作，通过添加验证码来识别是不是用户主动去发起这个请求，由于一定强度的验证码机器无法识别，因此危险网站不能伪造一个完整的请求。 优点：简单粗暴，低成本，可靠，能防范99.99%的攻击者。 缺点：对用户不友好。 2、检查 Referer 字段HTTP 头中有一个 Referer 字段，这个字段用以标明请求来源于哪个地址。在处理敏感数据请求时，通常来说，Referer 字段应和请求的地址位于 [ 同一域名 ] 下。而如果是 CSRF 攻击传来的请求，Referer 字段会是包含恶意网址的地址，而不是 [ 同一域名 ] 之下，这时候服务器就能识别出恶意的访问。 这种办法简单易行，工作量低，仅需要在关键访问处增加一步校验。但这种办法也有其局限性，因其完全依赖浏览器发送正确的 Referer 字段。虽然 http 协议对此字段的内容有明确的规定，但并无法保证来访的浏览器的具体实现，亦无法保证浏览器没有安全漏洞影响到此字段。并且也存在攻击者攻击某些浏览器，篡改其Referer 字段的可能。 举个栗子 比如当你使用支付宝转账的时候，用户必须先登录支付宝网站，然后通过点击页面的的按钮来触发转账事件。 1http://zhifubao.com/withdraw?account=lyq&amp;amount=10000&amp;for=xxx 此时，转账请求的 Referer 值就是转账页面所在的 URL，通常是以 zhifubao.com 域名开头的地址，如果不是，服务器则拒绝请求。 此方法看似挺完美，实际上是这样的： 兼容性不好：每个浏览器对于 Referer 的具体实现可能有差别。 并不一定可靠：在一些古老的垃圾浏览器中， Referer 可以被篡改。 对用户不友好：Referer 值会记录下用户的访问来源，有些用户认为这样会侵犯到他们自己的隐私权。因此有些用户可能会开启浏览器防止跟踪功能，不提供 Referer ，从而导致正常用户请求被拒绝。 所以，更多情况下我们都使用下面介绍的第三种方法：添加校验 _csrf_token 3、 添加校验 token由于 CSRF 的本质在于攻击者欺骗用户去访问自己设置的地址，所以如果要求在访问敏感数据请求时，要求用户浏览器提供不保存在 cookie 中，并且攻击者无法伪造的数据作为校验，那么攻击者就无法再执行 CSRF 攻击。 这种数据通常是表单中的一个数据项。服务器将其生成并附加在表单中，其内容是一个伪乱数。 当客户端通过表单提交请求时，这个伪乱数也一并提交上去以供校验。 正常的访问时，客户端浏览器能够正确得到并传回这个伪乱数，而通过CSRF 传来的欺骗性攻击中，攻击者无从事先得知这个伪乱数的值，服务器端就会因为校验 token 的值为空或者错误，拒绝这个可疑请求。 再举栗子 有一个 anti-csrf-token 方案， 具体过程如下： 服务端在收到路由请求时，生成一个随机数，在渲染请求页面时把随机数埋入页面 12// 一般埋入 form 表单内&lt;input type="hidden" name="_csrf_token" value="xxxx"&gt; 服务端设置 setCookie ，把该随机数作为 cookie 或者 session 种入用户浏览器当用户发送 GET 或者 POST 请求时带上 _csrf_token 参数（对于 Form 表单直接提交即可，因为会自动把当前表单内所有的 input 提交给后台，包括 _csrf_token） 后台在接受到请求后解析请求的 cookie 获取_csrf_token 的值，然后和用户请求提交的_csrf_token 做个比较，如果相等表示请求是合法的。 PS：注意这里页面上设置的 token 和 session 里设置的 token 不直接相等，实际上是用了 MD5 包了一层，发送到后台后还是很容易计算的。 1md5('1474357164624') === '4bd4e512b0fbd9357150649adadedd4e' 注意事项：使用 [ 校验 token ] 需要注意以下两点： 先写结论：Token 保存在 Session 中 做个假设：token 保存在 cookie 中 假如Token 保存在 Cookie 中，用户浏览器开了很多页面。在一些页面 Token 被使用消耗掉后新的 Token 会被重新种入，但那些老的 Tab 页面对应的 HTML 里还是老 Token。这会让用户觉得为啥几分钟前打开的页面不能正常提交？ 先写结论：尽量少用 GET 做个假设： GET 请求中携带 token 假如攻击者在我们的网站上传了一张图片，用户在加载图片的时候实际上是向攻击者的服务器发送了请求，这个请求会带有 referer 表示当前图片所在的页面的 url。 而如果使用 GET 方式接口的话这个 URL 就形如： 1https://xxxx.com/gift?giftId=aabbcc&amp;_csrf_token=xxxxx 观察上面的 GET 请求，攻击者很容易就获取到用户的 _csrf_token，至少可以在短时间内使用这个 token 来操作其他 GET 接口。 参考资料慕课网：对于跨站伪造请求（CSRF）的理解和总结维基百科：跨站请求伪造知乎：COOKIE和SESSION有什么区别？知乎：CSRF 是什么？]]></content>
@@ -8,20 +44,20 @@
         <category>HTTP</category>
       </categories>
       <tags>
-        <tag>CSRF 攻击</tag>
+        <tag>CSRF</tag>
         <tag>HTTP</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[XSS 跨站脚本攻击]]></title>
     <url>%2F2017%2F09%2F23%2FXSS-%E6%BC%8F%E6%B4%9E%2F</url>
-    <content type="text"><![CDATA[XSS 漏洞1、什么是 XSSXSS（ Cross-Site Scripting）跨站脚本攻击 简单来说 正常用户 A 提交正常内容，显示在另一个用户 B 的网页上，没有问题。 恶意用户 H 提交恶意内容，显示在另一个用户 B 的网页上，对 B 的网页随意篡改。 造成 XSS 有几个要点： 恶意用户可以提交内容 提交的内容可以显示在另一个用户的页面上 这些内容未经过滤，直接运行在另一个用户的页面上 举个栗子假设我们有一个评论系统，恶意用户 H 提交评论&lt;script&gt;console.log(document.cookie)&lt;/script&gt;，而服务器没有对这段代码进行过滤，直接放行。然后用户 B 来访问网站，这段脚本在 B 的浏览器直接执行，恶意用户 H 的脚本就可以任意操作 B 的 cookie，而 B 对此毫无察觉。有了 cookie，恶意用户 H 就可以伪造 B 的登录信息，随意访问 B 的隐私了。而 B 始终被蒙在鼓里。 2、XSS 成因形成 XSS 漏洞的主要成因有以下两个： 后台模板问题后台输出代码的时候没有将可疑的符号（如 &lt;,&gt;,&amp;等）转换成 HTML 编码，没有任何过滤而直接输出，形成 XSS 漏洞。 前端代码问题前端使用 innerHtml 等方式插入字符，如果插入的是 HTML 标签，客户端会直接执行。当然 eval 也可能导致同样的问题，也是我们需要避免使用的。 3、XSS 防御通过以上介绍我们了解了 XSS 攻击的基本原理，下面介绍如何做 XSS 防御： 后台模板过滤所有可疑字符，将其转换成 HTML 编码再输出。 可疑字符 HTML 编码 &lt; &amp;lt; &gt; &amp;gt; &amp; &amp;amp; “ &amp;quot; （此处空格） &amp;nbsp; 其他可疑字符 &amp;#ASCII码 前端代码尽量避免使用 innerHtml 或 eval 这种危险的方式运行代码，没准你的用户就会利用这些 JS 方法的特殊性，在你的网站上嵌入一些恶意的脚本，从而对你的网站及你的客户造成不利影响。 （完）]]></content>
+    <content type="text"><![CDATA[XSS 漏洞1、什么是 XSSXSS（ Cross-Site Scripting）跨站脚本攻击 简单来说 正常用户 A 提交正常内容，显示在另一个用户 B 的网页上，没有问题。 恶意用户 H 提交恶意内容，显示在另一个用户 B 的网页上，对 B 的网页随意篡改。 造成 XSS 有几个要点： 恶意用户可以提交内容 提交的内容可以显示在另一个用户的页面上 这些内容未经过滤，直接运行在另一个用户的页面上 举个栗子假设我们有一个评论系统，恶意用户 H 提交评论&lt;script&gt;console.log(document.cookie)&lt;/script&gt;，而服务器没有对这段代码进行过滤，直接放行。然后用户 B 来访问网站，这段脚本在 B 的浏览器直接执行，恶意用户 H 的脚本就可以任意操作 B 的 cookie，而 B 对此毫无察觉。有了 cookie，恶意用户 H 就可以伪造 B 的登录信息，随意访问 B 的隐私了。而 B 始终被蒙在鼓里。 2、XSS 成因形成 XSS 漏洞的主要成因有以下两个： 后台模板问题后台输出代码的时候没有将可疑的符号（如 &lt;,&gt;,&amp;等）转换成 HTML 编码，没有任何过滤而直接输出，形成 XSS 漏洞。 前端代码问题前端使用 innerHtml 等方式插入字符，如果插入的是 HTML 标签，客户端会直接执行。当然 eval 也可能导致同样的问题，也是我们需要避免使用的。 3、XSS 防御通过以上介绍我们了解了 XSS 攻击的基本原理，下面介绍如何做 XSS 防御： 后台模板过滤所有可疑字符，将其转换成 HTML 编码再输出。 可疑字符 HTML 编码 &lt; &amp;lt; &gt; &amp;gt; &amp; &amp;amp; “ &amp;quot; （此处空格） &amp;nbsp; 其他可疑字符 &amp;#ASCII码 前端代码尽量避免使用 innerHtml 或 eval 这种危险的方式运行代码，没准你的用户就会利用这些 JS 方法的特殊性，在你的网站上嵌入一些恶意的脚本，从而对你的网站及你的客户造成不利影响。 当然还有很多其他方法的 XSS 攻击，有兴趣的小伙伴可以移步我的另一篇文章 《一个模拟-XSS-攻击的小游戏》了解更多的攻击方法，以制定合理的防御策略。 安利：React DOM 在渲染之前默认会过滤 所有传入的值。它可以确保你的应用不会被注入攻击，所有的内容在渲染之前都被转换成了字符串，这样可以有效地防止 XSS(跨站脚本) 攻击。 （完）]]></content>
       <categories>
         <category>HTTP</category>
       </categories>
       <tags>
         <tag>HTTP</tag>
-        <tag>XSS 攻击</tag>
+        <tag>XSS</tag>
       </tags>
   </entry>
   <entry>
@@ -58,14 +94,14 @@
         <category>读书笔记</category>
       </categories>
       <tags>
-        <tag>读书笔记</tag>
+        <tag>笔记</tag>
         <tag>图解 HTTP</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[前端页面优化]]></title>
     <url>%2F2017%2F09%2F20%2F%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E4%BC%98%E5%8C%96%2F</url>
-    <content type="text"><![CDATA[原文地址：前端可以做哪些优化 前端可以做哪些优化网页打开的延时, 页面操作的流畅度, 就是一个网站的生命. 我们站在前端的角度, 都可以做哪些优化呢? 来自谷歌的 Web 优化实践 避免资源 404 请求 避免CSS @importimport 依赖关系, 加载完一个再加载另一个 避免使用document.write都用 HTML 来调用, 使用 document.write 浏览器还需要运行 JS 解析器分析下面要做什么 合并、压缩 CSS, JS文件 精灵图整合图像, 字体图标代替部分图片 延迟 JavaScript 加载 启用Keep-Alive 将小的CSS和JavaScript代码内嵌到HTML中 利用浏览器缓存不长变更的资源 尽量减少DNS查询次数 尽量减少重定向 优化样式表和脚本的顺序 避免JavaScripts阻塞渲染 缩小原始图像 指定图像尺寸 来自雅虎的 Web 优化实践 内容优化 避免资源 404 请求 减少 HTTP 请求 减少 DNS 查找 减少重定向 预加载组件 延迟加载脚本和内容 Ajax 缓存文件资源 减少 DOM 元素数量 根据域名划分页面内容 最小化 iframe 数量 服务器优化 使用 CDN 内容分发网络 添加Expires或Cache-Control信息头 Gzip 压缩 设置 Etag , 判断服务器与浏览器缓存中内容的一致性 提前刷新缓冲区 对Ajax请求使用GET方法 避免空的 src cookie 的优化 减少 cookie 的大小 针对Web组件使用域名无关的Cookie ( 突破 cookie 大小的限制 ) CSS 优化 将CSS代码放在HTML页面的顶部 避免使用CSS表达式 使用&lt;link&gt;来代替@import 避免使用Filters JavaScript 优化 将JavaScript脚本放在页面的底部 将JavaScript和CSS作为外部文件来引用 缩小JavaScript和CSS 删除重复的脚本 最小化DOM的访问 开发智能的事件处理程序 图像优化 优化图片大小 指定图片大小 使用精灵图 favicon 尽量小, 可缓存 针对移动优化 保持组件大小在 25KB 以下, iPhone 不能缓存 25KB 以上文件 打包组件]]></content>
+    <content type="text"><![CDATA[原文地址：前端可以做哪些优化 前端可以做哪些优化网页打开的延时, 页面操作的流畅度, 就是一个网站的生命. 我们站在前端的角度, 都可以做哪些优化呢? 来自谷歌的 Web 优化实践 避免资源 404 请求 避免CSS @importimport 依赖关系, 加载完一个再加载另一个 避免使用document.write都用 HTML 来调用, 使用 document.write 浏览器还需要运行 JS 解析器分析下面要做什么 合并、压缩 CSS, JS文件 精灵图整合图像, 字体图标代替部分图片 延迟 JavaScript 加载 启用Keep-Alive 将小的CSS和JavaScript代码内嵌到HTML中 利用浏览器缓存不长变更的资源 尽量减少DNS查询次数 尽量减少重定向 优化样式表和脚本的顺序 避免JavaScripts阻塞渲染 缩小原始图像 指定图像尺寸 来自雅虎的 Web 优化实践 内容优化 避免资源 404 请求 减少 HTTP 请求 减少 DNS 查找 减少重定向 预加载组件 延迟加载脚本和内容 Ajax 缓存文件资源 减少 DOM 元素数量 根据域名划分页面内容 最小化 iframe 数量 服务器优化 使用 CDN 内容分发网络 添加Expires或Cache-Control信息头 Gzip 压缩 设置 Etag , 判断服务器与浏览器缓存中内容的一致性 提前刷新缓冲区 对Ajax请求使用GET方法 避免空的 src cookie 的优化 减少 cookie 的大小 针对Web组件使用域名无关的Cookie ( 突破 cookie 大小的限制 ) CSS 优化 将CSS代码放在HTML页面的顶部 避免使用CSS表达式 使用&lt;link&gt;来代替 @import 避免使用Filters JavaScript 优化 将JavaScript脚本放在页面的底部 将JavaScript和CSS作为外部文件来引用 缩小JavaScript和CSS 删除重复的脚本 最小化DOM的访问 开发智能的事件处理程序 图像优化 优化图片大小 指定图片大小 使用精灵图 favicon 尽量小, 可缓存 针对移动优化 保持组件大小在 25KB 以下, iPhone 不能缓存 25KB 以上文件 打包组件]]></content>
       <categories>
         <category>浏览器</category>
       </categories>
@@ -281,10 +317,12 @@
     <url>%2F2017%2F08%2F24%2F%E8%AF%A6%E8%AF%B4-Cookie-LocalStorage-%E4%B8%8E-SessionStorage%2F</url>
     <content type="text"><![CDATA[Cookie, LocalStorage 与 SessionStorage具体 Web Storage API 的使用可以参考 MDN的文档 基本概念CookieCookie 是小甜饼的意思。顾名思义，cookie 确实非常小，它的大小限制为4KB左右，是网景公司的前雇员 Lou Montulli 在1993年3月的发明。它的主要用途有保存登录信息，比如你登录某个网站市场可以看到“记住密码”，这通常就是通过在 Cookie 中存入一段辨别用户身份的数据来实现的。 localStoragelocalStorage 是 HTML5 标准中新加入的技术，它并不是什么划时代的新东西。早在 IE 6 时代，就有一个叫 userData 的东西用于本地存储，而当时考虑到浏览器兼容性，更通用的方案是使用 Flash。而如今，localStorage 被大多数浏览器所支持，如果你的网站需要支持 IE6+，那以 userData 作为你的 polyfill 的方案是种不错的选择。 特性 Chrome Firefox (Gecko) Internet Explorer Opera Safari (WebKit) localStorage 4 3.5 8 10.50 4 sessionStorage 5 2 8 10.50 4 sessionStoragesessionStorage 与 localStorage 的接口类似，但保存数据的生命周期与 localStorage 不同。做过后端开发的同学应该知道 Session 这个词的意思，直译过来是“会话”。而 sessionStorage 是一个前端的概念，它只是可以将一部分数据在当前会话中保存下来，刷新页面数据依旧存在。但当页面关闭后，sessionStorage 中的数据就会被清空。 三者的异同 特性 Cookie localStorage sessionStorage 数据的生命期 一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效 除非被清除，否则永久保存 仅在当前会话下有效，关闭页面或浏览器后被清除 存放数据大小 4K左右 一般为5MB &lt;= 同localStorage 与服务器端通信 每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题 仅在客户端（即浏览器）中保存，不参与和服务器的通信 &lt;= 同localStorage 易用性 需要程序员自己封装，源生的Cookie接口不友好 源生接口可以接受，亦可再次封装来对Object和Array有更好的支持 &lt;= 同localStorage 应用场景有了对上面这些差别的直观理解，我们就可以讨论三者的应用场景了。 因为考虑到每个 HTTP 请求都会带着 Cookie 的信息，所以 Cookie 当然是能精简就精简啦，比较常用的一个应用场景就是判断用户是否登录。针对登录过的用户，服务器端会在他登录时往 Cookie 中插入一段加密过的唯一辨识单一用户的辨识码，下次只要读取这个值就可以判断当前用户是否登录啦。曾经还使用 Cookie 来保存用户在电商网站的购物车信息，如今有了 localStorage，似乎在这个方面也可以给 Cookie 放个假了~ 而另一方面 localStorage 接替了 Cookie 管理购物车的工作，同时也能胜任其他一些工作。比如HTML5游戏通常会产生一些本地数据，localStorage 也是非常适用的。如果遇到一些内容特别多的表单，为了优化用户体验，我们可能要把表单页面拆分成多个子页面，然后按步骤引导用户填写。这时候 sessionStorage 的作用就发挥出来了。 安全性的考虑需要注意的是，不是什么数据都适合放在 Cookie、localStorage 和 sessionStorage 中的。使用它们的时候，需要时刻注意是否有代码存在 XSS 注入的风险。因为只要打开控制台，你就随意修改它们的值，也就是说如果你的网站中有 XSS 的风险，它们就能对你的 localStorage 肆意妄为。所以千万不要用它们存储你系统中的敏感数据。 参考资料 what is the difference between localStorage, sessionStorage, session and cookie? HTML5 localStorage security 维基百科 - Cookie Web Storage API 浏览器本地数据（sessionStorage、localStorage、cookie）与server端数据 HTMl5的sessionStorage和localStorage HTML5 LocalStorage 本地存储 转自：详说 Cookie, LocalStorage 与 SessionStorage]]></content>
       <categories>
-        <category>缓存</category>
+        <category>HTTP</category>
       </categories>
       <tags>
-        <tag>缓存</tag>
+        <tag>HTTP</tag>
+        <tag>cookie</tag>
+        <tag>session</tag>
       </tags>
   </entry>
   <entry>

@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="HTTP,XSS 攻击," />
+  <meta name="keywords" content="HTTP,XSS," />
 
 
 
@@ -95,14 +95,14 @@
 
 
 <meta name="description" content="XSS 漏洞1、什么是 XSSXSS（ Cross-Site Scripting）跨站脚本攻击  简单来说   正常用户 A 提交正常内容，显示在另一个用户 B 的网页上，没有问题。  恶意用户 H 提交恶意内容，显示在另一个用户 B 的网页上，对 B 的网页随意篡改。    造成 XSS 有几个要点：   恶意用户可以提交内容  提交的内容可以显示在另一个用户的页面上  这些内容未经过滤，直接运">
-<meta name="keywords" content="HTTP,XSS 攻击">
+<meta name="keywords" content="HTTP,XSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XSS 跨站脚本攻击">
 <meta property="og:url" content="http://yoursite.com/2017/09/23/XSS-漏洞/index.html">
 <meta property="og:site_name" content="Albert&#39;s Blog">
 <meta property="og:description" content="XSS 漏洞1、什么是 XSSXSS（ Cross-Site Scripting）跨站脚本攻击  简单来说   正常用户 A 提交正常内容，显示在另一个用户 B 的网页上，没有问题。  恶意用户 H 提交恶意内容，显示在另一个用户 B 的网页上，对 B 的网页随意篡改。    造成 XSS 有几个要点：   恶意用户可以提交内容  提交的内容可以显示在另一个用户的页面上  这些内容未经过滤，直接运">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-23T10:38:00.176Z">
+<meta property="og:updated_time" content="2017-09-24T10:15:48.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XSS 跨站脚本攻击">
 <meta name="twitter:description" content="XSS 漏洞1、什么是 XSSXSS（ Cross-Site Scripting）跨站脚本攻击  简单来说   正常用户 A 提交正常内容，显示在另一个用户 B 的网页上，没有问题。  恶意用户 H 提交恶意内容，显示在另一个用户 B 的网页上，对 B 的网页随意篡改。    造成 XSS 有几个要点：   恶意用户可以提交内容  提交的内容可以显示在另一个用户的页面上  这些内容未经过滤，直接运">
@@ -503,7 +503,12 @@
 </tbody>
 </table>
 <ul>
-<li>前端代码<br>尽量避免使用 <code>innerHtml</code> 或 <code>eval</code> 这种危险的方式运行代码，没准你的用户就会利用这些 JS 方法的特殊性，在你的网站上嵌入一些恶意的脚本，从而对你的网站及你的客户造成不利影响。</li>
+<li><p>前端代码<br>尽量避免使用 <code>innerHtml</code> 或 <code>eval</code> 这种危险的方式运行代码，没准你的用户就会利用这些 JS 方法的特殊性，在你的网站上嵌入一些恶意的脚本，从而对你的网站及你的客户造成不利影响。</p>
+</li>
+<li><p>当然还有很多其他方法的 XSS 攻击，有兴趣的小伙伴可以移步我的另一篇文章 《一个模拟-XSS-攻击的小游戏》了解更多的攻击方法，以制定合理的防御策略。</p>
+</li>
+<li><p>安利：React DOM 在渲染之前默认会过滤 所有传入的值。它可以确保你的应用不会被注入攻击，所有的内容在渲染之前都被转换成了字符串，这样可以有效地防止 XSS(跨站脚本) 攻击。</p>
+</li>
 </ul>
 <p>（完）</p>
 
@@ -525,7 +530,7 @@
           
             <a href="/tags/HTTP/" rel="tag"># HTTP</a>
           
-            <a href="/tags/XSS-攻击/" rel="tag"># XSS 攻击</a>
+            <a href="/tags/XSS/" rel="tag"># XSS</a>
           
         </div>
       
@@ -629,7 +634,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -640,7 +645,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -651,7 +656,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

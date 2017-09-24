@@ -318,6 +318,540 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/试题：作用域链-闭包/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/29/试题：作用域链-闭包/" itemprop="url">试题：作用域链+闭包</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T14:40:33+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/试题/" itemprop="url" rel="index">
+                    <span itemprop="name">试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/29/试题：作用域链-闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/29/试题：作用域链-闭包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/08/29/试题：作用域链-闭包/" class="leancloud_visitors" data-flag-title="试题：作用域链+闭包">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bbnfbi9j21hc0u0k0k.jpg" alt="@ | center"></p>
+<h1 id="试题：作用域链-闭包"><a href="#试题：作用域链-闭包" class="headerlink" title="试题：作用域链 + 闭包"></a>试题：作用域链 + 闭包</h1><p>在开始阅读本文之前，你可能需要了解包括且不限于以下知识点，否则极有可能会浪费您宝贵的时间。</p>
+<ol>
+<li>闭包</li>
+<li>作用域</li>
+<li>执行上下文</li>
+<li>this</li>
+<li>自执行函数</li>
+</ol>
+<h2 id="伪代码声明"><a href="#伪代码声明" class="headerlink" title="伪代码声明"></a>伪代码声明</h2><p>本文没有用中文汉字解释每一行代码执行做了哪些事情，但是有很详细的伪代码作为参考，虽然略为繁琐，但如果你将它整理成自己的思路，以后遇到类似的问题就能迅速思考得出答案。</p>
+<p><strong>约定：</strong></p>
+<ul>
+<li>Context 执行上下文</li>
+<li>AO 活动对象</li>
+<li>Scope 作用域链</li>
+</ul>
+<p>先来一道开胃菜，至少可以让我们大概知道每一行伪代码说明了什么。</p>
+<h2 id="开胃菜："><a href="#开胃菜：" class="headerlink" title="开胃菜："></a>开胃菜：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">10</span></div><div class="line">bar()</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(x)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> x = <span class="number">30</span></div><div class="line">  foo() <span class="comment">// 输出什么</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 调用函数的时候，先从该函数体内查找所需的变量，如果没有，再从函数定义的那个作用域查找所需变量。以此类推，直到顶层作用域，如果依旧没有，输出 <code>undefined</code></p>
+<p>以下是我的伪代码规则：<br><strong>伪代码：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 执行上下文</span></div><div class="line"><span class="comment"> * globalContext = &#123;</span></div><div class="line"><span class="comment"> * 活动对象</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      x: 10</span></div><div class="line"><span class="comment"> *    foo: function</span></div><div class="line"><span class="comment"> *    bar: function</span></div><div class="line"><span class="comment"> *  &#125;,</span></div><div class="line"><span class="comment"> *  作用域链</span></div><div class="line"><span class="comment"> *  Scope: null</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 声明 foo 时 得到下面</span></div><div class="line"><span class="comment"> * foo.[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 声明 bar 时 得到下面</span></div><div class="line"><span class="comment"> * bar.[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 注意： 在当前的执行上下文内声明的函数，这个函数的[[scope]]就指向当前执行上下文的 AO</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 当调用 bar() 时， 进入 bar 的执行上下文</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * barContext = &#123;</span></div><div class="line"><span class="comment"> *   AO: &#123;</span></div><div class="line"><span class="comment"> *     x: 30</span></div><div class="line"><span class="comment"> *   &#125;,</span></div><div class="line"><span class="comment"> *   Scope: bar.[[scope]] //globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 当调用 foo() 时，先从 bar 执行上下文中的 AO里找foo函数，找不到再从 bar 的 [[scope]]里找找到后即调用</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 当调用 foo() 时，进入 foo 的执行上下文</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * fooContext = &#123;</span></div><div class="line"><span class="comment"> *   AO: &#123;&#125;,</span></div><div class="line"><span class="comment"> *   Scope: foo.[[scope]] // globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 所以最后在console中输出 10</span></div><div class="line"><span class="comment"> * */</span></div></pre></td></tr></table></figure></p>
+<p>ok，开胃菜没有任何难度，接下来上正餐咯 <code>(*^▽^*)</code></p>
+<h2 id="主菜一："><a href="#主菜一：" class="headerlink" title="主菜一："></a>主菜一：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">7</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    num: <span class="number">8</span>,</div><div class="line">    fn: (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">this</span>.num *= <span class="number">2</span>;</div><div class="line">        num += <span class="number">3</span>;</div><div class="line">        num = <span class="number">6</span>;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.num *= <span class="number">5</span>;</div><div class="line">            num += <span class="number">6</span>;</div><div class="line">            <span class="built_in">console</span>.log(num);</div><div class="line">        &#125;</div><div class="line">    &#125;)(num)</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn = obj.fn;</div><div class="line">fn();</div><div class="line">obj.fn();</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.num, obj.num);</div></pre></td></tr></table></figure>
+<p><strong>如需文字说明，请留言注明。</strong><br>以下是每一步操作的伪代码，希望诸君在思考过后再参考：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 1. 栈底 ==&gt; 全局上下文</span></div><div class="line"><span class="comment"> * 执行上下文</span></div><div class="line"><span class="comment"> * globalContext=&#123;</span></div><div class="line"><span class="comment"> * 活动对象</span></div><div class="line"><span class="comment"> *   AO: &#123;</span></div><div class="line"><span class="comment"> *       num: 7,</span></div><div class="line"><span class="comment"> *       obj: &#123;&#125;,</span></div><div class="line"><span class="comment"> *       (function()&#123;&#125;)(): function,</span></div><div class="line"><span class="comment"> *       fn: obj.fn,</span></div><div class="line"><span class="comment"> *       fn(): function,</span></div><div class="line"><span class="comment"> *       obj.fn(): function</span></div><div class="line"><span class="comment"> *   &#125;</span></div><div class="line"><span class="comment"> *  作用域链</span></div><div class="line"><span class="comment"> *   scope: none</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> * 通过以上伪代码可以得出以下的作用域链</span></div><div class="line"><span class="comment"> * (function()&#123;&#125;)().[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> * fn().[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> * obj.fn().[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 2. 自执行函数</span></div><div class="line"><span class="comment"> * (function()&#123;&#125;)()Context=&#123;</span></div><div class="line"><span class="comment"> *   AO: &#123;</span></div><div class="line"><span class="comment"> *       (globalContext.AO.num: 14 ==&gt; 17 ==&gt; 6)</span></div><div class="line"><span class="comment"> *       (return function(): function)</span></div><div class="line"><span class="comment"> *   &#125;</span></div><div class="line"><span class="comment"> *   scope: globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 3. fn()</span></div><div class="line"><span class="comment"> * fnContext = &#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      num: 30 ==&gt; 36</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 4. obj.fn()</span></div><div class="line"><span class="comment"> * step1:</span></div><div class="line"><span class="comment"> * objContext = &#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      num: 8,</span></div><div class="line"><span class="comment"> *      fn: function</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> * fn.[[scope]] = objContext.AO</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * step2:</span></div><div class="line"><span class="comment"> * obj.fn Context=&#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      (objContext.AO.num: 40)</span></div><div class="line"><span class="comment"> *      (globalContext.AO.num: 42)</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: objContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * */</span></div></pre></td></tr></table></figure></p>
+<h2 id="主菜二："><a href="#主菜二：" class="headerlink" title="主菜二："></a>主菜二：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">20</span>;</div><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    num: <span class="number">30</span>,</div><div class="line">    fn: (<span class="function"><span class="keyword">function</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">        num += <span class="number">15</span>;</div><div class="line">        <span class="keyword">var</span> num = <span class="number">45</span>;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">this</span>.num *= <span class="number">4</span>;</div><div class="line">            num += <span class="number">20</span>;</div><div class="line">            <span class="built_in">console</span>.log(num);</div><div class="line">        &#125;</div><div class="line">    &#125;)(num)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> fn = obj.fn;</div><div class="line">fn();</div><div class="line">obj.fn();</div><div class="line"><span class="built_in">console</span>.log(<span class="built_in">window</span>.num, obj.num);</div></pre></td></tr></table></figure>
+<p><strong>如需文字说明，请留言注明。</strong><br>以下是每一步操作的伪代码，希望诸君在思考过后再参考：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * 1. 栈底 ==&gt; globalContext</span></div><div class="line"><span class="comment"> * globalContext=&#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      num: 20,</span></div><div class="line"><span class="comment"> *      obj: &#123;&#125;,</span></div><div class="line"><span class="comment"> *      (function()&#123;&#125;)(),</span></div><div class="line"><span class="comment"> *      fn: obj.fn,</span></div><div class="line"><span class="comment"> *      fn(): function,</span></div><div class="line"><span class="comment"> *      obj.fn(): function</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: none</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *  (function()&#123;&#125;)().[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> *  fn().[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> *  obj.fn().[[scope]] = globalContext.AO</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 2. (function()&#123;&#125;())</span></div><div class="line"><span class="comment"> * (function()&#123;&#125;())Context = &#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      num: 45</span></div><div class="line"><span class="comment"> *      (return function(): function)</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 3. fn()</span></div><div class="line"><span class="comment"> * fnContext = &#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      (globalContext.AO.num: 80)</span></div><div class="line"><span class="comment"> *      ((function()&#123;&#125;()).AO.num: 45 ==&gt; 65)</span></div><div class="line"><span class="comment"> *      num: 65</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * 4. obj.fn()</span></div><div class="line"><span class="comment"> * step1:</span></div><div class="line"><span class="comment"> * objContext = &#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      num: 30,</span></div><div class="line"><span class="comment"> *      fn: function</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: globalContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> * fn.[[scope]] = objContext</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * step2:</span></div><div class="line"><span class="comment"> * obj.fn()Context = &#123;</span></div><div class="line"><span class="comment"> *  AO: &#123;</span></div><div class="line"><span class="comment"> *      (objContext.AO.num: 120)</span></div><div class="line"><span class="comment"> *      ((function()&#123;&#125;()).AO.num: 65 ==&gt; 85)</span></div><div class="line"><span class="comment"> *      num: 85</span></div><div class="line"><span class="comment"> *  &#125;</span></div><div class="line"><span class="comment"> *  scope: objContext.AO</span></div><div class="line"><span class="comment"> * &#125;</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * */</span></div></pre></td></tr></table></figure></p>
+<p>本文示例中的伪代码全为个人喜好，没有标准规范，诸君可为自身喜好量身定制，直到自己用的 [ 爽 ] 为止。</p>
+<p>另外，诚如本文一开始所说的那样，虽然书写出伪代码能够得出一个精确的答案，但过程比较繁琐，所以应尽量把伪代码变成自己的思路，这样才在实际操作中迅速找到问题所在，解决问题。</p>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/leanCloud存储数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/29/leanCloud存储数据/" itemprop="url">leanCloud存储数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T00:48:44+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据存储/" itemprop="url" rel="index">
+                    <span itemprop="name">数据存储</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/29/leanCloud存储数据/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/29/leanCloud存储数据/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/08/29/leanCloud存储数据/" class="leancloud_visitors" data-flag-title="leanCloud存储数据">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/27/React-生命周期/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/27/React-生命周期/" itemprop="url">React 生命周期（Lifecycle）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-27T14:54:52+08:00">
+                2017-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/27/React-生命周期/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/27/React-生命周期/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/08/27/React-生命周期/" class="leancloud_visitors" data-flag-title="React 生命周期（Lifecycle）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7bcj3yudj21hc0u0thp.jpg" alt="@ | center"></p>
+<h1 id="React-生命周期（Lifecycle）"><a href="#React-生命周期（Lifecycle）" class="headerlink" title="React 生命周期（Lifecycle）"></a>React 生命周期（Lifecycle）</h1><p><a href="https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle" target="_blank" rel="external">参考：The Component Lifecycle</a></p>
+<p>React 的生命周期包括三个阶段：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. mount（挂载）</div><div class="line">2. update（更新）</div><div class="line">3. unmount（移除）</div></pre></td></tr></table></figure></p>
+<h2 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h2><p><code>mount</code> 就是第一次让组件出现在页面中的过程。这个过程的关键就是 render 方法。React 会将 render 的返回值（一般是虚拟 DOM，也可以是 DOM 或者 null）插入到页面中。</p>
+<p>这个过程会暴露几个钩子（hook）方便你往里面加代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> <span class="keyword">constructor</span>()</div><div class="line">2. componentWillMount()</div><div class="line">3. render()</div><div class="line">4. componentDidMount()</div></pre></td></tr></table></figure>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fix4zaxn30j21v0110hci.jpg" alt="@mount | center"></p>
+<h2 id="update"><a href="#update" class="headerlink" title="update"></a>update</h2><p><code>mount</code> 之后，如果数据有任何变动，就会来到 <code>update</code> 过程，这个过程有 5 个钩子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// - 我要读取 props 啦！</span></div><div class="line">componentWillReceiveProps(nextProps)</div><div class="line"></div><div class="line"><span class="comment">// - 请问要不要更新组件？true / false</span></div><div class="line">shouldComponentUpdate(nextProps, nextState) </div><div class="line"></div><div class="line"><span class="comment">// - 我要更新组件啦！</span></div><div class="line">componentWillUpdate() </div><div class="line"></div><div class="line"><span class="comment">// - 更新！</span></div><div class="line">render() </div><div class="line"></div><div class="line"><span class="comment">// - 更新完毕啦！</span></div><div class="line">componentDidUpdate()</div></pre></td></tr></table></figure>
+<h2 id="unmount"><a href="#unmount" class="headerlink" title="unmount"></a>unmount</h2><p>当一个组件将要从页面中移除时，会进入 <code>unmount</code> 过程，这个过程就一个钩子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// - 我要死啦！</span></div><div class="line">componentWillUnmount()</div></pre></td></tr></table></figure>
+<p>你可以在这个组件死之前做一些清理工作。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一般情况下只在这几个钩子里 <code>setState</code>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">componentWillMount()</div><div class="line">componentDidMount()</div><div class="line">componentWillReceiveProps(nextProps, nextState) </div><div class="line">componentDidUpdate()</div></pre></td></tr></table></figure></p>
+<p><a href="https://gist.github.com/bvaughn/923dffb2cd9504ee440791fade8db5f9" target="_blank" rel="external">参考：React lifecycle cheatsheet</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/React-基础入门实例/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -964,8 +1498,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/缓存/" itemprop="url" rel="index">
-                    <span itemprop="name">缓存</span>
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
                   </a>
                 </span>
 
@@ -1910,798 +2444,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/webpack基础入坑（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/webpack基础入坑（二）/" itemprop="url">webpack基础入坑（二）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T19:30:03+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/webpack基础入坑（二）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/webpack基础入坑（二）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/22/webpack基础入坑（二）/" class="leancloud_visitors" data-flag-title="webpack基础入坑（二）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fishfcjd85j21g30orwmv.jpg" alt=" webpack | center "></p>
-<h1 id="webpack基础入坑（二"><a href="#webpack基础入坑（二" class="headerlink" title="webpack基础入坑（二"></a>webpack基础入坑（二</h1><blockquote>
-<p>接上回</p>
-</blockquote>
-<p>上回主要操作了指南的 Installation 与 GettingStarted 这两部分，这时候我们大概能猜出 webpack 的某些功能了：</p>
-<ol>
-<li>使用各种 loader 加载不同的资源</li>
-<li>把所有资源打包起来</li>
-</ol>
-<h2 id="bundle-js"><a href="#bundle-js" class="headerlink" title="bundle.js"></a>bundle.js</h2><p>我们可以阅读一下最后生成的 <code>bundle.js</code><br>（可以写几个简单的JS文件打包，参数部分看起来会更方便一些）<br><code>bundle.js</code> 是一个并不复杂的自执行函数（每一行都有代码注释）容主要由两部分组成：</p>
-<ol>
-<li>webpackBootstrap 函数入口，主体部分<br>打包的功能就在这部分，有兴趣的话可以看一下每一行的功能，大致就是把每个模块call一下，然后把模块保存到 <code>installedModules</code> 里，然后需要用到的时候可以直接调用。</li>
-<li>参数部分<br>传入一个数组，数组的每一项都是一个模块，每个模块都有一个独立的模块ID，模块需要其他依赖时直接通过模块ID来调用。</li>
-</ol>
-<p>就此打住，这篇文章主题并不在讲 <code>bundle.js</code>。</p>
-<hr>
-<h2 id="JS-压缩"><a href="#JS-压缩" class="headerlink" title="JS 压缩"></a>JS 压缩</h2><p>webpack打包之后我们发现 <code>dist/bundle.js</code> 有800KB，因为我们引入了 <code>lodash</code> 和 <code>jQuery</code> 这两个库，但是并没有压缩代码，那么如何压缩呢？方法很多，其中最简单的一种就是使用 webpack 自带的压缩插件 UglifyJsPlugin：</p>
-<p>我们修改一下 <code>npm scripts</code> 的配置，添加一个字段启动webpack的压缩功能：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"build-p": "webpack -p"</div></pre></td></tr></table></figure></p>
-<p>重新运行命令打包文件，得到的 <code>bundle.js</code> 就是一个压缩过的文件。</p>
-<ul>
-<li>更多使用方法参考这里：<a href="https://github.com/mishoo/UglifyJS2#usage" target="_blank" rel="external">UglifyJS</a></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build-p</div></pre></td></tr></table></figure>
-<p>运行帮助命令查看 <code>-p</code> 参数的具体功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack --<span class="built_in">help</span></div><div class="line"></div><div class="line"><span class="comment"># 找到如下介绍</span></div><div class="line">-p        shortcut <span class="keyword">for</span> --optimize-minimize --define process.env.NODE_ENV=<span class="string">"production"</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">webpack -p</div><div class="line"><span class="comment"># 相当于以下命令</span></div><div class="line">webpack --optimize-minimize --define process.env.NODE_ENV=<span class="string">"'production'"</span></div></pre></td></tr></table></figure>
-<p>它会执行如下步骤：</p>
-<ol>
-<li>使用 UglifyJsPlugin 进行 JS 文件压缩</li>
-<li>运行 <a href="https://doc.webpack-china.org/plugins/loader-options-plugin/" target="_blank" rel="external">LoaderOptionsPlugin</a></li>
-<li>设置 NodeJS 环境变量，触发某些 package 包，以不同的方式进行编译。</li>
-</ol>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>每次改完代码都要运行一次打包命令是不是很烦人？没关系，webpack 肯定也考虑到了，于是乎我们就可以通过 webpack 自带的监听功能自动监听文件变动然后执行编译。</p>
-<p><a href="https://webpack.js.org/guides/development/" target="_blank" rel="external">Development</a> 这一章节就是专门介绍如何快速开发的。</p>
-<h3 id="1-调整编辑器"><a href="#1-调整编辑器" class="headerlink" title="1. 调整编辑器"></a>1. 调整编辑器</h3><p>首先，我们先拉到文章底部，按照它的要求调整我们的编辑器：<br><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fivwqt4zttj20hz08vdgs.jpg" alt="@调整编辑器 | center"></p>
-<h3 id="2-Source-Maps"><a href="#2-Source-Maps" class="headerlink" title="2. Source Maps"></a>2. Source Maps</h3><p>调整好编辑器后我们再返回页面顶部，找到Source Maps<br><strong>功能：</strong><br>将编译后的代码映射回原始源代码，如果某个源文件中存在错误，source map会追踪到错误和警告在源代码中的原始位置，方便代码调试。<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  var path = require('path');</div><div class="line">  module.exports = &#123;</div><div class="line">    entry: './src/index.js',</div><div class="line"><span class="addition">+   devtool: 'inline-source-map',</span></div><div class="line">    output: &#123;</div><div class="line">      filename: 'bundle.js',</div><div class="line">      path: path.resolve(__dirname, 'dist')</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>故意改错源文件中的代码，然后运行 <code>npm run build</code> 打包，然后在浏览器控制台你会发现 <code>bundle.js</code> 的报错会指向源文件。<br><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fivxaa8w8yj20d2048dg4.jpg" alt="@指向了源文件 foo.js | center"></p>
-<h3 id="3-Watch-Mode"><a href="#3-Watch-Mode" class="headerlink" title="3. Watch Mode"></a>3. Watch Mode</h3><p>再修改一下 <code>npm scripts</code> 的配置，添加一个字段以启动监听模式：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"watch": "webpack --watch"</div></pre></td></tr></table></figure></p>
-<p>运行 <code>npm run watch</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm run watch</div><div class="line"><span class="comment"># 运行成功直接编译然后光标继续闪动表示监听中...</span></div></pre></td></tr></table></figure></p>
-<p>如果你想要退出，请按 <code>Ctrl+c</code></p>
-<p>好了现在我们试一下这个监听功能，我们随便修改一个文件内容，按 <code>Ctrl+s</code> 保存。</p>
-<p>切换回命令行，你会发现 webpack 自动执行了编译操作。</p>
-<h3 id="4-webpack-dev-server"><a href="#4-webpack-dev-server" class="headerlink" title="4.  webpack-dev-server"></a>4.  webpack-dev-server</h3><p>此功能能够让你的浏览器自动刷新，是不是棒棒哒~（虽然很多编辑器也都有这个功能=。=）</p>
-<p>按照老规矩，第一步添加修改 <code>npm scripts</code> 的配置，添加一个字段以启动开发服务器：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"start": "webpack-dev-server --open"</div></pre></td></tr></table></figure></p>
-<p>修改 <code>webpack.config.js</code> ，在 <code>module.exports</code> 对象中添加一个字段 <code>devServer</code> ，告知 <code>webpack-dev-server</code> 将指定目录下的文件作为可访问文件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">devServer: &#123;</div><div class="line">    contentBase: <span class="string">'./'</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>运行 <code>npm run start</code> 启动服务器，然后浏览器就会自动打开 <a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a> ，你会看到 <code>index.html</code> 页面。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run start</div></pre></td></tr></table></figure></p>
-<p>接下来如果我们改一下 <code>src/index.js</code>，你就会发现</p>
-<ol>
-<li><code>bundle.js</code> 自动打包</li>
-<li><a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a> 自动刷新</li>
-</ol>
-<p>注意：期间 <code>dist/bundle.js</code> 不会自动变化，在部署代码之前，依然要运行 <code>npm run build</code> 才行。</p>
-<h3 id="5-webpack-dev-middleware"><a href="#5-webpack-dev-middleware" class="headerlink" title="5. webpack-dev-middleware"></a>5. webpack-dev-middleware</h3><p>功能与 <code>webpack-dev-server</code> 类似，新手入坑不建议使用 <code>webpack-dev-middleware</code></p>
-<p>（完）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/webpack基础入坑（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/webpack基础入坑（一）/" itemprop="url">webpack基础入坑（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T00:44:00+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/webpack基础入坑（一）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/webpack基础入坑（一）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/22/webpack基础入坑（一）/" class="leancloud_visitors" data-flag-title="webpack基础入坑（一）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fishfcjd85j21g30orwmv.jpg" alt=" webpack | center "></p>
-<h1 id="webpck-基础入坑（一）"><a href="#webpck-基础入坑（一）" class="headerlink" title="webpck 基础入坑（一）"></a>webpck 基础入坑（一）</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>这里有webpack发布的所有版本：<br><a href="https://github.com/webpack/webpack" target="_blank" rel="external">https://github.com/webpack/webpack/releases</a></p>
-<p>当然你也可以直接通过 <code>npm</code> 命令安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure></p>
-<p>如果你要体验最新版本的webpack请使用以下命令安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack@beta</div></pre></td></tr></table></figure></p>
-<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p>Google 搜索 webpack 第一条结果：<br><a href="https://webpack.github.io/" target="_blank" rel="external">https://webpack.github.io/</a></p>
-<p>页面中指明了三个链接：</p>
-<ol>
-<li><a href="http://webpack.js.org/" target="_blank" rel="external">documentation - 文档</a><br>所有功能的罗列，文档一般<strong>不是</strong>按照从易到难的顺序给出，但是肯定包含的几乎所有功能的介绍。</li>
-<li><a href="http://webpack.js.org/concepts" target="_blank" rel="external">introducation - 介绍</a><br>简单说明了 webpack 的作用和基本概念。</li>
-<li><a href="http://webpack.js.org/get-started/" target="_blank" rel="external">tutorial - 教程</a><br>比较容易上手，教你一步一步自学 webpack</li>
-</ol>
-<p>需要中文的小伙伴请点这里：<br><a href="https://doc.webpack-china.org/" target="_blank" rel="external">https://doc.webpack-china.org/</a></p>
-<h2 id="实践（抄写）"><a href="#实践（抄写）" class="headerlink" title="实践（抄写）"></a>实践（抄写）</h2><p>点开 <a href="http://webpack.js.org/get-started/" target="_blank" rel="external">tutorial - 教程</a> ，然后一行一行地复制里面的命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建并进入 webpack-demo 目录</span></div><div class="line">mkdir webpack-demo &amp;&amp; <span class="built_in">cd</span> webpack-demo</div><div class="line"><span class="comment"># npm 初始化一个 package.json</span></div><div class="line">npm init -y</div><div class="line"><span class="comment"># 安装 webpack 作为开发依赖</span></div><div class="line">npm install --save-dev webpack</div></pre></td></tr></table></figure></p>
-<p>ps: 安装过慢请自行切换国内淘宝源</p>
-<hr>
-<p>按教程上说的做<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 新建一个index.hrml</span></div><div class="line">touch index.html</div><div class="line"><span class="comment"># 新建一个src文件夹</span></div><div class="line">mkdir src</div><div class="line"><span class="comment"># 在src文件夹内新建一个index.js</span></div><div class="line"><span class="built_in">cd</span> src &amp;&amp; touch index.js</div></pre></td></tr></table></figure></p>
-<p>现在你的目录结构是这样的：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">webpack-demo</div><div class="line">|- package.json</div><div class="line">|- index.html</div><div class="line">|- /src</div><div class="line">  |- index.js</div></pre></td></tr></table></figure></p>
-<hr>
-<p>ok，咱们继续抄<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">component</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line"></div><div class="line">  <span class="comment">// Lodash, currently included via a script, is required for this line to work</span></div><div class="line">  element.innerHTML = _.join([<span class="string">'Hello'</span>, <span class="string">'webpack'</span>], <span class="string">' '</span>);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> element;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">document</span>.body.appendChild(component());</div></pre></td></tr></table></figure></p>
-<p>注意上面代码中的 <code>_.join</code> ，这个 <code>_</code> 实际上是 <code>lodash</code> 暴露的全局变量。</p>
-<hr>
-<p>编辑 <code>webpack-demo</code> 目录下的 <code>index.html</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;Getting Started&lt;/title&gt;</div><div class="line">    &lt;script src=&quot;https://unpkg.com/lodash@4.16.6&quot;&gt;&lt;/script&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;script src=&quot;./src/index.js&quot;&gt;&lt;/script&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
-<p>为了使用 <code>lodash</code>，<code>HTML</code> 使用 <code>script</code> 引入了 <code>lodash v4.16.6</code>。</p>
-<hr>
-<p>教程里说这样引用逼格太低，我们可以用更高端的方法引入<br>安装 <code>lodash</code> 为必要依赖<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 请先确保命令行当前所在目录是 webpack-demo</span></div><div class="line">npm install --save lodash</div><div class="line"><span class="comment"># 上面命令可以简写成 npm i -S lodash</span></div></pre></td></tr></table></figure></p>
-<p>好了，<code>lodash</code> 的源代码已经下载到 <code>./node_modules/lodash/</code> 目录中。</p>
-<p>然后在 <code>src/index.js</code> 的第一行添加<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span>;</div><div class="line"><span class="comment">// 然后是function component () &#123;</span></div></pre></td></tr></table></figure></p>
-<p>意思是从 <code>lodash</code> 里得到默认导出，并将默认导出命名为 <code>_</code>，这个 <code>_</code> 可以换成任何一个其他的变量名。</p>
-<p>然后按照教程说的把 <code>index.html</code> 也改了<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  &lt;html&gt;</div><div class="line">   &lt;head&gt;</div><div class="line">     &lt;title&gt;Getting Started&lt;/title&gt;</div><div class="line"><span class="deletion">-    &lt;script src="https://unpkg.com/lodash@4.16.6"&gt;&lt;/script&gt;</span></div><div class="line">   &lt;/head&gt;</div><div class="line">   &lt;body&gt;</div><div class="line"><span class="deletion">-    &lt;script src="./src/index.js"&gt;&lt;/script&gt;</span></div><div class="line"><span class="addition">+    &lt;script src="./dist/bundle.js"&gt;&lt;/script&gt;</span></div><div class="line">   &lt;/body&gt;</div><div class="line">  &lt;/html&gt;</div></pre></td></tr></table></figure></p>
-<p>然后命令行输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack app/index.js dist/bundle.js</div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 如果你是全局安装的webpack直接运行以下代码</span></div><div class="line">webpack app/index.js dist/bundle.js</div></pre></td></tr></table></figure>
-<p>在浏览器中打开 <code>index.html</code>，如果你看到’Hello webpack’ 说明运行成功。</p>
-<hr>
-<p>这是目前的文件结构：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">|- src</div><div class="line">  |- index.js</div><div class="line">|- dist</div><div class="line">  |- bundle.js</div><div class="line">|- index.html</div><div class="line">|- node_modules/</div><div class="line">|- package.json</div></pre></td></tr></table></figure></p>
-<ol>
-<li><code>./node_modules/.bin/webpack app/index.js dist/bundle.js</code> 将 <code>src/index.js</code> 转化成 <code>dist/bundle.js</code></li>
-<li><code>index.html</code> 引用的是 <code>dist/bundle.js</code></li>
-<li><code>lodash</code> 安装在 <code>node_modules</code> 里，在<code>index.js</code>中用<code>import</code>引用</li>
-<li><code>webpack</code> 也安装在 <code>node_modules</code>里，<code>./node_modules/.bin/webpack</code> 是一个可执行文件</li>
-<li><code>webpack</code>、<code>lodash</code> 的版本号都被写在 <code>package.json</code> 里</li>
-</ol>
-<hr>
-<h2 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h2><h3 id="引入-jQuery"><a href="#引入-jQuery" class="headerlink" title="引入 jQuery"></a>引入 jQuery</h3><p>如果我们要在页面中引入 <code>jQuery</code>，先安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 确定你在 webpack-demo 目录</span></div><div class="line">npm i -S jquery</div></pre></td></tr></table></figure></p>
-<p>以上命令相当于：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save jquery</div></pre></td></tr></table></figure></p>
-<p>然后 <code>jquery</code> 模块就被下载到了 <code>node_modules</code> 中。</p>
-<p>然后我们继续在 <code>src./index.js</code> 中引入 <code>jquery</code><br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> import _ from 'lodash'</div><div class="line"><span class="addition">+import j from 'jquery'</span></div><div class="line"></div><div class="line"> function component () &#123;</div><div class="line"><span class="deletion">-  var element = document.createElement('div');</span></div><div class="line"><span class="addition">+  var element = j('&lt;div&gt;&lt;/div&gt;');</span></div><div class="line"></div><div class="line"><span class="deletion">-  element.innerHTML = _.join(['Hello','webpack'], ' ');</span></div><div class="line"><span class="addition">+  element.html(_.join(['Hello','webpack'], ' '))</span></div><div class="line"></div><div class="line"><span class="deletion">-  return element;</span></div><div class="line"><span class="addition">+  return element.get(0);</span></div><div class="line"> &#125;</div><div class="line"></div><div class="line"> document.body.appendChild(component());</div></pre></td></tr></table></figure></p>
-<p>然后再次运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack app/index.js dist/bundle.js</div></pre></td></tr></table></figure></p>
-<p>打开 <code>index.html</code>。如果你看到 “Hello webpack”，那就说明 <code>jquery</code> 也成功引入，只不过我们把它命名为 <code>j</code>，显然命名为 <code>$</code> 更符合习惯，你可以自己改一下试试！</p>
-<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><p>上面每次都要运行 <code>./node_modules/.bin/webpack app/index.js dist/bundle.js</code> 实在是烦人，教程里给出了方法：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 确保你在项目根目录 webpack-demo</span></div><div class="line"><span class="comment"># 新建一个 webpack.config.js 文件</span></div><div class="line">touch webpack.config.js</div></pre></td></tr></table></figure></p>
-<p>然后编辑它：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  entry: <span class="string">'./src/index.js'</span>,</div><div class="line">  output: &#123;</div><div class="line">    filename: <span class="string">'bundle.js'</span>,</div><div class="line">    path: path.resolve(__dirname, <span class="string">'dist'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<ol>
-<li><code>output</code> 出口设置，必须是绝对路径，因此在第一行引入 <code>path</code> 模块，方便路径的设置；</li>
-<li><code>entry</code> 入口设置，可以是相对路径；</li>
-<li><code>filename</code> 输出的文件名；</li>
-</ol>
-<p>然后命令行运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack --config webpack.config.js</div></pre></td></tr></table></figure></p>
-<p>不过这句话依然很长，每次输入很麻烦，教程又教了一个办法：使用 <code>npm-scripts</code></p>
-<hr>
-<p>修改 <code>package.json</code><br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">   "scripts": &#123;</div><div class="line">     "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",</div><div class="line"><span class="addition">+    "build": "webpack"</span></div><div class="line">   &#125;,</div><div class="line">   "keywords": [],</div></pre></td></tr></table></figure></p>
-<p>然后命令行运行：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure></p>
-<p>说明运行 <code>npm run build</code> 就等于运行 <code>node_modules</code> 里的 <code>webpack</code> 可执行文件，这个可执行文件会找到项目根目录下的 <code>webpack.config.js</code> 并按照其中的设置执行对应的操作</p>
-<p>最后再看一下文件目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">webpack-demo</div><div class="line">|- /src</div><div class="line">  |- index.js</div><div class="line">|- /dist</div><div class="line">  |- bundle.js</div><div class="line">|- index.html</div><div class="line">|- webpack.config.js</div><div class="line">|- /node_modules</div><div class="line">|- package.json</div></pre></td></tr></table></figure></p>
-<p>（完）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/21/一篇文章彻底入门 SCSS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/21/一篇文章彻底入门 SCSS/" itemprop="url">一篇文章彻底入门 SCSS</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-21T00:36:03+08:00">
-                2017-08-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/21/一篇文章彻底入门 SCSS/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/21/一篇文章彻底入门 SCSS/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/21/一篇文章彻底入门 SCSS/" class="leancloud_visitors" data-flag-title="一篇文章彻底入门 SCSS">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="SCSS-起飞指南"><a href="#SCSS-起飞指南" class="headerlink" title="SCSS 起飞指南"></a>SCSS 起飞指南</h1><p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fiq4cu6ug8j20lo0dgt95.jpg" alt="Sass-Logo"></p>
-<blockquote>
-<p>写在前面：本文看起来比较长，其实是罗列了比较多的示例代码，如果你能坚持看完，对照学习，相信两个小时后你就能自己起飞愉快地去写scss了。</p>
-</blockquote>
-<h2 id="（一）Sass-与SCSS的区别"><a href="#（一）Sass-与SCSS的区别" class="headerlink" title="（一）Sass 与SCSS的区别"></a>（一）Sass 与SCSS的区别</h2><h3 id="1-1-什么是Sass"><a href="#1-1-什么是Sass" class="headerlink" title="1.1 什么是Sass"></a>1.1 什么是Sass</h3><blockquote>
-<p>Sass 是一种CSS的开发工具，提供了许多便利的写法，大大节省了设计者的时间，使得CSS的开发，变得简单和可维护。</p>
-</blockquote>
-<h3 id="1-2-Sass-与SCSS有什么区别"><a href="#1-2-Sass-与SCSS有什么区别" class="headerlink" title="1.2 Sass 与SCSS有什么区别"></a>1.2 Sass 与SCSS有什么区别</h3><blockquote>
-<p>Sass 和 SCSS 其实是同一种东西，我们平时都称之为 Sass ，两者之间不同之处有以下两点：</p>
-</blockquote>
-<ol>
-<li><strong>文件扩展名不同：</strong><br>Sass 是以 <code>.sass</code> 后缀为扩展名<br>SCSS 是以 <code>.scss</code> 后缀为扩展名</li>
-<li><strong>语法书写方式不同：</strong><br>Sass 是以<strong>严格的缩进式语法规则</strong>来书写，不带大括号 <code>{}</code> 和分号 <code>;</code><br>SCSS 的语法书写和我们的 CSS 语法书写方式非常类似</li>
-</ol>
-<p><strong>建议使用后缀名为 scss 的文件，以避免 sass 后缀名的严格格式要求报错。</strong></p>
-<h2 id="（二）安装和使用"><a href="#（二）安装和使用" class="headerlink" title="（二）安装和使用"></a>（二）安装和使用</h2><h3 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1 安装"></a>2.1 安装</h3><blockquote>
-<p>Sass 基于Ruby语言，但两者语法之间没有关系。使用Sass 无需先学习ruby，但是必须先安装Ruby，然后再安装Sass 。</p>
-</blockquote>
-<p> macbook自带ruby环境，直接打开终端运行 <code>gem</code> 命令安装<code>sass</code> 即可；<br> windows需要先自行安装ruby，然后在 <code>CMD</code> 或其他命令行工具中运行安装命令；</p>
-<hr>
-<p><a href="https://rubyinstaller.org/downloads/" target="_blank" rel="external">ruby官网</a></p>
-<ul>
-<li>安装时请勾选<code>Add Ruby executables to your PATH</code>这个选项，添加环境变量，不然以后使用编译软件的时候会提示找不到ruby环境</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fiq5fcodndj20ex07c79c.jpg" alt=""></p>
-<hr>
-<ul>
-<li>正确安装完ruby依赖后，安装sass：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem install sass</div></pre></td></tr></table></figure>
-<ul>
-<li>安装sass完成后查看版本测试安装有没有成功：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sass -v</div><div class="line"><span class="comment"># 安装成功会打印版本号</span></div><div class="line">Sass 3.5.1 (Bleeding Edge)</div></pre></td></tr></table></figure>
-<ul>
-<li>如上已经安装成功。但因为国内网络（不可描述）的问题导致gem源间歇性中断，因此我们需要更换gem源。</li>
-<li>使用淘宝的gem源 <code>https://ruby.taobao.org/</code>：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1.删除原gem源</span></div><div class="line">gem sources --remove https://rubygems.org/</div><div class="line"></div><div class="line"><span class="comment"># 2.添加国内淘宝源</span></div><div class="line">gem sources -a https://ruby.taobao.org/</div><div class="line"></div><div class="line"><span class="comment"># 3.打印是否替换成功</span></div><div class="line">gem sources -l</div><div class="line"></div><div class="line"><span class="comment"># 4.更换成功后打印如下</span></div><div class="line">*** CURRENT SOURCES ***</div><div class="line">https://ruby.taobao.org/</div></pre></td></tr></table></figure>
-<h3 id="2-2-使用"><a href="#2-2-使用" class="headerlink" title="2.2 使用"></a>2.2 使用</h3><blockquote>
-<p><strong>windows</strong> 用户注意：<br>编译 <code>scss</code> 文件中如果存在中文，可能出现类似于这样的报错：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`Syntax error: Invalid GBK character <span class="string">"\xE5"</span>`</div></pre></td></tr></table></figure></p>
-<p>请一定不要惊慌，找到类似于下面的目录：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">C:\Ruby24-x64\lib\ruby\gems\2.4.0\gems\sass-3.5.1\lib\sass</div></pre></td></tr></table></figure></p>
-<p>然后在该目录中找到 <code>engine.rb</code> ，编辑添加一行代码：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Encoding.default_external = Encoding.find(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure></p>
-</blockquote>
-<ul>
-<li>编译sass</li>
-</ul>
-<blockquote>
-<p>sass 编译有很多种方式，如命令行编译模式、sublime插件SASS-Build、编译软件koala、前端自动化软件codekit、Grunt打造前端自动化工作流grunt-sass、Gulp打造前端自动化工作流gulp-ruby-sass等。</p>
-</blockquote>
-<ul>
-<li>命令行编译;</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1. 直接打印转化后的代码</span></div><div class="line">sass test.scss</div><div class="line"></div><div class="line"><span class="comment"># 2. 单文件转换命令</span></div><div class="line">sass input.scss output.css</div><div class="line"></div><div class="line"><span class="comment"># 3.1 单文件监听命令,实时转换</span></div><div class="line">sass --watch input.scss:output.css</div><div class="line"></div><div class="line"><span class="comment"># 3.2 如果你有很多的sass文件，也可以监听整个目录：</span></div><div class="line">sass --watch app/sass:public/stylesheets</div></pre></td></tr></table></figure>
-<ul>
-<li>SASS提供四个编译风格的选项：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">* nested：嵌套缩进的css代码，它是默认值。</div><div class="line">* expanded：没有缩进的、扩展的css代码。</div><div class="line">* compact：简洁格式的css代码。</div><div class="line">* compressed：压缩后的css代码。</div></pre></td></tr></table></figure>
-<p>操作命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 添加指令 --style [编译风格]</span></div><div class="line">sass test.sass test.css --style compressed</div></pre></td></tr></table></figure></p>
-<ul>
-<li>四种编译排版演示:<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//未编译样式</span></div><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</div><div class="line">  &amp;-<span class="selector-tag">title</span> &#123;</div><div class="line">    <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol>
-<li><p><code>nested</code> 嵌套缩进的css代码</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*编译过后样式*/</span></div><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">400px</span>; &#125;</div><div class="line">  <span class="selector-class">.box-title</span> &#123;</div><div class="line">    <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">30px</span>; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>expanded</code> 没有缩进的、扩展的css代码</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*编译过后样式*/</span></div><div class="line"><span class="selector-class">.box</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.box-title</span> &#123;</div><div class="line">  <span class="attribute">height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">30px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>compact</code> 简洁格式的css代码</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*编译过后样式*/</span></div><div class="line"><span class="selector-class">.box</span> &#123; <span class="attribute">width</span>: <span class="number">300px</span>; <span class="attribute">height</span>: <span class="number">400px</span>; &#125;</div><div class="line"><span class="selector-class">.box-title</span> &#123; <span class="attribute">height</span>: <span class="number">30px</span>; <span class="attribute">line-height</span>: <span class="number">30px</span>; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p><code>compressed</code> 压缩后的css代码</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*编译过后样式*/</span></div><div class="line"><span class="selector-class">.box</span>&#123;<span class="attribute">width</span>:<span class="number">300px</span>;<span class="attribute">height</span>:<span class="number">400px</span>&#125;<span class="selector-class">.box-title</span>&#123;<span class="attribute">height</span>:<span class="number">30px</span>;<span class="attribute">line-height</span>:<span class="number">30px</span>&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="（三）基本用法"><a href="#（三）基本用法" class="headerlink" title="（三）基本用法"></a>（三）基本用法</h2><blockquote>
-<p>建议先下载示例代码，然后跟着走一遍，结束之后你会大致掌握Sass的基本用法</p>
-</blockquote>
-<p>本部分主要分为六块，目录中未提及的变量、注释等其他基础用法已包含在其中。</p>
-<p>Sass的官方网站，提供了一个<a href="https://www.sassmeister.com/" target="_blank" rel="external">在线转换器</a>。你可以在那里，试运行下面的各种例子。</p>
-<p><strong>注：</strong></p>
-<ul>
-<li>以下所有代码块的第一行注释<code>/*SCSS*/</code> 和 <code>/*CSS*/</code> 是人为添加的！</li>
-<li>以下所有编译风格默认 <code>nested</code></li>
-<li>如果命令行出现类似如下提示说明该方法即将弃用，有时会向下面那样提示你用其他方法代替：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">DEPRECATION WARNING on line 77 of input/calculate.scss:</div><div class="line">The operation `<span class="comment">#123123 plus #040506` is deprecated and will be an error in future versions.</span></div><div class="line">Consider using Sass<span class="string">'s color functions instead.</span></div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="3-1-嵌套规则"><a href="#3-1-嵌套规则" class="headerlink" title="3.1 嵌套规则"></a>3.1 嵌套规则</h3><h4 id="1-选择器嵌套"><a href="#1-选择器嵌套" class="headerlink" title="1. 选择器嵌套"></a>1. 选择器嵌套</h4><ul>
-<li>父子层级关系明显；</li>
-<li>代码具有良好的可读性；</li>
-</ul>
-<p><strong>示例：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*SCSS*/</span></div><div class="line"><span class="selector-id">#a</span> &#123;</div><div class="line">  <span class="selector-class">.a-1</span> &#123;</div><div class="line">    <span class="attribute">background</span>: yellow;</div><div class="line">    <span class="selector-class">.child</span> &#123;</div><div class="line">      <span class="attribute">font-size</span>: <span class="number">12px</span>;</div><div class="line">      <span class="selector-class">.child-1</span> &#123;</div><div class="line">        <span class="attribute">color</span>: red</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*CSS*/</span></div><div class="line"><span class="selector-id">#a</span> <span class="selector-class">.a-1</span> &#123;</div><div class="line">  <span class="attribute">background</span>: yellow; &#125;</div><div class="line">  <span class="selector-id">#a</span> <span class="selector-class">.a-1</span> <span class="selector-class">.child</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>; &#125;</div><div class="line">    <span class="selector-id">#a</span> <span class="selector-class">.a-1</span> <span class="selector-class">.child</span> <span class="selector-class">.child-1</span> &#123;</div><div class="line">      <span class="attribute">color</span>: red; &#125;</div></pre></td></tr></table></figure>
-<h4 id="2-引用父选择符：-amp"><a href="#2-引用父选择符：-amp" class="headerlink" title="2. 引用父选择符： &amp;"></a>2. 引用父选择符： <code>&amp;</code></h4><p><code>&amp;</code> 在编译时将被替换为父选择符，输出到 CSS 中</p>
-<p><strong>示例：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.hello</span> &#123;</div><div class="line">  <span class="selector-class">.dropdown</span> &#123;</div><div class="line">    <span class="attribute">display</span>: none;</div><div class="line">  &#125;</div><div class="line">  &amp;:hover &#123;</div><div class="line">    <span class="selector-class">.dropdown</span> &#123;</div><div class="line">      <span class="attribute">display</span>: block;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.hello</span> <span class="selector-class">.dropdown</span> &#123;</div><div class="line">  <span class="attribute">display</span>: none; &#125;</div><div class="line"><span class="selector-class">.hello</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.dropdown</span> &#123;</div><div class="line">  <span class="attribute">display</span>: block; &#125;</div></pre></td></tr></table></figure>
-<h4 id="3-属性嵌套"><a href="#3-属性嵌套" class="headerlink" title="3. 属性嵌套"></a>3. 属性嵌套</h4><p>某些属性具有可选参数的，类似于 <code>border</code> 、<code>font</code> 、<code>background</code> 这样的，可以让你少复制自己的代码，当然直接使用缩写更方便一些，但使用属性嵌套的方法可读性更佳不是吗？</p>
-<p><strong>示例：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.funky</span> &#123;</div><div class="line">  <span class="attribute">font</span>: &#123;</div><div class="line">    family: fantasy;</div><div class="line">    size: <span class="number">30em</span>;</div><div class="line">    weight: bold;</div><div class="line">  &#125;</div><div class="line">  <span class="attribute">border</span>: &#123;</div><div class="line">    radius: <span class="number">20px</span>;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.funky</span> &#123;</div><div class="line">  <span class="attribute">font-family</span>: fantasy;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">30em</span>;</div><div class="line">  <span class="attribute">font-weight</span>: bold;</div><div class="line">  <span class="attribute">border-radius</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">border-color</span>: red; &#125;</div></pre></td></tr></table></figure>
-<h4 id="4-注释规则"><a href="#4-注释规则" class="headerlink" title="4. 注释规则"></a>4. 注释规则</h4><p><code>/*标准的CSS注释*/</code> 编译后依旧存在<br><code>//单行注释</code> 编译后被删除<br><code>/*!重要注释*/</code><br>在<code>/*</code>后面加一个感叹号 <code>!</code> ，表示这是<strong>重要注释</strong>。即使是压缩模式编译，也会保留这行注释，通常可以用于声明版权信息。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="comment">/*标准的CSS注释*/</span></div><div class="line"><span class="comment">//单行注释</span></div><div class="line"><span class="comment">/*!重要注释*/</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="comment">/*标准的CSS注释*/</span></div><div class="line"><span class="comment">/*!重要注释*/</span></div></pre></td></tr></table></figure>
-<h3 id="3-2-计算规则"><a href="#3-2-计算规则" class="headerlink" title="3.2 计算规则"></a>3.2 计算规则</h3><h4 id="1-定义变量-var"><a href="#1-定义变量-var" class="headerlink" title="1. 定义变量 $var"></a>1. 定义变量 <code>$var</code></h4><p>SCSS中所有的变量由一个 <code>$</code> 符号定义<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</div><div class="line"><span class="selector-id">#main</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-id">#main</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">10px</span>; &#125;</div></pre></td></tr></table></figure>
-<h4 id="2-插值"><a href="#2-插值" class="headerlink" title="2. 插值: #{}"></a>2. 插值: <code>#{}</code></h4><p>将 <code>#{里面的值}</code>当做字符串插入<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$name</span>: foo;</div><div class="line"><span class="variable">$attr</span>: border;</div><div class="line"><span class="selector-tag">p</span>.#&#123;<span class="variable">$name</span>&#125; &#123;</div><div class="line">  #&#123;<span class="variable">$attr</span>&#125;-<span class="attribute">color</span>: blue;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"hello world #&#123;$name&#125;"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-class">.foo</span> &#123;</div><div class="line">  <span class="attribute">border-color</span>: blue;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"hello world foo"</span>; &#125;</div></pre></td></tr></table></figure>
-<p>在文本字符串中，<code>#{}</code> 形式的表达式可以被用来在字符串中添加动态值，空值会被视作空字符串：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-tag">p</span>:before &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate #&#123;5 + 10&#125; pies!"</span>;</div><div class="line">&#125;</div><div class="line"><span class="variable">$value</span>: null;</div><div class="line"><span class="selector-tag">p</span>:before &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate #&#123;$value&#125; pies!"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate 15 pies!"</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">"I ate  pies!"</span>; &#125;</div></pre></td></tr></table></figure>
-<h4 id="3-、-、-、-的运算"><a href="#3-、-、-、-的运算" class="headerlink" title="3. +、-、*、/ 的运算"></a>3. <code>+</code>、<code>-</code>、<code>*</code>、<code>/</code> 的运算</h4><ul>
-<li>在SCSS中<code>+</code> 、<code>-</code> 、<code>*</code> 的运算方法与日常使用相同，需要单位的还请都带上你的单位；</li>
-<li><code>/</code> 除法运算比较特殊，直接使用最后编译出来的结果可能并不是你日常所想的那样，其特殊性大致分为三种情况，下面的代码演示中已一一说明；</li>
-<li>圆括号 <code>()</code> 可以改变运算顺序；</li>
-</ul>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="comment">/*加减法运算*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">1px</span> + <span class="number">8px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">10px</span> - <span class="number">2px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*乘法运算*/</span></div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">3px</span> * <span class="number">5</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">2px</span> + <span class="number">6px</span> * <span class="number">3</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="comment">/*加减法运算*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">9px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">8px</span>; &#125;</div><div class="line"></div><div class="line"><span class="comment">/*乘法运算*/</span></div><div class="line"><span class="selector-tag">div</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">15px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">20px</span>; &#125;</div></pre></td></tr></table></figure>
-<p> <strong>圆括号 <code>()</code> 变运算顺序：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">width</span>: (<span class="number">1em</span> + <span class="number">2em</span>) * <span class="number">3</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">9em</span>; &#125;</div></pre></td></tr></table></figure>
-<p> <strong>除法运算比较特殊：</strong><br>在以下三种情况中，<code>/</code> 会被解释为除法运算。 覆盖了绝大多数真正使用除法运算的情况。 这些情况是：</p>
-<ul>
-<li>如果数值或它的任意部分是存储在一个变量中或是函数的返回值。</li>
-<li>如果数值被圆括号包围。</li>
-<li>如果数值是另一个数学表达式的一部分</li>
-</ul>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="comment">/*除法运算*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">font</span>: <span class="number">10px</span>/<span class="number">8px</span>; <span class="comment">// 纯 CSS，不是除法运算，兼容IE8的写法</span></div><div class="line">  <span class="variable">$width</span>: <span class="number">1000px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>/<span class="number">2</span>; <span class="comment">// 使用了变量，是除法运算</span></div><div class="line">  <span class="attribute">line-height</span>: round(<span class="number">3.5</span>)/<span class="number">2</span>; <span class="comment">// 使用了函数，是除法运算</span></div><div class="line">  <span class="attribute">height</span>: (<span class="number">500px</span>/<span class="number">2</span>); <span class="comment">// 使用了圆括号，是除法运算</span></div><div class="line">  <span class="attribute">margin-left</span>: <span class="number">5px</span> + <span class="number">8px</span>/<span class="number">2px</span>; <span class="comment">// 使用了加（+）号，是除法运算</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">font</span>: <span class="number">10px</span>/<span class="number">8px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</div><div class="line">  <span class="attribute">line-height</span>: <span class="number">2</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">250px</span>;</div><div class="line">  <span class="attribute">margin-left</span>: <span class="number">9px</span>; &#125;</div></pre></td></tr></table></figure>
-<p>如果你希望在纯 CSS 中使用 <code>变量</code> 和 <code>/</code>， 你可以用 <code>#{}</code> 包住 <code>变量</code> 。 例如：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="variable">$font-size</span>: <span class="number">12px</span>;</div><div class="line">  <span class="variable">$line-height</span>: <span class="number">30px</span>;</div><div class="line">  <span class="attribute">font</span>: #&#123;<span class="variable">$font-size</span>&#125;/#&#123;<span class="variable">$line-height</span>&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">font</span>: <span class="number">12px</span>/<span class="number">30px</span>; &#125;</div></pre></td></tr></table></figure>
-<h3 id="3-3-import-media-extend-指令"><a href="#3-3-import-media-extend-指令" class="headerlink" title="3.3 @import@media@extend 指令"></a>3.3 @import@media@extend 指令</h3><h4 id="1-引入-import"><a href="#1-引入-import" class="headerlink" title="1. 引入 @import"></a>1. 引入 <code>@import</code></h4><p><code>@import &quot;basic&quot;</code>：查找当前目录下的 <code>basic.scss</code> 或者 <code>basic.sass</code> 引入到当前文件中<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">import</span> <span class="string">"basic"</span>;</div><div class="line"><span class="comment">//basic.sass内容如下</span></div><div class="line"><span class="comment">//#a &#123;</span></div><div class="line"><span class="comment">//  .a-1 &#123;</span></div><div class="line"><span class="comment">//    background: yellow;</span></div><div class="line"><span class="comment">//    .child &#123;</span></div><div class="line"><span class="comment">//      font-size: 12px;</span></div><div class="line"><span class="comment">//      .child-1 &#123;</span></div><div class="line"><span class="comment">//        color: red</span></div><div class="line"><span class="comment">//      &#125;</span></div><div class="line"><span class="comment">//    &#125;</span></div><div class="line"><span class="comment">//  &#125;</span></div><div class="line"><span class="comment">//&#125;</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-id">#a</span> <span class="selector-class">.a-1</span> &#123;</div><div class="line">  <span class="attribute">background</span>: yellow; &#125;</div><div class="line">  <span class="selector-id">#a</span> <span class="selector-class">.a-1</span> <span class="selector-class">.child</span> &#123;</div><div class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>; &#125;</div><div class="line">    <span class="selector-id">#a</span> <span class="selector-class">.a-1</span> <span class="selector-class">.child</span> <span class="selector-class">.child-1</span> &#123;</div><div class="line">      <span class="attribute">color</span>: red; &#125;</div></pre></td></tr></table></figure>
-<p>直接 <code>@import test.css</code> 相当于原生CSS的 <code>@import</code> 引用<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">import</span> <span class="string">"test.css"</span>;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line">@<span class="keyword">import</span> url(test.css);</div></pre></td></tr></table></figure>
-<h4 id="2-嵌套-import"><a href="#2-嵌套-import" class="headerlink" title="2. 嵌套 @import"></a>2. 嵌套 <code>@import</code></h4><p>有助于创建一个新的命名空间<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.example</span> &#123;</div><div class="line">  @<span class="keyword">import</span> <span class="string">"basic.scss"</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">//basic.sass内容如下</span></div><div class="line"><span class="comment">//#a &#123;</span></div><div class="line"><span class="comment">//  .a-1 &#123;</span></div><div class="line"><span class="comment">//    background: yellow;</span></div><div class="line"><span class="comment">//    .child &#123;</span></div><div class="line"><span class="comment">//      font-size: 12px;</span></div><div class="line"><span class="comment">//      .child-1 &#123;</span></div><div class="line"><span class="comment">//        color: red</span></div><div class="line"><span class="comment">//      &#125;</span></div><div class="line"><span class="comment">//    &#125;</span></div><div class="line">/</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.example</span> &#123;&#125;</div><div class="line">  <span class="selector-class">.example</span> <span class="selector-id">#a</span> <span class="selector-class">.a-1</span> &#123;</div><div class="line">    <span class="attribute">background</span>: yellow; &#125;</div><div class="line">    <span class="selector-class">.example</span> <span class="selector-id">#a</span> <span class="selector-class">.a-1</span> <span class="selector-class">.child</span> &#123;</div><div class="line">      <span class="attribute">font-size</span>: <span class="number">12px</span>; &#125;</div><div class="line">      <span class="selector-class">.example</span> <span class="selector-id">#a</span> <span class="selector-class">.a-1</span> <span class="selector-class">.child</span> <span class="selector-class">.child-1</span> &#123;</div><div class="line">        <span class="attribute">color</span>: red; &#125;</div></pre></td></tr></table></figure>
-<h4 id="3-媒体查询-media"><a href="#3-媒体查询-media" class="headerlink" title="3. 媒体查询 @media"></a>3. 媒体查询 <code>@media</code></h4><p>用法与原生CSS一样<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.father</span> &#123;</div><div class="line">  <span class="selector-class">.sidebar</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">300px</span>;</div><div class="line">    @<span class="keyword">media</span> screen and (orientation: landscape) &#123;</div><div class="line">      <span class="attribute">width</span>: <span class="number">500px</span>;</div><div class="line">      <span class="selector-class">.hello</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>: <span class="number">20px</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.father</span> <span class="selector-class">.sidebar</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">300px</span>; &#125;</div><div class="line">  @<span class="keyword">media</span> screen and (orientation: landscape) &#123;</div><div class="line">    <span class="selector-class">.father</span> <span class="selector-class">.sidebar</span> &#123;</div><div class="line">      <span class="attribute">width</span>: <span class="number">500px</span>; &#125;</div><div class="line">      <span class="selector-class">.father</span> <span class="selector-class">.sidebar</span> <span class="selector-class">.hello</span> &#123;</div><div class="line">        <span class="attribute">font-size</span>: <span class="number">20px</span>; &#125; &#125;</div></pre></td></tr></table></figure>
-<h4 id="4-继承-extend"><a href="#4-继承-extend" class="headerlink" title="4. 继承 @extend"></a>4. 继承 <code>@extend</code></h4><p>使用 <code>@extend</code> 可以让一个选择器继承另一个选择器</p>
-<p><strong>4.1 继承单个选择器</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.error</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#f00</span>;</div><div class="line">  &amp;<span class="selector-class">.intrusion</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">"/image/hacked.png"</span>);</div><div class="line">  &#125;</div><div class="line">  &amp;:hover &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#00b88d</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.extendError</span> &#123;</div><div class="line">  @<span class="keyword">extend</span> .error;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.error</span>, <span class="selector-class">.extendError</span>, <span class="selector-class">.seriousError</span>, <span class="selector-class">.criticalError</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#f00</span>; &#125;</div><div class="line">  <span class="selector-class">.error</span><span class="selector-class">.intrusion</span>, <span class="selector-class">.intrusion</span><span class="selector-class">.extendError</span>, <span class="selector-class">.intrusion</span><span class="selector-class">.seriousError</span>, <span class="selector-class">.intrusion</span><span class="selector-class">.criticalError</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"/image/hacked.png"</span>); &#125;</div><div class="line">  <span class="selector-class">.error</span><span class="selector-pseudo">:hover</span>, <span class="selector-class">.extendError</span><span class="selector-pseudo">:hover</span>, <span class="selector-class">.seriousError</span><span class="selector-pseudo">:hover</span>, <span class="selector-class">.criticalError</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">    <span class="attribute">color</span>: <span class="number">#00b88d</span>; &#125;</div></pre></td></tr></table></figure>
-<p><strong>4.2 继承复合选择器</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.div1</span><span class="selector-class">.div2</span> &#123;</div><div class="line">  <span class="attribute">text-decoration</span>: underline;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div3</span>:hover &#123;</div><div class="line">  <span class="attribute">text-decoration</span>: overline;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.extend1</span> &#123;</div><div class="line">  @<span class="keyword">extend</span> .div1.div2;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.extend2</span> &#123;</div><div class="line">  @<span class="keyword">extend</span> .div3:hover</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.div1</span><span class="selector-class">.div2</span>, <span class="selector-class">.extend1</span> &#123;</div><div class="line">  <span class="attribute">text-decoration</span>: underline; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.div3</span><span class="selector-pseudo">:hover</span>, <span class="selector-class">.extend2</span> &#123;</div><div class="line">  <span class="attribute">text-decoration</span>: overline; &#125;</div></pre></td></tr></table></figure>
-<p><strong>4.3 继承多个选择器</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.error</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#f00</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#fdd</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.attention</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">3em</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#ff0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.seriousError</span> &#123;</div><div class="line">  <span class="comment">// ===&gt;</span></div><div class="line">  @<span class="keyword">extend</span> .error;</div><div class="line">  @<span class="keyword">extend</span> .attention;</div><div class="line">  <span class="attribute">border-width</span>: <span class="number">3px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.error</span>, <span class="selector-class">.seriousError</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#f00</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#fdd</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.attention</span>, <span class="selector-class">.seriousError</span> &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">3em</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#ff0</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.seriousError</span> &#123;</div><div class="line">  <span class="attribute">border-width</span>: <span class="number">3px</span>; &#125;</div></pre></td></tr></table></figure>
-<p><strong>4.4 连续继承</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-class">.error</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#f00</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#fdd</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.seriousError</span> &#123;</div><div class="line">  @<span class="keyword">extend</span> .error;</div><div class="line">  <span class="attribute">border-width</span>: <span class="number">3px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.criticalError</span> &#123;</div><div class="line">  @<span class="keyword">extend</span> .seriousError;</div><div class="line">  <span class="attribute">position</span>: fixed;</div><div class="line">  <span class="attribute">top</span>: <span class="number">10%</span>;</div><div class="line">  <span class="attribute">bottom</span>: <span class="number">10%</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">10%</span>;</div><div class="line">  <span class="attribute">right</span>: <span class="number">10%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.error</span>, <span class="selector-class">.seriousError</span>, <span class="selector-class">.criticalError</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#f00</span>;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#fdd</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.seriousError</span>, <span class="selector-class">.criticalError</span> &#123;</div><div class="line">  <span class="attribute">border-width</span>: <span class="number">3px</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.criticalError</span> &#123;</div><div class="line">  <span class="attribute">position</span>: fixed;</div><div class="line">  <span class="attribute">top</span>: <span class="number">10%</span>;</div><div class="line">  <span class="attribute">bottom</span>: <span class="number">10%</span>;</div><div class="line">  <span class="attribute">left</span>: <span class="number">10%</span>;</div><div class="line">  <span class="attribute">right</span>: <span class="number">10%</span>; &#125;</div></pre></td></tr></table></figure>
-<h3 id="3-4-mixin-指令"><a href="#3-4-mixin-指令" class="headerlink" title="3.4 mixin 指令"></a>3.4 mixin 指令</h3><p><code>@mixin</code> 可以预先定义样式的代码块；<br><code>@include</code> 可以引入 <code>@mixin</code> 预定义的样式；<br>该指令类似于 <code>@extend</code> 的继承效果，区别是<code>@mixin</code>指令预定义的样式编译后会自动去除，可以有效避免使用非语义化的类名；</p>
-<h4 id="1-mixin-与-include"><a href="#1-mixin-与-include" class="headerlink" title="1. @mixin 与 @include"></a>1. <code>@mixin</code> 与 <code>@include</code></h4><p><strong>示例1：样式</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">mixin</span> large-text &#123;</div><div class="line">  <span class="attribute">font</span>: &#123;</div><div class="line">    family: Arial;</div><div class="line">    size: <span class="number">20px</span>;</div><div class="line">    weight: bold;</div><div class="line">  &#125;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#ff0000</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.page-title</span> &#123;</div><div class="line">  @<span class="keyword">include</span> large-text;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">4px</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">10px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.page-title</span> &#123;</div><div class="line">  <span class="attribute">font-family</span>: Arial;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">  <span class="attribute">font-weight</span>: bold;</div><div class="line">  <span class="attribute">color</span>: <span class="number">#ff0000</span>;</div><div class="line">  <span class="attribute">padding</span>: <span class="number">4px</span>;</div><div class="line">  <span class="attribute">margin-top</span>: <span class="number">10px</span>; &#125;</div></pre></td></tr></table></figure>
-<p><strong>示例2：选择器 + 样式</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">mixin</span> silly-links &#123;</div><div class="line">  <span class="selector-tag">a</span> &#123;</div><div class="line">    <span class="attribute">color</span>: blue;</div><div class="line">    <span class="attribute">background-color</span>: red;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">include</span> silly-links;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">a</span> &#123;</div><div class="line">  <span class="attribute">color</span>: blue;</div><div class="line">  <span class="attribute">background-color</span>: red; &#125;</div></pre></td></tr></table></figure>
-<p><strong>示例3：复合使用</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">mixin</span> highlighted-background &#123;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#fc0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">mixin</span> header-text &#123;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@<span class="keyword">mixin</span> compound &#123;</div><div class="line">  @<span class="keyword">include</span> highlighted-background;</div><div class="line">  @<span class="keyword">include</span> header-text;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.test</span> &#123;</div><div class="line">  @<span class="keyword">include</span> compound</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.test</span> &#123;</div><div class="line">  <span class="attribute">background-color</span>: <span class="number">#fc0</span>;</div><div class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>; &#125;</div></pre></td></tr></table></figure>
-<h4 id="2-定义参数"><a href="#2-定义参数" class="headerlink" title="2. 定义参数"></a>2. 定义参数</h4><p><strong>示例4：$arguments</strong><br><code>@mixin</code> 可以定义参数，<code>@include</code>调用的时候传参；<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">mixin</span> sexy-border(<span class="variable">$color</span>, <span class="variable">$width</span>) &#123;</div><div class="line">  <span class="attribute">border</span>: &#123;</div><div class="line">    color: <span class="variable">$color</span>;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">$width</span>;</div><div class="line">    <span class="selector-tag">style</span>: dashed;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  @<span class="keyword">include</span> sexy-border(blue, 10px);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">border-color</span>: blue;</div><div class="line">  <span class="attribute">border-width</span>: <span class="number">10px</span>;</div><div class="line">  <span class="attribute">border-style</span>: dashed; &#125;</div></pre></td></tr></table></figure>
-<h4 id="3-指定参数的缺省值"><a href="#3-指定参数的缺省值" class="headerlink" title="3. 指定参数的缺省值"></a>3. 指定参数的缺省值</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">mixin</span> left(<span class="variable">$value</span>: 10px) &#123;</div><div class="line">  <span class="attribute">float</span>: left;</div><div class="line">  <span class="attribute">margin-right</span>: <span class="variable">$value</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  @<span class="keyword">include</span> left;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">float</span>: left;</div><div class="line">  <span class="attribute">margin-right</span>: <span class="number">10px</span>; &#125;</div></pre></td></tr></table></figure>
-<h4 id="4-arg"><a href="#4-arg" class="headerlink" title="4. $arg..."></a>4. <code>$arg...</code></h4><p><strong>示例5：<code>$arg...</code></strong><br>可以用 <code>$参数...</code> 表示所有传入的参数<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$b</span>: box-shadow;</div><div class="line">@<span class="keyword">mixin</span> box-shadow(<span class="variable">$shadows</span>...) &#123;</div><div class="line">  -moz-#&#123;<span class="variable">$b</span>&#125;: <span class="variable">$shadows</span>;</div><div class="line">  -webkit-#&#123;<span class="variable">$b</span>&#125;: <span class="variable">$shadows</span>;</div><div class="line">  #&#123;<span class="variable">$b</span>&#125;: <span class="variable">$shadows</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.shadows</span> &#123;</div><div class="line">  @<span class="keyword">include</span> box-shadow(<span class="number">0px</span> 4px 5px <span class="number">#666</span>, 2px 6px 10px <span class="number">#999</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.shadows</span> &#123;</div><div class="line">  <span class="attribute">-moz-box-shadow</span>: <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="number">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="number">#999</span>;</div><div class="line">  <span class="attribute">-webkit-box-shadow</span>: <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="number">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="number">#999</span>;</div><div class="line">  <span class="attribute">box-shadow</span>: <span class="number">0px</span> <span class="number">4px</span> <span class="number">5px</span> <span class="number">#666</span>, <span class="number">2px</span> <span class="number">6px</span> <span class="number">10px</span> <span class="number">#999</span>; &#125;</div></pre></td></tr></table></figure>
-<h3 id="3-5-条件语句、循环语句"><a href="#3-5-条件语句、循环语句" class="headerlink" title="3.5 条件语句、循环语句"></a>3.5 条件语句、循环语句</h3><h4 id="1-条件语句"><a href="#1-条件语句" class="headerlink" title="1. 条件语句"></a>1. 条件语句</h4><p><code>@if...else...</code> 条件判断，判断结果为 <code>true</code> 时赋值样式</p>
-<p><strong>示例1：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  @<span class="keyword">if</span> 1 + 1 == 2 &#123;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid;</div><div class="line">  &#125;</div><div class="line">  @<span class="keyword">if</span> true &#123;</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">''</span>);</div><div class="line">  &#125;</div><div class="line">  @<span class="keyword">if</span> 5 &lt; 3 &#123;</div><div class="line">    <span class="attribute">border</span>: <span class="number">2px</span> dotted;</div><div class="line">  &#125;</div><div class="line">  @<span class="keyword">if</span> null &#123;</div><div class="line">    <span class="attribute">border</span>: <span class="number">3px</span> double;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid;</div><div class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">""</span>); &#125;</div></pre></td></tr></table></figure>
-<p><strong>示例2：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$type</span>: monster;</div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  @<span class="keyword">if</span> <span class="variable">$type</span> == ocean &#123;</div><div class="line">    <span class="attribute">color</span>: blue;</div><div class="line">  &#125; @<span class="keyword">else</span> if <span class="variable">$type</span> == matador &#123;</div><div class="line">    <span class="attribute">color</span>: red;</div><div class="line">  &#125; @<span class="keyword">else</span> if <span class="variable">$type</span> == monster &#123;</div><div class="line">    <span class="attribute">color</span>: green;</div><div class="line">  &#125; @<span class="keyword">else</span> &#123;</div><div class="line">    <span class="attribute">color</span>: black;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-tag">p</span> &#123;</div><div class="line">  <span class="attribute">color</span>: green; &#125;</div></pre></td></tr></table></figure>
-<h4 id="2-循环语句"><a href="#2-循环语句" class="headerlink" title="2. 循环语句"></a>2. 循环语句</h4><p>注意<code>form...through</code>与<code>from ... to</code>循环的范围</p>
-<p><strong>2.1 <code>@for $var form...through...</code></strong><br><strong>示例：from … through</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">for</span> <span class="variable">$i</span> from 1 through 3 &#123;</div><div class="line">  <span class="selector-class">.item-</span>#&#123;<span class="variable">$i</span>&#125; &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">2em</span> * <span class="variable">$i</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.item-1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">2em</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.item-2</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">4em</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.item-3</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">6em</span>; &#125;</div></pre></td></tr></table></figure>
-<p><strong>2.2 <code>@for $var from...to...</code></strong><br><strong>示例：from … to</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">for</span> <span class="variable">$i</span> from 1 to 3 &#123;</div><div class="line">  <span class="selector-class">.item-to-</span>#&#123;<span class="variable">$i</span>&#125; &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">2em</span> * <span class="variable">$i</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.item-to-1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">2em</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.item-to-2</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">4em</span>; &#125;</div></pre></td></tr></table></figure>
-<p><strong>2.3 <code>@each $var in ...</code></strong><br><code>@each</code> 为 <code>$var</code> 循环所有 <code>in</code> 后面列出的值<br><strong>示例：@each … in …</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line">@<span class="keyword">each</span> <span class="variable">$animal</span> in puma, sea-slug, egret, salamander &#123;</div><div class="line">  .#&#123;<span class="variable">$animal</span>&#125;-<span class="attribute">icon</span> &#123;</div><div class="line">    <span class="attribute">background-image</span>: url(<span class="string">'/images/#&#123;$animal&#125;.png'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.puma-icon</span> &#123;</div><div class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"/images/puma.png"</span>); &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.sea-slug-icon</span> &#123;</div><div class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"/images/sea-slug.png"</span>); &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.egret-icon</span> &#123;</div><div class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"/images/egret.png"</span>); &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.salamander-icon</span> &#123;</div><div class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">"/images/salamander.png"</span>); &#125;</div></pre></td></tr></table></figure>
-<p><strong>2.4 <code>@while $var ...</code></strong><br><strong>示例：<code>while</code>循环</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$i</span>: <span class="number">6</span>;</div><div class="line">@<span class="keyword">while</span> <span class="variable">$i</span> &gt; 0 &#123;</div><div class="line">  <span class="selector-class">.item-</span>#&#123;<span class="variable">$i</span>&#125; &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">2em</span> * <span class="variable">$i</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="variable">$i</span>: <span class="variable">$i</span> - <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.item-6</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">12em</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.item-4</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">8em</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.item-2</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">4em</span>; &#125;</div></pre></td></tr></table></figure>
-<p><strong>2.5 条件 + 循环</strong><br><strong>示例：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="comment">//@for 后面的第一个$i 相当于参数，第二个$i 直接将变量的值拿过来用</span></div><div class="line"><span class="variable">$i</span>: <span class="number">6</span>;</div><div class="line">@<span class="keyword">for</span> <span class="variable">$i</span> from 1 through <span class="variable">$i</span> &#123;</div><div class="line">  <span class="selector-class">.col-</span>#&#123;<span class="variable">$i</span>&#125; &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">$i</span>/<span class="number">6</span>*<span class="number">100%</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><strong>相当于：</strong><br><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$i</span>: <span class="number">6</span>;</div><div class="line">@<span class="keyword">for</span> <span class="variable">$j</span> from 1 through <span class="variable">$i</span> &#123;</div><div class="line">  <span class="selector-class">.col-</span>#&#123;<span class="variable">$j</span>&#125; &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="variable">$j</span>/<span class="number">6</span>*<span class="number">100%</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-class">.col-1</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">16.6666666667%</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.col-2</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">33.3333333333%</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.col-3</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">50%</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.col-4</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">66.6666666667%</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.col-5</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">83.3333333333%</span>; &#125;</div><div class="line"></div><div class="line"><span class="selector-class">.col-6</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100%</span>; &#125;</div></pre></td></tr></table></figure>
-<h3 id="3-6-自定义函数"><a href="#3-6-自定义函数" class="headerlink" title="3.6 自定义函数"></a>3.6 自定义函数</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*scss*/</span></div><div class="line"><span class="variable">$grid-width</span>: <span class="number">40px</span>;</div><div class="line"><span class="variable">$gutter-width</span>: <span class="number">10px</span>;</div><div class="line"></div><div class="line">@function test(<span class="variable">$a</span>) &#123;</div><div class="line">  @return <span class="variable">$a</span> + 10;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@function grid-width(<span class="variable">$n</span>) &#123;</div><div class="line">  <span class="variable">$hello</span>: <span class="number">1px</span>;</div><div class="line">  @<span class="keyword">for</span> <span class="variable">$i</span> from 1 through <span class="variable">$n</span> &#123;</div><div class="line">    <span class="variable">$hello</span>: <span class="variable">$hello</span> + <span class="variable">$i</span>;</div><div class="line">  &#125;</div><div class="line">  @<span class="keyword">if</span> <span class="variable">$hello</span> &gt; 10 &#123;</div><div class="line">    <span class="variable">$hello</span>: <span class="number">15px</span>;</div><div class="line">  &#125;</div><div class="line">  @return <span class="variable">$hello</span> + test(<span class="number">2</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-id">#sidebar</span> &#123;</div><div class="line">  <span class="attribute">width</span>: grid-width(<span class="number">5</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*css*/</span></div><div class="line"><span class="selector-id">#sidebar</span> &#123;</div><div class="line">  <span class="attribute">width</span>: <span class="number">27px</span>; &#125;</div></pre></td></tr></table></figure>
-<p>（教程结束）</p>
-<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><p> 如果你对着教程自己有在操作，那么你可以再抽时间过一遍阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2012/06/sass.html" target="_blank" rel="external">SASS用法指南</a>，配合食用味道更佳哦~</p>
-<p>（完）</p>
-<hr>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.ruanyifeng.com/blog/2012/06/sass.html" target="_blank" rel="external">SASS用法指南-阮一峰</a><br><a href="http://sass.bootcss.com/" target="_blank" rel="external">SASS中文文档-bootcss</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2752,7 +2494,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2763,7 +2505,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2774,7 +2516,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

