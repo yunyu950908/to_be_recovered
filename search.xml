@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[排序算法 - 插入排序]]></title>
+    <url>%2F2017%2F10%2F03%2F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%20-%20%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[插入排序：把当前项 [ 插入 ] 到小于等于它的那一项的后面，而后面的数都大于当前项 从第一个开始，每次选中一个作为当前项 将当前项与上一项进行比较 如果上一项比当前项大，交换位置 直到上一项小于当前项，把当前项插入上一项后面 123456789101112function insertionSort(arr)&#123; for(var i = 1; i &lt; arr.length; i++)&#123; preIndex = i - 1; current = arr[i]; while(preIndex &gt;= 0 &amp;&amp; arr[preIndex] &gt; current)&#123; arr[preIndex + 1] = arr[preIndex]; preIndex--; &#125; arr[preIndex + 1] = current; &#125; return arr;&#125; （未完待续）]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>排序算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[排序算法 - 选择排序]]></title>
+    <url>%2F2017%2F10%2F03%2F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%20-%20%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[选择排序：每次 [ 选中 ] 一个最小的放到整个数列的最前面 从第一项开始，以其索引作为标记存起来 将标记的这一项与后面每一项进行比较，遇到比它小的就转移标记，比较结束后就获得了最小数的索引 将最小的那一项交换到第一项 1234567891011121314151617function selectSort(arr)&#123; var minIndex,temp; for(var i = 0; i &lt; arr.length-1; i++)&#123; minIndex = i; for(var j = i + 1; j &lt; arr.length; j++)&#123; if(arr[minIndex] &gt; arr[j])&#123; minIndex = j; &#125; &#125; if(arr[i] !== arr[minIndex])&#123; temp = arr[i] arr[i] = arr[minIndex]; arr[minIndex] = temp &#125; &#125; return arr;&#125; （未完待续）]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>排序算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[排序算法 - 冒泡排序]]></title>
+    <url>%2F2017%2F10%2F03%2F%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%20-%20%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[数据结构 + 算法 = 程序 野路子出生的我要开始啃算法啦，从最简单的排序算法开始~ 冒泡排序是最简单的排序算法，let’s go √ 冒泡排序：每次 [ 比较 ] 交换，最大的会被交换到最后 比较相邻的元素。如果第一个比第二个大，就交换他们两个。 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。 针对所有的元素重复以上的步骤，除了最后一个。 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。 12345678910111213function babbleSort(arr)&#123; var temp; for(var i = 0; i &lt; arr.length-1; i++)&#123; for(var j = 0; j &lt; arr.length-1-i; j++)&#123; if(arr[j] &gt; arr[j+1]) &#123; temp = arr[j]; arr[j] = arr[j+1]; arr[j+1] = temp; &#125; &#125; &#125; return arr;&#125; 算法分析直接贴百度词条： 推荐跟我一样的新人一个可视化的演示网站，会有一个直观的印象： https://visualgo.net/en/sorting （完）]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>排序算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[手写一个 new 操作符]]></title>
     <url>%2F2017%2F10%2F03%2F%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AA-new-%E6%93%8D%E4%BD%9C%E7%AC%A6%2F</url>
     <content type="text"><![CDATA[原型链必备知识，记录一下。 先来看看 new 操作符干了什么事情 12345678910111213141516171819202122// 先定义一个构造函数 Ffunction F(name,age)&#123; this.name = name; this.age = age;&#125;// 在 F 的原型上定义一个 getInfo 的方法F.prototype = &#123; getInfo: function()&#123; console.log("name: " + this.name) console.log("age: " + this.age) &#125;&#125;// 创建一个 F 的实例var f = new F("Albert",23)// 调用原型上的方法f.getInfo()// 打印出实例 fconsole.log(f) 下面是 控制台 log 出的内容： 现在我们大概可以知道 new 的时候大概做了这么几件事 生成了一个新对象 设置了新对象的原形指向构造函数的原形 设置构造函数实例对象的属性（绑定 this） 知道了 new 操作符暗地里做的苟且之事之后就很容易把这货写出来 12345function myNew(F,...args)&#123; var obj = Object.create(F.prototype); // 使用指定的原型对象及其属性去创建一个新的对象 F.apply(obj,args); // 绑定 this 到obj, 设置 obj 的属性 return obj; // 返回实例&#125; 现在来试一下 1234567891011121314function FF(a,b)&#123; this.a = a; this.b = b;&#125;FF.prototype.test = function()&#123; console.log(this.a+" success "+this.b)&#125;var ff = myNew(FF,"Am I","?")ff.test()console.log(ff) 看一眼控制台，貌似没什么问题。。 emmmmmmm, 一个简易的 new 操作符就实现了，当然不是太严谨，没有控制它传进来的 F ，其他有问题的请一定告诉我。 （完）]]></content>
@@ -13,14 +46,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[草稿：手写call apply bind]]></title>
-    <url>%2F2017%2F09%2F28%2F%E8%8D%89%E7%A8%BF%EF%BC%9A%E6%89%8B%E5%86%99call-apply-bind%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[手写一个 bind]]></title>
+    <url>%2F2017%2F09%2F28%2F%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AA%20bind%2F</url>
+    <content type="text"><![CDATA[一、了解 bindFunction.prototype.bind() - MDN 语法：1fun.bind(thisArg[, arg1[, arg2[, ...]]]) 描述：bind() 方法创建一个新的函数, 当被调用时，将其 this 关键字设置为提供的值，在调用新函数时，在任何提供之前提供一个给定的参数序列。 MDN 把 bind 描述的很清楚，总结一下大概有以下三个特性： 返回值：bind() 方法返回一个新函数。 this：新函数的 this 是调用 bind 的第一个参数，并且该参数不能被重写。 偏函数：bind() 方法的第 2~N 个参数。当 bind 返回的函数被调用时，这些参数将置于实参之前传递。 用代码解释上面三句话： 首先是第一句话跟第二句话，很明显 bind 之后 this 不能被改写。1234567891011var obj1 = &#123;name: "Albert"&#125;var obj2 = &#123;name: "Overwatch"&#125;function sayName()&#123;console.log(this.name)&#125;var b1 = sayName.bind(obj1)var b2 = sayName.bind(obj1).bind(obj2)var b3 = sayName.bind(obj1).call(obj2) // =&gt; Albertb1() // Albertb2() // Albert 然后是第三句话，同样能明显看出其传参规则。12345function getInfo()&#123; console.log(arguments) &#125;var b4 = getInfo.bind(null,"Albert","male")b4(23) 查看控制台打印出的 arguments 参数，结果一目了然。 二、实现 bind 我用了 that 暂存了调用对象 存起 _bind 方法从第二项开始的 arguments 把返回函数的 arguments 与 2. 中存的 arguments 拼接（2. 在前） 执行返回函数的时候绑定调用对象的上下文与参数并执行 123456789Function.prototype._bind = function(ctx)&#123; var that = this; var args = Array.prototype.slice.call(arguments,1); return function()&#123; var args2 = Array.prototype.slice.call(arguments); var all = args.concat(args2); return that.apply(ctx,all) &#125;&#125; 验证一下自定义的 _bind1234567891011121314151617var obj1 = &#123;name: "Albert"&#125;var obj2 = &#123;name: "Overwatch"&#125;function sayName()&#123;console.log(this.name)&#125;var b1 = sayName._bind(obj1)var b2 = sayName._bind(obj1)._bind(obj2)var b3 = sayName._bind(obj1).call(obj2) // =&gt; Albertb1() // Albertb2() // function getInfo()&#123; console.log(arguments) &#125;var b4 = getInfo.bind(null,"Albert","male")b4(23) // "Albert", "male", 23 结果与原生的一样，貌似看起来没什么问题，但肯定不如原生的实现严谨，如果这个实现有问题的话还请告知博主~谢谢大佬~ 有兴趣的小伙伴可以移步 Function.prototype.bind() - MDN 查看其 Polyfill 写法 （完）]]></content>
       <categories>
-        <category>webpack</category>
+        <category>javascript</category>
       </categories>
       <tags>
-        <tag>webpack</tag>
+        <tag>javascript</tag>
       </tags>
   </entry>
   <entry>
@@ -262,8 +295,8 @@
       <tags>
         <tag>javascript</tag>
         <tag>数组</tag>
-        <tag>试题</tag>
         <tag>递归</tag>
+        <tag>试题</tag>
       </tags>
   </entry>
   <entry>
@@ -290,9 +323,9 @@
       <tags>
         <tag>javascript</tag>
         <tag>闭包</tag>
+        <tag>试题</tag>
         <tag>作用域</tag>
         <tag>this</tag>
-        <tag>试题</tag>
       </tags>
   </entry>
   <entry>
