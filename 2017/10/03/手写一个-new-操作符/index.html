@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript,原型链," />
 
 
 
@@ -94,13 +94,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Albert&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/CSRF-攻击/index.html">
+<meta name="description" content="原型链必备知识，记录一下。  先来看看 new 操作符干了什么事情 1234567891011121314151617function F(name,age)&amp;#123;  this.name = name;  this.age = age;&amp;#125;F.prototype = &amp;#123;  getInfo: function()&amp;#123;    console.log(&quot;name: &quot;">
+<meta name="keywords" content="javascript,原型链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手写一个 new 操作符">
+<meta property="og:url" content="http://yoursite.com/2017/10/03/手写一个-new-操作符/index.html">
 <meta property="og:site_name" content="Albert&#39;s Blog">
+<meta property="og:description" content="原型链必备知识，记录一下。  先来看看 new 操作符干了什么事情 1234567891011121314151617function F(name,age)&amp;#123;  this.name = name;  this.age = age;&amp;#125;F.prototype = &amp;#123;  getInfo: function()&amp;#123;    console.log(&quot;name: &quot;">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fk54xwa9s4j207k03oglk.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fk572yg1slj207703jmx3.jpg">
+<meta property="og:updated_time" content="2017-10-03T10:31:41.658Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Albert&#39;s Blog">
+<meta name="twitter:title" content="手写一个 new 操作符">
+<meta name="twitter:description" content="原型链必备知识，记录一下。  先来看看 new 操作符干了什么事情 1234567891011121314151617function F(name,age)&amp;#123;  this.name = name;  this.age = age;&amp;#125;F.prototype = &amp;#123;  getInfo: function()&amp;#123;    console.log(&quot;name: &quot;">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fk54xwa9s4j207k03oglk.jpg">
 
 
 
@@ -108,7 +116,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -129,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/CSRF-攻击/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/03/手写一个-new-操作符/"/>
 
 
 
 
 
-  <title>标签: CSRF 攻击 | Albert's Blog</title>
+  <title>手写一个 new 操作符 | Albert's Blog</title>
   
 
 
@@ -164,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -302,54 +310,214 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>CSRF 攻击<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/03/手写一个-new-操作符/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/09/23/CSRF-跨站请求伪造/" itemprop="url">
-              
-                <span itemprop="name">CSRF 跨站请求伪造</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">手写一个 new 操作符</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-23T18:36:37+08:00"
-              content="2017-09-23" >
-          09-23
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-03T15:57:45+08:00">
+                2017-10-03
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/03/手写一个-new-操作符/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/10/03/手写一个-new-操作符/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/10/03/手写一个-new-操作符/" class="leancloud_visitors" data-flag-title="手写一个 new 操作符">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原型链必备知识，记录一下。</p>
+</blockquote>
+<p>先来看看 new 操作符干了什么事情</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params">name,age</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.name = name;</div><div class="line">  <span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div><div class="line"></div><div class="line">F.prototype = &#123;</div><div class="line">  getInfo: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"name: "</span> + <span class="keyword">this</span>.name)</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"age: "</span> + <span class="keyword">this</span>.age)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> F(<span class="string">"Albert"</span>,<span class="number">23</span>)</div><div class="line"></div><div class="line">f.getInfo()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(f)</div></pre></td></tr></table></figure>
+<p>下面是 控制台 log 出的 小f 的内容：</p>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fk54xwa9s4j207k03oglk.jpg" alt=" @console.log(f) "></p>
+<p>现在我们大概可以知道 new 的时候大概做了这么几件事</p>
+<ol>
+<li>生成了一个新对象</li>
+<li>设置了新对象的原形指向构造函数的原形</li>
+<li>设置构造函数实例对象的属性（绑定 this）</li>
+</ol>
+<p>知道了 new 操作符暗地里做的苟且之事之后就很容易把这货写出来</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myNew</span>(<span class="params">F,...args</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> obj = <span class="built_in">Object</span>.create(F.prototype); <span class="comment">// 使用指定的原型对象及其属性去创建一个新的对象</span></div><div class="line">  F.apply(obj,args); <span class="comment">// 绑定 this 到obj, 设置 obj 的属性</span></div><div class="line">  <span class="keyword">return</span> obj; <span class="comment">// 返回实例</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在来试一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">FF</span>(<span class="params">a,b</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.a = a;</div><div class="line">  <span class="keyword">this</span>.b = b;</div><div class="line">&#125;</div><div class="line"></div><div class="line">FF.prototype.test = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a+<span class="string">" success "</span>+<span class="keyword">this</span>.b)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> ff = myNew(FF,<span class="string">"Am I"</span>,<span class="string">"?"</span>)</div><div class="line"></div><div class="line">ff.test()</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(ff)</div></pre></td></tr></table></figure>
+<p>看一眼控制台，貌似没什么问题。。</p>
+<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fk572yg1slj207703jmx3.jpg" alt=" @console.log(ff) "></p>
+<p>emmmmmmm, 一个简易的 new 操作符就实现了，当然不是太严谨，没有控制它传进来的 F ，其他有问题的请一定告诉我。</p>
+<p>（完）</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/原型链/" rel="tag"># 原型链</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/28/草稿：手写call-apply-bind/" rel="next" title="草稿：手写call apply bind ">
+                <i class="fa fa-chevron-left"></i> 草稿：手写call apply bind 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -357,6 +525,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
 
         </div>
         
@@ -393,7 +567,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -415,7 +589,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">42</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -489,7 +663,7 @@
   <div class="theme-info">
     主题 &mdash;
     <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-      NexT.Pisces
+      NexT.Gemini
     </a>
   </div>
 
@@ -617,10 +791,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
@@ -644,6 +818,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 94839, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 94839, xid: "2017/10/03/手写一个-new-操作符/"});
 		
 
 		(function() {
