@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[草稿：手写call apply bind]]></title>
+    <url>%2F2017%2F09%2F28%2F%E8%8D%89%E7%A8%BF%EF%BC%9A%E6%89%8B%E5%86%99call-apply-bind%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[React 入门笔记（三）]]></title>
+    <url>%2F2017%2F09%2F27%2FReact-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[React 入门笔记（三）元素渲染==&gt; 不可变元素==&gt; 新建渲染替换 按需加载 props 对 &lt;Welcome name=&quot;Sara&quot; /&gt;元素调用了 ReactDOM.render() 方法。 React 将 {name: &#39;Sara&#39;} 作为 props 传入并调用 Welcome 组件。 Welcome 组件将 &lt;h1&gt;Hello, Sara&lt;/h1&gt; 元素作为结果返回。 React DOM 将 DOM 更新为 &lt;h1&gt;Hello, Sara&lt;/h1&gt; 组件的返回值组件的返回值只能有一个根元素。这也是我们要用一个 &lt;div&gt; 来包裹所有 &lt;Welcome /&gt; 元素的原因。 抽离出更细小的，可复用的组件 Props的只读性React是非常灵活的，但它也有一个严格的规则： 所有的React组件必须像纯函数那样使用它们的props。 创建一个有状态的类通过5个步骤将函数组件转换为类 创建一个名称扩展为 React.Component 的ES6 类 创建一个叫做 render() 的空方法 将函数体移动到 render() 方法中 在 render() 方法中，使用 this.props 替换 props 删除剩余的空函数声明 让我们快速回顾一下发生了什么以及调用方法的顺序： 1) 当 &lt;Clock /&gt; 被传递给 ReactDOM.render() 时，React 调用 Clock 组件的构造函数。 由于 Clock 需要显示当前时间，所以使用包含当前时间的对象来初始化 this.state。 我们稍后会更新此状态。 2) React 然后调用 Clock 组件的 render() 方法。这是 React 了解屏幕上应该显示什么内容，然后 React 更新 DOM 以匹配 Clock 的渲染输出。 3) 当 Clock 的输出插入到 DOM 中时，React 调用 componentDidMount() 生命周期钩子。 在其中，Clock 组件要求浏览器设置一个定时器，每秒钟调用一次 tick()。 4) 浏览器每秒钟调用 tick() 方法。 在其中，Clock 组件通过使用包含当前时间的对象调用 setState() 来调度UI更新。 通过调用 setState() ，React 知道状态已经改变，并再次调用 render() 方法来确定屏幕上应当显示什么。 这一次，render() 方法中的 this.state.date 将不同，所以渲染输出将包含更新的时间，并相应地更新DOM。 5) 一旦Clock组件被从DOM中移除，React会调用componentWillUnmount()这个钩子函数，定时器也就会被清除。 构造函数是唯一能够初始化 this.state 的地方。状态更新可能是异步的React 可以将多个setState() 调用合并成一个调用来提高性能。 程墨：setState：这个API设计到底怎么样 生命周期钩子可以控制状态更新 Mount constructor - 初始化props 和 state componentWillMount render componentDidMount update conponentWillReceiveProps(nextProps) shouldComponentUpdate(nextProps, nextState) componentWillUpdate() render() componentDidUpdate() unmount componentWillUnmout 数据自顶向下流动父组件或子组件都不能知道某个组件是有状态还是无状态，并且它们不应该关心某组件是被定义为一个函数还是一个类。 这就是为什么状态通常被称为局部或封装。 除了拥有并设置它的组件外，其它组件不可访问。 组件可以选择将其状态作为属性传递给其子组件 类的方法默认是不会绑定 this如果忘记绑定 this.handleClick 并把它传入 onClick, 当调用这个函数的时候 this 的值会是 undefined。 通常情况下，如果你没有在方法后面添加 () ，例如 onClick={this.handleClick}，你应该为这个方法绑定 this. 属性初始化器语法 回调函数中使用 箭头函数：然而如果这个回调函数作为一个属性值传入低阶组件，这些组件可能会进行额外的重新渲染 传入匿名回调的参数是当前的 state123this.setState(prevState =&gt; (&#123; showWarning: !prevState.showWarning&#125;)); 在极少数情况下，你可能希望隐藏组件，即使它被其他组件渲染。让 render 方法返回 null 而不是它的渲染结果即可实现。 元素变量使用变量来储存元素。它可以帮助你有条件的渲染组件的一部分，而输出的其他部分不会更改。12345678910111213let button = null; if (isLoggedIn) &#123; button = &lt;LogoutButton onClick=&#123;this.handleLogoutClick&#125; /&gt;; &#125; else &#123; button = &lt;LoginButton onClick=&#123;this.handleLoginClick&#125; /&gt;; &#125; return ( &lt;div&gt; &lt;Greeting isLoggedIn=&#123;isLoggedIn&#125; /&gt; &#123;button&#125; &lt;/div&gt; ); 与运算符 &amp;&amp;12345678910return ( &lt;div&gt; &lt;h1&gt;Hello!&lt;/h1&gt; &#123;unreadMessages.length &gt; 0 &amp;&amp; &lt;h2&gt; You have &#123;unreadMessages.length&#125; unread messages. &lt;/h2&gt; &#125; &lt;/div&gt; ); 三目运算符12345678render() &#123; const isLoggedIn = this.state.isLoggedIn; return ( &lt;div&gt; The user is &lt;b&gt;&#123;isLoggedIn ? 'currently' : 'not'&#125;&lt;/b&gt; logged in. &lt;/div&gt; );&#125; 渲染多样的组件 ( 数组集合 )元素的key只有在它和它的兄弟节点对比时才有意义。 数组元素中使用的key在其兄弟之间应该是独一无二的。然而，它们不需要是全局唯一的。 key会作为给React的提示，但不会传递给你的组件。如果您的组件中需要使用和key相同的值，请将其作为属性传递： 表单123handleChange(event) &#123; this.setState(&#123;value: event.target.value&#125;);&#125; 受控组件由于 value 属性是在我们的表单元素上设置的，因此显示的值将始终为 React数据源上this.state.value 的值。由于每次按键都会触发 handleChange 来更新当前React的state，所展示的值也会随着不同用户的输入而更新。 使用”受控组件”,每个状态的改变都有一个与之相关的处理函数。这样就可以直接修改或验证用户输入。 请注意，Coconut选项最初由于selected属性是被选中的。在React中，会在根select标签上而不是在当前的selected属性上使用value属性。 总之，&lt;input type=&quot;text&quot;&gt;, &lt;textarea&gt;, 和 &lt;select&gt; 都十分类似 - 他们都通过传入一个value属性来实现对组件的控制。 多个输入的解决方法当你有处理多个受控的input元素时，你可以通过给每个元素添加一个name属性，来让处理函数根据 event.target.name的值来选择做什么。 状态提升单项数据流自上而下流动，类似二叉树 子组件可以同伙状态提升把自身状态绑定到公共的父组件 refs何时使用 Refs下面是几个适合使用 refs 的情况： 处理焦点、文本选择或媒体控制。 触发强制动画。 集成第三方 DOM 库 如果可以通过声明式实现，则尽量避免使用 refs。 例如，不要在 Dialog 组件上直接暴露 open() 和 close() 方法，最好传递 isOpen 属性。]]></content>
+      <categories>
+        <category>webpack</category>
+      </categories>
+      <tags>
+        <tag>webpack</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[React 入门笔记（二）]]></title>
     <url>%2F2017%2F09%2F24%2FReact-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%2F</url>
     <content type="text"><![CDATA[React 入门笔记（二） 笔记概要： CND 引用跑起一个 hello world react 实例； webpack 搭建一个撸React 的开发环境； 基础模块： babel-cli babel-preset-react react react-dom babel-preset-es2015 babel-loader 开发模块： html-webpack-plugin webpack-dev-server HMR 热替换 + react-hot-loader 其他模块：根据自己需求添加 如 devtool : “source-map” 等 零、初探新建一个入口文件 新建一个js ==&gt; hello world 引入 CDN 12&lt;script src=&quot;https://unpkg.com/react@15/dist/react.min.js&quot;&gt;&lt;/script&gt;&lt;script src=&quot;https://unpkg.com/react-dom@15/dist/react-dom.min.js&quot;&gt;&lt;/script&gt; npm 安装 babel ==&gt; babel-cli babel-preset-react npm script ==&gt; ./node_modules/.bin/babel –presets react src –out-dir build –watch 一、webpack 构建开发环境1. 安装基础模块已有模块：babel-clibabel-preset-react 1"build": "./node_modules/.bin/babel --presets react src --out-dir build --watch" 继续安装：reactreact-dombabel-preset-es2015babel-loader .babelrc 配置，管理 babel123456&#123; "presets":[ ["es2015",&#123;"modules":false&#125;], "react" ]&#125; npm script ==&gt; “dev”:”webpack –config webpack.dev.js” webpack.dev.js12345678910111213141516171819202122const path = require("path");const root = __dirname;module.exports = &#123; // 入口文件 entry: path.resolve(root, "src/main.js"), // 出口文件 output: &#123; filename: "bundle.js", path: path.resolve(root, "dist") &#125;, // loaders module: &#123; rules: [ &#123; test: /\.js[x]?$/, use: ["babel-loader"], exclude: /node_modules/ &#125;, ] &#125;&#125; 这个时候已经能跑起来了，但是不够自动化，下面再给 webpack 新增一些配置 2. html-webpack-plugin说明书：https://doc.webpack-china.org/plugins/html-webpack-plugin1234567891011121314// 引入html-webpack-pluginconst HtmlWebpackPlugin = require('html-webpack-plugin')module.exports = &#123; // ... // 其他配置保持不变 // ... plugins: [ new HtmlWebpackPlugin(&#123; title: 'React Demo', template: path.resolve(root, 'template.html') &#125;) ]&#125; 3. webpack-dev-server说明书：https://doc.webpack-china.org/guides/development/#-webpack-dev-server123456789101112131415161718module.exports = &#123; // 入口文件 entry: [ "webpack-dev-server/client", path.resolve(root, "src/main.js") ], // 出口文件 output: &#123; filename: "bundle.js", path: path.resolve(root, "dist"), publicPath: "/" &#125;, devServer: &#123; contentBase: path.resolve(root, "dist"), publicPath: "/", port: "3030", historyApiFallback: true &#125;, package.json1"dev": "webpack-dev-server --config webpack.dev.js" HMR 热替换说明书：https://doc.webpack-china.org/guides/hot-module-replacement .babelrc123456789&#123; "presets":[ ["es2015",&#123;"modules":false&#125;], "react" ], "plugins":[ "react-hot-loader/babel" ]&#125; react-hot-loader安装模块 ==&gt; npm i -D react-hot-loader 说明书：https://github.com/gaearon/react-hot-loader 修改 webpack.dev.js123456789101112131415161718192021222324252627entry: [ "react-hot-loader/patch", "webpack-dev-server/client", "webpack/hot/only-dev-server", path.resolve(root, "src/main.js")],//// 其他没变//devServer: &#123; hot: true, contentBase: path.resolve(root, "dist"), publicPath: "/", port: "3030", historyApiFallback: true&#125;,//// 其他没变//plugins: [ new HtmlWebpackPlugin(&#123; title: "React Demo", template: path.resolve(root, "template.html") &#125;), new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()] main.js12345678910111213141516171819import React from 'react'import ReactDOM from 'react-dom'import &#123;AppContainer&#125; from 'react-hot-loader'import App from './App'const render = (App) =&gt; &#123; ReactDOM.render( &lt;AppContainer&gt; &lt;App/&gt; &lt;/AppContainer&gt;, document.getElementById('app') )&#125;;render(App);if (module.hot) &#123; module.hot.accept('./App', () =&gt; render(App))&#125; 然后修改 App.js 里的内容自己调试 （完）]]></content>
@@ -46,8 +68,8 @@
         <category>HTTP</category>
       </categories>
       <tags>
-        <tag>CSRF</tag>
         <tag>HTTP</tag>
+        <tag>CSRF</tag>
       </tags>
   </entry>
   <entry>
@@ -183,12 +205,12 @@
   <entry>
     <title><![CDATA[事件代理（事件委托）]]></title>
     <url>%2F2017%2F09%2F09%2F%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%EF%BC%88%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%EF%BC%89%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[占坑]]></content>
       <categories>
-        <category>webpack</category>
+        <category>javascript</category>
       </categories>
       <tags>
-        <tag>webpack</tag>
+        <tag>事件代理</tag>
       </tags>
   </entry>
   <entry>
@@ -201,8 +223,8 @@
       </categories>
       <tags>
         <tag>javascript</tag>
-        <tag>数组</tag>
         <tag>试题</tag>
+        <tag>数组</tag>
       </tags>
   </entry>
   <entry>
@@ -227,8 +249,8 @@
       </categories>
       <tags>
         <tag>javascript</tag>
-        <tag>数组</tag>
         <tag>试题</tag>
+        <tag>数组</tag>
         <tag>递归</tag>
       </tags>
   </entry>
