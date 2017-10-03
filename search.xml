@@ -80,8 +80,8 @@
         <category>HTTP</category>
       </categories>
       <tags>
-        <tag>HTTP</tag>
         <tag>CSRF</tag>
+        <tag>HTTP</tag>
       </tags>
   </entry>
   <entry>
