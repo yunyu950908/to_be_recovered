@@ -4,6 +4,7 @@ tags:
   - react
   - 笔记
 categories:
+  - javascript
   - react
 date: 2017-09-24 17:55:42
 ---

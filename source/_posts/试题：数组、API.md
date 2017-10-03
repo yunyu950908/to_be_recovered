@@ -5,6 +5,7 @@ tags:
   - 试题
   - javascript
 categories:
+  - javascript
   - 试题
 date: 2017-09-06 12:32:51
 ---

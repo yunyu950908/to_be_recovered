@@ -3,6 +3,7 @@ title: React 基础入门实例
 tags:
   - react
 categories:
+  - javascript
   - react
 date: 2017-08-25 23:24:03
 ---

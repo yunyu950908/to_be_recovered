@@ -4,6 +4,7 @@ date: 2017-08-22 00:44:00
 tags:
   - webpack
 categories:
+  - javascript
   - webpack
 ---
 ![ webpack | center ](https://ws1.sinaimg.cn/large/889b2f7fgy1fishfcjd85j21g30orwmv.jpg)

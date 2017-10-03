@@ -4,6 +4,7 @@ date: 2017-08-22 19:30:03
 tags:
   - webpack
 categories:
+  - javascript
   - webpack
 ---
 

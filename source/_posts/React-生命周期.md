@@ -4,6 +4,7 @@ tags:
   - react
   - 生命周期
 categories:
+  - javascript
   - react
 date: 2017-08-27 14:54:52
 ---

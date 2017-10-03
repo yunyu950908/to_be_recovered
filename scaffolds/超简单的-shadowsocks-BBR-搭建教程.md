@@ -13,7 +13,7 @@ date: 2017-09-25 00:50:10
 
 >这里是官网 ：[ VirMach VPS Hosting ](https://billing.virmach.com/aff.php?aff=2540)
 
->近几年用过 vultr bandwagonhost vps77 还有其他一些服务器做梯子，目前来看 [ virmach ](https://billing.virmach.com/aff.php?aff=2540) 性价比最高
+>近几年用过 vultr bandwagonhost vps77 还有其他一些服务器做梯子，目前来看 virmach 性价比最高
 
 >注意：**是 KVM 架构** 简直**便宜**到没朋友！！！正常 openVZ 包年价格至少是这个的两倍啊！！！
 
@@ -205,7 +205,7 @@ lsmod | grep bbr
 
 ## 三、shadowsocks
 
->脚本来源：秋水逸冰。不放心的小伙伴可以自行查看 bbr.sh 脚本内容。
+>脚本来源：秋水逸冰。不放心的小伙伴可以自行查看 shadowsocks-all.sh 脚本内容。
 
 ### 关于本脚本
 1、一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端；
