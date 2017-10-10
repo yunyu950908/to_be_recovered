@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://oux9sg1nc.bkt.clouddn.com/17-10-9/49104534.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fkcgqopg8tj20qm0ptn0y.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/889b2f7fgy1fkchvknoxrj204203xwea.jpg">
-<meta property="og:updated_time" content="2017-10-10T11:57:50.019Z">
+<meta property="og:updated_time" content="2017-10-10T12:21:02.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 事件模型（详细记录）">
 <meta name="twitter:description" content="JavaScript 与 HTML 的交互是通过事件实现的。JavaScript 采用异步事件驱动编程模型，当文档、浏览器、元素、或与之相关对象发生特定事情时，当前环境就会产生相应的事件。你可以使用 JavaScript 监听指定事件类型，当事件触发时调用指定方法。  一、事件什么是事件？事件一般指的是某个行为，如：点击、鼠标移动、网页加载、图像加载等。 二、事件流 事件流描述的是从页面中接收事">
@@ -509,6 +509,7 @@
 <p>ok,这时候再点击 <code>MsgBox</code> 试试，事件不会冒泡到 <code>Dialog</code> ，便不会触发在 <code>Dialog</code> 上注册的 <code>click</code> 事件。</p>
 <p>于是乎，我们又完成了一个业务需求。</p>
 <h3 id="3-阻止默认事件"><a href="#3-阻止默认事件" class="headerlink" title="3. 阻止默认事件"></a>3. 阻止默认事件</h3><p>有些时候我们可能会希望阻止掉某些默认事件，比如 <code>a</code> 标签的跳转，<code>form</code> 表单的 <code>submit</code> 等，这时候我们就需要使用 <code>preventDefault</code> 方法阻止默认事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tagA.addEventListener(<span class="string">"click"</span>,e=&gt;&#123;</div><div class="line">    e.preventDefault(); <span class="comment">// 阻止了 a 标签的默认点击事件</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"click &lt;a/&gt;"</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <blockquote>
 <p><em>如果事件可取消，则取消该事件，而不停止事件的进一步传播。 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event/preventDefault" target="_blank" rel="external">event.preventDefault - MDN</a></em></p>
 </blockquote>
@@ -533,18 +534,14 @@
 <li>这样书写 HTML 代码和 JavaScript 代码紧密耦合，维护不方便。</li>
 </ol>
 </blockquote>
-<h3 id="2-JavaScript-处理"><a href="#2-JavaScript-处理" class="headerlink" title="2. JavaScript 处理"></a>2. JavaScript 处理</h3><ol>
-<li>DOM0 级事件处理程序</li>
-</ol>
+<h3 id="2-JavaScript-处理"><a href="#2-JavaScript-处理" class="headerlink" title="2. JavaScript 处理"></a>2. JavaScript 处理</h3><p><strong>1. DOM0 级事件处理程序</strong></p>
 <blockquote>
 <p>通过 JavaScript 指定事件处理程序就是把一个方法赋值给一个元素的事件处理程序属性。</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">showMsg</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.tagName.toLowerCase() + <span class="string">"clicked!"</span>)&#125;</div><div class="line">btn.onclick = showMsg;</div></pre></td></tr></table></figure>
 <p>这样的事件处理程序被认为是元素的方法，事件处理程序在元素的作用域下运行，<code>this</code> 就是当前元素，所以点击 <code>button</code> 结果是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// button clicked!</span></div></pre></td></tr></table></figure></p>
 <p>这样还有一个好处，我们可以删除事件处理程序，只需把元素的 <code>onclick</code> 属性赋为 <code>null</code> 即可：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">btn.onclick = <span class="literal">null</span>;</div></pre></td></tr></table></figure></p>
-<ol>
-<li>DOM2 级事件处理程序</li>
-</ol>
+<p><strong>2. DOM2 级事件处理程序</strong></p>
 <blockquote>
 <p>DOM2级事件定义了两个方法用于处理指定和删除事件处理程序的操作：</p>
 <ol>
