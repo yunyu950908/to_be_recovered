@@ -318,6 +318,241 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/React-入门笔记（二）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/24/React-入门笔记（二）/" itemprop="url">React 入门笔记（二）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-24T17:55:42+08:00">
+                2017-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/24/React-入门笔记（二）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/24/React-入门笔记（二）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/09/24/React-入门笔记（二）/" class="leancloud_visitors" data-flag-title="React 入门笔记（二）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="React-入门笔记（二）"><a href="#React-入门笔记（二）" class="headerlink" title="React 入门笔记（二）"></a>React 入门笔记（二）</h1><blockquote>
+<p>笔记概要：</p>
+<ol>
+<li>CND 引用跑起一个 hello world react 实例；</li>
+<li>webpack 搭建一个撸React 的开发环境；</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>基础模块：</p>
+<ol>
+<li>babel-cli</li>
+<li>babel-preset-react</li>
+<li>react</li>
+<li>react-dom</li>
+<li>babel-preset-es2015</li>
+<li>babel-loader</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>开发模块：</p>
+<ol>
+<li>html-webpack-plugin</li>
+<li>webpack-dev-server</li>
+<li>HMR 热替换 + react-hot-loader</li>
+</ol>
+<p>其他模块：根据自己需求添加 如 devtool : “source-map” 等</p>
+</blockquote>
+<hr>
+<h2 id="零、初探"><a href="#零、初探" class="headerlink" title="零、初探"></a>零、初探</h2><p>新建一个入口文件</p>
+<p>新建一个js ==&gt; hello world</p>
+<p>引入 CDN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://unpkg.com/react@15/dist/react.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script src=&quot;https://unpkg.com/react-dom@15/dist/react-dom.min.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>npm 安装 babel ==&gt; babel-cli babel-preset-react</p>
+<p>npm script ==&gt; ./node_modules/.bin/babel –presets react src –out-dir build –watch</p>
+<h2 id="一、webpack-构建开发环境"><a href="#一、webpack-构建开发环境" class="headerlink" title="一、webpack 构建开发环境"></a>一、webpack 构建开发环境</h2><h3 id="1-安装基础模块"><a href="#1-安装基础模块" class="headerlink" title="1. 安装基础模块"></a>1. 安装基础模块</h3><p>已有模块：<br>babel-cli<br>babel-preset-react</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"build": "./node_modules/.bin/babel --presets react src --out-dir build --watch"</div></pre></td></tr></table></figure>
+<p>继续安装：<br>react<br>react-dom<br>babel-preset-es2015<br>babel-loader</p>
+<ul>
+<li><code>.babelrc</code> 配置，管理 babel<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"presets"</span>:[</div><div class="line">    [<span class="string">"es2015"</span>,&#123;<span class="attr">"modules"</span>:<span class="literal">false</span>&#125;],</div><div class="line">    <span class="string">"react"</span></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>npm script ==&gt; “dev”:”webpack –config webpack.dev.js”</p>
+<ul>
+<li><code>webpack.dev.js</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</div><div class="line"><span class="keyword">const</span> root = __dirname;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="comment">// 入口文件</span></div><div class="line">    entry: path.resolve(root, <span class="string">"src/main.js"</span>),</div><div class="line">    <span class="comment">// 出口文件</span></div><div class="line">    output: &#123;</div><div class="line">        filename: <span class="string">"bundle.js"</span>,</div><div class="line">        path: path.resolve(root, <span class="string">"dist"</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// loaders</span></div><div class="line">    <span class="built_in">module</span>: &#123;</div><div class="line">        rules: [</div><div class="line">            &#123;</div><div class="line">                test: <span class="regexp">/\.js[x]?$/</span>,</div><div class="line">                use: [<span class="string">"babel-loader"</span>],</div><div class="line">                exclude: <span class="regexp">/node_modules/</span></div><div class="line">            &#125;,</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这个时候已经能跑起来了，但是不够自动化，下面再给 webpack 新增一些配置</p>
+<h3 id="2-html-webpack-plugin"><a href="#2-html-webpack-plugin" class="headerlink" title="2. html-webpack-plugin"></a>2. html-webpack-plugin</h3><p>说明书：<a href="https://doc.webpack-china.org/plugins/html-webpack-plugin" target="_blank" rel="external">https://doc.webpack-china.org/plugins/html-webpack-plugin</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 引入html-webpack-plugin</span></div><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>)</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">  <span class="comment">// 其他配置保持不变</span></div><div class="line">  <span class="comment">// ...</span></div><div class="line">  plugins: [</div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">      title: <span class="string">'React Demo'</span>,</div><div class="line">      template: path.resolve(root, <span class="string">'template.html'</span>)</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3-webpack-dev-server"><a href="#3-webpack-dev-server" class="headerlink" title="3. webpack-dev-server"></a>3. webpack-dev-server</h3><p>说明书：<a href="https://doc.webpack-china.org/guides/development/#-webpack-dev-server" target="_blank" rel="external">https://doc.webpack-china.org/guides/development/#-webpack-dev-server</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">    <span class="comment">// 入口文件</span></div><div class="line">    entry: [</div><div class="line">        <span class="string">"webpack-dev-server/client"</span>,</div><div class="line">        path.resolve(root, <span class="string">"src/main.js"</span>)</div><div class="line">    ],</div><div class="line">    <span class="comment">// 出口文件</span></div><div class="line">    output: &#123;</div><div class="line">        filename: <span class="string">"bundle.js"</span>,</div><div class="line">        path: path.resolve(root, <span class="string">"dist"</span>),</div><div class="line">        publicPath: <span class="string">"/"</span></div><div class="line">    &#125;,</div><div class="line">    devServer: &#123;</div><div class="line">        contentBase: path.resolve(root, <span class="string">"dist"</span>),</div><div class="line">        publicPath: <span class="string">"/"</span>,</div><div class="line">        port: <span class="string">"3030"</span>,</div><div class="line">        historyApiFallback: <span class="literal">true</span></div><div class="line">    &#125;,</div></pre></td></tr></table></figure></p>
+<p>package.json<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"dev": "webpack-dev-server --config webpack.dev.js"</div></pre></td></tr></table></figure></p>
+<h2 id="HMR-热替换"><a href="#HMR-热替换" class="headerlink" title="HMR 热替换"></a>HMR 热替换</h2><p>说明书：<a href="https://doc.webpack-china.org/guides/hot-module-replacement" target="_blank" rel="external">https://doc.webpack-china.org/guides/hot-module-replacement</a></p>
+<h3 id="babelrc"><a href="#babelrc" class="headerlink" title=".babelrc"></a>.babelrc</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"presets"</span>:[</div><div class="line">    [<span class="string">"es2015"</span>,&#123;<span class="attr">"modules"</span>:<span class="literal">false</span>&#125;],</div><div class="line">    <span class="string">"react"</span></div><div class="line">  ],</div><div class="line">  <span class="attr">"plugins"</span>:[</div><div class="line">    <span class="string">"react-hot-loader/babel"</span></div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="react-hot-loader"><a href="#react-hot-loader" class="headerlink" title="react-hot-loader"></a>react-hot-loader</h3><p>安装模块 ==&gt; npm i -D react-hot-loader</p>
+<p>说明书：<a href="https://github.com/gaearon/react-hot-loader" target="_blank" rel="external">https://github.com/gaearon/react-hot-loader</a></p>
+<p>修改 webpack.dev.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">entry: [</div><div class="line">    <span class="string">"react-hot-loader/patch"</span>,</div><div class="line">    <span class="string">"webpack-dev-server/client"</span>,</div><div class="line">    <span class="string">"webpack/hot/only-dev-server"</span>,</div><div class="line">    path.resolve(root, <span class="string">"src/main.js"</span>)</div><div class="line">],</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// 其他没变</span></div><div class="line"><span class="comment">//</span></div><div class="line">devServer: &#123;</div><div class="line">    hot: <span class="literal">true</span>,</div><div class="line">    contentBase: path.resolve(root, <span class="string">"dist"</span>),</div><div class="line">    publicPath: <span class="string">"/"</span>,</div><div class="line">    port: <span class="string">"3030"</span>,</div><div class="line">    historyApiFallback: <span class="literal">true</span></div><div class="line">&#125;,</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// 其他没变</span></div><div class="line"><span class="comment">//</span></div><div class="line">plugins: [</div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</div><div class="line">        title: <span class="string">"React Demo"</span>,</div><div class="line">        template: path.resolve(root, <span class="string">"template.html"</span>)</div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin(),</div><div class="line">    <span class="keyword">new</span> webpack.NamedModulesPlugin()</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>main.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span></div><div class="line"><span class="keyword">import</span> &#123;AppContainer&#125; <span class="keyword">from</span> <span class="string">'react-hot-loader'</span></div><div class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> render = <span class="function">(<span class="params">App</span>) =&gt;</span> &#123;</div><div class="line">    ReactDOM.render(</div><div class="line">        &lt;AppContainer&gt;</div><div class="line">            &lt;App/&gt;</div><div class="line">        &lt;<span class="regexp">/AppContainer&gt;,</span></div><div class="line"><span class="regexp">        document.getElementById('app')</span></div><div class="line"><span class="regexp">    )</span></div><div class="line"><span class="regexp">&#125;;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">render(App);</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">if (module.hot) &#123;</span></div><div class="line"><span class="regexp">    module.hot.accept('./</span>App<span class="string">', () =&gt; render(App))</span></div><div class="line"><span class="string">&#125;</span></div></pre></td></tr></table></figure></p>
+<p>然后修改 App.js 里的内容自己调试</p>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/一个模拟-XSS-攻击的小游戏/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2552,225 +2787,6 @@
 </ol>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>虽然列了很多书，但事实上是，入门阶段看博客与翻文档更多，当你感觉需要提高，补充基础的时候，看书有奇效。</p>
 <p>最后，上面列出的那么多东西，我也只看了其中的一小部分，正在慢慢补充中。。。</p>
-<p>（完）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/18/盒子模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/18/盒子模型/" itemprop="url">盒子模型</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T23:26:45+08:00">
-                2017-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/18/盒子模型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/18/盒子模型/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/09/18/盒子模型/" class="leancloud_visitors" data-flag-title="盒子模型">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>梳理基础知识，从 CSS 盒模型开始！</p>
-</blockquote>
-<h2 id="一、什么是盒子模型"><a href="#一、什么是盒子模型" class="headerlink" title="一、什么是盒子模型"></a>一、什么是盒子模型</h2><p>我们先看一张图：</p>
-<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-18/80360528.jpg" target="_blank" rel="external"> @盒子模型 | center </a></p>
-<p>最开始看着这张图的时候，觉得与其说是盒模型，倒不如说是张画布( 不是 canvas svg 的意思 )，直到我遇上了外边距合并 <code>(ｷ｀ﾟДﾟ´)!!</code> 下面，请听我娓娓道来。</p>
-<p>首先，这货规定了哪些地方你可以画上哪些东西：</p>
-<p>如图所示，由内而外依次是 <code>content</code> , <code>padding</code> , <code>bording</code> , <code>margin</code></p>
-<ol>
-<li><p>content : 真正容纳东西的区域，在 content 中你可以画上 其他元素、文本 等任意内容。</p>
-</li>
-<li><p>padding : 盒子的内边距，包裹在 content 之外，可以想象成快递中的空气气囊，夹在 border 和 content 之间。</p>
-</li>
-<li><p>border : 盒子的边框，相当于你在 padding 外镶了一层。border 可以指定 颜色、粗细、样式等。（相当于一个阉割版的 content）</p>
-</li>
-<li><p>margin : 盒子的外边距外边距，这个盒子周围空置的安全区域（在不发生外边距折叠的情况下）</p>
-</li>
-</ol>
-<h2 id="二、使用开发者工具查看盒模型"><a href="#二、使用开发者工具查看盒模型" class="headerlink" title="二、使用开发者工具查看盒模型"></a>二、使用开发者工具查看盒模型</h2><p>emmmmm，个人觉得先学会使用开发者工具的部分功能后，会对学习盒子模型降低很大的时间成本。</p>
-<p>话不多说，直接看图：</p>
-<p>不对不对，你打开 Chrome 浏览器先 =。=</p>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9ye8lqsj207t0840sw.jpg" alt="@右键菜单 | center"></p>
-<p>这时候你可以单击检查，然后会弹出控制台（开发者工具）。当然你也可以按 F12</p>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjp9zqaz90j20qi093abt.jpg" alt="@开发者工具 | center"></p>
-<p>Elements : 网页中的各个元素，你可以尝试着移动鼠标到某个元素后，单机选中元素，然后会得到类似如下图一样结果，注意红线选中部分。</p>
-<p>（当然一般都是单击左上角的一个小鼠标箭头的图标，然后直接单击网页呈现的内容选择）</p>
-<ol>
-<li>右上角的箭头，单击后可以直接单击选择页面呈现的元素，并在控制台中定位</li>
-<li>DOM 文档中蓝色背景标签 p，我刚刚选中的那个元素</li>
-<li>下面有个类似导航条一样的东西，是当前选中元素所在的层级</li>
-<li>右边 styles 是当前元素的 CSS 样式，点击 computed 可以查看最终计算后的样式</li>
-<li>styles 一栏滚动到底部有这么一个花里胡哨的框框，就是盒子模型，从内到外依次和上面介绍的那个一样，而且有文字注明</li>
-</ol>
-<p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fjpa9rz9h5j20qg09975w.jpg" alt="@选中元素 | center"></p>
-<p>ok,知道了这些基本使用后，我们来了解一下盒子模型的尺寸</p>
-<h2 id="三、盒模型的尺寸"><a href="#三、盒模型的尺寸" class="headerlink" title="三、盒模型的尺寸"></a>三、盒模型的尺寸</h2><p>慢着，在讲盒模型尺寸前，最好先简单了解一个可以帮助你解决很多问题的属性： <code>box-sizing</code></p>
-<p><code>box-sizing</code> 属性可以帮助我们在 <code>标准盒模型</code> 与 <code>IE 盒模型</code> 中自由切换（为什么这么称呼请自行 Google）</p>
-<p>需要注意的是：这两个盒子模型的尺寸的计算方法是不一样的！</p>
-<h3 id="box-sizing-border-box-（IE-盒模型）"><a href="#box-sizing-border-box-（IE-盒模型）" class="headerlink" title="box-sizing : border-box; （IE 盒模型）"></a>box-sizing : border-box; （IE 盒模型）</h3><p>观察下图，明显表示了，在 IE 盒模型中</p>
-<ul>
-<li>width = content 宽度 + 左右 padding 宽度 + 左右 border 宽度</li>
-<li>height = content 高度 + 左右 padding 高度 + 左右 border 高度</li>
-</ul>
-<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-19/63380423.jpg" target="_blank" rel="external">@IE盒模型 | center</a></p>
-<h3 id="box-sizing-content-box-（标准盒模型）"><a href="#box-sizing-content-box-（标准盒模型）" class="headerlink" title="box-sizing : content-box; （标准盒模型）"></a>box-sizing : content-box; （标准盒模型）</h3><p>标准盒模型是默认值，现在看一下与 IE 盒模型有什么不同</p>
-<ul>
-<li>width = content 宽度</li>
-<li>height = content 高度</li>
-</ul>
-<p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-19/5178800.jpg" target="_blank" rel="external">@标准盒模型 | center</a></p>
-<h3 id="box-sizing-inherit"><a href="#box-sizing-inherit" class="headerlink" title="box-sizing : inherit;"></a>box-sizing : inherit;</h3><p>继承父元素的盒模型样式。</p>
-<p>以上就是 box-sizing 的简介，很简单，但很实用。</p>
-<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>关于兼容性的问题，请移步 <a href="https://caniuse.com/#search=box-sizing" target="_blank" rel="external"> caniuse.com </a></p>
-<p>关于盒子模型的介绍基本就到这里。</p>
 <p>（完）</p>
 
           
