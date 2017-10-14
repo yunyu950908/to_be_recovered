@@ -318,6 +318,497 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/30/试题：数组、递归/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/30/试题：数组、递归/" itemprop="url">试题：数组、递归</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-30T22:19:59+08:00">
+                2017-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/试题/" itemprop="url" rel="index">
+                    <span itemprop="name">试题</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/30/试题：数组、递归/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/30/试题：数组、递归/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/08/30/试题：数组、递归/" class="leancloud_visitors" data-flag-title="试题：数组、递归">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7b9a10sqj21hc0u07de.jpg" alt="@ | center"></p>
+<h1 id="试题：数组、递归"><a href="#试题：数组、递归" class="headerlink" title="试题：数组、递归"></a>试题：数组、递归</h1><h2 id="题干："><a href="#题干：" class="headerlink" title="题干："></a>题干：</h2><p>实现一个 <code>flatten</code> 函数，将一个嵌套多层的数组 <code>array</code> (嵌套可以是任何层数) 转换为只有一层的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 数组中元素仅基本类型的元素或数组，不存在循环引用的情况。</span></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>], [<span class="number">3</span>, [[<span class="number">4</span>]]]];</div><div class="line"></div><div class="line"><span class="comment">/* 在这里定义你的 flatten 函数 */</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> _arr = flatten(arr);</div><div class="line"><span class="built_in">console</span>.log(_arr); <span class="comment">// 输出 [1,2,3,4]</span></div></pre></td></tr></table></figure>
+<h2 id="审题："><a href="#审题：" class="headerlink" title="审题："></a>审题：</h2><p>先看一眼题目给出的这个 <code>arr</code> ，按照题意的说法，这就是给你一个数组，数组内包含 <code>基本类型元素</code> 和 <code>嵌套了任意层数的数组</code> ，然后<strong>注意</strong>这个数组 <code>不存在循环引用的情况</code> 也就是说嵌套数组中也只有基本类型元素或数组，这就简单多啦，我们只需要把所有数组中的基本类型元素提取出来，然后放进一个新数组就可以咯~</p>
+<p>首先，写代码遵循一个 <code>DRY</code> 的基本准则： <code>Don&#39;t Repeat Yourself</code>；<br>然后，这种有规律、层级多、需要重复调用的，第一反应就是 <code>递归</code> 嘛，那接下来就用递归思想写一个 <code>flatten</code> 函数。</p>
+<ul>
+<li><p>这是我们要操作的数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arr = [<span class="number">1</span>, [<span class="number">2</span>], [<span class="number">3</span>, [[<span class="number">4</span>]]]]</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后这是 <code>flatten</code> 函数大概要做的事情：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>次数</th>
+<th>—</th>
+<th>—</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一次</td>
+<td>数字 <code>1</code></td>
+<td>数组 <code>[2]</code></td>
+<td>数组 <code>[3,[[4]]]</code></td>
+</tr>
+<tr>
+<td>第二次</td>
+<td>数字 <code>2</code></td>
+<td>数字 <code>3</code></td>
+<td>数组 <code>[[4]]</code></td>
+</tr>
+<tr>
+<td>第三次</td>
+<td>数组 <code>[4]</code></td>
+</tr>
+<tr>
+<td>第四次</td>
+<td>数字 <code>4</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="做题"><a href="#做题" class="headerlink" title="做题"></a>做题</h2><p>emmmmm . . .  下面是我能想到的方法，实现方式有很多，大家可以自由发挥。</p>
+<h3 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h3><p><code>Array.prototype.reduce()</code> + <code>Array.isArray()</code> + <code>Array.prototype.concat()</code></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="external">文档链接：Array.prototype.reduce()</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray" target="_blank" rel="external">文档链接：Array.isArray()</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" target="_blank" rel="external">文档链接：Array.prototype.concat()</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> arr.reduce(<span class="function"><span class="keyword">function</span> (<span class="params">initArr, currentArr</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> initArr.concat(<span class="built_in">Array</span>.isArray(currentArr) ? flatten1(currentArr) : currentArr);</div><div class="line">    &#125;, [])</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>], [<span class="number">3</span>, [[<span class="number">4</span>]]]]</div><div class="line"><span class="keyword">var</span> arr1 = [<span class="number">-1</span>, [<span class="number">0</span>, <span class="number">1</span>], [<span class="string">"String"</span>, [[[<span class="literal">undefined</span>, <span class="literal">null</span>]], <span class="literal">true</span>, <span class="literal">false</span>]]]</div><div class="line"></div><div class="line"><span class="keyword">var</span> _arr = flatten(arr)</div><div class="line"><span class="built_in">console</span>.log(_arr) <span class="comment">// [ 1, 2, 3, 4 ]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> _arr1 = flatten(arr1)</div><div class="line"><span class="built_in">console</span>.log(_arr1) <span class="comment">// [ -1, 0, 1, 'String', undefined, null, true, false ]</span></div></pre></td></tr></table></figure>
+<h3 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h3><p><code>Array.prototype.forEach()</code> + <code>闭包</code> + <code>Array.prototype.push()</code></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach" target="_blank" rel="external">文档：Array.prototype.forEach()</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank" rel="external">文档：Array.prototype.push()</a></p>
+<p><a href="http://javascript.ruanyifeng.com/grammar/function.html#toc23" target="_blank" rel="external">闭包：来自《JavaScript 标准参考教程（alpha）》，by 阮一峰</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">flatten</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="comment">// 定义一个空数组用来存放提取出来的基本类型元素</span></div><div class="line">    <span class="keyword">var</span> _arr = [];</div><div class="line">    <span class="comment">// 用一个自执行函数处理多层嵌套数组</span></div><div class="line">    (<span class="function"><span class="keyword">function</span> <span class="title">_flatten</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">        arr.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">e, i</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (e <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">                <span class="comment">// 当然也可以写成其他形式，比如：if(typeof e === 'object')</span></div><div class="line">                _flatten(e);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                _arr.push(e);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;)(arr);</div><div class="line">    <span class="keyword">return</span> _arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, [<span class="number">2</span>], [<span class="number">3</span>, [[<span class="number">4</span>]]]]</div><div class="line"><span class="keyword">var</span> arr1 = [<span class="number">-1</span>, [<span class="number">0</span>, <span class="number">1</span>], [<span class="string">"String"</span>, [[[<span class="literal">undefined</span>, <span class="literal">null</span>]], <span class="literal">true</span>, <span class="literal">false</span>]]]</div><div class="line"></div><div class="line"><span class="keyword">var</span> _arr = flatten(arr)</div><div class="line"><span class="built_in">console</span>.log(_arr) <span class="comment">// [ 1, 2, 3, 4 ]</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> _arr1 = flatten(arr1)</div><div class="line"><span class="built_in">console</span>.log(_arr1) <span class="comment">// [ -1, 0, 1, 'String', undefined, null, true, false ]</span></div></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好了，以上就是我大概的想法，希望大家思考更多其他的方法实现。</p>
+<p>最后，要注意的是：</p>
+<ul>
+<li>不要为了做题而做题！</li>
+</ul>
+<p>那么，做题能干嘛呢？</p>
+<ol>
+<li>做题能检查自己知识点的掌握情况；</li>
+<li>做题能够快速学习不熟悉的 API ；</li>
+<li>做题能够整理巩固已掌握的知识点；</li>
+</ol>
+<p>不信？你看这篇文章，如果你把我列出的代码跟文档读过一遍，你可能学习/复习了以下知识点：</p>
+<ol>
+<li>递归思想</li>
+<li>Array.prototype.reduce()</li>
+<li>Array.isArray()</li>
+<li>Array.prototype.concat()</li>
+<li>Array.prototype.forEach()</li>
+<li>Array.prototype.push()</li>
+<li>instanceof 、typeof</li>
+<li>闭包</li>
+</ol>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/函数声明、函数表达式、匿名函数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Albert">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Albert's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/29/函数声明、函数表达式、匿名函数/" itemprop="url">函数声明、函数表达式、匿名函数</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-29T19:06:23+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/29/函数声明、函数表达式、匿名函数/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/29/函数声明、函数表达式、匿名函数/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+             <span id="/2017/08/29/函数声明、函数表达式、匿名函数/" class="leancloud_visitors" data-flag-title="函数声明、函数表达式、匿名函数">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fj7baoav1pj21hc0u07d2.jpg" alt="@ | center"></p>
+<h1 id="函数声明、函数表达式、匿名函数"><a href="#函数声明、函数表达式、匿名函数" class="headerlink" title="函数声明、函数表达式、匿名函数"></a>函数声明、函数表达式、匿名函数</h1><blockquote>
+<p>本文内容为函数基础，欢迎全段位玩家划水吐槽(<em>^▽^</em>)</p>
+</blockquote>
+<h2 id="一、函数声明、函数表达式的区别"><a href="#一、函数声明、函数表达式的区别" class="headerlink" title="一、函数声明、函数表达式的区别"></a>一、函数声明、函数表达式的区别</h2><ul>
+<li>函数声明：<code>function functionName(){}</code></li>
+<li>函数表达式：<code>var fn = function(){}</code></li>
+<li>匿名函数：<code>function(){}</code> </li>
+</ul>
+<p><strong>区别：</strong><br>函数声明与函数表达式的区别主要表现在声明前置与函数标识符两部分。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">:—:</th>
+<th style="text-align:center">声明前置</th>
+<th style="text-align:center">标识符（函数名）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>函数声明</strong></td>
+<td style="text-align:center">函数声明前置</td>
+<td style="text-align:center">不可省略</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>函数表达式</strong></td>
+<td style="text-align:center">变量声明前置</td>
+<td style="text-align:center">可以省略</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>匿名函数</strong></td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">无</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：</strong></p>
+<ol>
+<li>函数声明<br>不可省略标识符，否则抛出 error SyntaxError 错误，通过 foo 调用；</li>
+<li>函数表达式<br>省略了函数标识符，通过 fn 调用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 判断声明前置</span></div><div class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// function foo()&#123;console.log('foo: "函数声明"')&#125;</span></div><div class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// undefined</span></div><div class="line"></div><div class="line"><span class="comment">// 函数声明</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'foo: "函数声明"'</span>)&#125;</div><div class="line"></div><div class="line"><span class="comment">// 函数表达式 </span></div><div class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'fn: "函数表达式"'</span>)&#125;</div><div class="line"></div><div class="line"><span class="comment">// 函数表达式声明后打印</span></div><div class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// function ()&#123;console.log('fn: "函数表达式"')&#125;</span></div><div class="line"></div><div class="line"><span class="comment">// 调用</span></div><div class="line">foo() <span class="comment">// foo: "函数声明"</span></div><div class="line">fn() <span class="comment">// fn: "函数表达式"</span></div></pre></td></tr></table></figure>
+<h2 id="二、变量的声明前置、函数的声明前置"><a href="#二、变量的声明前置、函数的声明前置" class="headerlink" title="二、变量的声明前置、函数的声明前置"></a>二、变量的声明前置、函数的声明前置</h2><p><strong>变量的声明前置：</strong></p>
+<ul>
+<li>在一个作用域块中，所有的变量声明都会被JS引擎放在作用域块范围的顶部进行；</li>
+</ul>
+<p><strong>函数的声明前置：</strong></p>
+<ul>
+<li>和变量声明前置一样，执行代码之前会先读取函数声明，只要函数在代码中进行了声明，无论它在作用域块的哪个位置上进行声明，JS引擎都会将它的声明放在作用域块范围的顶部进行；</li>
+</ul>
+<p><strong>优先级：</strong></p>
+<ul>
+<li>函数声明的优先级高于变量声明的优先级<br>（函数声明 &gt; 变量声明）</li>
+</ul>
+<p><strong>示例：</strong><br>利用同名 函数/变量 判断 声明前置的优先级<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 判断声明优先级</span></div><div class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// function foo()&#123;console.log("foo")&#125;</span></div><div class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// function fn()&#123;console.log("fn")&#125;</span></div><div class="line"></div><div class="line"><span class="comment">// 声明：函数 ==&gt; 变量</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"foo"</span>)&#125;</div><div class="line"><span class="keyword">var</span> foo = <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="comment">// 声明：变量 ==&gt; 函数</span></div><div class="line"><span class="keyword">var</span> fn =<span class="number">2</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"fn"</span>)&#125;</div><div class="line"></div><div class="line"><span class="comment">// 赋值后打印</span></div><div class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// 2</span></div></pre></td></tr></table></figure></p>
+<p>以上代码正确的执行顺序是：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 因为函数声明优先提升，所以后提升的变量声明把函数声明挤到了后面</span></div><div class="line"><span class="keyword">var</span> foo;</div><div class="line"><span class="keyword">var</span> fn;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"foo"</span>)&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"fn"</span>)&#125;</div><div class="line"></div><div class="line"><span class="comment">// 然后JS引擎从上到下解释运行，后面的函数声明会覆盖掉前面的变量声明</span></div><div class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// function foo()&#123;console.log("foo")&#125;</span></div><div class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// function fn()&#123;console.log("fn")&#125;</span></div><div class="line">foo = <span class="number">1</span>;</div><div class="line">fn = <span class="number">2</span>;</div><div class="line"><span class="built_in">console</span>.log(foo) <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// 2</span></div></pre></td></tr></table></figure></p>
+<h2 id="三、匿名函数"><a href="#三、匿名函数" class="headerlink" title="三、匿名函数"></a>三、匿名函数</h2><p>匿名函数在 javascript 中广泛用于赋值、传参、构建闭包等操作。</p>
+<h3 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h3><p>啊咧咧？函数表达式怎么跑这里来了？？？</p>
+<p>没错，函数表达式就是匿名函数的一种应用。</p>
+<p>不信你看函数表达式右边，这就是一个把匿名函数赋值给一个变量的过程。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">1</span>)&#125;</div><div class="line">foo() <span class="comment">// 1</span></div></pre></td></tr></table></figure></p>
+<h3 id="构建闭包"><a href="#构建闭包" class="headerlink" title="构建闭包"></a>构建闭包</h3><p>闭包是 javascript 最强大的特性之一。<br>它的最大用处有两个，一个是可以读取其他函数内部的变量，另一个就是让这些变量的值始终保持在内存中。</p>
+<p><strong>示例：</strong><br>这里只将闭包作为匿名函数的应用示例，并不展开讨论闭包。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="number">1000</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//匿名函数</span></div><div class="line">    a = a + <span class="number">1</span>;</div><div class="line">    <span class="built_in">console</span>.log(a)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> fn = foo()</div><div class="line">fn() <span class="comment">// 2</span></div><div class="line">fn() <span class="comment">// 3</span></div></pre></td></tr></table></figure></p>
+<h3 id="立即执行函数表达式（IIFE）"><a href="#立即执行函数表达式（IIFE）" class="headerlink" title="立即执行函数表达式（IIFE）"></a>立即执行函数表达式（IIFE）</h3><p>这是一个写在任何地方都不会抛出 <code>Uncaught SyntaxError</code> 错误的匿名函数</p>
+<ul>
+<li>立即执行函数表达式（Immediately-Invoked Function Expression），简称IIFE。表示定义函数之后，立即调用该函数。</li>
+<li>作用：隔离作用域，保护私有变量，防止污染全局变量</li>
+</ul>
+<p><strong>最常用的两种写法：</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;());</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;)();</div></pre></td></tr></table></figure>
+<p><strong>示例：</strong><br>定义之后立即调用<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>)</span>&#123;<span class="built_in">console</span>.log(a)&#125;)(<span class="number">10</span>) <span class="comment">// 10</span></div></pre></td></tr></table></figure></p>
+<p><a href="http://www.cnblogs.com/zichi/p/4401755.html" target="_blank" rel="external">参考：（译）详解javascript立即执行函数表达式（IIFE）</a></p>
+<p>##抛出错误</p>
+<p>如果匿名函数直接写成以下形式会抛出 <code>Uncaught SyntaxError</code> 错误，不过相信你也不会这样写，毕竟这样写的话你就没有办法调用它了QAQ<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>（）</span>&#123;<span class="comment">/*code*/</span>&#125; <span class="comment">// Uncaught SyntaxError:</span></div></pre></td></tr></table></figure></p>
+<p>（完）</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/试题：作用域链-闭包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2092,455 +2583,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/vim常用基础命令整理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/vim常用基础命令整理/" itemprop="url">vim常用基础命令整理</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T21:06:30+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/vim常用基础命令整理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/vim常用基础命令整理/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/22/vim常用基础命令整理/" class="leancloud_visitors" data-flag-title="vim常用基础命令整理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><a href="http://oux9sg1nc.bkt.clouddn.com/17-9-17/93482924.jpg" target="_blank" rel="external"> @vim | center </a></p>
-<p>#vim常用基础命令整理</p>
-<p>1.进入Vim 编辑器<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">vim</span> 文件名 &lt;回车&gt;</div></pre></td></tr></table></figure></p>
-<p>2.退出 Vim 编辑器</p>
-<ul>
-<li><p>放弃所有改动</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;ESC&gt;  :q!  &lt;回车&gt;  //q=Quit ; !=强制执行 ；</div></pre></td></tr></table></figure>
-</li>
-<li><p>保存改动</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;ESC&gt;  :wq  &lt;回车&gt;  //w=Write ; q=Quit ;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>3.删除光标所在位置的字符<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">x</span></div></pre></td></tr></table></figure></p>
-<p>4.在光标前插入文本<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">i   输入欲插入文本   <span class="symbol">&lt;ESC&gt;</span></div></pre></td></tr></table></figure></p>
-<p>5.在一行后插入文本<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A   输入欲添加文本   <span class="symbol">&lt;ESC&gt;</span></div></pre></td></tr></table></figure></p>
-<hr>
-<p>6.从当前光标删除至下一个单词<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dw  //d=Delete ; w=Word ;</div></pre></td></tr></table></figure></p>
-<p>7.从当前光标删除至当前行末尾<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">d$</div></pre></td></tr></table></figure></p>
-<p>8.删除整行<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dd</div></pre></td></tr></table></figure></p>
-<p>9.重复一个动作<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">operator   [<span class="keyword">number</span>]   motion</div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">operator - 操作符，代表要做的事情，比如 d 代表删除</div><div class="line">[<span class="keyword">number</span>] - 可以附加的数字，代表动作重复的次数</div><div class="line">motion   - 动作，代表在所操作的文本上的移动</div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">例如 ：</div><div class="line"><span class="number">2</span><span class="keyword">w</span>  //从光标开始偏移<span class="number">2</span>个单词</div><div class="line">d2w  //从光标开始删除<span class="number">2</span>个单词</div><div class="line"><span class="keyword">w</span> 代表单词(word)，$ 代表行末等等。</div></pre></td></tr></table></figure>
-<p>10.移动光标到行首<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">0</span>  //数字<span class="number">0</span>键</div></pre></td></tr></table></figure></p>
-<hr>
-<p>11.撤销相关<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">u</span> //小写的<span class="keyword">u</span>，撤消以前的操作</div><div class="line">U //大写的U，撤消在一行中所做的所有改动</div><div class="line">CTRL-R  //撤消以前的撤消命令</div></pre></td></tr></table></figure></p>
-<p>12.要重新置入已经删除的文本内容<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">p</span> //删除的内容留在寄存器中，把<span class="keyword">p</span>想成paste</div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">该操作可以将已删除的文本内容置于光标之后。</div><div class="line">如删除的是一个整行，操作将置于当前光标所在行的下一行。</div></pre></td></tr></table></figure>
-<p>13.要替换光标所在位置的字符<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">r 新字符 // 替换单个字符</div><div class="line">R 新字符 <span class="symbol">&lt;ESC&gt;</span> // 替换多个字符</div></pre></td></tr></table></figure></p>
-<p>14.更改命令c<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">c</span>    [<span class="keyword">number</span>]   motion // 参数同<span class="number">9</span>.</div></pre></td></tr></table></figure></p>
-<p>15.定位及文件状态<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">CTRL-G  //显示当前光标所在行的位置以及文件状态信息</div><div class="line">数字 G  //（这里G大写）直接跳转到文件中的某一指定行</div><div class="line">G  //当前光标直接跳转到文件最后一行</div><div class="line">gg  //当前光标直接跳转到文件第一行</div></pre></td></tr></table></figure></p>
-<hr>
-<p>16.搜索类命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/ 要搜索的字符 &lt;回车&gt;  //在当前文件中查找该字符串</div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">n  //正向查找同上一次的字符</div><div class="line"><span class="keyword">N</span>  //向相反方向查找同上一次的字符</div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">? 要搜索的字符 &lt;回车&gt; //同<span class="keyword">N</span>，反向查找字符</div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> ic  //忽略大小写ignorecase</div><div class="line">:<span class="keyword">set</span> noic  //禁用忽略大小写</div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">set</span> hls <span class="keyword">is</span>  //设置 高亮显示所有的匹配短语hlsearch 和 查找短语时显示部分匹配incsearch 这两个选项，</div><div class="line">:<span class="keyword">nohlsearch</span>  //移除匹配项的高亮显示</div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CTRL-O  //字母<span class="keyword">o</span>，回到之前的位置，重复可回退多步</div><div class="line">CTRL-I  //跳转到较新的位置</div></pre></td></tr></table></figure>
-<p>17.配对括号的查找<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%  //在第一个括号处按下%，光标将跳转到闭合处，再次按下将回跳</div></pre></td></tr></table></figure></p>
-<p>18.替换命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:s/字符<span class="number">1</span>/字符<span class="number">2</span>/g  //将光标所在行中所有的 字符<span class="number">1</span> 替换为 字符<span class="number">2</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:#,#s/old/<span class="keyword">new</span>/g  // #,# 代表的是替换操作的若干行中首尾两行的行号</div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:%s/old/<span class="keyword">new</span>/g  //替换整个文件中的每个匹配字符old替换为字符<span class="keyword">new</span></div></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:%s/old/<span class="keyword">new</span>/gc  //找到整个文件中的每个匹配字符，并且对每个匹配字符提示是否进行替换</div></pre></td></tr></table></figure>
-<p>19.在VIM内执行外部命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:!command  //执行一个外部命令<span class="keyword">command</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">例如</div><div class="line">:!ls  //显示当前目录内容</div><div class="line">:!rm FILENAME  //删除名为FILENAME的文件</div></pre></td></tr></table></figure>
-<p>20.保存命令<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">w</span> TEST //以 TEST 为文件名保存整个文件</div><div class="line">v motion :<span class="keyword">w</span> FILENAME  //选择性保存文件的部分内容，按v并移动光标以选择</div></pre></td></tr></table></figure></p>
-<hr>
-<p>21.提取与合并<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:r FILENAME  //将FILENAME内容提取并插入到光标后</div><div class="line">:r !ls  //读取 <span class="keyword">ls</span> 命令的输出结果，并将其插入在光标后</div></pre></td></tr></table></figure></p>
-<p>22.打开新的一行</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">o</span>  //小写字母<span class="keyword">o</span>，在光标下方打开新的一行,并进入插入模式</div><div class="line">O  //大写字母O，在光标上方打开新的一行,并进入插入模式</div></pre></td></tr></table></figure>
-<p>23.插入文本<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">a</span> 要插入的文本  //在光标后插入文本</div><div class="line">A 要插入的文本  //在光标所在行的行末插入文本</div></pre></td></tr></table></figure></p>
-<p>24.复制粘贴<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">v 光标移动选择内容 <span class="keyword">y</span> 移动光标到要粘贴的位置 <span class="keyword">p</span>  //v选择，<span class="keyword">y</span>复制，<span class="keyword">p</span>粘贴</div></pre></td></tr></table></figure></p>
-<p>25.获取帮助信息<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- 按下 <span class="symbol">&lt;HELP&gt;</span> 键 (如果键盘上有的话)</div><div class="line">- 按下 <span class="symbol">&lt;F1&gt;</span> 键 (如果键盘上有的话)</div><div class="line">- 输入 :<span class="keyword">help</span> &lt;回车&gt;</div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CTRL-W  //使光标在窗口之间跳转</div><div class="line">:q &lt;回车&gt;  //关闭帮助窗口</div></pre></td></tr></table></figure>
-<hr>
-<p>26.创建启动脚本及vimrc配置<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">edit</span> ~/.vimrc  //Unix所使用的命令</div><div class="line">:<span class="keyword">edit</span> $VIM/_vimrc  //MS-Windows所使用的命令</div><div class="line">:<span class="keyword">write</span>  //保存文件</div></pre></td></tr></table></figure></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">:r $VIMRUNTIME/vimrc_example.<span class="keyword">vim</span>  //读取vimrc 示例文件的内容</div><div class="line">:<span class="keyword">help</span> vimrc-<span class="keyword">intro</span>  //获取vimrc配置帮助</div></pre></td></tr></table></figure>
-<p>27.命令补全<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">:<span class="keyword">e</span> CTRL-D <span class="symbol">&lt;TAB&gt;</span>  //Vim 会显示以 <span class="keyword">e</span> 开始的命令的列表，TAB选择补全</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/22/webpack基础入坑（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Albert">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Albert's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/22/webpack基础入坑（二）/" itemprop="url">webpack基础入坑（二）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-22T19:30:03+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            <!--noindex-->
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/22/webpack基础入坑（二）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count hc-comment-count" data-xid="2017/08/22/webpack基础入坑（二）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-              <!--/noindex-->
-            
-          
-
-          
-          
-             <span id="/2017/08/22/webpack基础入坑（二）/" class="leancloud_visitors" data-flag-title="webpack基础入坑（二）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fishfcjd85j21g30orwmv.jpg" alt=" webpack | center "></p>
-<h1 id="webpack基础入坑（二"><a href="#webpack基础入坑（二" class="headerlink" title="webpack基础入坑（二"></a>webpack基础入坑（二</h1><blockquote>
-<p>接上回</p>
-</blockquote>
-<p>上回主要操作了指南的 Installation 与 GettingStarted 这两部分，这时候我们大概能猜出 webpack 的某些功能了：</p>
-<ol>
-<li>使用各种 loader 加载不同的资源</li>
-<li>把所有资源打包起来</li>
-</ol>
-<h2 id="bundle-js"><a href="#bundle-js" class="headerlink" title="bundle.js"></a>bundle.js</h2><p>我们可以阅读一下最后生成的 <code>bundle.js</code><br>（可以写几个简单的JS文件打包，参数部分看起来会更方便一些）<br><code>bundle.js</code> 是一个并不复杂的自执行函数（每一行都有代码注释）容主要由两部分组成：</p>
-<ol>
-<li>webpackBootstrap 函数入口，主体部分<br>打包的功能就在这部分，有兴趣的话可以看一下每一行的功能，大致就是把每个模块call一下，然后把模块保存到 <code>installedModules</code> 里，然后需要用到的时候可以直接调用。</li>
-<li>参数部分<br>传入一个数组，数组的每一项都是一个模块，每个模块都有一个独立的模块ID，模块需要其他依赖时直接通过模块ID来调用。</li>
-</ol>
-<p>就此打住，这篇文章主题并不在讲 <code>bundle.js</code>。</p>
-<hr>
-<h2 id="JS-压缩"><a href="#JS-压缩" class="headerlink" title="JS 压缩"></a>JS 压缩</h2><p>webpack打包之后我们发现 <code>dist/bundle.js</code> 有800KB，因为我们引入了 <code>lodash</code> 和 <code>jQuery</code> 这两个库，但是并没有压缩代码，那么如何压缩呢？方法很多，其中最简单的一种就是使用 webpack 自带的压缩插件 UglifyJsPlugin：</p>
-<p>我们修改一下 <code>npm scripts</code> 的配置，添加一个字段启动webpack的压缩功能：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"build-p": "webpack -p"</div></pre></td></tr></table></figure></p>
-<p>重新运行命令打包文件，得到的 <code>bundle.js</code> 就是一个压缩过的文件。</p>
-<ul>
-<li>更多使用方法参考这里：<a href="https://github.com/mishoo/UglifyJS2#usage" target="_blank" rel="external">UglifyJS</a></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build-p</div></pre></td></tr></table></figure>
-<p>运行帮助命令查看 <code>-p</code> 参数的具体功能<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack --<span class="built_in">help</span></div><div class="line"></div><div class="line"><span class="comment"># 找到如下介绍</span></div><div class="line">-p        shortcut <span class="keyword">for</span> --optimize-minimize --define process.env.NODE_ENV=<span class="string">"production"</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">webpack -p</div><div class="line"><span class="comment"># 相当于以下命令</span></div><div class="line">webpack --optimize-minimize --define process.env.NODE_ENV=<span class="string">"'production'"</span></div></pre></td></tr></table></figure>
-<p>它会执行如下步骤：</p>
-<ol>
-<li>使用 UglifyJsPlugin 进行 JS 文件压缩</li>
-<li>运行 <a href="https://doc.webpack-china.org/plugins/loader-options-plugin/" target="_blank" rel="external">LoaderOptionsPlugin</a></li>
-<li>设置 NodeJS 环境变量，触发某些 package 包，以不同的方式进行编译。</li>
-</ol>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>每次改完代码都要运行一次打包命令是不是很烦人？没关系，webpack 肯定也考虑到了，于是乎我们就可以通过 webpack 自带的监听功能自动监听文件变动然后执行编译。</p>
-<p><a href="https://webpack.js.org/guides/development/" target="_blank" rel="external">Development</a> 这一章节就是专门介绍如何快速开发的。</p>
-<h3 id="1-调整编辑器"><a href="#1-调整编辑器" class="headerlink" title="1. 调整编辑器"></a>1. 调整编辑器</h3><p>首先，我们先拉到文章底部，按照它的要求调整我们的编辑器：<br><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fivwqt4zttj20hz08vdgs.jpg" alt="@调整编辑器 | center"></p>
-<h3 id="2-Source-Maps"><a href="#2-Source-Maps" class="headerlink" title="2. Source Maps"></a>2. Source Maps</h3><p>调整好编辑器后我们再返回页面顶部，找到Source Maps<br><strong>功能：</strong><br>将编译后的代码映射回原始源代码，如果某个源文件中存在错误，source map会追踪到错误和警告在源代码中的原始位置，方便代码调试。<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  var path = require('path');</div><div class="line">  module.exports = &#123;</div><div class="line">    entry: './src/index.js',</div><div class="line"><span class="addition">+   devtool: 'inline-source-map',</span></div><div class="line">    output: &#123;</div><div class="line">      filename: 'bundle.js',</div><div class="line">      path: path.resolve(__dirname, 'dist')</div><div class="line">    &#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
-<p>故意改错源文件中的代码，然后运行 <code>npm run build</code> 打包，然后在浏览器控制台你会发现 <code>bundle.js</code> 的报错会指向源文件。<br><img src="https://ws1.sinaimg.cn/large/889b2f7fgy1fivxaa8w8yj20d2048dg4.jpg" alt="@指向了源文件 foo.js | center"></p>
-<h3 id="3-Watch-Mode"><a href="#3-Watch-Mode" class="headerlink" title="3. Watch Mode"></a>3. Watch Mode</h3><p>再修改一下 <code>npm scripts</code> 的配置，添加一个字段以启动监听模式：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"watch": "webpack --watch"</div></pre></td></tr></table></figure></p>
-<p>运行 <code>npm run watch</code><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm run watch</div><div class="line"><span class="comment"># 运行成功直接编译然后光标继续闪动表示监听中...</span></div></pre></td></tr></table></figure></p>
-<p>如果你想要退出，请按 <code>Ctrl+c</code></p>
-<p>好了现在我们试一下这个监听功能，我们随便修改一个文件内容，按 <code>Ctrl+s</code> 保存。</p>
-<p>切换回命令行，你会发现 webpack 自动执行了编译操作。</p>
-<h3 id="4-webpack-dev-server"><a href="#4-webpack-dev-server" class="headerlink" title="4.  webpack-dev-server"></a>4.  webpack-dev-server</h3><p>此功能能够让你的浏览器自动刷新，是不是棒棒哒~（虽然很多编辑器也都有这个功能=。=）</p>
-<p>按照老规矩，第一步添加修改 <code>npm scripts</code> 的配置，添加一个字段以启动开发服务器：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">"start": "webpack-dev-server --open"</div></pre></td></tr></table></figure></p>
-<p>修改 <code>webpack.config.js</code> ，在 <code>module.exports</code> 对象中添加一个字段 <code>devServer</code> ，告知 <code>webpack-dev-server</code> 将指定目录下的文件作为可访问文件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">devServer: &#123;</div><div class="line">    contentBase: <span class="string">'./'</span></div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
-<p>运行 <code>npm run start</code> 启动服务器，然后浏览器就会自动打开 <a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a> ，你会看到 <code>index.html</code> 页面。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run start</div></pre></td></tr></table></figure></p>
-<p>接下来如果我们改一下 <code>src/index.js</code>，你就会发现</p>
-<ol>
-<li><code>bundle.js</code> 自动打包</li>
-<li><a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a> 自动刷新</li>
-</ol>
-<p>注意：期间 <code>dist/bundle.js</code> 不会自动变化，在部署代码之前，依然要运行 <code>npm run build</code> 才行。</p>
-<h3 id="5-webpack-dev-middleware"><a href="#5-webpack-dev-middleware" class="headerlink" title="5. webpack-dev-middleware"></a>5. webpack-dev-middleware</h3><p>功能与 <code>webpack-dev-server</code> 类似，新手入坑不建议使用 <code>webpack-dev-middleware</code></p>
-<p>（完）</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2591,7 +2633,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2613,7 +2655,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

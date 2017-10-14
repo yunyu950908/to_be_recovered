@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="插入排序：把当前项 [ 插入 ] 到小于等于它的那一项的后面，而后面的数都大于当前项  从第二个开始，每次选中一个作为当前项 将当前项与上一项进行比较 如果上一项比当前项大，交换位置 直到上一项小于当前项，把当前项插入上一项后面  123456789101112function insertionSort(arr)&amp;#123;  for(var i = 1; i &amp;lt; arr.length;">
+<meta name="description" content="插入排序：把当前项 [ 插入 ] 到小于等于它的那一项的后面，而后面的数都大于当前项  从第二个开始，每次选中一个作为当前项 将当前项与上一项进行比较 如果上一项比当前项大，交换位置 直到上一项小于当前项，把当前项插入上一项后面  123456789101112131415function INS(arr) &amp;#123;  let len = arr.length;  let index, cur">
 <meta name="keywords" content="排序算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序算法 - 插入排序">
 <meta property="og:url" content="http://yoursite.com/2017/10/03/排序算法 - 插入排序/index.html">
 <meta property="og:site_name" content="Albert&#39;s Blog">
-<meta property="og:description" content="插入排序：把当前项 [ 插入 ] 到小于等于它的那一项的后面，而后面的数都大于当前项  从第二个开始，每次选中一个作为当前项 将当前项与上一项进行比较 如果上一项比当前项大，交换位置 直到上一项小于当前项，把当前项插入上一项后面  123456789101112function insertionSort(arr)&amp;#123;  for(var i = 1; i &amp;lt; arr.length;">
+<meta property="og:description" content="插入排序：把当前项 [ 插入 ] 到小于等于它的那一项的后面，而后面的数都大于当前项  从第二个开始，每次选中一个作为当前项 将当前项与上一项进行比较 如果上一项比当前项大，交换位置 直到上一项小于当前项，把当前项插入上一项后面  123456789101112131415function INS(arr) &amp;#123;  let len = arr.length;  let index, cur">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-10T18:41:40.059Z">
+<meta property="og:updated_time" content="2017-10-13T11:39:12.544Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法 - 插入排序">
-<meta name="twitter:description" content="插入排序：把当前项 [ 插入 ] 到小于等于它的那一项的后面，而后面的数都大于当前项  从第二个开始，每次选中一个作为当前项 将当前项与上一项进行比较 如果上一项比当前项大，交换位置 直到上一项小于当前项，把当前项插入上一项后面  123456789101112function insertionSort(arr)&amp;#123;  for(var i = 1; i &amp;lt; arr.length;">
+<meta name="twitter:description" content="插入排序：把当前项 [ 插入 ] 到小于等于它的那一项的后面，而后面的数都大于当前项  从第二个开始，每次选中一个作为当前项 将当前项与上一项进行比较 如果上一项比当前项大，交换位置 直到上一项小于当前项，把当前项插入上一项后面  123456789101112131415function INS(arr) &amp;#123;  let len = arr.length;  let index, cur">
 
 
 
@@ -440,7 +440,7 @@
 <li>如果上一项比当前项大，交换位置</li>
 <li>直到上一项小于当前项，把当前项插入上一项后面</li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertionSort</span>(<span class="params">arr</span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; arr.length; i++)&#123;</div><div class="line">    preIndex = i - <span class="number">1</span>;</div><div class="line">    current = arr[i];</div><div class="line">    <span class="keyword">while</span>(preIndex &gt;= <span class="number">0</span> &amp;&amp; arr[preIndex] &gt; current)&#123;</div><div class="line">      arr[preIndex + <span class="number">1</span>] = arr[preIndex];</div><div class="line">      preIndex--;</div><div class="line">    &#125;</div><div class="line">    arr[preIndex + <span class="number">1</span>] = current;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">INS</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> len = arr.length;</div><div class="line">  <span class="keyword">let</span> index, current;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</div><div class="line">    index = i;</div><div class="line">    current = arr[i];</div><div class="line">    <span class="keyword">while</span> (index &gt;= <span class="number">1</span> &amp;&amp; current &lt; arr[index - <span class="number">1</span>]) &#123;</div><div class="line">      arr[index] = arr[index - <span class="number">1</span>];</div><div class="line">      arr[index - <span class="number">1</span>] = current;</div><div class="line">      index--;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">console</span>.log(arr)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> arr;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>（未完待续）</p>
 
       
@@ -563,7 +563,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">45</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -585,7 +585,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">45</span>
+                <span class="site-state-item-count">46</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
