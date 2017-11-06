@@ -13,11 +13,13 @@ date: 2017-10-03 15:57:45
 先来看看 new 操作符干了什么事情
 
 ```javascript
+// 先定义一个构造函数 F
 function F(name,age){
   this.name = name;
   this.age = age;
 }
 
+// 在 F 的原型上定义一个 getInfo 的方法
 F.prototype = {
   getInfo: function(){
     console.log("name: " + this.name)
@@ -25,14 +27,17 @@ F.prototype = {
   }
 }
 
+// 创建一个 F 的实例
 var f = new F("Albert",23)
 
+// 调用原型上的方法
 f.getInfo()
 
+// 打印出实例 f
 console.log(f)
 ```
 
-下面是 控制台 log 出的 小f 的内容：
+下面是 控制台 log 出的内容：
 
 ![ @console.log(f) ](https://ws1.sinaimg.cn/large/889b2f7fgy1fk54xwa9s4j207k03oglk.jpg)
 
